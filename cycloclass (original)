@@ -1,0 +1,33 @@
+K<z> := CyclotomicField(51);
+d:=16; //Grad von S ueber K
+S := sub<K|z+1/z>;
+LS := LLL(MaximalOrder(S));
+ClassGroup(LS:Bound := 1000);
+LK := LLL(MaximalOrder(K));
+ AA,mAA:=ClassGroup(LK:Bound := 1500);
+
+U, mU := IndependentUnits(S);
+u := [S|mU(U.i) : i in [1..d]];                                                              
+MM:=KMatrixSpace(GF(2),d,d) ! 0;
+for i in [1..d] do r:=RealEmbeddings(u[i]);
+for j in [1..d] do if r[j] gt 0 then MM[i][j]:=0; else MM[i][j]:=1; end if;
+end for; end for;
+Rank(MM);
+
+k:=KernelMatrix(MM);
+uu:= S ! 1;
+for i in [1..d] do if k[1][i] eq 1 then uu *:= u[i]; end if; end for;
+u1:=uu;
+uu:= S ! 1;
+for i in [1..d] do if k[2][i] eq 1 then uu *:= u[i]; end if; end for;
+u2:=uu;
+u3:=u1*u2;
+
+P<x>:=PolynomialRing(S);
+Factorization(x^2-u1);
+Factorization(x^2-u2);
+Factorization(x^2-u3);
+
+LK := RingOfIntegers(K);
+POSu:=[u1,u2,u3];
+

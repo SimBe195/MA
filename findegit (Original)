@@ -1,0 +1,142 @@
+ord:=112;
+deg:=48;
+K<z> := CyclotomicField(ord);
+B:=[K ! 1];
+for i in [1..deg-1] do Append(~B,z^i); end for;
+T:=MatrixRing(Integers(),deg) ! 0;
+for i in [1..deg] do for j in [1..deg] do T[i][j]:=Trace(B[i]*ComplexConjugate(B[j])); end for; end for;
+a:=MatrixRing(Integers(),deg) ! 0;
+e:=Eltseq(MinimalPolynomial(z));
+for i in [1..deg-1] do a[i][i+1]:=1; end for;
+for i in [1..deg] do a[deg][i]:=-e[i]; end for;
+
+// a:=Transpose(a);
+
+
+Ba:=[MatrixRing(Integers(),deg) ! 1];
+for i in [1..deg-1] do Append(~Ba,a^i); end for;
+
+F7:=Factorisation(ideal<LS | 7>);
+F113:=Factorisation(ideal<LS | 113>);
+a7,b7:=IsPrincipal(F7[1][1]);
+aa7,bb7:=IsPrincipal(F7[2][1]);
+a113,b113:=IsPrincipal(F113[9][1]);
+zz:=KMatrixSpace(GF(2),1,d) ! 0;
+r:=RealEmbeddings(b7);
+for j in [1..d] do if r[j] gt 0 then zz[1][j]:=0; else zz[1][j]:=1; end if;
+end for;
+
+MMzz:=VerticalJoin(MM,zz);
+zz:=KMatrixSpace(GF(2),1,d) ! 0;
+r:=RealEmbeddings(bb7);
+for j in [1..d] do if r[j] gt 0 then zz[1][j]:=0; else zz[1][j]:=1; end if;
+end for;
+
+
+MMzz:=VerticalJoin(MMzz,zz);
+zz:=KMatrixSpace(GF(2),1,d) ! 0;
+r:=RealEmbeddings(b113);
+for j in [1..d] do if r[j] gt 0 then zz[1][j]:=0; else zz[1][j]:=1; end if;
+end for;
+
+
+MMzz:=VerticalJoin(MMzz,zz);
+
+k:=KernelMatrix(MMzz);
+
+aa7:=S ! bb7;
+for i in [1..d] do if k[3][i] eq 1 then aa7 *:= u[i]; end if; end for;
+
+a7:= S ! b7;
+for i in [1..d] do if k[2][i] eq 1 then a7 *:= u[i]; end if; end for;
+
+a113:=b113^2;
+ee:=Eltseq(K ! a7);
+A7:=MatrixRing(Rationals(),deg) ! 0;
+for i in [1..deg] do A7 +:= ee[i]*Ba[i]; end for;
+
+ee:=Eltseq(K ! aa7);
+AA7:=MatrixRing(Rationals(),deg) ! 0;
+for i in [1..deg] do AA7 +:= ee[i]*Ba[i]; end for;
+
+ee:=Eltseq(K ! a113);
+A113:=MatrixRing(Rationals(),deg) ! 0;
+for i in [1..deg] do A113 +:= ee[i]*Ba[i]; end for;
+
+POS:=[MatrixRing(Rationals(),deg) ! 1];
+for i in [1..#POSu] do
+ee:=Eltseq(K ! POSu[i]);
+UU:=MatrixRing(Rationals(),deg) ! 0;
+for i in [1..deg] do 
+UU +:= MatrixRing(Rationals(), deg) ! ee[i]*Ba[i]; end for;
+Append(~POS,UU); 
+end for;
+
+
+Ti:=1/56*A7*AA7*MatrixRing(Rationals(),48) ! T;
+
+
+
+
+
+reducelat := function(F)
+n:=NumberOfRows(F);
+m:=F[1][1];
+for i in [1..100] do
+F:=LLLGram(F:Delta:=0.99,Eta:=0.501);
+F:=SeysenGram(F);
+F:=PairReduceGram(F);
+x:=Minimum([F[i][i] : i in [1..n]]);
+if x lt m then m:=x; 
+   if m lt 6 then return m; end if; 
+end if;
+end for;
+return m;
+end function;
+
+O:=RingOfIntegers(K);
+I1:=ideal<O | 7,6+z+z^2>;
+ //mit AA7
+I2:=ideal<O | 113,3+z>;
+I2:=I2^4; //mit AA113^2
+classnb1:=6;
+classnb2:=3*13;
+
+posi1 := AA7^-1;
+posi2 := A113^-2;
+
+INV:=[];
+FFF:=[];
+AAA:=[];
+for kk in [2..#POS] do
+for jj in [0..classnb2-1] do
+I:=I1*I2^jj;
+F:=posi1*posi2^jj*POS[kk]*Ti;
+  for kkk in [1..classnb1] do
+L:=LatticeWithGram(F);
+G:=Generators(I);
+M1:=MatrixRing(Integers(),deg) ! 0;
+for i in [1..deg] do M1 +:= G[1][i] * Ba[i]; end for;
+M2:=MatrixRing(Integers(),deg) ! 0;
+for i in [1..deg] do M2 +:= G[2][i] * Ba[i]; end for;
+MM12:=VerticalJoin(M1,M2);
+//MinimalPolynomial(M2) eq MinimalPolynomial(G[2]);
+U:=sub<L | MM12 >;
+BU:=MatrixRing(Rationals(),deg ) ! BasisMatrix(U);
+AU:=BU*Ba[2]*BU^-1;
+FU:=BU*F*Transpose(BU);
+//U:=LatticeWithGram(FU);
+mn:=reducelat(FU);
+print [jj,mn];
+if mn ge 6 then Append(~FFF,FU);
+Append(~AAA,AU); end if;
+Append(~INV,[jj,mn]);
+ElementaryDivisors(MatrixRing(Integers(),deg) ! FU);
+F := posi1*F;
+I := I*I1;
+end for;
+end for;
+end for;
+PrintFileMagma("FFFpos",FFF);
+PrintFileMagma("FFFpos",AAA);
+

@@ -1,0 +1,44 @@
+K<z> := CyclotomicField(68);
+d:=16; //Grad von S ueber K
+F := sub<K|z+1/z>;
+
+ZF := LLL(MaximalOrder(F));
+//print("Z_F:");
+//print(ZF);
+
+ZK := LLL(MaximalOrder(K));
+//print("Z_K:");
+//print(ZK);
+
+Cl, mCl := ClassGroup(ZK:Bound := 1500);
+//print("Class Group:");
+//print(Cl.1);
+mCl(Cl.1);
+
+U, mU := IndependentUnits(F);
+u := [F|mU(U.i) : i in [1..d]];                                                              
+MM:=KMatrixSpace(GF(2),d,d) ! 0;
+for i in [1..d] do 
+    r:=RealEmbeddings(u[i]);
+    for j in [1..d] do 
+        if r[j] gt 0 then 
+            MM[i][j]:=0; 
+        else 
+            MM[i][j]:=1; 
+            end if;
+    end for; 
+end for;
+MM;
+Rank(MM);
+
+k:=KernelMatrix(MM);
+uu:= F ! 1;
+for i in [1..d] do 
+    if k[1][i] eq 1 then 
+        uu *:= u[i]; 
+    end if; 
+end for;
+uu;
+
+P<x>:=PolynomialRing(F);
+Factorization(x^2-uu);

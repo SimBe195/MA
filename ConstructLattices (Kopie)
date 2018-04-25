@@ -1,0 +1,313 @@
+
+
+m := 51;
+dim := EulerPhi(m);
+l := 2;
+verbose := true;
+
+K<z> := CyclotomicField(m);
+F := sub<K|z+1/z>;
+ZK := LLL(MaximalOrder(K));
+ZF := LLL(MaximalOrder(F));
+
+TotallyPositive := function(x)
+    for r in RealEmbeddings(x) do
+        if not (r gt 0) then
+            return false;
+        end if;
+    end for;
+
+    return true;
+end function;
+
+ConjIdeal := function(I)
+    gens := [];
+    for g in Generators(I) do
+        Append(~gens, ComplexConjugate(K ! g));
+    end for;
+    return ideal<ZK|gens>;
+end function;
+
+if verbose then printf "Compute class group of Z_K...\n"; end if;
+Cl, mCl := ClassGroup(ZK: Bound := 1000);
+ClassRepresentationSystem := [mCl(g) : g in Cl];
+if verbose then 
+    printf "Done! Result:\n";
+    Cl;
+    printf "\n\n";
+end if;
+
+if verbose then printf "Computing representative system U of totally positive elements of (Z_F)* modulo c*conj(c) for c in (Z_K)*...\n"; end if;
+
+Units, mUnits := pFundamentalUnits(ZF, 2);
+UnitGenerators := [F | mUnits(Units.i) : i in [1..dim/2]];
+
+if verbose then printf "Unit Group computed.\n"; end if;
+
+M := KMatrixSpace(GF(2), Integers() ! (dim/2), Integers() ! (dim/2)) ! 0;
+for i in [1..dim/2] do
+    r := RealEmbeddings(UnitGenerators[i]);
+
+    for j in [1..dim/2] do
+        if not (r[j] gt 0) then
+            M[i][j] := 1;
+        end if;
+    end for;
+
+end for;
+
+
+if verbose then print "Computing totally positive units in F reduced by norms."; end if;
+MKernel := KernelMatrix(M);
+
+TotallyPositiveBasis := [];
+for i in [1..NumberOfRows(MKernel)] do
+    a := F ! 1;
+    for j in [1..dim/2] do
+        if MKernel[i][j] eq 1 then
+            a := a * UnitGenerators[j];
+        end if;
+    end for;
+    Append(~TotallyPositiveBasis, a);
+end for;
+
+TotallyPositiveUnits := [];
+for i in [1..NumberOfRows(MKernel)] do
+    Append(~TotallyPositiveUnits, TotallyPositiveBasis[i]);
+    for j in [i+1..NumberOfRows(MKernel)] do
+        Append(~TotallyPositiveUnits, TotallyPositiveBasis[i] * TotallyPositiveBasis[j]);
+    end for;
+end for;
+
+//if verbose then
+//    printf "Totally positive units reduced by squares are:\n";
+//    TotallyPositiveUnits;
+//    printf "\n\n";
+//end if;
+
+
+U := [];
+for u in TotallyPositiveUnits do
+    new := true;
+
+    for v in U do
+        if IsNorm(ZK, u/v) then
+            new := false;
+            break;
+        end if;
+    end for;
+
+    if new then
+        Append(~U, u);
+    end if;
+end for;
+
+if verbose then printf "Done! %o units found.\n\n", #U; end if;
+
+if verbose then printf "Computing alpha_0...\n"; end if;
+D := Different(ZK);
+invD := D^(-1);
+
+FindPositiveGeneratorInF := function(I) // Credit to Michael Juergens
+    RelKF:=RelativeField(F,K);
+
+    // Boolscher Wert, der angibt, ob I überhaupt die Form I=(I meet F)O hat
+    Shape:=true; 
+    // Speichert das Ideal I meet F
+    ImeetF:=ideal<ZF|1>;
+    SplitIdeals:=[];
+
+    for i in [1..#Factorization(I)] do
+        tup := Factorization(I)[i];
+        P:=tup[1];
+        nuP:=tup[2];
+     
+        // Fasse Ideal P als Ideal von der relativen Erweiterung K:F auf
+        RelP:=ideal<Integers(RelKF)|Generators(P)>;
+        // Berechne die Norm von P: N(P):=P*Conjugate(P) meet F = p^f(P:p) 
+        // Für die letzte Gleichheit siehe Marcus S.84 Ü14
+        // Das Ideal p erhält man nun für f=1 durch p:=N(P) und im Fall f=2 durch
+        // p:=N(P)^1/2.
+        Relp:=Norm(RelP);
+        
+        p:=MinimalInteger(P);
+        P_F:=Factorization(ideal< Integers(F) | p >)[1][1];
+        r := #Factorization(ideal< Order(P) | Generators(P_F)>);
+        e := Factorization(ideal< Order(P) | Generators(P_F)>)[1][2];
+
+        if r eq 1 and e eq 1 then   // Relative inert
+            p:=Factorization(ideal<ZF | Generators(Relp)>)[1][1];
+            ImeetF*:=p^nuP; 
+        else 
+            if r eq 1 and e eq 2 then // Relative ramified
+                if not IsEven(nuP) then Shape:=false; break; end if; 
+                p:=Factorization(ideal<ZF | Generators(Relp)>)[1][1];
+                ImeetF*:=p^Ceiling(nuP/2); 
+            else 
+                if r eq 2 and e eq 1 then // Relative split
+                    if Valuation(I,P) ne Valuation(I,ConjIdeal(P)) then Shape:=false; break; end if; 
+                    if not ConjIdeal(P) in SplitIdeals then 
+                        p:=Factorization(ideal<Integers(F) | Generators(Relp)>)[1][1];
+                        ImeetF*:=p^nuP; 
+                        Append(~SplitIdeals,P);
+                        Append(~SplitIdeals,ConjIdeal(P)); 
+                    end if; 
+                end if;
+            end if;                  
+        end if;
+    end for;
+
+    if not Shape then
+        return false, _;
+    end if;
+
+    princ, alpha := IsPrincipal(ImeetF);
+    if not princ then
+        return false, _;
+    end if;
+
+    a := KMatrixSpace(GF(2), 1, Integers() ! (dim/2)) ! 0;
+    r := RealEmbeddings(alpha);
+    for i in [1..dim/2] do
+        if not (r[i] gt 0) then
+            a[1][i] := 1;
+        end if;
+    end for;
+
+    solvable, MSol := IsConsistent(M, a);
+
+    if not solvable then
+        return false, _;
+    end if;
+
+    for j in [1..dim/2] do
+        if MSol[1][j] eq 1 then
+            alpha := alpha * UnitGenerators[j];
+        end if;
+    end for;
+
+    return true, alpha;
+end function;
+
+princ, alpha_0 := FindPositiveGeneratorInF(invD);
+
+if not princ then
+    print "Error: Inverse Different has no totally positive generator in F";
+end if;
+
+if verbose then printf "Done!\n\n"; end if;
+
+A := [];
+
+if not (l eq 1) then
+    if verbose then printf "Constructing compatible divisors of %o*Z_K\n", l; end if;
+
+    FactZK := Factorization(l*ZK);
+    a := Norm(FactZK[1][1]);
+    s := #FactZK;
+    b := Integers() ! (dim / (2 * Log(l, a)));
+
+    for k in Divisors(Factorization(b)) do
+        if k lt s/2 then
+            continue;
+        end if;
+
+        IndexSets := Subsets({Integers() | 1..s}, k);
+
+        for Indices in IndexSets do
+            J := ideal<ZK | 1>;
+
+            for i in Indices do
+                J *:= FactZK[i][1]^(Integers() ! (b/k));
+            end for;
+
+            Append(~A, J);
+        end for;
+    end for;
+else
+    A := [ZK];
+end if;
+
+if verbose then printf "Done! %o possible divisors found.\n\n", #A; end if;
+
+if verbose then printf "Now searching for modular ideal lattices...\n"; end if;
+
+StandardGram := KMatrixSpace(Rationals(), dim, dim) ! 0;
+ZKBasis:= [];
+for i in [0..dim-1] do
+    Append(~ZKBasis, z^i);
+end for;
+
+for i in [1..dim] do
+    for j in [1..dim] do
+        StandardGram[i][j] := Trace(ZKBasis[i] * ComplexConjugate(ZKBasis[j]));
+    end for;
+end for;
+
+MtoS := KMatrixSpace(Rationals(), dim, dim) ! 0;
+for j in [1..dim] do
+    e := Eltseq(K ! Basis(ZK)[j]);
+    for i in [1..dim] do
+        MtoS[i][j] := e[i];
+    end for;
+end for;
+
+
+Lattices := [];
+
+for I in A do
+    for J in ClassRepresentationSystem do
+        JJI := (J * ConjIdeal(J))^(-1) * I * alpha_0;
+        princ, alpha_1 := FindPositiveGeneratorInF(JJI);
+
+        if not princ then
+            continue;
+        end if;
+
+
+        for u in U do
+            alpha := u * alpha_1;
+
+            MultAlpha := KMatrixSpace(Rationals(), dim, dim) ! 0;
+            for j in [1..dim] do
+                e := Eltseq((K ! alpha) * z^(j-1));
+                for i in [1..dim] dojufttr
+                    MultAlpha[i][j] := e[i];
+                end for;
+            end for;
+
+            JtoM := KMatrixSpace(Rationals(), dim, dim) ! 0;
+            for i in [1..dim] do
+                for j in [1..dim] do
+                    JtoM := Basis(J)[j][i];
+                end for;
+            end for;
+            
+            BaseChange := MtoS*JtoM;
+
+            Gram := Transpose(BaseChange)*StandardGram*MultAlpha*BaseChange;
+
+            L := LLL(Seysen(LLL(LatticeWithGram(Gram))));
+            new := true;
+
+            for k in [1..#Lattices] do
+                M := Lattices[k][1];
+                if IsIsometric(L,M) then
+                    new := false;
+                    break;
+                end if;
+            end for;
+
+            if new then
+                print "New lattice found!";
+                Append(~Lattices, <L, J, alpha>);
+            end if;
+        end for;
+    end for;
+end for;
+
+printf "Done! Found %o %o-modular ideal lattices.\n\n", #Lattices, l;
+
+for L in Lattices do
+    Determinant(L[1]);
+end for;

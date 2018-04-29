@@ -300,6 +300,22 @@ PosGen := function(alpha, UnitGens, M)
 
 end function;
 
+
+PosGenInF := function(I, UnitGens, M, K, F)
+// Combines GenInF and PosGen into 1 function
+//Input/Output:
+//  See GenInF and PosGen
+	
+	genExists, alpha := GenInF(I, K, F);
+	if genExists then
+		return PosGen(alpha, UnitGens, M);
+	end if;
+
+	return false, _;
+
+end function;
+
+
 DivisorsWithNorm := function(l, n, ZK)
 // Construct divisors of l*Z_K with norm l^n    
 // Input:
@@ -381,11 +397,62 @@ RedByIso := function(Lattices)
 
 end function;
 
+LatFromIdeal := function(J, alpha, K)
+// Constructs a lattice given a fractional ideal in K and a totally positive alpha.
+// Input:
+//	J : RngIdl			: Fractional ideal.
+//  alpha : FldNumElt	: Totally positive element in the maximal real subfield of K.
+//  K : FldNum 			: Cyclotomic number field.
+
+// Output:
+// L : Lat 				: Lattice constructed from J and alpha.
+
+	dim := #Basis(K);
+	z := PrimitiveElement(K);
+
+	JGenerators := ZeroMatrix(Integers(), #Generators(J)*dim, dim);
+    g1 := K!Generators(J)[1];
+    if #Generators(J) gt 1 then
+        g2 := K!Generators(J)[2];
+    end if;
+
+    for i in [1..dim] do
+        JGenerators[i] := Vector(Integers(), dim, Eltseq(g1*z^(i-1)));
+        if #Generators(J) gt 1 then
+            JGenerators[dim+i] := Vector(Integers(), dim, Eltseq(g2*z^(i-1)));
+        end if;
+    end for;
+
+
+    ZBaseVecs := Basis(RowSpace(JGenerators));
+    ZBase := [];
+    for i in [1..dim] do
+        b := K ! 0;
+        for j in [1..dim] do
+            b +:= ZBaseVecs[i][j]*z^(j-1);
+        end for;
+        Append(~ZBase, b);
+    end for;
+
+    Gram := KMatrixSpace(Rationals(), dim, dim) ! 0;
+    for i in [1..dim] do
+        for j in [1..dim] do
+            Gram[i][j] := Trace(alpha*ZBase[i]*ComplexConjugate(ZBase[j]));
+        end for;
+    end for;
+
+    L := LLL(Seysen(LLL(LatticeWithGram(Gram))));
+
+    return L;
+
+end function;
+
+
 ModLat := function(l, m, red)
 // Finds all l-modular ideal-lattices in Q(zeta_m).
 // Input:
 //  l : RngIntElt       : See above.
-//  dim : RngIntElt     : See above.
+//  m : RngIntElt     : See above.
 //  red : BoolElt       : true if the list of lattices shall be reduced by isometry.
 
 //Output:
@@ -400,82 +467,39 @@ ModLat := function(l, m, red)
     dim := EulerPhi(m);
 
 
-    A := DivisorsWithNorm(l, Integers() ! (dim/2), ZK);
-    B := ClassesModGalois(K);
-
     TotPos, UnitGens, M := TotPosUnits(F);
-
-    InvDiffPos, alpha_0 := GenInF(Different(ZK)^(-1), K, F);
-
-    if InvDiffPos then
-        InvDiffPos, alpha_0 := PosGen(alpha_0, UnitGens, M);
-    end if;
-
-
-
     U := RedByNorm(TotPos, K, F);
+
+    A := ClassesModGalois(K);
+	B := DivisorsWithNorm(l, Integers() ! (dim/2), ZK);
+
+
+    InvDiffPos, alpha_0 := PosGenInF(Different(ZK)^(-1), UnitGens, M, K, F);
 
     Lattices := [];
 
-    for I in A do
-        for J in B do
+    for J in A do
+        for I in B do
             if InvDiffPos then
                 JJI := (J * ConjIdeal(J,K))^(-1) * I * alpha_0;
             else
                 JJI := (J * ConjIdeal(J,K) * Different(ZK))^(-1) * I;
             end if;
 
-            princ, alpha_1 := GenInF(JJI, K, F);
 
-            if not princ then
-                continue;
-            end if;
-
-            pos, alpha_1 := PosGen(alpha_1, UnitGens, M);
+            pos, alpha_1 := PosGenInF(JJI, UnitGens, M, K, F);
             if not pos then
                 continue;
             end if;
 
             for u in U do
                 alpha := K ! (u * alpha_1);
-
-                JGenerators := ZeroMatrix(Integers(), #Generators(J)*dim, dim);
-                g1 := K!Generators(J)[1];
-                if #Generators(J) gt 1 then
-                    g2 := K!Generators(J)[2];
-                end if;
-
-                for i in [1..dim] do
-                    JGenerators[i] := Vector(Integers(), dim, Eltseq(g1*z^(i-1)));
-                    if #Generators(J) gt 1 then
-                        JGenerators[dim+i] := Vector(Integers(), dim, Eltseq(g2*z^(i-1)));
-                    end if;
-                end for;
-
-
-                ZBaseVecs := Basis(RowSpace(JGenerators));
-                ZBase := [];
-                for i in [1..dim] do
-                    b := K ! 0;
-                    for j in [1..dim] do
-                        b +:= ZBaseVecs[i][j]*z^(j-1);
-                    end for;
-                    Append(~ZBase, b);
-                end for;
-
-                Gram := KMatrixSpace(Rationals(), dim, dim) ! 0;
-                for i in [1..dim] do
-                    for j in [1..dim] do
-                        Gram[i][j] := Trace(alpha*ZBase[i]*ComplexConjugate(ZBase[j]));
-                    end for;
-                end for;
-
-                L := LLL(Seysen(LLL(LatticeWithGram(Gram))));
+                L := LatFromIdeal(J, alpha, K);
 
                 Append(~Lattices, L);
             end for;
         end for;
-    end for;
+	end for;
 
     if red then
         Lattices := RedByIso(Lattices);

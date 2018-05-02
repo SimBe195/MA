@@ -120,7 +120,7 @@ TotPosUnits := function(F)
 
     ZF := Integers(F);
     dim := #Basis(F);
-    Units, mUnits := IndependentUnits(ZF);
+    Units, mUnits := pFundamentalUnits(ZF, 2);
     UnitGens := [F | mUnits(Units.i) : i in [1..dim]];
 
     M := KMatrixSpace(GF(2), dim, dim) ! 0;
@@ -208,9 +208,7 @@ GenInF := function(I, K, F) // Credit to Michael Juergens
     ZK := Integers(K);
     ZF := Integers(F);
 
-    // Boolscher Wert, der angibt, ob I überhaupt die Form I=(I meet F)O hat
     Shape:=true; 
-    // Speichert das Ideal I meet F
     ImeetF:=ideal<ZF|1>;
     SplitIdeals:=[];
 
@@ -219,12 +217,7 @@ GenInF := function(I, K, F) // Credit to Michael Juergens
         P:=tup[1];
         nuP:=tup[2];
      
-        // Fasse Ideal P als Ideal von der relativen Erweiterung K:F auf
         RelP:=ideal<Integers(RelKF)|Generators(P)>;
-        // Berechne die Norm von P: N(P):=P*Conjugate(P) meet F = p^f(P:p) 
-        // Für die letzte Gleichheit siehe Marcus S.84 Ü14
-        // Das Ideal p erhält man nun für f=1 durch p:=N(P) und im Fall f=2 durch
-        // p:=N(P)^1/2.
         Relp:=Norm(RelP);
         
         p:=MinimalInteger(P);
@@ -337,15 +330,18 @@ DivisorsWithNorm := function(l, n, ZK)
     a := Norm(FactZK[1][1]);
     s := #FactZK;
 
-    if Abs(Log(l,a) - Floor(Log(l,a))) gt 0.0001 then
+
+    loga := Log(l,a);
+
+    if Abs(loga - Round(loga) gt 0.0001 then
         return [];
     end if;
     
-    if not((n mod Integers() ! Log(l,a)) eq 0) then
+    if not((n mod Round(loga) eq 0) then
         return [];
     end if;
 
-    b := Integers() ! (n / Log(l, a));
+    b := Integers() ! (n / Round(loga));
 
     for k in Divisors(Factorization(b)) do
         if k lt s/2 then
@@ -379,17 +375,17 @@ RedByIso := function(Lattices)
 //  SeqEnum                 : Reduced list for which the elements are pairwise non-isometric    
 
     LatticesReduced := [];
-    for L in Lattices do
+    for i in [1..#Lattices] do
         new := true;
-        for M in LatticesReduced do
-            if IsIsometric(L, M) then
+        for j in [1..#LatticesReduced] do
+            if IsIsometric(Lattices[i][1], LatticesReduced[j][1]) then
                 new := false;
                 break;
             end if;
         end for;
 
         if new then
-            Append(~LatticesReduced, L);
+            Append(~LatticesReduced, Lattices[i]);
         end if;
     end for;
 
@@ -448,12 +444,14 @@ LatFromIdeal := function(J, alpha, K)
 end function;
 
 
-ModLat := function(l, m, red)
+ModLat := function(l, m, red : ~UMap := 0, ~AMap := 0)
 // Finds all l-modular ideal-lattices in Q(zeta_m).
 // Input:
-//  l : RngIntElt       : See above.
-//  m : RngIntElt     : See above.
-//  red : BoolElt       : true if the list of lattices shall be reduced by isometry.
+//  l : RngIntElt               : See above.
+//  m : RngIntElt               : See above.
+//  red : BoolElt               : true if the list of lattices shall be reduced by isometry.
+//  U : SeqEnum                 : (Optional) List of totally positive Units in F reduced by norm to avoid repeated computation
+//  A : SeqEnum                 : (Optional) Class Group of K modulo Galois-Group is given as parameter to avoid repeated computation
 
 //Output:
 //  SeqEnum             : List of found lattices.
@@ -466,28 +464,32 @@ ModLat := function(l, m, red)
 
     dim := EulerPhi(m);
 
+    if UMap eq 0 or not IsDefined(UMap[m]) then
+        TotPos, UnitGens, M := TotPosUnits(F);
+        U := RedByNorm(TotPos, K, F);
+        UMap[m] := U;
+    else
+        U := UMap[m];
+    end if;
 
-    TotPos, UnitGens, M := TotPosUnits(F);
-    U := RedByNorm(TotPos, K, F);
+    if AMap eq 0 or not IsDefined(AMap[m]) then
+        A := ClassesModGalois(K);
+        AMap[m] := A;
+    else
+        A := AMap[m];
+    end if;
 
-    A := ClassesModGalois(K);
-	B := DivisorsWithNorm(l, Integers() ! (dim/2), ZK);
 
-
-    InvDiffPos, alpha_0 := PosGenInF(Different(ZK)^(-1), UnitGens, M, K, F);
+    B := DivisorsWithNorm(l, Integers() ! (dim/2), ZK);
 
     Lattices := [];
 
     for J in A do
+        JJ := (J * ConjIdeal(J,K) * Different(ZK))^(-1);
         for I in B do
-            if InvDiffPos then
-                JJI := (J * ConjIdeal(J,K))^(-1) * I * alpha_0;
-            else
-                JJI := (J * ConjIdeal(J,K) * Different(ZK))^(-1) * I;
-            end if;
-
-
+            JJI := JJ * I;
             pos, alpha_1 := PosGenInF(JJI, UnitGens, M, K, F);
+
             if not pos then
                 continue;
             end if;
@@ -496,7 +498,7 @@ ModLat := function(l, m, red)
                 alpha := K ! (u * alpha_1);
                 L := LatFromIdeal(J, alpha, K);
 
-                Append(~Lattices, L);
+                Append(~Lattices, [L, J, alpha, m, dim]);
             end for;
         end for;
 	end for;
@@ -511,7 +513,7 @@ ModLat := function(l, m, red)
 end function;
 
 
-ModLatDim := function(l, dim, red)
+ModLatDim := function(l, dim, red : ~UMap := 0, ~AMap := 0)
 // Computes list of all (non-isometric) l-modular ideal-lattices in a given dimension.
 // Input:
 //  l : RntIntElt       : Degree of modularity.
@@ -531,7 +533,7 @@ ModLatDim := function(l, dim, red)
     LatList := [];
 
     for m in ms do
-        Lat := ModLat(l, m, false);
+        Lat := ModLat(l, m, false, UMap, AMap);
         LatList := LatList cat Lat;
     end for;
 
@@ -543,7 +545,7 @@ ModLatDim := function(l, dim, red)
 
 end function;
 
-IsExtremal := function(L,l)
+IsExtremal := function(L, l)
 // Tests whether a given l-modular lattice L is extremal.
 // Input:
 //  L : Lat         : Lattice that is tested for extremality.
@@ -581,7 +583,7 @@ IsExtremal := function(L,l)
 
 end function;
 
-ExModLat := function(l, m, red)
+ExModLat := function(l, m, red : ~UMap := 0, ~AMap := 0)
 // Computes all extremal l-modular ideal-lattices in Q(zeta_m).
 // Inputs:
 //  l : RngIntElt       : See above.
@@ -591,12 +593,12 @@ ExModLat := function(l, m, red)
 // Outputs:
 //  SeqEnum             : List of extremal lattices.
 
-    Lat := ModLat(l, m, false);
+    Lat := ModLat(l, m, false, UMap, AMap);
     ExLat := [];
 
-    for L in Lat do
-        if IsExtremal(L, l) then
-            Append(~ExLat, L);
+    for i in [1..#Lat] do
+        if IsExtremal(Lat[i][1], l) then
+            Append(~ExLat, Lat[i]);
         end if;
     end for;
 
@@ -609,7 +611,7 @@ ExModLat := function(l, m, red)
 end function;
 
 
-ExModLatDim := function(l, dim, red)
+ExModLatDim := function(l, dim, red : ~UMap := 0, ~AMap := 0)
 // Computes all extremal l-modular ideal-lattices of a given dimension.
 // Inputs:
 //  l : RngIntElt       : See above.
@@ -619,7 +621,7 @@ ExModLatDim := function(l, dim, red)
 // Outputs:
 //  SeqEnum             : List of extremal lattices.
 
-    Lat := ModLatDim(l, dim, false);
+    Lat := ModLatDim(l, dim, false, UMap, AMap);
     ExLat := [];
 
     for L in Lat do
@@ -635,3 +637,21 @@ ExModLatDim := function(l, dim, red)
     return ExLat;
 
 end function;
+
+UMap := AssociativeArray();
+AMap := AssociativeArray();
+
+lList := [2,3,5,6,7,11,14,15,23];
+dimList := [4,8,12,16,20,24,32,36,40,44];
+
+for dim in dimList do
+    printf "\n%o : \n”, dim;
+    for l in lList do
+        printf "%o :\n", l;
+        Lattices := ModLatDim(l, dim, true, UMap, AMap);
+        for L in Lattices do
+            PrintFile("Lattices.txt", L);
+        end for;
+        printf "%o Lattices found!", #Lattices;
+    end for;
+end for;   

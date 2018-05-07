@@ -37,7 +37,7 @@ ClassesModGalois := function(K)    // Credit to Michael Juergens.
 // Computes a representation system of the class group of Z_K modulo the action of the Galois-group of K/Q.
 // Input :
 //  K : FldNum      : Numberfield for which the representative system shall be computed.
-
+ 
 // Output :
 //  SeqEnum         : List of representatives of the class group that are independent modulo Galois.
     
@@ -62,7 +62,7 @@ ClassesModGalois := function(K)    // Credit to Michael Juergens.
 end function;
 
 TotPosUnits := function(F)
-// Computes a list of totally positive units of the Z_F reduced by squares.
+// Computes a list of totally positive units of Z_F reduced by squares.
 // Input:
 // F : FldNum               : Totally real number-field for whose ring of integers the units shall be computed.
 
@@ -247,7 +247,7 @@ end function;
 
 PosGenInF := function(I, UnitGens, M, K, F)
 // Combines GenInF and PosGen into 1 function
-//Input/Output:
+// Input/Output:
 //  See GenInF and PosGen
 	
 	genExists, alpha := GenInF(I, K, F);
@@ -260,60 +260,43 @@ PosGenInF := function(I, UnitGens, M, K, F)
 end function;
 
 
-DivisorsWithNorm := function(l, n, ZK)
-// Construct divisors of l*Z_K with norm l^n    
+function DivisorsWithNorm(I, n)
+// Construct divisors of I with norm n    
 // Input:
-//  l : RngIntElt       : See above.
+//  l : RngIdl          : See above.
 //  n : RngIntElt       : See above.
-//  ZK : RngOrd         : See above.
 
 
 // Output:
 //  SeqEnum             : List of divisors.
 
-    if l eq 1 then
-        return [ideal<ZK|1>];
-    end if;
+    norm := Round(n);
+    Fact := Factorization(I);
+
+    p := Fact[1][1];
+    s := Fact[1][2];
+    a := Norm(p);
 
     A := [];
 
-    FactZK := Factorization(l*ZK);
-    a := Norm(FactZK[1][1]);
-    s := #FactZK;
-
-
-    loga := Log(l,a);
-
-    if Abs(loga - Round(loga)) gt 0.0001 then
-        return [];
-    end if;
-
-    if Round(loga) eq 0 then
-    	return [];
-    end if;
-    
-    if n mod Round(loga) ne 0 then
-        return [];
-    end if;
-
-    b := Integers() ! (n / Round(loga));
-
-    for k in Divisors(Factorization(b)) do
-        if k lt s/2 then
-            continue;
+    if #Fact eq 1 then
+        if norm mod a eq 0 then
+            e := Integers() ! (norm/a);
+            if e le s then
+                return [p^e];
+            end if;
         end if;
 
-        IndexSets := Subsets({Integers() | 1..s}, k);
+        return [];
+    end if;
 
-        for Indices in IndexSets do
-            J := ideal<ZK | 1>;
-
-            for i in Indices do
-                J *:= FactZK[i][1]^(Integers() ! (b/k));
+    for j in [0..s] do
+        if norm mod (a^j) eq 0 then
+            B := DivisorsWithNorm(I*p^(-s), norm/(a^j));
+            for J in B do
+                Append(~A, p^j*J);
             end for;
-
-            Append(~A, J);
-        end for;
+        end if;
     end for;
 
     return A;
@@ -415,16 +398,16 @@ LatFromIdeal := function(J, alpha, K)
 	dim := #Basis(K);
 	z := PrimitiveElement(K);
 
-	JGenerators := ZeroMatrix(Integers(), #Generators(J)*dim, dim);
+	JGenerators := KMatrixSpace(Rationals(), #Generators(J)*dim, dim) ! 0;
     g1 := K!Generators(J)[1];
     if #Generators(J) gt 1 then
         g2 := K!Generators(J)[2];
     end if;
 
     for i in [1..dim] do
-        JGenerators[i] := Vector(Integers(), dim, Eltseq(g1*z^(i-1)));
+        JGenerators[i] := Vector(Rationals(), dim, Eltseq(g1*z^(i-1)));
         if #Generators(J) gt 1 then
-            JGenerators[dim+i] := Vector(Integers(), dim, Eltseq(g2*z^(i-1)));
+            JGenerators[dim+i] := Vector(Rationals(), dim, Eltseq(g2*z^(i-1)));
         end if;
     end for;
 
@@ -496,7 +479,7 @@ ModLatProc := procedure(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLat
     end if;
 
 
-    B := DivisorsWithNorm(l, Integers() ! (dim/2), ZK);
+    B := DivisorsWithNorm(ideal<ZK|l>, l^(dim/2));
 
     Lattices := [* *];
 
@@ -737,7 +720,7 @@ Main := procedure(lList, dimList)
             for L in Lattices do
                 if IsExtremal(L[1], L[6]) then
                     NumExtremal +:= 1;
-                end if;
+                end if; 
             end for;
             fprintf overviewfile, "%o of them are extremal.\n\n", NumExtremal;
 
@@ -767,3 +750,43 @@ Main := procedure(lList, dimList)
     end for;
 
 end procedure;
+
+SubIdlLat := function(p,l,s,m)
+    K<z> := CyclotomicField(m);
+    F:=sub<K|z+1/z>;
+    ZK:=Integers(K);
+
+    A := ClassesModGalois(K);
+
+    U, UnitGens, M := TotPosUnits(F);
+    U := RedByNorm(U, K, F);
+    
+    Lat := [];
+
+    for k := Max({0, EulerPhi(m)-12}) to Min({12, EulerPhi(m)}) by 2 do
+        B := DivisorsWithNorm(ideal<ZK|p*l>, p^s*l^k);
+
+        for J in A do
+            JJ := (J*ConjIdeal(J,K)*Different(ZK))^(-1);
+
+            for I in B do
+                JJI := JJ*I;
+                pos, alpha_1 := PosGenInF(JJI, UnitGens, M, K, F);
+
+                if not pos then 
+                    continue;
+                end if;
+
+                for u in U do
+                    alpha := K ! u*alpha_1;
+                    L := LatFromIdeal(J, alpha, K);
+                end for;
+
+                Append(~Lat, L);
+            end for;
+        end for;
+    end for;
+
+    return Lat;
+
+end function;

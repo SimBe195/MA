@@ -1,0 +1,61 @@
+
+lList := [1,2,3,5,6,7,11,14,15,23];
+dimList := [4,8,12,16,20,24,32,36];
+red := true;
+
+UnitGensMap := AssociativeArray();
+MMap := AssociativeArray();
+UMap := AssociativeArray();
+AMap := AssociativeArray();
+
+for dim in dimList do
+    printf "\nDim = %o : \n\n", dim;
+    
+    System(Sprintf("mkdir Lattices/%o-dimensional", dim));
+
+    for l in lList do
+        printf "l = %o :\n", l;
+
+        System(Sprintf("mkdir Lattices/%o-dimensional/%o-modular", dim, l));
+
+        Lattices := [* *];
+        ModLatDimProc(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Lattices);
+        printf "%o Lattices found!\n\n", #Lattices;
+
+        overviewfile := Sprintf("Lattices/%o-dimensional/%o-modular/Overview", dim, l);
+
+        PrintFile(overviewfile, "" : Overwrite := true);
+        fprintf overviewfile, "%o lattices found.\n", #Lattices;
+
+        NumExtremal := 0;
+        for L in Lattices do
+            if IsExtremal(L[1], L[6]) then
+                NumExtremal +:= 1;
+            end if; 
+        end for;
+        fprintf overviewfile, "%o of them are extremal.\n\n", NumExtremal;
+
+        for i in [1..#Lattices] do
+            L := Lattices[i][1];
+            J := Lattices[i][2];
+            alpha := Lattices[i][3];
+            m := Lattices[i][4];
+
+            fprintf overviewfile, "Lattice %o:\n", i;
+            fprintf overviewfile, "%o-modular ideal lattice in Q[zeta_%o] of dimension %o.\n", l, m, dim;
+            fprintf overviewfile, "Fractional ideal generators:\n";
+            K<z> := CyclotomicField(m);
+            for g in Generators(J) do
+                fprintf overviewfile, "%o\n", K ! g;
+            end for;
+            fprintf overviewfile, "\nalpha: %o\n", alpha;
+            fprintf overviewfile, "Extremal: %o\n", IsExtremal(L, l);
+            fprintf overviewfile, "Minimum: %o\n", Min(L);
+            fprintf overviewfile, "Determinant: %o\n", Determinant(L);
+            fprintf overviewfile, "\n-----------------------------------------------------\n\n";
+
+            filename := Sprintf("Lattices/%o-dimensional/%o-modular/Lattice_%o", dim, l, i);
+            PrintFileMagma(filename, L : Overwrite := true);
+        end for;
+    end for;
+end for;

@@ -1,5 +1,5 @@
 
-TotallyPositive := function(x)
+function TotallyPositive(x)
 // Checks whether x is a totally positiv element, i.e. if r(x) > 0 for all real embeddings r.
 // Input:
 //  x : FldNumElt       : Element for which positivity should be checked..
@@ -17,7 +17,7 @@ TotallyPositive := function(x)
 end function;
 
 
-ConjIdeal := function(I, K)
+function ConjIdeal(I, K)
 // Computes the complex conjugate of an Z_K-Ideal I.
 // Input:
 //  K : FldNum          : Field in which the complex conjugation takes place.
@@ -33,7 +33,8 @@ ConjIdeal := function(I, K)
     return ideal<Integers(K)|gens>;
 end function;
 
-ClassesModGalois := function(K)    // Credit to Michael Juergens.
+
+function ClassesModGalois(K)    // Credit to Michael Juergens.
 // Computes a representation system of the class group of Z_K modulo the action of the Galois-group of K/Q.
 // Input :
 //  K : FldNum      : Numberfield for which the representative system shall be computed.
@@ -44,24 +45,25 @@ ClassesModGalois := function(K)    // Credit to Michael Juergens.
     ZK := Integers(K);
     Cl, mCl := ClassGroup(ZK: Bound := 1000);
 
-    ClassesModGalois:=[];
+    ClModGal:=[];
     for a in Cl do
         A:=mCl(a);
         new:=true;
         for f in Automorphisms(K) do
-            if Inverse(mCl)(ideal<ZK| [f(x) : x in Generators(A)] >) in ClassesModGalois then 
+            if Inverse(mCl)(ideal<ZK| [f(x) : x in Generators(A)] >) in ClModGal then 
                 new:=false; 
                 break; 
             end if;
         end for;
-        if new then Append(~ClassesModGalois,a); end if;
+        if new then Append(~ClModGal,a); end if;
     end for;
 
-    return [mCl(g) : g in ClassesModGalois];
+    return [mCl(g) : g in ClModGal];
 
 end function;
 
-TotPosUnits := function(F)
+
+function TotPosUnits(F)
 // Computes a list of totally positive units of Z_F reduced by squares.
 // Input:
 // F : FldNum               : Totally real number-field for whose ring of integers the units shall be computed.
@@ -113,7 +115,8 @@ TotPosUnits := function(F)
 
 end function;
 
-RedByNorm := function(TotPos, K, F)
+
+function RedByNorm(TotPos, K, F)
 // Takes list of totally positive units and reduces it modulo {c*conj(c) | c in ZK}.
 // Input:
 //  TotPos : SeqEnum            : List of totally positive elements which shall be reduced.
@@ -145,7 +148,7 @@ RedByNorm := function(TotPos, K, F)
 
 end function;
 
-GenInF := function(I, K, F) // Credit to Michael Juergens
+function GenInF(I, K, F) // Credit to Michael Juergens
 // Finds a generator of the ideal I that lies in F or returns false if there is none.
 // Input:
 //  I : RngIdl          : ZK-ideal for which a generator in F is searched.
@@ -206,7 +209,7 @@ GenInF := function(I, K, F) // Credit to Michael Juergens
 
 end function;
 
-PosGen := function(alpha, UnitGens, M)
+function PosGen(alpha, UnitGens, M)
 // Finds a totally positive generator of a principal ideal alpha*Z_K
 // Input:
 //  alpha : FldNumElt   : Generator of the ideal.
@@ -245,7 +248,7 @@ PosGen := function(alpha, UnitGens, M)
 end function;
 
 
-PosGenInF := function(I, UnitGens, M, K, F)
+function PosGenInF(I, UnitGens, M, K, F)
 // Combines GenInF and PosGen into 1 function
 // Input/Output:
 //  See GenInF and PosGen
@@ -271,6 +274,12 @@ function DivisorsWithNorm(I, n)
 //  SeqEnum             : List of divisors.
 
     norm := Round(n);
+
+    if norm eq Norm(I) then
+        return [I];
+    end if;
+
+
     Fact := Factorization(I);
 
     p := Fact[1][1];
@@ -304,7 +313,7 @@ function DivisorsWithNorm(I, n)
 end function;
 
 
-RedByIso := function(Lattices)
+function RedByIso(Lattices)
 // Takes a list of lattices and returns the sublist of non-isometric elements.
 // Input:
 //  Lattices : SeqEnum      : List of lattices that shall be reduced.
@@ -385,7 +394,7 @@ RedByIso := function(Lattices)
 end function;
 
 
-LatFromIdeal := function(J, alpha, K)
+function LatFromIdeal(J, alpha, K)
 // Constructs a lattice given a fractional ideal in K and a totally positive alpha.
 // Input:
 //	J : RngIdl			: Fractional ideal.
@@ -438,7 +447,7 @@ LatFromIdeal := function(J, alpha, K)
 end function;
 
 
-ModLatProc := procedure(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
+procedure ModLatProc(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
 // Finds all l-modular ideal-lattices in Q(zeta_m).
 // Input:
 //  l : RngIntElt               : See above.
@@ -512,7 +521,7 @@ ModLatProc := procedure(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLat
 end procedure;
 
 
-ModLat := function(l, m, red)
+function ModLat(l, m, red)
     Lat := [];
     UnitGensMap := AssociativeArray();
     MMap := AssociativeArray();
@@ -524,7 +533,7 @@ ModLat := function(l, m, red)
 end function;
 
 
-ModLatDimProc := procedure(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
+procedure ModLatDimProc(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
 // Computes list of all (non-isometric) l-modular ideal-lattices in a given dimension.
 // Input:
 //  l : RntIntElt       : Degree of modularity.
@@ -550,16 +559,16 @@ ModLatDimProc := procedure(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Resu
         LatList cat:= Lat;
     end for;
 
-    //if red then
-    //    LatList := RedByIso(LatList);
-    //end if;
+    if red then
+        LatList := RedByIso(LatList);
+    end if;
 
     ResultLattices := LatList;
 
 end procedure;
 
 
-ModLatDim := function(l, dim, red)
+function ModLatDim(l, dim, red)
     Lat := [];
     UnitGensMap := AssociativeArray();
     MMap := AssociativeArray();
@@ -570,7 +579,8 @@ ModLatDim := function(l, dim, red)
     return Lat;
 end function;
 
-IsExtremal := function(L, l)
+
+function IsExtremal(L, l)
 // Tests whether a given l-modular lattice L is extremal.
 // Input:
 //  L : Lat         : Lattice that is tested for extremality.
@@ -583,32 +593,32 @@ IsExtremal := function(L, l)
     min := Min(L);
 
     if l eq 1 then
-        return not(min lt 2 + 2*Floor(n/24));
+        return min ge 2 + 2*Floor(n/24);
     end if;
     if l eq 2 then
-        return not(min lt 2 + 2*Floor(n/16));
+        return min ge 2 + 2*Floor(n/16);
     end if;
     if l eq 3 then
-        return not(min lt 2 + 2*Floor(n/12));
+        return min ge 2 + 2*Floor(n/12);
     end if;
     if l in {5,6} then
-        return not(min lt 2 + 2*Floor(n/8));
+        return min ge 2 + 2*Floor(n/8);
     end if;
     if l eq 7 then
-        return not(min lt 2 + 2*Floor(n/6));
+        return min ge 2 + 2*Floor(n/6);
     end if;
     if l in {11,14,15} then
-        return not(min lt 2 + 2*Floor(n/4));
+        return min ge 2 + 2*Floor(n/4);
     end if;
     if l eq 23 then
-        return not(min lt 2 + 2*Floor(n/2));
+        return min ge 2 + 2*Floor(n/2);
     end if;
 
     return false;
 
 end function;
 
-ExModLatProc := procedure(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
+procedure ExModLatProc(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
 // Computes all extremal l-modular ideal-lattices in Q(zeta_m).
 // Inputs:
 //  l : RngIntElt       : See above.
@@ -628,16 +638,16 @@ ExModLatProc := procedure(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultL
         end if;
     end for;
 
-    //if red then
-    //    ExLat := RedByIso(ExLat);
-    //end if;
+    if red then
+        ExLat := RedByIso(ExLat);
+    end if;
 
     ResultLattices := ExLat;
 
 end procedure;
 
 
-ExModLat := function(l, m, red)
+function ExModLat(l, m, red)
     Lat := [];
     UnitGensMap := AssociativeArray();
     MMap := AssociativeArray();
@@ -649,7 +659,7 @@ ExModLat := function(l, m, red)
 end function;
 
 
-ExModLatDimProc := procedure(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
+procedure ExModLatDimProc(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
 // Computes all extremal l-modular ideal-lattices of a given dimension.
 // Inputs:
 //  l : RngIntElt       : See above.
@@ -669,16 +679,16 @@ ExModLatDimProc := procedure(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Re
         end if;
     end for;
 
-    //if red then
-    //    ExLat := RedByIso(ExLat);
-    //end if;
+    if red then
+        ExLat := RedByIso(ExLat);
+    end if;
 
     ResultLattices := ExLat;
 
 end procedure;
 
 
-ExModLatDim := function(l, m, red)
+function ExModLatDim(l, m, red)
     Lat := [];
     UnitGensMap := AssociativeArray();
     MMap := AssociativeArray();
@@ -690,103 +700,25 @@ ExModLatDim := function(l, m, red)
 end function;
 
 
-Main := procedure(lList, dimList)
-
-    UnitGensMap := AssociativeArray();
-    MMap := AssociativeArray();
-    UMap := AssociativeArray();
-    AMap := AssociativeArray();
-
-    for dim in dimList do
-        printf "\nDim = %o : \n\n", dim;
-        
-        System(Sprintf("mkdir Lattices/%o-dimensional", dim));
-
-        for l in lList do
-            printf "l = %o :\n", l;
-
-            System(Sprintf("mkdir Lattices/%o-dimensional/%o-modular", dim, l));
-
-            Lattices := [* *];
-            ModLatDimProc(l, dim, true, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Lattices);
-            printf "%o Lattices found!\n\n", #Lattices;
-
-            overviewfile := Sprintf("Lattices/%o-dimensional/%o-modular/Overview", dim, l);
-
-            PrintFile(overviewfile, "" : Overwrite := true);
-            fprintf overviewfile, "%o lattices found.\n", #Lattices;
-
-            NumExtremal := 0;
-            for L in Lattices do
-                if IsExtremal(L[1], L[6]) then
-                    NumExtremal +:= 1;
-                end if; 
-            end for;
-            fprintf overviewfile, "%o of them are extremal.\n\n", NumExtremal;
-
-            for i in [1..#Lattices] do
-                L := Lattices[i][1];
-                J := Lattices[i][2];
-                alpha := Lattices[i][3];
-                m := Lattices[i][4];
-
-                fprintf overviewfile, "Lattice %o:\n", i;
-                fprintf overviewfile, "%o-modular ideal lattice in Q[zeta_%o] of dimension %o.\n", l, m, dim;
-                fprintf overviewfile, "Fractional ideal generators:\n";
-                K<z> := CyclotomicField(m);
-                for g in Generators(J) do
-                    fprintf overviewfile, "%o\n", K ! g;
-                end for;
-                fprintf overviewfile, "\nalpha: %o\n", alpha;
-                fprintf overviewfile, "Extremal: %o\n", IsExtremal(L, l);
-                fprintf overviewfile, "Minimum: %o\n", Min(L);
-                fprintf overviewfile, "Determinant: %o\n", Determinant(L);
-                fprintf overviewfile, "\n-----------------------------------------------------\n\n";
-
-                filename := Sprintf("Lattices/%o-dimensional/%o-modular/Lattice_%o", dim, l, i);
-                PrintFile(filename, L : Overwrite := true);
-            end for;
-        end for;
-    end for;
-
-end procedure;
-
-SubIdlLat := function(p,l,s,m)
-    K<z> := CyclotomicField(m);
-    F:=sub<K|z+1/z>;
-    ZK:=Integers(K);
-
-    A := ClassesModGalois(K);
-
-    U, UnitGens, M := TotPosUnits(F);
-    U := RedByNorm(U, K, F);
-    
-    Lat := [];
-
-    for k := Max({0, EulerPhi(m)-12}) to Min({12, EulerPhi(m)}) by 2 do
-        B := DivisorsWithNorm(ideal<ZK|p*l>, p^s*l^k);
-
-        for J in A do
-            JJ := (J*ConjIdeal(J,K)*Different(ZK))^(-1);
-
-            for I in B do
-                JJI := JJ*I;
-                pos, alpha_1 := PosGenInF(JJI, UnitGens, M, K, F);
-
-                if not pos then 
-                    continue;
-                end if;
-
-                for u in U do
-                    alpha := K ! u*alpha_1;
-                    L := LatFromIdeal(J, alpha, K);
-                end for;
-
-                Append(~Lat, L);
-            end for;
-        end for;
-    end for;
-
-    return Lat;
-
-end function;
+// List of functions:
+//  TotallyPositive(x)
+//  ConjIdeal(I, K)
+//  ClassesModGalois(K)
+//  TotPosUnits(F)
+//  RedByNorm(TotPos, K, F)
+//  GenInF(I, K, F)
+//  PosGen(alpha, UnitGens, M)
+//  PosGenInF(I, UnitGens, M, K, F)
+//  DivisorsWithNorm(I, n)
+//  RedByIso(Lattices)
+//  LatFromIdeal(J, alpha, K)
+//  ModLatProc(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
+//  ModLat(l, m, red)
+//  ModLatDimProc(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
+//  ModLatDim(l, dim, red)
+//  IsExtremal(L, l)
+//  ExModLatProc(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
+//  ExModLat(l, m, red)
+//  ExModLatDimProc(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattices)
+//  ExModLatDim(l, m, red)
+//  

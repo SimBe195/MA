@@ -1,0 +1,51 @@
+det := 2^8*3^4; // Determinant of F
+dim := 8; // Dimension of F
+min := 6; // Minimum of F must be greater or equal to this value
+d := 20; // Order of Automorphism
+
+DB := LatticeDatabase();
+
+Lat := [];
+
+for i in [1..NumberOfLattices(DB,dim)] do
+	L := Lattice(DB,dim,i);
+
+	if Determinant(L) mod det eq 0 and Minimum(L) ge min then // L may be sublattice of F
+		L := Dual(L);
+		"Possible sublattice found.";
+	elif det mod Determinant(L) eq 0 then // L may be overlattice of F
+		"Possible overlattice found.";
+	else
+		continue;
+	end if;
+
+	A := AutomorphismGroup(L);
+	CA := ConjugacyClasses(A);
+
+	X := [];
+	for c in CA do
+		if c[1] eq d then
+			Append(~X,c[3]);
+		end if;
+	end for;
+
+	if #X gt 0 then
+		"Found automorphism or order d.";
+	end if;
+
+	for x in X do
+		U := sub<A|x>;
+
+		SU := Sublattices(U, [2,3] : Levels := 15);
+
+		for F in SU do
+			if Determinant(F) eq det and Minimum(F) ge min then
+				"Found a candidate for F!";
+				Append(~Lat, F);
+			end if;
+		end for;
+	end for;
+
+end for;
+
+#Lat;

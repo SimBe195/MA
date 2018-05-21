@@ -1,5 +1,4 @@
 
-//phi(m) = 16
 l := 3;
 Lat := [];
 
@@ -30,8 +29,24 @@ for phim in [16,18,20,22] do
 
             N := Integers() ! (phim / (p-1));
 
-            for s := N mod 2 to Min({N, 24-phim}) by 2 do
-                for k := Max({0, EulerPhi(m)-12}) to Min({12, EulerPhi(m)}) by 2 do
+            for s := 0 to Min({N, 24-phim}) do
+                if p ne l then
+                    if (s - (p-2)*N) mod 2 ne 0 then
+                        continue;
+                    end if;
+                end if;
+
+                for k := Max({0, EulerPhi(m)-12}) to Min({12, EulerPhi(m)}) do
+                    if p ne l then
+                        if k mod 2 ne 0 then
+                            continue;
+                        end if;
+                    else
+                        if (s+k - (p-2)*N) mod 2 ne 0 then
+                            continue;
+                        end if;
+                    end if;
+
                     B := DivisorsWithNorm(ideal<ZK|p*l>, p^s*l^k);
 
                     for J in A do
@@ -50,6 +65,10 @@ for phim in [16,18,20,22] do
                                 L := LatFromIdeal(J, alpha, K);
                             end for;
 
+                            if not IsEven(L) then
+                                continue;
+                            end if;
+
                             new := true;
                             for M in Lat do
                                 if IsIsometric(M[1], L) then
@@ -59,7 +78,7 @@ for phim in [16,18,20,22] do
                             end for;
 
                             if new then
-                                printf "Found a new lattice! Determinant: %o^%o*%o^%o\n", p,s,l,k;
+                                printf "Found a new lattice! Determinant: %o^%o*%o^%o, Minimum: %o\n", p,s,l,k,Minimum(L);
                                 Append(~Lat, <L,p,d,s,k>);
                             end if;
                         end for;

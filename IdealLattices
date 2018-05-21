@@ -1,6 +1,6 @@
 
-lList := [1,2,3,5,6,7,11,14,15,23];
-dimList := [4,8,12,16,20,24,32,36];
+lList := [1,2,3,5,7,11,14,15,23];
+dimList := [4,8,12,16,20,24,32,36,40];
 red := true;
 
 UnitGensMap := AssociativeArray();

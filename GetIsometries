@@ -1,0 +1,26 @@
+
+procedure Isometries(num, dim, l)
+	
+	DB := LatticeDatabase();
+
+	for i in [1..num] do
+		L := eval Read(Sprintf("Lattices/%o-dimensional/%o-modular/Lattice_%o", dim, l, i));
+		det := Determinant(L);
+		min := Minimum(L);
+		aut := #AutomorphismGroup(L);
+		for j in [1..NumberOfLattices(DB,dim)] do
+			M := Lattice(DB,dim,j);
+
+			if Determinant(M) eq det then
+				if Minimum(M) eq min then
+					if #AutomorphismGroup(M) eq aut then
+						if IsIsometric(L,M) then
+							printf "Lattice %o is isometric to %o.\n", i, LatticeData(DB,dim,j)`name;
+						end if;
+					end if;
+				end if;
+			end if;
+		end for;
+	end for;
+
+end procedure;

@@ -279,6 +279,10 @@ function DivisorsWithNorm(I, n)
         return [I];
     end if;
 
+    if not (Integers() ! Norm(I) mod norm eq 0) then
+        return [];
+    end if;
+
 
     Fact := Factorization(I);
 
@@ -289,14 +293,16 @@ function DivisorsWithNorm(I, n)
     A := [];
 
     if #Fact eq 1 then
-        if norm mod a eq 0 then
-            e := Integers() ! (norm/a);
-            if e le s then
-                return [p^e];
-            end if;
-        end if;
+        e := 0;
+        while e lt s and a^e lt norm do
+            e +:= 1;
+        end while;
 
-        return [];
+        if a^e eq norm then
+            return [p^e];
+        else
+            return [];
+        end if;
     end if;
 
     for j in [0..s] do
@@ -324,7 +330,7 @@ function RedByIso(Lattices)
     LatticesReduced := [* *];
     Minima := [* *];
     NumShortest := AssociativeArray();
-    Genera := AssociativeArray();
+    SizeAuto := AssociativeArray();
 
 
     for i in [1..#Lattices] do
@@ -335,6 +341,9 @@ function RedByIso(Lattices)
 
         shortest_computed := false;
         shortest := 0;
+
+        auto_computed := false;
+        auto := 0;
 
         new := true;
         for j in [1..#LatticesReduced] do
@@ -368,6 +377,20 @@ function RedByIso(Lattices)
             end if;
 
 
+            if not auto_computed then
+                auto_computed := true;
+                auto := #AutomorphismGroup(L);
+            end if;
+
+            if not IsDefined(SizeAuto, j) then
+                SizeAuto[j] := #AutomorphismGroup(M);
+            end if;
+
+            if auto ne SizeAuto[j] then
+                continue;
+            end if;
+
+
             if IsIsometric(L, M) then
                 new := false;
                 break;
@@ -384,6 +407,10 @@ function RedByIso(Lattices)
 
             if shortest_computed then
                 NumShortest[NewIndex] := shortest;
+            end if;
+
+            if auto_computed then
+                SizeAuto[NewIndex] := auto;
             end if;
 
         end if;
@@ -408,9 +435,9 @@ function LatFromIdeal(J, alpha, K)
 	z := PrimitiveElement(K);
 
 	JGenerators := KMatrixSpace(Rationals(), #Generators(J)*dim, dim) ! 0;
-    g1 := K!Generators(J)[1];
+    g1 := K! (Generators(J)[1]);
     if #Generators(J) gt 1 then
-        g2 := K!Generators(J)[2];
+        g2 := K! (Generators(J)[2]);
     end if;
 
     for i in [1..dim] do
@@ -420,8 +447,8 @@ function LatFromIdeal(J, alpha, K)
         end if;
     end for;
 
+    ZBaseVecs := Basis(Lattice(JGenerators));
 
-    ZBaseVecs := Basis(RowSpace(JGenerators));
     ZBase := [];
     for i in [1..dim] do
         b := K ! 0;
@@ -434,12 +461,11 @@ function LatFromIdeal(J, alpha, K)
     Gram := KMatrixSpace(Rationals(), dim, dim) ! 0;
     for i in [1..dim] do
         for j in [1..dim] do
-            Gram[i][j] := Trace(alpha*ZBase[i]*ComplexConjugate(ZBase[j]));
+            Gram[i][j] := Trace(K ! (alpha*ZBase[i]*ComplexConjugate(ZBase[j])));
         end for;
     end for;
 
     Gram := LLLGram(Gram);
-
     L := LatticeWithGram(Gram);
 
     return L;
@@ -495,8 +521,7 @@ procedure ModLatProc(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattic
     for J in A do
         JJ := (J * ConjIdeal(J,K) * Different(ZK))^(-1);
         for I in B do
-            JJI := JJ * I;
-            pos, alpha_1 := PosGenInF(JJI, UnitGens, M, K, F);
+            pos, alpha_1 := PosGenInF(JJ*I, UnitGens, M, K, F);
 
             if not pos then
                 continue;
@@ -506,7 +531,9 @@ procedure ModLatProc(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLattic
                 alpha := K ! (u * alpha_1);
                 L := LatFromIdeal(J, alpha, K);
 
-                Append(~Lattices, <L, J, alpha, m, dim, l>);
+                if IsEven(L) then
+                    Append(~Lattices, <L, J, alpha, m, dim, l>);
+                end if;
             end for;
         end for;
 	end for;
@@ -554,7 +581,7 @@ procedure ModLatDimProc(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultL
 
     for m in ms do
         Lat := [* *];
-        ModLatProc(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Lat);
+        ModLatProc(l, m, false, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Lat);
 
         LatList cat:= Lat;
     end for;
@@ -629,7 +656,7 @@ procedure ExModLatProc(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~ResultLatt
 //  SeqEnum             : List of extremal lattices.
 
     Lat := [* *];
-    ModLatProc(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Lat);
+    ModLatProc(l, m, false, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Lat);
     ExLat := [* *];
 
     for i in [1..#Lat] do
@@ -670,7 +697,7 @@ procedure ExModLatDimProc(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Resul
 //  SeqEnum             : List of extremal lattices.
 
     Lat := [* *];
-    ModLatDimProc(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Lat);
+    ModLatDimProc(l, dim, false, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Lat);
     ExLat := [* *];
 
     for L in Lat do

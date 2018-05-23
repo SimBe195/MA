@@ -1,8 +1,13 @@
 
 l := 3;
-Lat := [];
+dim := 24;
 
-for phim in [16,18,20,22] do
+Lat := [];
+NumShortest := [];
+AutoSize := [];
+counter := 1;
+
+for phim in [Integers() ! (dim/2) + 1 .. dim-1] do
     printf "Phi(m) = %o\n", phim;
     for m in EulerPhiInverse(phim) do
         
@@ -29,14 +34,14 @@ for phim in [16,18,20,22] do
 
             N := Integers() ! (phim / (p-1));
 
-            for s := 0 to Min({N, 24-phim}) do
+            for s := 0 to Min({N, dim-phim}) do
                 if p ne l then
                     if (s - (p-2)*N) mod 2 ne 0 then
                         continue;
                     end if;
                 end if;
 
-                for k := Max({0, EulerPhi(m)-12}) to Min({12, EulerPhi(m)}) do
+                for k := Max({0, EulerPhi(m)-Integers() ! (dim/2)}) to Min({Integers() ! (dim/2), EulerPhi(m)}) do
                     if p ne l then
                         if k mod 2 ne 0 then
                             continue;
@@ -70,8 +75,19 @@ for phim in [16,18,20,22] do
                             end if;
 
                             new := true;
-                            for M in Lat do
-                                if IsIsometric(M[1], L) then
+                            shortest := #ShortestVectors(L);
+                            auto := #AutomorphismGroup(L);
+
+                            for j in [1..#Lat] do
+                                if NumShortest[j] ne shortest then
+                                    continue;
+                                end if;
+
+                                if AutoSize[j] ne auto then
+                                    continue;
+                                end if;
+
+                                if IsIsometric(Lat[j], L) then
                                     new := false;
                                     break;
                                 end if;
@@ -79,7 +95,15 @@ for phim in [16,18,20,22] do
 
                             if new then
                                 printf "Found a new lattice! Determinant: %o^%o*%o^%o, Minimum: %o\n", p,s,l,k,Minimum(L);
-                                Append(~Lat, <L,p,d,s,k>);
+
+                                Append(~Lat, L);
+                                Append(~NumShortest, shortest);
+                                Append(~AutoSize, auto);
+
+                                if Minimum(L) ge 2*(1+dim/12) then
+                                    PrintFileMagma(Sprintf("%o_dim/I_%o", dim, counter), L);
+                                    counter +:= 1;
+                                end if;
                             end if;
                         end for;
                     end for;
@@ -91,5 +115,3 @@ for phim in [16,18,20,22] do
 
     end for;
 end for;
-
-#Lat;

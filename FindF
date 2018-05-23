@@ -1,51 +1,136 @@
-det := 2^8*3^4; // Determinant of F
-dim := 8; // Dimension of F
-min := 6; // Minimum of F must be greater or equal to this value
-d := 20; // Order of Automorphism
+//n := 24;
+
+//detlist := 		[2^8*3^4,	3^4,	3^5];
+//primeslist := 	[[2,3],		[3],	[3]];
+//dimlist := 		[8,			8,		6];
+//dlist :=		[20,		16,		9];
+//min := 6;
+
+n := 36;
+
+detlist := 		[3^6, 	3^12, 	2^12*3^6, 	2^12*3^6,	3^6,	17^2*3^2]; // Determinant of F
+primeslist := 	[[3], 	[3], 	[2,3], 		[2,3],		[3],	[3,17]]; // Prime divisors of determinant.
+dimlist := 		[12,	12,		12,			12,			12, 	4];// Dimension of F
+dlist := 		[13,	13,		28,			42,			28,		3]; // Order of Automorphism
+min := 8; // Minimum of F must be greater or equal to this value
 
 DB := LatticeDatabase();
 
-Lat := [];
+for j in [1..#detlist] do
 
-for i in [1..NumberOfLattices(DB,dim)] do
-	L := Lattice(DB,dim,i);
+	counter := 0;
 
-	if Determinant(L) mod det eq 0 and Minimum(L) ge min then // L may be sublattice of F
-		L := Dual(L);
-		"Possible sublattice found.";
-	elif det mod Determinant(L) eq 0 then // L may be overlattice of F
-		"Possible overlattice found.";
-	else
-		continue;
-	end if;
+	Lat := [];
+	NumShortest := [];
+	AutoSize := [];
 
-	A := AutomorphismGroup(L);
-	CA := ConjugacyClasses(A);
+	det := detlist[j];
+	primes := primeslist[j];
+	dim := dimlist[j];
+	d := dlist[j];
 
-	X := [];
-	for c in CA do
-		if c[1] eq d then
-			Append(~X,c[3]);
+
+	printf "In total %o lattices to check.\n", NumberOfLattices(DB,dim);
+	for i in [1..NumberOfLattices(DB,dim)] do
+		printf "Checking lattice %o.\n", i;
+		L := Lattice(DB,dim,i);
+
+		if Determinant(L) mod det eq 0 and Minimum(L) ge min then // L may be sublattice of F
+			"Possible sublattice found.";
+			L := Dual(L);
+			if not IsEven(L) then
+				"Dual is not even.";
+				"-------------------------------------------------------------";
+				continue;
+			end if;
+
+			if not det mod Determinant(L) eq 0 then
+				"Dual has no matching determinant.";
+				"-------------------------------------------------------------";
+				continue;
+			end if;
+
+		elif det mod Determinant(L) eq 0 then // L may be overlattice of F
+			"Possible overlattice found.";
+		else
+			"Determinant doesnt match.";
+			"-------------------------------------------------------------";
+			continue;
 		end if;
-	end for;
 
-	if #X gt 0 then
-		"Found automorphism or order d.";
-	end if;
+		quo := Integers() ! (det / Determinant(L));
 
-	for x in X do
-		U := sub<A|x>;
+		level := 0;
+		for p in primes do
+			level +:= Valuation(quo, p);
+		end for;
 
-		SU := Sublattices(U, [2,3] : Levels := 15);
+		level := Round(level / 2);
 
-		for F in SU do
-			if Determinant(F) eq det and Minimum(F) ge min then
-				"Found a candidate for F!";
-				Append(~Lat, F);
+		printf "Max-level %o.\n", level;
+
+		"Computing automorphism group.";
+		A := AutomorphismGroup(L);
+		CA := ConjugacyClasses(A);
+
+		X := [];
+		for c in CA do
+			if c[1] eq d then
+				Append(~X,c[3]);
 			end if;
 		end for;
+
+		printf "%o candidates for automorphism.\n", #X;
+
+		for x in X do
+			U := sub<A|x>;
+
+			"Computing sublattices.";
+			SU := Sublattices(U, primes : Levels := level, Limit := 1000000);
+			if #SU eq 1000000 then
+				"!!! Needs further investigation; incomplete list of sublattices.";
+			end if;
+
+			printf "In total %o sublattices to check.\n", #SU;
+			for S in SU do
+				B := BasisMatrix(S);
+				F := LatticeWithGram(B * RMatrixSpace(Integers(), dim, dim) ! GramMatrix(L) * Transpose(B));
+				if IsEven(F) and Determinant(F) eq det and Minimum(F) ge min then
+
+					new := true;
+                    shortest := #ShortestVectors(F);
+                    auto := #AutomorphismGroup(F);
+
+                    for k in [1..#Lat] do
+                        if NumShortest[k] ne shortest then
+                            new := false;
+                            break;
+                        end if;
+
+                        if AutoSize[k] ne auto then
+                            new := false;
+                            break;
+                        end if;
+
+                        if IsIsometric(Lat[k], F) then
+                            new := false;
+                            break;
+                        end if;
+                    end for;
+
+                    if new then
+						"!!! Found a candidate for F !!!";
+						PrintFileMagma(Sprintf("%o_dim/F_%o_%o", n, #Lat, counter), F);
+						counter +:= 1;
+						Append(~Lat, F);
+						Append (~NumShortest, shortest);
+						Append(~AutoSize, auto);
+					end if;
+				end if;
+			end for;
+		end for;
+
+		"-------------------------------------------------------------";
+
 	end for;
-
 end for;
-
-#Lat;

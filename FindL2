@@ -1,0 +1,164 @@
+limit := 50000;
+
+gammabounds := [1, 1.1547, 1.2599, 1.1412, 1.5157, 1.6654, 1.8115, 2, 2.1327, 2.2637, 2.3934, 2.5218, 2.6494, 2.7759, 2.9015, 3.0264, 3.1507, 3.2744, 3.3975, 3.5201, 3.6423, 3.7641, 3.8855, 4.0067, 4.1275, 4.2481, 4.3685, 4.4887, 4.6087, 4.7286, 4.8484, 4.9681, 5.0877, 5.2072, 5.3267, 5.4462];
+
+procedure AddL(L, ~Lat, ~NumShortest, ~AutoSize, l, dim)
+	new := true;
+    shortest := #ShortestVectors(L);
+	auto := #AutomorphismGroup(L);
+
+    for m in [1..#Lat] do
+        if NumShortest[m] ne shortest then
+        	continue;
+        end if;
+
+        if AutoSize[m] ne auto then
+       		continue;
+        end if;
+
+        if IsIsometric(Lat[m], L) then
+            new := false;
+            break;
+        end if;
+    end for;
+
+    if new then
+		Append(~Lat, L);
+		Append (~NumShortest, shortest);
+		Append(~AutoSize, auto);
+
+		//PrintFileMagma(Sprintf("%o_mod/%o_dim/L_%o", l, dim, #Lat), L : Overwrite := true);
+	end if;
+end procedure;
+
+for l in [2,3,5,6,11,14,15,23] do
+	for dim := 2 to 36 by 2 do
+
+		if l eq 2 and dim eq 20 then
+			continue;
+		end if;
+		if l ge 7 and dim gt 28 then
+			continue;
+		end if;
+		if l eq 11 and dim gt 18 then
+			continue;
+		end if;
+		if l eq 23 and dim gt 6 then
+			continue;
+		end if;
+		if l ne 2 or dim ne 16 then
+			continue;
+		end if;
+
+		printf "////////// %o_modular, %o-dimensional //////////\n", l, dim;
+		
+		min := 0;
+
+        if l eq 1 then
+            min := 2 + 2*Floor(dim/24);
+        elif l eq 2 then
+            min := 2 + 2*Floor(dim/16);
+        elif l eq 3 then
+            min := 2 + 2*Floor(dim/12);
+        elif l eq 5 or l eq 6 then
+            min := 2 + 2*Floor(dim/8);
+        elif l eq 7 then
+            min := 2 + 2*Floor(dim/6);
+        elif l eq 11 or l eq 14 or l eq 15 then
+            min := 2 + 2*Floor(dim/4);
+        elif l eq 23 then
+            min := 2 + 2*Floor(dim/2);
+        end if;
+
+		det := l^(Integers() ! (dim/2));
+
+		if min / det^(1/dim) gt gammabounds[dim] then
+			"A lattice like this can not exist.";
+			"-------------------------------------------------------------";
+			continue;
+		end if;
+
+		Lat := [];
+		NumShortest := [];
+		AutoSize := [];
+
+		numI := eval Read(Sprintf("%o_mod/%o_dim/NumI", l, dim));
+
+		for indexI in [1..numI] do
+
+			data := eval Read(Sprintf("%o_mod/%o_dim/I_%o Data", l, dim, indexI));
+			I := eval Read(Sprintf("%o_mod/%o_dim/I_%o", l, dim, indexI));
+
+			m := data[2];
+			d := data[3];
+			p := Integers() ! (m/d);
+
+			numF := eval Read(Sprintf("%o_mod/%o_dim/NumF_%o", l, dim, indexI));
+
+			for indexF in [1..numF] do
+				F := eval Read(Sprintf("%o_mod/%o_dim/F_%o_%o", l, dim, indexI, indexF));
+				M := OrthogonalSum(I, F);
+				MD := PartialDual(M,p : Rescale:=false);
+
+				den1 := Denominator(BasisMatrix(MD));
+				den2 := Denominator(InnerProductMatrix(MD));
+
+				Aut := AutomorphismGroup(F);
+				CA := ConjugacyClasses(Aut);
+
+				X := [];
+				for c in CA do
+					if c[1] eq d then
+						Append(~X, c[3]);
+					end if;
+				end for;
+
+				for x in X do
+					//"New possible sigma.";
+					sigma := DiagonalJoin(CompanionMatrix(CyclotomicPolynomial(m)), x);
+					
+					G := MatrixGroup<dim, Integers() | sigma >;
+					A := LatticeWithBasis(G, RMatrixSpace(Integers(), dim, dim) ! (den1*BasisMatrix(MD)), RMatrixSpace(Integers(), dim, dim) ! (den2^2 * InnerProductMatrix(MD)));
+
+					SubLat := [A];
+					AScale := 1/(den1*den2)*A;
+					if IsEven(AScale) and Determinant(AScale) eq det and Minimum(AScale) ge min then
+						AddL(AScale, ~Lat, ~NumShortest, ~AutoSize, l, dim);
+					end if;
+
+					k := 1;
+					while k le #SubLat do
+						"------------------";
+						k;
+						#SubLat;
+
+						SU := Sublattices(SubLat[k], p : Levels := 1, Limit := limit);
+						Remove(~SU, 1);
+
+						#SU;
+						for S in SU do
+							if Index(SU, S) mod 100 eq 0 then
+								Index(SU,S);
+							end if;
+							SScale := 1/(den1*den2)*S;
+							if det mod Determinant(SScale) eq 0 then
+								if S in SubLat then
+									continue;
+								end if;
+
+								if IsEven(SScale) and Determinant(SScale) eq det and Minimum(SScale) ge min then
+									AddL(SScale, ~Lat, ~NumShortest, ~AutoSize, l, dim);
+								else
+									Append(~SubLat, S);
+								end if;
+							end if;
+						end for;
+						k +:= 1;
+					end while;
+				end for;
+			end for;
+		end for;
+		printf "In total %o non-isomorphic Lattices found.\n", #Lat;
+		"-------------------------------------------------------------";
+	end for;
+end for;

@@ -1,117 +1,141 @@
+for l in [2,3,5,6,7,11,14,15,23] do
+    
+    printf "\n----------------------------\n%o-Modular:\n----------------------------\n", l;
 
-l := 3;
-dim := 24;
+    for dim := 2 to 36 by 2 do
+    
+        printf "\n----------------------------\nDimension %o:\n----------------------------\n", dim;
 
-Lat := [];
-NumShortest := [];
-AutoSize := [];
-counter := 1;
+        Lat := [];
+        NumShortest := [];
+        AutoSize := [];
+        counter := 0;
 
-for phim in [Integers() ! (dim/2) + 1 .. dim-1] do
-    printf "Phi(m) = %o\n", phim;
-    for m in EulerPhiInverse(phim) do
-        
-        if m mod 4 eq 2 then
-            continue;
+        bound := 0;
+
+        if l eq 1 then
+            bound := 2 + 2*Floor(dim/24);
+        elif l eq 2 then
+            bound := 2 + 2*Floor(dim/16);
+        elif l eq 3 then
+            bound := 2 + 2*Floor(dim/12);
+        elif l eq 5 or l eq 6 then
+            bound := 2 + 2*Floor(dim/8);
+        elif l eq 7 then
+            bound := 2 + 2*Floor(dim/6);
+        elif l eq 11 or l eq 14 or l eq 15 then
+            bound := 2 + 2*Floor(dim/4);
+        elif l eq 23 then
+            bound := 2 + 2*Floor(dim/2);
         end if;
 
-        printf "m = %o\n", m;
 
-        K<z> := CyclotomicField(m);
-        F:=sub<K|z+1/z>;
-        ZK:=Integers(K);
-
-        A := ClassesModGalois(K);
-
-        U, UnitGens, M := TotPosUnits(F);
-        U := RedByNorm(U, K, F);
-
-
-        for i in [1..#Factorization(m)] do
-            p := Factorization(m)[i][1];
-            printf "p = %o\n", p;
-            d := m / p;
-
-            N := Integers() ! (phim / (p-1));
-
-            for s := 0 to Min({N, dim-phim}) do
-                if p ne l then
-                    if (s - (p-2)*N) mod 2 ne 0 then
-                        continue;
-                    end if;
+        for phim in [Integers() ! (dim/2) + 1 .. dim-1] do
+            for m in EulerPhiInverse(phim) do
+                
+                if m mod 4 eq 2 then
+                    continue;
                 end if;
 
-                for k := Max({0, EulerPhi(m)-Integers() ! (dim/2)}) to Min({Integers() ! (dim/2), EulerPhi(m)}) do
-                    if p ne l then
-                        if k mod 2 ne 0 then
-                            continue;
-                        end if;
-                    else
-                        if (s+k - (p-2)*N) mod 2 ne 0 then
-                            continue;
-                        end if;
+                K<z> := CyclotomicField(m);
+                F:=sub<K|z+1/z>;
+                ZK:=Integers(K);
+
+                A := ClassesModGalois(K);
+
+                U, UnitGens, M := TotPosUnits(F);
+                U := RedByNorm(U, K, F);
+
+
+                for i in [1..#Factorization(m)] do
+                    p := Factorization(m)[i][1];
+                    d := m / p;
+
+                    if l mod p eq 0 then
+                        continue;
                     end if;
 
-                    B := DivisorsWithNorm(ideal<ZK|p*l>, p^s*l^k);
+                    N := Integers() ! (phim / (p-1));
 
-                    for J in A do
-                        JJ := (J*ConjIdeal(J,K)*Different(ZK))^(-1);
+                    for s := 0 to Min({N, dim-phim}) do
+                        if (s - (p-2)*N) mod 2 ne 0 then
+                            continue;
+                        end if;
 
-                        for I in B do
-                            JJI := JJ*I;
-                            pos, alpha_1 := PosGenInF(JJI, UnitGens, M, K, F);
-
-                            if not pos then 
+                        for k := Max({0, EulerPhi(m)-Integers() ! (dim/2)}) to Min({Integers() ! (dim/2), EulerPhi(m)}) do
+                            if k mod 2 ne 0 then
                                 continue;
                             end if;
 
-                            for u in U do
-                                alpha := K ! u*alpha_1;
-                                L := LatFromIdeal(J, alpha, K);
+                            B := DivisorsWithNorm(ideal<ZK|p*l>, p^s*l^k);
+
+                            for J in A do
+                                JJ := (J*ConjIdeal(J,K)*Different(ZK))^(-1);
+
+                                for I in B do
+                                    JJI := JJ*I;
+                                    pos, alpha_1 := PosGenInF(JJI, UnitGens, M, K, F);
+
+                                    if not pos then 
+                                        continue;
+                                    end if;
+
+                                    for u in U do
+                                        alpha := K ! u*alpha_1;
+                                        L := LatFromIdeal(J, alpha, K);
+                                    end for;
+
+                                    if not IsEven(L) then
+                                        continue;
+                                    end if;
+
+                                    new := true;
+                                    shortest := #ShortestVectors(L);
+                                    auto := #AutomorphismGroup(L);
+
+                                    for j in [1..#Lat] do
+                                        if NumShortest[j] ne shortest then
+                                            continue;
+                                        end if;
+
+                                        if AutoSize[j] ne auto then
+                                            continue;
+                                        end if;
+
+                                        if IsIsometric(Lat[j], L) then
+                                            new := false;
+                                            break;
+                                        end if;
+                                    end for;
+
+                                    if new then
+
+                                        Append(~Lat, L);
+                                        Append(~NumShortest, shortest);
+                                        Append(~AutoSize, auto);
+
+                                        if Minimum(L) ge bound then
+
+                                            counter +:= 1;
+
+                                            printf "Found a new lattice! phi(m): %o, m: %o, Determinant: %o^%o*%o^%o, Minimum: %o\n", phim,m,p,s,l,k,Minimum(L);
+                                            
+                                            PrintFileMagma(Sprintf("%o_mod/%o_dim/I_%o", l, dim, counter), L : Overwrite := true);
+
+                                            data := Sprintf("<%o,%o,%o,%o,%o>", phim, m, d, Determinant(L), bound);
+
+                                            PrintFile(Sprintf("%o_mod/%o_dim/I_%o Data", l, dim, counter), data : Overwrite := true);
+                                        end if;
+                                    end if;
+                                end for;
                             end for;
-
-                            if not IsEven(L) then
-                                continue;
-                            end if;
-
-                            new := true;
-                            shortest := #ShortestVectors(L);
-                            auto := #AutomorphismGroup(L);
-
-                            for j in [1..#Lat] do
-                                if NumShortest[j] ne shortest then
-                                    continue;
-                                end if;
-
-                                if AutoSize[j] ne auto then
-                                    continue;
-                                end if;
-
-                                if IsIsometric(Lat[j], L) then
-                                    new := false;
-                                    break;
-                                end if;
-                            end for;
-
-                            if new then
-                                printf "Found a new lattice! Determinant: %o^%o*%o^%o, Minimum: %o\n", p,s,l,k,Minimum(L);
-
-                                Append(~Lat, L);
-                                Append(~NumShortest, shortest);
-                                Append(~AutoSize, auto);
-
-                                if Minimum(L) ge 2*(1+dim/12) then
-                                    PrintFileMagma(Sprintf("%o_dim/I_%o", dim, counter), L);
-                                    counter +:= 1;
-                                end if;
-                            end if;
                         end for;
                     end for;
                 end for;
             end for;
         end for;
 
-        print "";
+        PrintFile(Sprintf("%o_mod/%o_dim/NumI", l, dim), counter : Overwrite := true);
 
     end for;
 end for;

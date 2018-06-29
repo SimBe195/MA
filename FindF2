@@ -1,0 +1,201 @@
+
+limit := 100000;
+
+gammabounds := [1, 1.1547, 1.2599, 1.1412, 1.5157, 1.6654, 1.8115, 2, 2.1327, 2.2637, 2.3934, 2.5218, 2.6494, 2.7759, 2.9015, 3.0264, 3.1507, 3.2744, 3.3975, 3.5201, 3.6423, 3.7641, 3.8855, 4.0067, 4.1275, 4.2481, 4.3685, 4.4887, 4.6087, 4.7286, 4.8484, 4.9681, 5.0877, 5.2072, 5.3267, 5.4462];
+
+procedure AddF(F, ~Lat, ~NumShortest, ~AutoSize, l, n, index)
+	new := true;
+    shortest := #ShortestVectors(F);
+	auto := #AutomorphismGroup(F);
+
+    for m in [1..#Lat] do
+        if NumShortest[m] ne shortest then
+        	continue;
+        end if;
+
+        if AutoSize[m] ne auto then
+       		continue;
+        end if;
+
+        if IsIsometric(Lat[m], F) then
+            new := false;
+            break;
+        end if;
+    end for;
+
+    if new then
+		//printf "!!! Found a candidate for F !!! l = %o, dim = %o, index = %o.\n", l, n, index;
+		Append(~Lat, F);
+		Append (~NumShortest, shortest);
+		Append(~AutoSize, auto);
+
+		PrintFileMagma(Sprintf("%o_mod/%o_dim/F_%o_%o", l, n, index, #Lat), F : Overwrite := true);
+
+		PrintFile(Sprintf("%o_mod/%o_dim/NumF_%o", l, n, index), #Lat : Overwrite := true);
+	end if;
+end procedure;
+
+DB := LatticeDatabase();
+
+for l in [2,3,5,6,7,11,14,15,23] do
+	for n := 2 to 36 by 2 do
+		if l eq 7 and n gt 28 then
+			continue;
+		end if;
+		if l eq 11 and n gt 18 then
+			continue;
+		end if;
+		if l eq 23 and n gt 6 then
+			continue;
+		end if;
+		if l eq 2 and n eq 20 then
+			continue;
+		end if;
+
+		if l ne 3 and (n ne 24 and n ne 36) then
+			continue;
+		end if;
+		printf "////////// %o_modular, %o-dimensional //////////\n", l, n;
+
+		num := eval Read(Sprintf("%o_mod/%o_dim/NumI", l, n));
+
+		for index in [1..num] do
+			//printf "Number %o:\n", index;
+
+			Lat := [];
+			NumShortest := [];
+			AutoSize := [];
+
+			data := eval Read(Sprintf("%o_mod/%o_dim/I_%o Data", l, n, index));
+
+			dim := n - data[1];
+			m := data[2];
+			d := data[3];
+			if d eq 1 then
+				//"Skip lattice since d = 1.";
+				PrintFile(Sprintf("%o_mod/%o_dim/NumF_%o", l, n, index), 0 : Overwrite := true);
+				continue;
+			end if;
+			p := Integers() ! (m/d);
+			
+			detI := data[4];
+			det := Integers() ! (l^(n/2) * p^(2*Valuation(detI,p)) / detI);
+
+			primes := PrimeBasis(l) cat [p];
+
+			min := data[5];
+
+			if min / det^(1/dim) gt gammabounds[dim] then
+				//"F can not exist for this I.";
+				//"-------------------------------------------------------------";
+				PrintFile(Sprintf("%o_mod/%o_dim/NumF_%o", l, n, index), 0 : Overwrite := true);
+				continue;
+			end if;
+
+			//printf "In total %o lattices to check.\n", NumberOfLattices(DB,dim);
+			for i in [1..NumberOfLattices(DB,dim)] do
+				//printf "Checking lattice %o.\n", i;
+				L := Lattice(DB,dim,i);
+
+				if Determinant(L) mod det eq 0 and Minimum(L) ge min then // L may be sublattice of F
+					//"Possible sublattice found.";
+					L := Dual(L);
+					if not IsEven(L) then
+						//"Dual is not even.";
+						//"-------------------------------------------------------------";
+						continue;
+					end if;
+
+					if not det mod Determinant(L) eq 0 then
+						//"Dual has no matching determinant.";
+						//"-------------------------------------------------------------";
+						continue;
+					end if;
+
+				elif det mod Determinant(L) eq 0 then // L may be overlattice of F
+					//"Possible overlattice found.";
+				else
+					//"Determinant doesnt match.";
+					//"-------------------------------------------------------------";
+					continue;
+				end if;
+
+				quo := Integers() ! (det / Determinant(L));
+
+				level := 0;
+				for p in primes do
+					level +:= Valuation(quo, p);
+				end for;
+
+				level := Round(level / 2);
+
+				//printf "Max-level %o.\n", level;
+
+				//"Computing automorphism group.";
+				A := AutomorphismGroup(L);
+				CA := ConjugacyClasses(A);
+		
+
+				X := [];
+				for c in CA do
+					if c[1] eq d then
+						Append(~X,c[3]);
+					end if;
+				end for;
+
+				//printf "%o candidates for automorphism.\n", #X;
+
+				L := CoordinateLattice(L);
+
+				for x in X do
+
+					//"Computing sublattices.";
+					SubLat := [LatticeWithBasis(sub<A|x>, BasisMatrix(L), InnerProductMatrix(L))];
+
+					F := SubLat[1];
+
+					if IsEven(F) and Determinant(F) eq det and Minimum(F) ge min then
+						AddF(F, ~Lat, ~NumShortest, ~AutoSize, l, n, index);
+					end if;
+
+					k := 1;
+					while k le #SubLat do
+						"------------------";
+						k;
+						#SubLat;
+						SU := Sublattices(SubLat[k], primes : Levels := 1, Limit := limit);
+						Remove(~SU, 1);
+
+						#SU;
+						for S in SU do
+							if Index(SU, S) mod 100 eq 0 then
+								Index(SU,S);
+							end if;
+							F := CoordinateLattice(S);
+							if det mod Determinant(F) eq 0 then
+								if F in SubLat then
+									continue;
+								end if;
+
+								if IsEven(F) and Determinant(F) eq det and Minimum(F) ge min then
+									AddF(F, ~Lat, ~NumShortest, ~AutoSize, l, n, index);
+								else
+									Append(~SubLat, F);
+								end if;
+							end if;
+						end for;
+						k +:= 1;
+					end while;
+					//#Sub;
+				end for;
+
+			end for;
+
+			if #Lat gt 0 then
+				printf "In total %o non-isomorphic candidates found for I_%o.\n", #Lat, index;
+			end if;
+
+		end for;
+		"-------------------------------------------------------------";
+	end for;
+end for;

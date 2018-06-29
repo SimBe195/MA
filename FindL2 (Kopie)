@@ -1,0 +1,86 @@
+limit := 100000;
+
+dimlist := 	[16,	32,		12,		36,		36,		16,		24,		24,		24,		32,		18,		12,		20,		12];
+llist := 	[2,		2,		3,		3,		3,		5,		5,		5,		6,		6,		7,		11,		11,		14];
+ilist := 	[1,		1,		1,		1,		2,		2,		1,		4,		1,		1,		3,		1,		1,		1];
+flist := 	[1,		4,		2,		1,		1,		2,		1,		2,		5,		1,		1,		1,		1,		1];
+dlist := 	[4,		11,		3,		28,		42,		3,		20,		20,		8,		8,		14,		12,		12,		8];
+plist := 	[7,		3,		5,		2,		2,		7,		2,		3,		5,		7,		2,		2,		5,		3];
+minlist := 	[4,		6,		4,		8,		8,		6,		8,		8,		8,		10,		8,		8,		12,		8];
+Lat := [];
+
+for j in [1..#dimlist] do
+
+	printf "\n----------------------------\nNumber %o:\n----------------------------\n", j;
+	dim := dimlist[j];
+	l := llist[j];
+	index := ilist[j];
+	d := dlist[j];
+	p := plist[j];
+	m := d*p;
+	min := minlist[j];
+
+	det := l^(Integers() ! (dim/2));
+
+	Lat1 := [];
+
+	I := eval Read(Sprintf("%o_mod/%o_dim/I_%o", l, dim, index));
+
+	for f in [1..flist[j]] do
+		F := eval Read(Sprintf("%o_mod/%o_dim/F_%o_%o", l, dim, index, f));
+		M := OrthogonalSum(I, F);
+		MD := PartialDual(M,p : Rescale:=false);
+
+		Q, mQ := MD / M;
+
+		Aut := AutomorphismGroup(F);
+		CA := ConjugacyClasses(Aut);
+
+		X := [];
+		for c in CA do
+			if c[1] eq d then
+				Append(~X, c[3]);
+			end if;
+		end for;
+
+		for a in X do
+			"New possible sigma.";
+			sigma := DiagonalJoin(CompanionMatrix(CyclotomicPolynomial(m)), a);
+			sigmaRAT := KMatrixSpace(Rationals(), dim, dim) ! sigma;
+			B := KMatrixSpace(Rationals(), dim, dim) ! BasisMatrix(MD);
+
+			A := &meet[LatticeWithBasis(B*sigmaRAT^i*B^(-1)) : i in [0..m-1]];
+			A := sub< MD | (KMatrixSpace(Rationals(), dim, dim) ! BasisMatrix(A)) * B >;
+			
+			s := Integers() ! (Valuation(Index(MD,M), p) / 2);
+			lev := Valuation(Integers() ! (p^s / Index(MD,A)), p);
+			
+			G := MatrixGroup<dim, Integers() | sigma >;
+			A := LatticeWithBasis(G, RMatrixSpace(Integers(), dim, dim) ! (p*l*BasisMatrix(A)), RMatrixSpace(Integers(), dim, dim) ! InnerProductMatrix(A));
+
+			SU := Sublattices(A, p : Levels := lev, Limit := limit);
+
+			#SU;
+
+			count := 0;
+
+			for S in SU do
+				L := 1/(p*l) * S;
+				L := LatticeWithGram(GramMatrix(L));
+
+				if IsEven(L) then
+					if Determinant(L) eq det and Minimum(L) ge min then
+						Append(~Lat1, L);
+						count +:= 1;
+					end if;
+				end if;
+			end for;
+
+			"Count:";
+			count;
+		end for;
+	end for;
+
+	Append(~Lat, Lat1);
+	
+end for;

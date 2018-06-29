@@ -334,7 +334,8 @@ function RedByIso(Lattices)
 
 
     for i in [1..#Lattices] do
-        L := Lattices[i][1];
+        //L := Lattices[i][1];
+        L:=Lattices[i];
 
         min_computed := false;
         minimum := 0;
@@ -347,7 +348,8 @@ function RedByIso(Lattices)
 
         new := true;
         for j in [1..#LatticesReduced] do
-            M := LatticesReduced[j][1];
+            //M := LatticesReduced[j][1];
+            M := LatticesReduced[j];
 
             if not min_computed then
                 min_computed := true;
@@ -461,12 +463,14 @@ function LatFromIdeal(J, alpha, K)
     Gram := KMatrixSpace(Rationals(), dim, dim) ! 0;
     for i in [1..dim] do
         for j in [1..dim] do
-            Gram[i][j] := Trace(K ! (alpha*ZBase[i]*ComplexConjugate(ZBase[j])));
+            //Gram[i][j] := Trace(K ! (alpha*ZBase[i]*ComplexConjugate(ZBase[j])));
+            Gram[i][j] := Trace(K ! (alpha * z^(i-j)));
         end for;
     end for;
 
-    Gram := LLLGram(Gram);
-    L := LatticeWithGram(Gram);
+    //Gram := LLLGram(Gram);
+    //L := LatticeWithGram(Gram);
+    L := LatticeWithBasis(KMatrixSpace(Rationals(), dim, dim) ! Matrix(ZBaseVecs), Gram);
 
     return L;
 

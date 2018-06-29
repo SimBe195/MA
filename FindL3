@@ -1,0 +1,189 @@
+limit := 250000;
+
+gammabounds := [1, 1.1547, 1.2599, 1.1412, 1.5157, 1.6654, 1.8115, 2, 2.1327, 2.2637, 2.3934, 2.5218, 2.6494, 2.7759, 2.9015, 3.0264, 3.1507, 3.2744, 3.3975, 3.5201, 3.6423, 3.7641, 3.8855, 4.0067, 4.1275, 4.2481, 4.3685, 4.4887, 4.6087, 4.7286, 4.8484, 4.9681, 5.0877, 5.2072, 5.3267, 5.4462];
+
+Zx<x> := PolynomialRing(Integers());
+
+for l in [2,3,5,6,11,14,15,23] do
+	for dim := 2 to 36 by 2 do
+
+		if l ge 7 and dim gt 28 then
+			continue;
+		end if;
+		if l eq 11 and dim gt 18 then
+			continue;
+		end if;
+		if l eq 23 and dim gt 6 then
+			continue;
+		end if;
+		if l eq 2 and (dim eq 24 or dim eq 26 or dim eq 28 or dim eq 30) then
+                continue;
+        end if;
+        if l eq 3 and (dim eq 20 or dim eq 22) then
+                continue;
+        end if;
+
+		printf "////////// %o_modular, %o-dimensional //////////\n", l, dim;
+		
+		min := 0;
+
+        if l eq 1 then
+            min := 2 + 2*Floor(dim/24);
+        elif l eq 2 then
+            min := 2 + 2*Floor(dim/16);
+        elif l eq 3 then
+            min := 2 + 2*Floor(dim/12);
+        elif l eq 5 or l eq 6 then
+            min := 2 + 2*Floor(dim/8);
+        elif l eq 7 then
+            min := 2 + 2*Floor(dim/6);
+        elif l eq 11 or l eq 14 or l eq 15 then
+            min := 2 + 2*Floor(dim/4);
+        elif l eq 23 then
+            min := 2 + 2*Floor(dim/2);
+        end if;
+
+		det := l^(Integers() ! (dim/2));
+
+		if min / det^(1/dim) gt gammabounds[dim] then
+			"A lattice like this can not exist.";
+			"-------------------------------------------------------------";
+			continue;
+		end if;
+
+		Lat := [];
+		NumShortest := [];
+		AutoSize := [];
+
+		numI := eval Read(Sprintf("%o_mod/%o_dim/NumI", l, dim));
+
+		for indexI in [1..numI] do
+
+			printf "I_%o:\n", indexI;
+
+			data := eval Read(Sprintf("%o_mod/%o_dim/I_%o Data", l, dim, indexI));
+			I := eval Read(Sprintf("%o_mod/%o_dim/I_%o", l, dim, indexI));
+
+			m := data[2];
+			d := data[3];
+			p := Integers() ! (m/d);
+
+			numF := eval Read(Sprintf("%o_mod/%o_dim/NumF_%o", l, dim, indexI));
+
+			for indexF in [1..numF] do
+
+				printf "F_%o_%o:\n", indexI, indexF;
+
+				F := eval Read(Sprintf("%o_mod/%o_dim/F_%o_%o", l, dim, indexI, indexF));
+				F := CoordinateLattice(F);
+				FD := PartialDual(F,p:Rescale:=false);
+				_,phi := FD / F;
+
+				M := OrthogonalSum(I, F);
+				MD := PartialDual(M,p : Rescale:=false);
+
+				den1 := Denominator(BasisMatrix(MD));
+				den2 := Denominator(InnerProductMatrix(MD));
+
+				"Computing automorphism group";
+				Aut := AutomorphismGroup(F);
+				CA := ConjugacyClasses(Aut);
+
+				X := [];
+				for c in CA do
+					if c[1] eq d then
+						if Polynomial(GF(p), MinimalPolynomial(c[3])) mod Polynomial(GF(p),CyclotomicPolynomial(d)) eq 0 then 
+							Append(~X,c[3]);
+						end if;
+					end if;
+				end for;
+
+				printf "%o candidates for sigma on F.\n", #X;
+				for a in X do
+
+					B := [];
+
+					MiPo := Zx ! 1;
+					for i in [1..Rank(FD)] do
+						b := FD.i;
+						if b in sub<FD|F,B> then
+							continue;
+						end if;
+						Append(~B,b);
+						
+						dep := false;
+						C := [Eltseq(phi(b))];
+						while not dep do
+							b := b*Matrix(Rationals(),a);
+							Append(~C, Eltseq(phi(b)));
+							Mat := Matrix(GF(p),C);
+							if Dimension(Kernel(Mat)) gt 0 then
+								dep := true;
+								coeff := Basis(Kernel(Mat))[1];
+								coeff /:= coeff[#C];
+								coeff := Eltseq(coeff);
+								MiPo := LCM(MiPo, Polynomial(Integers(), coeff));
+							else
+								Append(~B, b);
+							end if;
+						end while;
+					end for;
+
+					if MiPo ne CyclotomicPolynomial(d) then
+						continue;
+					end if;
+
+					sigma := DiagonalJoin(CompanionMatrix(CyclotomicPolynomial(m)), a);
+
+					s := Ceiling(Valuation(Index(MD,M), p) / 2);
+					
+					G := MatrixGroup<dim, Integers() | sigma >;
+					A := LatticeWithBasis(G, RMatrixSpace(Integers(), dim, dim) ! (den1*BasisMatrix(MD)), RMatrixSpace(Integers(), dim, dim) ! (den2^2 * InnerProductMatrix(MD)));
+
+					"Computing Sublattices";
+					SU := [];
+					SU := Sublattices(A, p : Levels := s, Limit := limit);
+
+					printf "In total %o sublattices to check.\n", #SU;
+
+					for S in SU do
+						L := 1/(den1*den2) * S;
+						L := LatticeWithGram(GramMatrix(L));
+
+						if IsEven(L) and Determinant(L) eq det and Minimum(L) ge min then
+							new := true;
+		                    shortest := #ShortestVectors(L);
+		                    auto := #AutomorphismGroup(L);
+
+		                    for k in [1..#Lat] do
+		                        if NumShortest[k] ne shortest then
+		                        	continue;
+		                        end if;
+
+		                        if AutoSize[k] ne auto then
+		                       		continue;
+		                        end if;
+
+		                        if IsIsometric(Lat[k], L) then
+		                            new := false;
+		                            break;
+		                        end if;
+		                    end for;
+
+		                    if new then
+								printf "Found a new extremal %o-modular, %o-dimensional lattice!\n", l, dim;
+								Append(~Lat, L);
+								Append (~NumShortest, shortest);
+								Append(~AutoSize, auto);
+
+								PrintFileMagma(Sprintf("%o_mod/%o_dim/L_%o", l, dim, #Lat), L : Overwrite := true);
+							end if;
+						end if;
+					end for;
+				end for;
+			end for;
+		end for;
+		printf "In total %o non-isomorphic Lattices found.\n", #Lat;
+		"-------------------------------------------------------------";
+	end for;
+end for;

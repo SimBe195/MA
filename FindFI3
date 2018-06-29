@@ -1,0 +1,4 @@
+F := LatticeWithGram(Matrix(Integers(), 4, 4, [8,-4,-3,0,-4,8,0,-3,-3,0,10,5,0,-3,5,10]));
+
+PrintFileMagma("3_mod/36_dim/F_3_1", F : Overwrite := true);
+PrintFile("3_mod/36_dim/NumF_3", 1 : Overwrite := true);

@@ -1,0 +1,80 @@
+printf "////////// %o_modular, %o-dimensional //////////\n", l, n;
+
+//printf "Number %o:\n", index;
+
+Lat := [];
+NumShortest := [];
+AutoSize := [];
+
+if min / det^(1/dim) gt gammabounds[dim] then
+	"F can not exist for this I.";
+	"-------------------------------------------------------------";
+	PrintFile(Sprintf("%o_mod/%o_dim/NumF_%o", l, n, index), 0 : Overwrite := true);
+end if;
+
+for L in Liste do
+	"Computing automorphism group.";
+	A := AutomorphismGroup(L);
+	CA := ConjugacyClasses(A);
+
+	X := [];
+	for c in CA do
+		if c[1] eq d then
+			if Polynomial(GF(p), MinimalPolynomial(c[3])) mod Polynomial(GF(p),CyclotomicPolynomial(d)) eq 0 then 
+				Append(~X,c[3]);
+			end if;
+		end if;
+	end for;
+
+	printf "%o candidates for automorphism.\n", #X;
+	
+	for a in X do
+		"Computing sublattices.";
+		SU := [];
+		GL := LatticeWithBasis(sub<A|a>, BasisMatrix(CoordinateLattice(L)), InnerProductMatrix(CoordinateLattice(L)));
+		SU := Sublattices(GL, primes : Levels := level, Limit := limit);
+		printf "In total %o sublattices to check.\n", #SU;
+
+		for F in SU do
+			if IsEven(F) and Determinant(F) eq det and Minimum(F) ge min then
+
+				new := true;
+	            shortest := #ShortestVectors(F);
+	    		auto := #AutomorphismGroup(F);
+
+	            for k in [1..#Lat] do
+	                if NumShortest[k] ne shortest then
+	                	continue;
+	                end if;
+
+	                if AutoSize[k] ne auto then
+	               		continue;
+	                end if;
+
+	                if IsIsometric(Lat[k], F) then
+	                    new := false;
+	                    break;
+	                end if;
+	            end for;
+
+	            if new then
+					"Found a candidate for F!";
+					Append(~Lat, F);
+					Append (~NumShortest, shortest);
+					Append(~AutoSize, auto);
+
+
+					PrintFileMagma(Sprintf("%o_mod/%o_dim/F_%o_%o", l, n, index, #Lat), F : Overwrite := true);
+
+					PrintFile(Sprintf("%o_mod/%o_dim/NumF_%o", l, n, index), #Lat : Overwrite := true);
+				end if;
+			end if;
+		end for;
+	end for;
+end for;
+
+PrintFile(Sprintf("%o_mod/%o_dim/NumF_%o", l, n, index), #Lat : Overwrite := true);
+
+if #Lat gt 0 then
+	printf "In total %o non-isomorphic candidates found for I_%o.\n", #Lat, index;
+end if;

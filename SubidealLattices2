@@ -1,0 +1,73 @@
+l := 3;  
+printf "\n----------------------------\n%o-Modular:\n----------------------------\n", l;
+
+dim := 36;
+printf "\n----------------------------\nDimension %o:\n----------------------------\n", dim;
+
+m := 11;
+p := 11;
+s := 1;
+k := 0;
+
+Lat := [];
+NumShortest := [];
+AutoSize := [];
+
+K<z> := CyclotomicField(m);
+F:=sub<K|z+1/z>;
+ZK:=Integers(K);
+
+A := ClassesModGalois(K);
+
+U, UnitGens, M := TotPosUnits(F);
+U := RedByNorm(U, K, F);
+
+B := DivisorsWithNorm(ideal<ZK|p*l>, p^s*l^k);
+
+for J in A do
+    JJ := (J*ConjIdeal(J,K)*Different(ZK))^(-1);
+
+    for I in B do
+        JJI := JJ*I;
+        pos, alpha_1 := PosGenInF(JJI, UnitGens, M, K, F);
+
+        if not pos then 
+            continue;
+        end if;
+
+        for u in U do
+            alpha := K ! u*alpha_1;
+            L := LatFromIdeal(J, alpha, K);
+        end for;
+
+        if not IsEven(L) then
+            continue;
+        end if;
+
+        new := true;
+        shortest := #ShortestVectors(L);
+        auto := #AutomorphismGroup(L);
+
+        for j in [1..#Lat] do
+            if NumShortest[j] ne shortest then
+                continue;
+            end if;
+
+            if AutoSize[j] ne auto then
+                continue;
+            end if;
+
+            if IsIsometric(Lat[j], L) then
+                new := false;
+                break;
+            end if;
+        end for;
+
+        if new then
+            Append(~Lat, L);
+            Append(~NumShortest, shortest);
+            Append(~AutoSize, auto);
+            "Found a new lattice!";
+        end if;
+    end for;
+end for;

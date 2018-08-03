@@ -4,24 +4,8 @@ gammabounds := [1, 1.1547, 1.2599, 1.1412, 1.5157, 1.6654, 1.8115, 2, 2.1327, 2.
 
 Zx<x> := PolynomialRing(Integers());
 
-for l in [2,3,5,6,11,14,15,23] do
-	for dim := 2 to 36 by 2 do
-
-		if l ge 7 and dim gt 28 then
-			continue;
-		end if;
-		if l eq 11 and dim gt 18 then
-			continue;
-		end if;
-		if l eq 23 and dim gt 6 then
-			continue;
-		end if;
-		if l eq 2 and (dim eq 24 or dim eq 26 or dim eq 28 or dim eq 30) then
-                continue;
-        end if;
-        if l eq 3 and (dim eq 20 or dim eq 22) then
-                continue;
-        end if;
+for l in [3] do
+	for dim in [20] do
 
 		printf "////////// %o_modular, %o-dimensional //////////\n", l, dim;
 		

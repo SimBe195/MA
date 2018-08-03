@@ -1,0 +1,135 @@
+
+function KneserNeighboringMethod(dim, det, min)
+	Rat := RationalsAsNumberField();
+	Int := Integers(Rat);
+	
+	primes := PrimeBasis(det);
+	exps := [Valuation(det, p) : p in primes];
+
+	IdealList := [];
+	if not 2 in primes then
+		Append(~IdealList, <ideal<Int|2>, [[0,dim]]>);
+	end if;
+
+	for i in [1..#primes] do
+		p := primes[i];
+		e := Abs(exps[i]);
+		if dim eq e then
+			Append(~IdealList, <ideal<Int|p>, [[1,e]]>);
+		else
+			Append(~IdealList, <ideal<Int|p>, [[0,dim-e],[1,e]]>);
+		end if;
+	end for;
+
+	"Computing representatives.";
+	Rep := LatticesWithGivenElementaryDivisors(Rat, dim, IdealList);
+
+	Lat := [];
+	for L in Rep do
+		CorrectGenus := true;
+		if IsEven(Integers() ! ev[1] where _,_,_,ev := GenusSymbol(L, ideal<Int|2>)) then
+			B:= Matrix(ZBasis(L`Module));
+			G:= B * L`Form * InternalConjugate(L, B);
+			Form:= Matrix( Ncols(G), [ AbsoluteTrace(e) : e in Eltseq(G) ] );
+			Form:=IntegralMatrix(Form);
+
+			LZ := LatticeWithGram(LLLGram(Matrix(Integers(),Form)));
+			Append(~Lat, LZ);
+		end if;
+	end for;
+
+	Candidates := [];
+
+	printf "%o possible representatives found. Now computing the full genus of each one.\n\n", #Lat;
+	for L in Lat do
+		Ma := Mass(L);
+		printf "The Mass of the genus is %o.\n", Ma;
+
+		Gen := [<L,false, 1>];
+		NumShortest := [#ShortestVectors(L)];
+		AutoSize := [#AutomorphismGroup(L)];
+
+		m := 1/AutoSize[1];
+
+		while m ne Ma do
+			
+			//"Choosing an unexplored lattice that has been found the least amount of times.";
+			minFound := Infinity();
+			minIndex := [];
+			for i in [1..#Gen] do
+				if not Gen[i][2] then
+					if Gen[i][3] lt minFound then
+						minIndex := [i];
+						minFound := Gen[i][3];
+					elif Gen[i][3] eq minFound then	
+						Append(~minIndex, i);
+					end if;
+				end if;
+			end for;
+			minIndex := minIndex[Random(1, #minIndex)];
+
+			//printf "Chose a lattice that has been found %o times.\n", minFound;
+
+			//"Computing 2-neighbours.";
+			N := Neighbours(Gen[minIndex][1], 2);
+			Gen[minIndex][2] := true;
+			//printf "%o neighbours found.\n", #N;
+
+			//"Checking them for isometry to already found lattices.";
+			MinAutoSize := 1/(Ma-m);
+			for L in N do
+				new := true;
+		        
+		        auto := #AutomorphismGroup(L);
+		        autoInv := 1/auto;
+		        if autoInv gt Ma-m then continue; end if;
+
+				shortest := #ShortestVectors(L);
+
+		        for k in [1..#Gen] do
+		            if NumShortest[k] ne shortest then
+		                continue;
+		            end if;
+
+		            if AutoSize[k] ne auto then
+		                continue;
+		            end if;
+
+		            if IsIsometric(Gen[k][1], L) then
+		            	Gen[k][3] +:= 1;
+		                new := false;
+		                break;
+		            end if;
+		        end for;
+
+		        if new then
+		        	m +:= autoInv;
+		        	M := LatticeWithGram(LLLGram(GramMatrix(L)));
+		        	Append(~Gen, <M, false, 1>);
+		        	Append(~NumShortest, shortest);
+		        	Append(~AutoSize, auto);
+
+		        	if IsEven(M) and Minimum(M) ge min then
+		        		"Found a new possible candidate for F.";
+						Append(~Candidates, M);
+					end if;
+
+		        	if m eq Ma then
+		        		break;
+		        	end if;
+		        end if;
+			end for;
+
+			printf "By now %o isometry classes found.\nCurrent Mass is %o.\nDifference to actual Mass is %o.\n\n", #Gen, m, Ma-m; 
+
+		end while;
+
+		printf "In total %o candidates with large minimum.\n", #Candidates;
+
+	end for;
+
+	PrintFileMagma(Sprintf("Gen_%o_%o", dim, det), Candidates : Overwrite := true);
+	return Candidates;
+end function;
+
+

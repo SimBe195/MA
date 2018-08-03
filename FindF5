@@ -1,0 +1,117 @@
+
+gammabounds := [1, 1.1547, 1.2599, 1.1412, 1.5157, 1.6654, 1.8115, 2, 2.1327, 2.2637, 2.3934, 2.5218, 2.6494, 2.7759, 2.9015, 3.0264, 3.1507, 3.2744, 3.3975, 3.5201, 3.6423, 3.7641, 3.8855, 4.0067, 4.1275, 4.2481, 4.3685, 4.4887, 4.6087, 4.7286, 4.8484, 4.9681, 5.0877, 5.2072, 5.3267, 5.4462];
+
+function EnumerateGenus(dim, primes, exps, autorder, min)
+	Rat := RationalsAsNumberField();
+	Int := Integers(Rat);
+
+	IdealList := [];
+	if not 2 in primes then
+		Append(~IdealList, <ideal<Int|2>, [[0,dim]]>);
+	end if;
+
+	for i in [1..#primes] do
+		p := primes[i];
+		e := Abs(exps[i]);
+		if dim eq e then
+			Append(~IdealList, <ideal<Int|p>, [[1,e]]>);
+		else
+			Append(~IdealList, <ideal<Int|p>, [[0,dim-e],[1,e]]>);
+		end if;
+	end for;
+
+	"Computing representatives.";
+	Rep := LatticesWithGivenElementaryDivisors(Rat, dim, IdealList);
+	Lat := [];
+	for L in Rep do
+		CorrectGenus := true;
+		if IsEven(Integers() ! ev[1] where _,_,_,ev := GenusSymbol(L, ideal<Int|2>)) then
+			B:= Matrix(ZBasis(L`Module));
+			G:= B * L`Form * InternalConjugate(L, B);
+			Form:= Matrix( Ncols(G), [ AbsoluteTrace(e) : e in Eltseq(G) ] );
+			Form:=IntegralMatrix(Form);
+
+			LZ := LatticeWithGram(LLLGram(Matrix(Integers(),Form)));
+			"Enumerate Genus";
+			GenReps := Representatives(Genus(LZ));
+			printf "Genus contains %o classes.\n",#GenReps;
+			Lat cat:= GenReps;
+		end if;
+	end for;
+
+	Candidates := [];
+	for L in Lat do
+		if IsEven(L) and Minimum(L) ge min and &or[c[1] eq autorder : c in ConjugacyClasses(AutomorphismGroup(L))] then
+			Append(~Candidates, L);
+		end if;
+	end for;
+
+	return Candidates;
+end function;
+
+for ModDim in [
+<7,28>, <7,32>, <7,34>,
+<11, 14>, <11,18>, <11,22>,
+<14, 12>, <14,16>, <14,20>, <14,24>, <14,28>,
+<15, 12>, <15,16>, <15,20>, <15,24>, <15,28>] do
+
+	l := ModDim[1];
+	n := ModDim[2];
+
+	printf "////////// %o_modular, %o-dimensional //////////\n", l, n;
+
+	num := eval Read(Sprintf("%o_mod/%o_dim/NumI", l, n));
+
+	if ModDim eq <7,28> then ran := [4..num]; else ran := [1..num]; end if;
+	for index in ran do
+		printf "Number %o:\n", index;
+
+		data := eval Read(Sprintf("%o_mod/%o_dim/I_%o Data", l, n, index));
+
+		dim := n - data[1];
+		m := data[2];
+		d := data[3];
+		p := Integers() ! (m/d);
+		detI := data[4];
+		det := Integers() ! (l^(n/2) * p^(2*Valuation(detI,p)) / detI);
+		min := data[5];
+
+		if min / det^(1/dim) gt gammabounds[dim] then
+			"F doesn't fit the upper bound for the hermite constant.";
+			"-------------------------------------------------------------";
+			PrintFile(Sprintf("%o_mod/%o_dim/NumF_%o", l, n, index), 0 : Overwrite := true);
+			continue;
+		end if;
+
+		MiPoExp := 0;
+		for p in PrimeBasis(d) do
+			if p eq 2 and Valuation(d,2) eq 1 then
+				continue;
+			end if;
+			MiPoExp +:= EulerPhi(p^Valuation(d,p));
+		end for;
+
+		if MiPoExp gt dim then
+			"F can not have an automorphism of that order.";
+			"-------------------------------------------------------------";
+			PrintFile(Sprintf("%o_mod/%o_dim/NumF_%o", l, n, index), 0 : Overwrite := true);
+			continue;
+		end if;
+
+		primes := PrimeBasis(det);
+		exps := [Valuation(det, p) : p in primes];
+
+		Candidates := EnumerateGenus(dim, primes, exps, d, min);
+
+		PrintFile(Sprintf("%o_mod/%o_dim/NumF_%o", l, n, index), #Candidates : Overwrite := true);
+
+		for i in [1..#Candidates] do
+			PrintFileMagma(Sprintf("%o_mod/%o_dim/F_%o_%o", l, n, index, i), Candidates[i] : Overwrite := true);
+		end for;
+
+		printf "%o candidates for F.\n", #Candidates;
+		"-------------------------------------------------------------";
+	end for;
+end for;
+
+

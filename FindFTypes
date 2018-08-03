@@ -1,0 +1,74 @@
+
+gammabounds := [1, 1.1547, 1.2599, 1.1412, 1.5157, 1.6654, 1.8115, 2, 2.1327, 2.2637, 2.3934, 2.5218, 2.6494, 2.7759, 2.9015, 3.0264, 3.1507, 3.2744, 3.3975, 3.5201, 3.6423, 3.7641, 3.8855, 4.0067, 4.1275, 4.2481, 4.3685, 4.4887, 4.6087, 4.7286, 4.8484, 4.9681, 5.0877, 5.2072, 5.3267, 5.4462];
+
+function EnumerateGenus(dim, det, autorder, min)
+	Rat := RationalsAsNumberField();
+	Int := Integers(Rat);
+
+	primes := PrimeBasis(det);
+	exps := [Valuation(det, p) : p in primes];
+
+	IdealList := [];
+	if not 2 in primes then
+		Append(~IdealList, <ideal<Int|2>, [[0,dim]]>);
+	end if;
+
+	for i in [1..#primes] do
+		p := primes[i];
+		e := Abs(exps[i]);
+		if dim eq e then
+			Append(~IdealList, <ideal<Int|p>, [[1,e]]>);
+		else
+			Append(~IdealList, <ideal<Int|p>, [[0,dim-e],[1,e]]>);
+		end if;
+	end for;
+
+	"Computing representatives.";
+	Rep := LatticesWithGivenElementaryDivisors(Rat, dim, IdealList);
+	Lat := [];
+	for L in Rep do
+		CorrectGenus := true;
+		if IsEven(Integers() ! ev[1] where _,_,_,ev := GenusSymbol(L, ideal<Int|2>)) then
+			B:= Matrix(ZBasis(L`Module));
+			G:= B * L`Form * InternalConjugate(L, B);
+			Form:= Matrix( Ncols(G), [ AbsoluteTrace(e) : e in Eltseq(G) ] );
+			Form:=IntegralMatrix(Form);
+
+			LZ := LatticeWithGram(LLLGram(Matrix(Integers(),Form)));
+			"Enumerate Genus";
+			GenReps := Representatives(Genus(LZ));
+			printf "Genus contains %o classes.\n",#GenReps;
+			Lat cat:= GenReps;
+		end if;
+	end for;
+
+	Candidates := [];
+	for L in Lat do
+		if IsEven(L) and Minimum(L) ge min and &or[c[1] eq autorder : c in ConjugacyClasses(AutomorphismGroup(L))] then
+			Append(~Candidates, L);
+		end if;
+	end for;
+
+	return Candidates;
+end function;
+
+l := 3;
+n := 36;
+min := 8;
+
+dims := [8,			8,			8,			8,			4,			6,			6,			6,			4];
+dets := [5^3*3^6,	5^5*3^6,	5^7*3^6,	5^7*3^2,	5^4*3^2,	7^4*3^6,	7^5*3^6,	7^5,		17^2*3^2];
+
+Results := [];
+
+for i in [1..#dims] do
+	dim := dims[i];
+	det := dets[i];
+
+
+	Candidates := EnumerateGenus(dim, det, 1, min);
+
+	printf "%o candidates for F.\n", #Candidates;
+	Append(~Results, Candidates);
+	"-------------------------------------------------------------";
+end for;

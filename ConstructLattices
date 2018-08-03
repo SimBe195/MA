@@ -704,9 +704,9 @@ procedure ExModLatDimProc(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Resul
     ModLatDimProc(l, dim, false, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Lat);
     ExLat := [* *];
 
-    for L in Lat do
-        if IsExtremal(L, l) then
-            Append(~ExLat, L);
+    for i in [1..#Lat] do
+        if IsExtremal(Lat[i][1], l) then
+            Append(~ExLat, Lat[i][1]);
         end if;
     end for;
 
@@ -719,13 +719,13 @@ procedure ExModLatDimProc(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Resul
 end procedure;
 
 
-function ExModLatDim(l, m, red)
+function ExModLatDim(l, dim, red)
     Lat := [];
     UnitGensMap := AssociativeArray();
     MMap := AssociativeArray();
     UMap := AssociativeArray();
     AMap := AssociativeArray();
-    ExModLatDimProc(l, m, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Lat);
+    ExModLatDimProc(l, dim, red, ~UnitGensMap, ~MMap, ~UMap, ~AMap, ~Lat);
     
     return Lat;
 end function;

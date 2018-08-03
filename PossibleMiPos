@@ -1,0 +1,62 @@
+
+
+function PossibleMiPos(n, m, ListOfTypes)
+	Div := Divisors(m);
+	Phi := [EulerPhi(d) : d in Div];
+
+	M := RMatrixSpace(Integers(), #Div, 2*#ListOfTypes) ! 0;
+	W := RMatrixSpace(Integers(), 1, 2*#ListOfTypes) ! 0;
+	MaxDim := [n : i in [1..#Div]];
+
+	for i in [1..#ListOfTypes] do
+		p := ListOfTypes[i][1];
+		fix := ListOfTypes[i][2];
+		W[1][2*i-1] := fix;
+		W[1][2*i] := n - fix;
+
+		for j in [1..NumberOfRows(M)] do
+			if Integers() ! (m/p) mod Div[j] eq 0 then
+				MaxDim[j] := Minimum(MaxDim[j], Floor(W[1][2*i-1] / Phi[j]));
+				M[j][2*i-1] := Phi[j];
+			else
+				MaxDim[j] := Minimum(MaxDim[j], Floor(W[1][2*i] / Phi[j]));
+				M[j][2*i] := Phi[j];
+			end if;
+		end for;
+	end for;
+
+	M;
+	"";
+	W;
+	"";
+	MaxDim;
+	"";
+
+	C := CartesianProduct([[0..m] : m in MaxDim]);
+	
+	Solutions := [];
+
+	for x in C do
+		v := Matrix(Integers(), 1, NumberOfRows(M), [a : a in x]);
+
+		if v*M eq W then 
+			Append(~Solutions, v); 
+		end if;
+	end for;
+
+	Solutions;
+	"";
+	
+	MiPos := [];
+	for s in Solutions do
+		mu := [];
+		for i in [1..NumberOfRows(M)] do
+			if s[1][i] gt 0 then
+				Append(~mu, Div[i]);
+			end if;
+		end for;
+		if not mu in MiPos and LCM(mu) eq m then Append(~MiPos, mu); end if;
+	end for;
+
+	return MiPos;
+end function;

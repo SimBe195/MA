@@ -1,0 +1,61 @@
+l := 3;
+dim := 36;
+min := 8;
+
+Results := [];
+
+GammaBounds := [1, 1.1547, 1.2599, 1.1412, 1.5157, 1.6654, 1.8115, 2, 2.1327, 2.2637, 2.3934, 2.5218, 2.6494, 2.7759, 2.9015, 3.0264, 3.1507, 3.2744, 3.3975, 3.5201, 3.6423, 3.7641, 3.8855, 4.0067, 4.1275, 4.2481, 4.3685, 4.4887, 4.6087, 4.7286, 4.8484, 4.9681, 5.0877, 5.2072, 5.3267, 5.4462];
+
+for p in PrimesUpTo(dim+1) do
+	if p eq l then continue; end if;
+
+	K<z> := CyclotomicField(p);
+	E := sub<K|z+1/z>;
+	if p eq 2 then 
+		f := 1;
+	else 
+		f := InertiaDegree(Factorization(ideal<Integers(E) | l>)[1][1]);
+	end if;
+
+	N := [i*(p-1) : i in [1..Floor(dim/(p-1))]];
+
+	for nI in N do
+		if p eq 2 and not nI in [12..24] then continue; end if;
+		nF := dim - nI;
+
+		for kI in [0..Min(nI, Integers() ! (dim/2))] do
+			if kI mod 2 ne 0 then continue; end if;
+			if kI mod (2*f) ne 0 then continue; end if;
+
+			kF := Integers() ! (dim/2) - kI;
+			if not kF in [0..Min(nF, Integers() ! (dim/2))] then continue; end if;
+
+			for s in [0..Min(nF, Integers() ! (nI / (p-1)))] do
+				if p eq 2 and s mod 2 ne 0 then continue; end if;
+				if p ne 2 and (s - Integers() ! (nI / (p-1))) mod 2 ne 0 then continue; end if;
+				
+				if nF in [1..#GammaBounds] then
+					GammaF := min / (p^s * l^kF)^(1/nF);
+					if GammaF gt GammaBounds[nF] then continue; end if;
+
+					if p eq 2 then
+						GammaM := (min/2) / (l^kF)^(1/nF);
+						if GammaM gt GammaBounds[nF] then continue; end if;
+					end if;
+				end if;
+
+				if nI in [1..#GammaBounds] then
+					GammaI := min / (p^s * l^kI)^(1/nI);
+					if GammaI gt GammaBounds[nI] then continue; end if;
+
+					if p eq 2 then
+						GammaM := (min/2) / (l^kI)^(1/nI);
+						if GammaM gt GammaBounds[nI] then continue; end if;
+					end if;
+				end if;
+
+				Append(~Results, <p, nF, nI, s, kF, kI>);
+			end for;
+		end for;
+	end for;
+end for;

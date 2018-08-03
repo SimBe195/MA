@@ -114,18 +114,15 @@ for l in [2,3,5,6,7,11,14,15,23] do
                                         Append(~NumShortest, shortest);
                                         Append(~AutoSize, auto);
 
-                                        if Minimum(L) ge bound then
+                                        //if Minimum(L) ge bound then
 
                                             counter +:= 1;
 
                                             printf "Found a new lattice! phi(m): %o, m: %o, Determinant: %o^%o*%o^%o, Minimum: %o\n", phim,m,p,s,l,k,Minimum(L);
-                                            
-                                            PrintFileMagma(Sprintf("%o_mod/%o_dim/I_%o", l, dim, counter), L : Overwrite := true);
-
-                                            data := Sprintf("<%o,%o,%o,%o,%o>", phim, m, d, Determinant(L), bound);
-
-                                            PrintFile(Sprintf("%o_mod/%o_dim/I_%o Data", l, dim, counter), data : Overwrite := true);
-                                        end if;
+                                            //PrintFileMagma(Sprintf("%o_mod/%o_dim/I_%o", l, dim, counter), L : Overwrite := true);
+                                            //data := Sprintf("<%o,%o,%o,%o,%o>", phim, m, d, Determinant(L), bound);
+                                            //PrintFile(Sprintf("%o_mod/%o_dim/I_%o Data", l, dim, counter), data : Overwrite := true);
+                                        //end if;
                                     end if;
                                 end for;
                             end for;
@@ -135,7 +132,7 @@ for l in [2,3,5,6,7,11,14,15,23] do
             end for;
         end for;
 
-        PrintFile(Sprintf("%o_mod/%o_dim/NumI", l, dim), counter : Overwrite := true);
+        //PrintFile(Sprintf("%o_mod/%o_dim/NumI", l, dim), counter : Overwrite := true);
 
     end for;
 end for;

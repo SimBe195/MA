@@ -1,0 +1,270 @@
+\documentclass[12pt,a4paper,halfparskip,headsepline, bibtotocnumbered]{scrreprt}
+
+% ========== Pakete einbinden ==========
+\usepackage[utf8]{inputenc}          % um Umlaute direkt eingeben zu können
+\usepackage[T1]{fontenc}             % für "modernere" Schriftkodierung
+\usepackage[ngerman]{babel}          % Sprachanpassungen für neue Deutsche Rechtschreibung
+\usepackage[intlimits]{amsmath}      % für erweiterte mathematische Konstrukte
+\usepackage{amsfonts}                % für erweiterte mathematische Schriften
+\usepackage{amssymb}                 % für erweiterten Symbolvorrat
+\usepackage[sc]{mathpazo}            % Schriftart Palatino
+\usepackage{textcomp}                % für erweiterten Text-Symbolvorrat
+\usepackage{typearea}                % für die Berechnung der Seitenründer
+\usepackage{scrpage2}                % für Kopf- und Fußzeilen
+\usepackage{array}                   % für erweiterte Tabellensatzmöglichkeiten
+\usepackage{enumerate}               % für komfortablere Aufzählungen
+\usepackage{titlesec}                % für Kontrolle der Abschnittüberschriften
+\usepackage[amsmath, thmmarks]{ntheorem} % für Definitionen, Sätze, ...
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{lmodern}
+\usepackage{blindtext}
+\usepackage{pdfpages}
+\usepackage{url}
+\usepackage{enumitem}
+
+% Spezialpakete
+\usepackage{fp}
+\usepackage{tikz}
+\usepackage{xcolor}
+% TikZ-Bibliotheken
+\usetikzlibrary{arrows}
+\usetikzlibrary{shapes}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{decorations.pathreplacing}
+\usetikzlibrary{decorations.shapes}
+\usetikzlibrary{decorations.text}
+\usetikzlibrary{calc}
+
+\usepackage{shadethm}
+
+% ========== Layout ==========
+\typearea{12}
+\linespread{1.5}
+\titleformat{\section}{\normalfont\normalcolor\Large\bfseries\centering}%
+ {\S\,\thesection}{.66em}{}
+\newcommand{\subsectiontitel}[1]{\raisebox{0.6ex}{\rule{12pt}{0.4pt}}%
+ \hspace*{0.2cm}\textit{#1}\hspace*{0.2cm}\raisebox{0.6ex}{\rule{12pt}{0.4pt}}}
+\titleformat{\subsection}[block]{\normalfont\normalcolor\centering}{}{0em}{\subsectiontitel}
+
+% ---------- Definitionen, Sätze, ... ----------
+
+\makeatletter
+
+\newtheoremstyle{nummermitklammern}%
+ {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont
+  (##2)\ ##1\theorem@separator}\hbox{\strut}}}]}%
+ {\item[\rlap{\vbox{\hbox{\hskip\labelsep \theorem@headerfont
+  (##2)\ ##1 (##3)\theorem@separator}\hbox{\strut}}}]}%
+\makeatother
+
+\theoremstyle{nummermitklammern}
+\theorembodyfont{\rmfamily}
+%\theoremsymbol{\ensuremath{\diamond}}
+\newtheorem{defsatzusw}{}[section]
+\newtheorem{definition}[defsatzusw]{Definition}
+\newtheorem{bezeichnung}[defsatzusw]{Bezeichnung}
+\newtheorem{bezeichnungen}[defsatzusw]{Bezeichnungen}
+\newtheorem{voraussetzung}[defsatzusw]{Voraussetzung}
+\newtheorem{voraussetzungen}[defsatzusw]{Voraussetzungen}
+\newtheorem{satz}[defsatzusw]{Satz}
+
+
+\newtheorem{lemma}[defsatzusw]{Lemma}
+\newtheorem{algorithmus}[defsatzusw]{Algorithmus}
+\newtheorem{korollar}[defsatzusw]{Korollar}
+\newtheorem{folgerung}[defsatzusw]{Folgerung}
+\newtheorem{hilfssatz}[defsatzusw]{Hilfssatz}
+\newtheorem{proposition}[defsatzusw]{Proposition}
+\newtheorem{bemerkung}[defsatzusw]{Bemerkung}
+\newtheorem{bemerkungen}[defsatzusw]{Bemerkungen}
+\newtheorem{beispiel}[defsatzusw]{Beispiel}
+\newtheorem{beispiele}[defsatzusw]{Beispiele}
+\theoremstyle{nonumberbreak}
+\newtheorem{beweis2}{Beweis (Anfang):}
+\theoremsymbol{\ensuremath{\square}}
+\newtheorem{beweis}{Beweis:}
+\newtheorem {fazit} {Fazit}
+
+
+
+\definecolor{shadethmcolor}{rgb}{.9,.9,.9}   % Farbe des Hintergrundes 
+\definecolor{shaderulecolor}{rgb}{0.0,0.0,1.0}   % Farbe des Rahmens
+\setlength{\shadeboxrule}{1pt}   % Breite des Rahmens
+\newshadetheorem{sthm}{lemma}
+\newenvironment{thm}[1][]{%
+  \definecolor{shadethmcolor}{rgb}{.9,.9,.9}%
+  \definecolor{shaderulecolor}{rgb}{1.0,0.0,0.0}%
+  \setlength{\shadeboxrule}{1pt}%
+  \begin{sthm}[#1]%
+}{\end{sthm}}
+
+% ---------- Mathematik-Umgebungen ----------
+\newenvironment{mathex}[1][LLLLLLLLLLLL]{
+  \[%
+  \newcolumntype{L}{>{\displaystyle\setlength{\arraycolsep}{4pt}}l}%
+  \newcolumntype{C}{>{\displaystyle\setlength{\arraycolsep}{4pt}}c}%
+  \newcolumntype{R}{>{\displaystyle\setlength{\arraycolsep}{4pt}}r}%
+  \setlength{\arraycolsep}{1.5pt}%
+  \begin{array}{>{\vspace*{1.3ex}}#1}%
+}{
+  \end{array}%
+  \vspace*{-1.3ex}%
+  \]%
+  \ignorespacesafterend%
+}
+
+% ========== Abkuerzungen ==========
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\G}{\mathbb{G}}
+
+% ========== Sonstiges ==========
+\renewcommand{\emptyset}{\text{\usefont{OMS}{cmsy}{m}{n}\symbol{59}}}
+\bibliographystyle{plain}
+\allowdisplaybreaks
+
+
+\begin{document}
+
+%===================================================================
+% Titelseite
+%===================================================================
+
+\begin{titlepage}
+	\centering
+	%\includegraphics[width=0.5\textwidth]{RWTH_Logo.png}\par\vspace{1cm}
+	\vspace*{2cm}
+	{\Large\bfseries Extremale Gitter mit großen Automorphismen\par}
+	\vspace{1cm}
+	{\scshape\Large Masterarbeit\par}
+	\vspace{2cm}
+	{\Large\itshape von Simon Berger\par}
+	\vfill
+	Vorgelegt am Lehrstuhl D für Mathematik der RWTH-Aachen University\par 
+	bei Prof. Dr. Gabriele Nebe (1. Prüferin)\\ 
+	und Prof. Dr. Markus Kirschmer (2. Prüfer)\par
+	\vfill
+
+% Bottom of the page
+	{\large \today\par}
+\end{titlepage}
+
+%===================================================================
+% Inhaltsverzeichnis
+%===================================================================
+
+\tableofcontents
+
+%===================================================================
+% Einleitung
+%===================================================================
+\chapter{Einleitung}
+
+
+%===================================================================
+% Kapitel 1
+%===================================================================
+
+\chapter{Grundbegriffe}
+Wir wiederholen zunächst einige wichtige Begriffe aus der Gittertheorie, welche wir in der Folgenden Arbeit häufig benötigen werden. Zunächst benötigen wir das Konzept eines quadratischen Vektorraumes. Die nun angeführten Definitionen sind \cite[Def. (2.1)]{kneser} entnommen.
+
+\begin{framed}
+	\begin{definition}
+		\begin{enumerate}[label=(\roman*)]
+			\item Sei $A$ ein Ring und $E$ ein $A$-Modul. Für eine symmetrische Bilinearform $b : E \times E \rightarrow A$ heißt das Paar $(E,b)$ ein \textit{$A$-Bilinearmodul}.
+			\item Eine Abbildung $q : E \rightarrow A$ mit den Eigenschaften
+				\begin{align*}
+					q(ax) = a^2 q(x)\quad \text{für } a \in A, x \in E\\
+					q(x+y) = q(x) + q(y) + b_q(x,y)
+				\end{align*}
+				mit einer symmetrischen Bilinearform $b_q$ heißt \textit{quadratische Form}. Ein solches Paar $(E,q)$ heißt \textit{quadratischer $A$-Modul} (bzw. falls $A$ Körper \textit{quadratischer $A$-Vektorraum}).
+			\item Eine \textit{isometrische Abbildung} (oder kurz \textit{Isometrie}) zwischen zwei quadratischen Moduln $(E,q)$ und $(E', q')$ ist ein injektiver Modulhomomorphismus $f : E \rightarrow E'$ mit $q'(f(x)) = q(x)$ für alle $x \in E$.
+		\end{enumerate}
+	\end{definition}
+\end{framed}
+
+\begin{bemerkung}
+	Auf einem quadratischen $A$-Modul $(E,q)$ ist $b_q : E \times E \rightarrow A, (x,y) \mapsto q(x+y) - q(x) - q(y)$ eine symmetrische Bilinearform. Andersherum erhält man aus jeder symmetrischen bilinearform $b$ auf $E$ eine quadratische Form $q_b : E \rightarrow A, x \mapsto b(x,x)$. Es ist dabei $b_{q_b} = 2b$ und $q_{b_q} = 2q$. Ist $2 \in A^*$, so kann man daher stattdessen $q_b : E \rightarrow A, x \mapsto \frac{1}{2} b(x,x)$ wählen, womit die Konzepte der quadratischen Formen und der symmetrischen Bilinearformen auf $E$ völlig äquivalent sind.
+\end{bemerkung}
+
+Nun folgen Definitionen zum Gitterbegriff, zu finden in \cite[Def. (14.1), (14.2)]{kneser}.
+\begin{framed}
+	\begin{definition}
+		\begin{enumerate}[label=(\roman*)]
+			\item Sei $K$ ein Körper, $V$ ein endlich-dimensionaler $K$-Vektorraum mit Basis $(b_1,\dots,b_n)$. Ein $R$-Gitter in $V$ ist ein $R$-Untermodul $L$ von $V$, zu dem Elemente $a,b \in K^*$ existieren mit $a \sum_{i=1}^n R b_i \subseteq L \subseteq b \sum_{i=1}^n R b_i$.
+			\item Sei $b$ eine nicht-ausgeartete symmetrische Bilinearform auf $V$ und $L$ ein Gitter in $V$. Dann ist auch $L^\# := \lbrace x \in V \mid b(x,y) \in R \text{ für alle } y \in L \rbrace$ ein $R$-Gitter und heißt \textit{das zu $L$ duale Gitter} (bzgl. $b$).
+		\end{enumerate}
+	\end{definition}
+\end{framed}
+
+\begin{bemerkung}
+	Falls $R$ ein Hauptidealbereich ist, vereinfacht sich die Definition erheblich, da Teilmoduln von endlich erzeugten freien Moduln über Hauptidealbereichen wieder frei sind. Ein $R$-Gitter ist per Definition zwischen zwei freien Moduln eingespannt, also sind die $R$-Gitter in diesem Fall genau die freien $R$-Moduln von Rang $n$.
+\end{bemerkung}
+
+Insbesondere interessieren uns $\Z$-Gitter in $\R^n$. Für eben solche folgen nun ein paar weitere Definitionen, abgeleitet aus \cite[Def. (1.7), (1.13), (14.7), (26.1)]{kneser}.
+
+\begin{framed}
+	\begin{definition}
+		Sei $L$ ein $\Z$-Gitter mit Basis $(e_1, \dots, e_n)$ in $(\R^n, b)$, für eine symmetrische Bilinearform $b$.
+		\begin{enumerate}[label=(\roman*)]
+			\item Die Matrix $G = \left(b(e_i, e_j)\right)_{i,j=1}^n$ heißt \textit{Gram-Matrix} von $L$, $\text{Det}(L) := \text{Det}(G)$ heißt die \textit{Determinante} von $L$.
+			\item Das Gitter $L$ heißt \textit{ganz}, falls $b(L,L) \subseteq \Z$ gilt.
+			\item Das Gitter $L$ heißt \textit{gerade}, falls $b(x,x) \in 2\Z$ für alle $x \in L$ gilt.
+		\end{enumerate}
+	\end{definition}
+\end{framed}
+
+\begin{bemerkung}
+	Nach \cite[Satz (14.7)]{kneser} gilt $\text{Det}(L) = \vert L^\# / L \vert$. Direkt aus der Definition des dualen Gitters folgt außerdem: $L$ ist ganz genau dann, wenn $L \subseteq L^\#$.
+\end{bemerkung}
+
+
+
+
+\newpage
+
+
+%===================================================================
+% Anhang
+%===================================================================
+\chapter{Anhang}
+
+\textbf{Anhang A}: 
+\textbf{Anhang B}: Eidesstattliche Erklärung
+
+\section{A: Implementierungen}
+
+\section{B: Eidesstattliche Versicherung}
+Ich versichere hiermit an Eides Statt, dass ich die vorliegende Bachelorarbeit mit dem Titel
+\textit{Extremale Gitter mit großen Automorphismen} selbstständig und ohne unzulässige fremde Hilfe erbracht habe.
+Ich habe keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit hat in gleicher oder
+ähnlicher Form noch keiner Prüfungsbehörde vorgelegen.\par
+\vspace{0.5cm}
+Aachen, im September 2018 \hfill $\underline{\hspace{6cm}}$\par
+\vspace{2cm}
+\begin{small}
+\textbf{Belehrung:}\\
+\textbf{§ 156 StGB: Falsche Versicherung an Eides Statt}\\
+Wer vor einer zur Abnahme einer Versicherung an Eides Statt zuständigen Behörde eine solche Versicherung
+falsch abgibt oder unter Berufung auf eine solche Versicherung falsch aussagt, wird mit Freiheitsstrafe
+von bis zu drei Jahren oder mit Geldstrafe bestraft.\par
+\textbf{§ 161 StGB: Fahrlässiger Falscheid; fahrlässige falsche Versicherung an Eides Statt}\\
+(1) Wenn eine der in den §§ 154 bis 156 bezeichneten Handlungen aus Fahrlässigkeit begangen worden ist, so
+tritt Freiheitsstrafe von bis zu einem Jahr oder Geldstrafe ein.\\
+(2) Straflosigkeit tritt ein, wenn der Täter die falsche Angabe rechtzeitig berichtigt. Die
+Vorschriften des § 158 Abs. 2 und 3 gelten entsprechend\par
+\end{small}
+Die vorstehende Belehrung habe ich zur Kenntnis genommen:\par
+\vspace{0.5cm}
+Aachen, im September 2018 \hfill $\underline{\hspace{6cm}}$\\
+
+%===================================================================
+% Literatur
+%===================================================================
+\bibliography{Quellen}
+
+\end{document}

@@ -121,10 +121,16 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\G}{\mathbb{G}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\No}{\mathcal{N}}
+\newcommand{\Det}{\text{Det}}
+\newcommand{\Min}{\text{Min}}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\I}{\mathcal{I}}
 
 % ========== Sonstiges ==========
 \renewcommand{\emptyset}{\text{\usefont{OMS}{cmsy}{m}{n}\symbol{59}}}
-\bibliographystyle{plain}
+\bibliographystyle{alpha}
 \allowdisplaybreaks
 
 
@@ -160,35 +166,39 @@
 \tableofcontents
 
 %===================================================================
-% Einleitung
+% Kapitel 1: Einleitung
 %===================================================================
 \chapter{Einleitung}
 
 
 %===================================================================
-% Kapitel 1
+% Kapitel 2: Definitionen
 %===================================================================
 
 \chapter{Grundbegriffe}
+
+\section{Quadratische Vektorräume}
+
 Wir wiederholen zunächst einige wichtige Begriffe aus der Gittertheorie, welche wir in der Folgenden Arbeit häufig benötigen werden. Zunächst benötigen wir das Konzept eines quadratischen Vektorraumes. Die nun angeführten Definitionen sind \cite[Def. (2.1)]{kneser} entnommen.
 
 \begin{framed}
 	\begin{definition}
 		\begin{enumerate}[label=(\roman*)]
-			\item Sei $A$ ein Ring und $E$ ein $A$-Modul. Für eine symmetrische Bilinearform $b : E \times E \rightarrow A$ heißt das Paar $(E,b)$ ein \textit{$A$-Bilinearmodul}.
+			\item Sei $A$ ein Ring und $E$ ein $A$-Modul. Für eine symmetrische Bilinearform $b : E \times E \rightarrow A$ heißt das Paar $(E,b)$ ein \textit{bilinearer $A$-Modul} (bzw. falls $A$ Körper ein \textit{bilinearer $A$-Vektorraum}).
 			\item Eine Abbildung $q : E \rightarrow A$ mit den Eigenschaften
 				\begin{align*}
 					q(ax) = a^2 q(x)\quad \text{für } a \in A, x \in E\\
 					q(x+y) = q(x) + q(y) + b_q(x,y)
 				\end{align*}
-				mit einer symmetrischen Bilinearform $b_q$ heißt \textit{quadratische Form}. Ein solches Paar $(E,q)$ heißt \textit{quadratischer $A$-Modul} (bzw. falls $A$ Körper \textit{quadratischer $A$-Vektorraum}).
-			\item Eine \textit{isometrische Abbildung} (oder kurz \textit{Isometrie}) zwischen zwei quadratischen Moduln $(E,q)$ und $(E', q')$ ist ein injektiver Modulhomomorphismus $f : E \rightarrow E'$ mit $q'(f(x)) = q(x)$ für alle $x \in E$.
+				mit einer symmetrischen Bilinearform $b_q$ heißt \textit{quadratische Form}. Ein solches Paar $(E,q)$ heißt \textit{quadratischer $A$-Modul} (bzw. falls $A$ Körper ein \textit{quadratischer $A$-Vektorraum}).
+			\item Eine \textit{isometrische Abbildung} (oder kurz \textit{Isometrie}) zwischen zwei bilinearen Moduln $(E,b)$ und $(E', b')$ ist ein Modulisomorphismus $f : E \rightarrow E'$ mit $b(x,y) = b'(f(x), f(y))$.
+			\item Analog ist eine Isometrie zwischen zwei quadratischen Moduln $(E,q)$ und $(E', q')$ ist ein Modulisomorphismus $f : E \rightarrow E'$ mit $q(x) = q'(f(x))$ für alle $x \in E$.
 		\end{enumerate}
 	\end{definition}
 \end{framed}
 
 \begin{bemerkung}
-	Auf einem quadratischen $A$-Modul $(E,q)$ ist $b_q : E \times E \rightarrow A, (x,y) \mapsto q(x+y) - q(x) - q(y)$ eine symmetrische Bilinearform. Andersherum erhält man aus jeder symmetrischen bilinearform $b$ auf $E$ eine quadratische Form $q_b : E \rightarrow A, x \mapsto b(x,x)$. Es ist dabei $b_{q_b} = 2b$ und $q_{b_q} = 2q$. Ist $2 \in A^*$, so kann man daher stattdessen $q_b : E \rightarrow A, x \mapsto \frac{1}{2} b(x,x)$ wählen, womit die Konzepte der quadratischen Formen und der symmetrischen Bilinearformen auf $E$ völlig äquivalent sind.
+	Auf einem quadratischen $A$-Modul $(E,q)$ ist $b_q : E \times E \rightarrow A, (x,y) \mapsto q(x+y) - q(x) - q(y)$ eine symmetrische Bilinearform. Andersherum erhält man aus jeder symmetrischen Bilinearform $b$ auf $E$ eine quadratische Form $q_b : E \rightarrow A, x \mapsto b(x,x)$. Es ist dabei $b_{q_b} = 2b$ und $q_{b_q} = 2q$. Ist $2 \in A^*$, so kann man daher stattdessen $q_b : E \rightarrow A, x \mapsto \frac{1}{2} b(x,x)$ wählen, womit die Konzepte der quadratischen Formen und der symmetrischen Bilinearformen auf $E$ vertauschbar sind.
 \end{bemerkung}
 
 Nun folgen Definitionen zum Gitterbegriff, zu finden in \cite[Def. (14.1), (14.2)]{kneser}.
@@ -197,6 +207,8 @@ Nun folgen Definitionen zum Gitterbegriff, zu finden in \cite[Def. (14.1), (14.2
 		\begin{enumerate}[label=(\roman*)]
 			\item Sei $K$ ein Körper, $V$ ein endlich-dimensionaler $K$-Vektorraum mit Basis $(b_1,\dots,b_n)$. Ein $R$-Gitter in $V$ ist ein $R$-Untermodul $L$ von $V$, zu dem Elemente $a,b \in K^*$ existieren mit $a \sum_{i=1}^n R b_i \subseteq L \subseteq b \sum_{i=1}^n R b_i$.
 			\item Sei $b$ eine nicht-ausgeartete symmetrische Bilinearform auf $V$ und $L$ ein Gitter in $V$. Dann ist auch $L^\# := \lbrace x \in V \mid b(x,y) \in R \text{ für alle } y \in L \rbrace$ ein $R$-Gitter und heißt \textit{das zu $L$ duale Gitter} (bzgl. $b$).
+			\item Für $m \in \N$ heißt das Gitter $L^{\#,m} := \frac{1}{m}L \cap L^\#$ \textit{partielles Dualgitter} von $L$.
+			\item Sei $(V,b)$ ein bilinearer $K$-Vektorraum und $L$ ein Gitter in $V$. Die Gruppe $\text{Aut}(L) := \lbrace \sigma : V \rightarrow V \mid \sigma \text{ ist Isometrie und } \sigma(L) = L \rbrace$ heißt die \textit{Automorphismengruppe} von $L$.
 		\end{enumerate}
 	\end{definition}
 \end{framed}
@@ -209,62 +221,268 @@ Insbesondere interessieren uns $\Z$-Gitter in $\R^n$. Für eben solche folgen nu
 
 \begin{framed}
 	\begin{definition}
-		Sei $L$ ein $\Z$-Gitter mit Basis $(e_1, \dots, e_n)$ in $(\R^n, b)$, für eine symmetrische Bilinearform $b$.
+		Sei $L$ ein $\Z$-Gitter mit Basis $B = (e_1, \dots, e_n)$ in $(\R^n, b)$, für eine symmetrische Bilinearform $b$.
 		\begin{enumerate}[label=(\roman*)]
-			\item Die Matrix $G = \left(b(e_i, e_j)\right)_{i,j=1}^n$ heißt \textit{Gram-Matrix} von $L$, $\text{Det}(L) := \text{Det}(G)$ heißt die \textit{Determinante} von $L$.
+			\item Die Matrix $G := \text{Gram}(B) = \left(b(e_i, e_j)\right)_{i,j=1}^n$ heißt \textit{Gram-Matrix} von $L$, $\Det(L) := \Det(G)$ heißt die \textit{Determinante} von $L$.
 			\item Das Gitter $L$ heißt \textit{ganz}, falls $b(L,L) \subseteq \Z$ gilt.
 			\item Das Gitter $L$ heißt \textit{gerade}, falls $b(x,x) \in 2\Z$ für alle $x \in L$ gilt.
+			\item Die \textit{Stufe} von $L$ ist die kleinste Zahl $\ell \in \N$, sodass $\sqrt{\ell} L^\#$ ein gerades Gitter ist.
+			\item Das \textit{Minimum} von $L$ ist definiert als $\Min(L) := \text{min} \lbrace b(x,x) \mid 0 \neq x \in L \rbrace$.
+		\end{enumerate}
+	\end{definition}
+\end{framed}
+
+
+\begin{bemerkung}\label{bem:dual}
+	\begin{enumerate}[label=(\roman*)]
+	\item Nach \cite[Satz (14.7)]{kneser} gilt $\Det(L) = \vert L^\# / L \vert$. 
+		Insbesondere ist die Determinante für $\Z$-Gitter unabhängig von der Wahl der Basis. Allgemeiner ist die Determinante von $R$-Gittern modulo $\left( R^\ast \right) ^2$ eindeutig bestimmt \cite[(1.13)]{kneser}.
+	\item Direkt aus der Definition des dualen Gitters folgt: $L$ ist ganz genau dann, wenn $L \subseteq L^\#$.
+	\item Ein gerades Gitter $L$ ist notwendigerweise ganz, denn seien $x,y \in L$, dann ist
+		\begin{equation*}
+			b(x,y) = \frac{b(x+y,x+y) - b(x,x) - b(y,y)}{2} \in \Z.
+		\end{equation*}
+	\item Ist $B = (e_1,\dots,e_n)$ eine Basis von $L$, dann ist $B^\ast := (e_1^\ast, \dots, e_n^\ast)$, wobei $b(e_i, e_j^\ast) = \delta_{ij}$, eine Basis von $L^\#$. Es gilt $\text{Gram}(B^\ast) = \text{Gram}(B)^{-1}$ \cite[(1.14)]{kneser}.
+	\end{enumerate}
+\end{bemerkung}
+
+Da wir uns im Zuge dieser Arbeit in der Regel mit geraden Gittern quadratfreier Stufe beschäftigen, ist das folgende Lemma aus \cite[Lemma 1.1.1]{juergens} von großer Bedeutung.
+
+\begin{framed}
+	\begin{lemma}\label{lem:level}
+		Sei $L$ ein gerades Gitter der Stufe $\ell$, wobei $\ell$ quadratfrei. Dann ist $\ell$ gleichzeitig die kleinste natürliche Zahl $a$, sodass $a L^\# \subseteq L$ (also der Exponent der Diskriminantengruppe $L^\# / L$).
+	\end{lemma}
+\end{framed}
+
+\section{Modulare Gitter}
+
+Wir kommen nun zum ursprünglich von Quebbemann eingeführten Konzept \textit{modularer Gitter} \cite{quebbemann}. Die hier verwendete Definition ist in \cite{fluckiger} zu finden.
+
+\begin{framed}
+	\begin{definition}
+		Sei $L$ ein gerades Gitter und $\ell \in \N$.
+		\begin{enumerate}[label=(\roman*)]
+			\item $L$ heißt \textit{$\ell$-modular}, falls $L \cong \sqrt{\ell}L^\#$.
+			\item $L$ heißt \textit{stark $\ell$-modular}, falls $L \cong \sqrt{m} L^{\#,m}$ für alle $m \vert l$, sodass $\text{ggT}(m,\frac{\ell}{m}) = 1$.
+		\end{enumerate}
+	\end{definition}
+\end{framed}
+
+\begin{framed}
+	\begin{lemma}\label{lem:mod}
+		Ist $L$ ein gerades Gitter der Dimension $n$.
+		\begin{enumerate}[label=(\roman*)]
+			\item Ist $L$ $\ell$-modular, dann ist $\Det(L) = \ell^{\frac{n}{2}}$. Insbesondere muss daher $n$ gerade sein.
+			\item Ist $L$ $\ell$-modular und $\ell$ quadratfrei, dann hat $L$ die Stufe $\ell$.
+			\item Ist $L$ stark $\ell$-modular, von Stufe $\ell$ und $\ell$ quadratfrei, dann ist $L$ auch $\ell$-modular.
+		\end{enumerate}
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	\begin{enumerate}[label=(\roman*)]
+		\item Nach Bem. \eqref{bem:dual} ist $\Det(L^\#) = \Det(L)^{-1}$. Somit
+			\begin{equation*}
+				\Det(L) = \Det(\sqrt{\ell} L^\#) = \ell^n \Det(L^\#) = \frac{\ell^n}{\Det(L)}.
+			\end{equation*}
+			Also folgt die Behauptung.
+		\item Sei $a$ die Stufe von $L$, dann ist $\sqrt{a}L^\#$ gerade und hat insbesondere eine ganzzahlige Determinante. Nach (i) erhalten wir $\Det(\sqrt{a}L^\#) = \left( \frac{a^2}{\ell} \right) ^\frac{n}{2} \stackrel{!}{\in} \Z$. Da $\ell$ quadratfrei sieht man also $\ell \vert a$. Andersherum ist $L \cong \sqrt{\ell}L^\#$, also selbstverständlich auch $\sqrt{\ell} L^\#$ gerade, somit $a \vert \ell$.
+		\item $L$ hat quadratfreie Stufe $\ell$, also ist $\ell L^\# \subseteq L$ nach Lemma \eqref{lem:level}. Wir erhalten
+			\begin{equation*}
+				L \cong \sqrt{l} L^{\#,\ell} = \sqrt{\ell} \left( \frac{1}{\ell} L \cap L^\# \right) = \sqrt{\ell} L^\#.
+			\end{equation*}
+	\end{enumerate}
+\end{beweis}
+
+Quebbemann zeigte in \cite{quebbemann}, dass die Theta-Reihen eines modularen Gitters Modulform einer bestimmten Gruppe ist. Außerdem hat die Algebra der Modulformen eine besonders einfache Gestalt, wenn die Summe der Teiler von $\ell$ selbst ein Teiler von $24$ ist. Konkret ist diese Eigenschaft für $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$ erfüllt. In der Literatur sind diese Stufen also besonders interessant. Es lässt sich zeigen (vgl. z.B. \cite[1.2.2]{juergens}), dass der Raum der Modulformen der erwähnten Gruppe in diesem Fällen ein eindeutiges Element $\theta$ der Form $1 + O(q^d)$ mit möglichst großem $d$ und ganzzahligen Koeffizienten hat. Wir wollen den Begriff eines \textit{extremalen Gitters} definieren als ein Gitter, welches ein möglichst großes Minimum besitzt, also ein Gitter mit Thetareihe $\theta$. In unseren Spezialfällen gilt $d = 1 + \lfloor \frac{n}{k_1} \rfloor$, wobei $k_1$ Tabelle \eqref{tab:k1} zu entnehmen ist.
+
+\begin{table}
+	\centering
+	\begin{tabular}{c|c|c|c|c|c|c|c|c|c|c}
+		$\ell$	&$1$	&$2$	&$3$	&$5$	&$6$	&$7$	&$11$	&$14$	&$15$	&$23$\\
+		\hline
+		$k_1$		&$24$	&$16$	&$12$	&$8$	&$8$	&$6$	&$4$	&$4$	&$4$	&$2$
+	\end{tabular}
+	\caption{$k_1$ Werte nach $\ell$.\label{tab:k1}}
+\end{table}
+
+Wir können also definieren:
+
+\begin{framed}
+	\begin{definition}
+		Sei $L$ ein $\ell$-modulares Gitter der Dimension $n$ und $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$. Erfüllt $L$ die Schranke
+		\begin{equation*}
+			\Min(L) \geq 2 \left( 1 + \lfloor \frac{n}{k_1} \rfloor \right)
+		\end{equation*}
+		wobei $k_1$ gewählt ist wie in Tabelle \eqref{tab:k1}, so nennen wir $L$ ein \textit{extremales Gitter}.
+	\end{definition}
+\end{framed}
+
+Die Dimensionen, welche jeweils echt von $k_1$ geteilt werden bezeichnet man häufig auch als \textit{Sprungdimensionen}, da in diesen Fällen das Minimum im Vergleich zur nächst kleineren Dimension um $2$ nach oben $"$springt$"$.\\
+Da die Determinante für $\ell$-modulare Gitter in fester Dimension nach Lemma \eqref{lem:mod} eindeutig bestimmt ist, liefern modulare Gitter mit möglichst großem Minimum die dichtesten Kugelpackungen. In diesem Sinne ist die Klassifikation extremaler Gitter besonders interessant. Defininiert man für ein $n$-dimensionales Gitter $L$ den Wert
+\begin{equation}
+	\gamma(L) := \frac{\Min(L)}{\Det(L)^\frac{1}{n}}
+\end{equation} (die \textit{Hermite-Konstante}), so bedeutet eine größerer Wert für $\gamma$ ein dichteres Gitter (vgl. \cite[(1.5)]{conway}). Vergleicht man die hypothetischen Hermite-Konstanten extremaler Gitter (deren Existenz bisher nach \cite{juergens} noch nicht ausgeschlossen wurde) mit denen der dichtesten bisher bekannten Gitter (zu finden in \cite{database}), so fällt auf, dass die Entdeckung extremaler Gitter in den folgenden Stufen und Dimensionen $\leq 48$ jeweils neue dichteste Kugelpackungen liefern würden:
+\begin{itemize}
+	\item $3$-modular und $36$-dimensional
+	\item $3$-modular und $38$-dimensional
+	\item $5$-modular und $32$-dimensional
+	\item $5$-modular und $36$-dimensional
+	\item $5$-modular und $40$-dimensional
+	\item $5$-modular und $44$-dimensional
+	\item $5$-modular und $48$-dimensional
+	\item $6$-modular und $40$-dimensional
+	\item $7$-modular und $32$-dimensional
+	\item $7$-modular und $34$-dimensional
+	\item $7$-modular und $38$-dimensional
+	\item $7$-modular und $40$-dimensional
+	\item $7$-modular und $46$-dimensional
+	\item $11$-modular und $18$-dimensional
+	\item $11$-modular und $22$-dimensional
+	\item $14$-modular und $28$-dimensional
+	\item $15$-modular und $28$-dimensional
+\end{itemize}
+Wie man sieht, ist die Erforschung extremaler modularer Gitter also von großem Interesse für die Gittertheorie. Im nächsten Kapitel beschreiben wir nun eine Vorgehensweise, modulare Gitter zu klassifizieren, welche zusätzlich eine Struktur als gebrochenes Ideal eines Zahlkörpers aufweisen, sogenannte \textit{Ideal-Gitter}.
+
+%===================================================================
+% Kapitel 3: Idealgitter
+%===================================================================
+\chapter{Ideal-Gitter}
+
+\section{Definitionen}
+
+Wir geben nun die Definition eines Ideal-Gitter abgeleitet aus \cite{fluckiger} an.
+
+\begin{framed}
+	\begin{definition}
+		\begin{enumerate}[label=(\roman*)]
+			\item Ein \textit{(algebraischer) Zahlkörper} ist eine endliche Erweiterung des Körpers $\Q$.
+			\item Der \textit{Ring der ganzen Zahlen} eines Zahlkörpers $K$ ist der Ring
+				\begin{equation*}
+					\Z_K := \lbrace a \in K \mid \mu_{a, \Q}(X) \in \Z\left[X\right] \rbrace.
+				\end{equation*}
+			\item Die \textit{Norm} eines Ideals $\I$ von $\Z_K$ ist definiert als
+				\begin{equation*}
+					\No(\I) := \vert \Z_K / \I \vert.
+				\end{equation*}
+			\item Ein Zahlkörper $K$ heißt \textit{CM-Körper}, falls $K$ total-imaginär ist und ein total-reeller Teilkörper $K^+ \leq K$ existiert mit $\left[ K : K^+ \right] = 2$. 
+			\item Sei $K$ ein CM-Körper und $\Z_K$ der Ring der ganzen Zahlen in $K$. Ein \textit{Ideal-Gitter} ist ein Gitter $(\I,b)$, sodass $\I$ ein gebrochenes $\Z_K$-Ideal ist und\linebreak
+				$b:\I \times \I \rightarrow \R$ eine symmetrische positiv-definite Bilinearform mit $b(\lambda x, y) = b(x, \overline{\lambda} y)$ für $x,y \in \I$ und $\lambda \in \Z_K$. Die Abbildung $\bar{\ }$ bezeichnet dabei die herkömmliche komplexe Konjugation.
 		\end{enumerate}
 	\end{definition}
 \end{framed}
 
 \begin{bemerkung}
-	Nach \cite[Satz (14.7)]{kneser} gilt $\text{Det}(L) = \vert L^\# / L \vert$. Direkt aus der Definition des dualen Gitters folgt außerdem: $L$ ist ganz genau dann, wenn $L \subseteq L^\#$.
+	Die Eigenschaften der Bilinearform in der obrigen Definition sind nach \cite{fluckiger} äquivalent dazu, dass ein total-positives Element $\alpha \in K^+$ (das bedeutet $\iota(\alpha) > 0$ für alle Einbettungen $\iota : K^+ \hookrightarrow \R$) existiert mit $b(x,y) = \text{Spur}_{K/\Q}(\alpha x \overline{y})$. Wir können Ideal-Gitter daher auch durch die Notation $(\I, \alpha)$ beschreiben.\\
+	Ein Ideal-Gitter $\I$ kann immer auch als $\Z$-Gitter betrachtet werden, indem man $\Z_K$-Erzeuger von $\I$ und eine $\Z$-Basis von $\Z_K$ zu $\Z$-Erzeugern von $\I$ kombiniert. Im Folgenden bezeichnen wir daher $\I$ als gerade, ganz, modular, etc., falls $\I$ als $\Z$-Gitter diese Eigenschaften erfüllt und $\I^\#$ als das Dualgitter von $\I$ als $\Z$-Gitter.
 \end{bemerkung}
 
+Wir beschäftigen uns in dieser Arbeit mit Ideal-Gittern über zyklotomischen Zahlkörpern, also Körpern der Form $\Q(\zeta_m)$ für primitive $m$-te Einheitswurzeln $\zeta_m$. Solche Körper sind CM-Körper mit maximalem total-reellem Teilkörper $K^+ = \Q(\zeta_m + \overline{\zeta_m})$. Solche Körper erhalten wir, indem wir Automorphismen von $\Z$-Gittern betrachten, die wie primitive Einheitswurzeln operieren. Diese Aussagen wollen wir nun ein wenig präzisieren. Dazu eine kurze Definition:
 
+\begin{framed}
+	\begin{definition}
+		Sei $K$ ein Körper und $m \in \N$. 
+		\begin{enumerate}
+			\item Ein Element $\zeta \in K$ heißt primitive $m$-te Einheitswurzel, falls $\vert \langle \zeta \rangle \vert = m$ ist.
+			\item Gilt $\text{char}(K) \nmid m$ und sind $\zeta_1, \dots, \zeta_n$ die primitiven $m$-ten Einheitswurzeln in einem Zerfällungskörper von $X^m - 1$, dann heißt das Polynom
+				\begin{equation*}
+					\Phi_m(X) := \prod_{i=1}^n (X - \zeta_i)
+				\end{equation*}
+				das \textit{$m$-te Kreisteilungspolynom}.
+		\end{enumerate}
+	\end{definition}
+\end{framed}
 
+Einige wichtige bekannte Fakten zu Kreisteilungspolynomen (z.B. zu finden in \cite[Kap. 1]{Mollin}), sind die folgenden:
 
-\newpage
+\begin{framed}
+	\begin{satz}
+		\begin{enumerate}[label=(\roman*)]
+			\item Gilt $\text{char}(K) \nmid m$, so enthält der Zerfällungskörper von $X^m-1$ genau $\varphi(m)$ primitive $m$-te Einheitswurzeln. Dabei ist $\varphi(m) = \vert \left( \Z / m \Z \right)^\ast \vert$ die \textit{Eulersche $\varphi$-Funktion}.
+			\item Ist $\text{char}(K) = 0$, dann ist $\Phi_m \in \Z \left[ X \right]$ und $X^m-1 = \prod_{d \vert m} \Phi_d$.
+			\item Speziell für $K = \Q$ gilt $\left[ \Q \left( \zeta_m \right) : \Q \right] = \varphi (m)$ und $\Phi (m) \in \Q \left[ X \right]$ ist irreduzibel.
+		\end{enumerate}
+	\end{satz}
+\end{framed}
 
+Wir sehen also, dass $\zeta_m$ genau dann eine primitive $m$-te Einheitswurzel ist, wenn sie das Minimalpolynom $\Phi_m$ hat. Wir können $\Z$-Gitter somit auf die folgende Weise als Ideal-Gitter auffassen (vgl. \cite[Abschnitt (5.2)]{nebe}):
 
-%===================================================================
-% Anhang
-%===================================================================
-\chapter{Anhang}
+\begin{framed}
+	\begin{lemma}
+		Sei $L$ ein $\Z$-Gitter in einem bilinearen Vektorraum $(V,b)$ und $\sigma \in \text{Aut}(L)$ mit $\mu_\sigma = \Phi_m$ für ein $m \in \N$. Dann ist $L$ isomorph zu einem Ideal-Gitter in $\Q \left( \zeta_m \right)$.
+	\end{lemma}
+\end{framed}
 
-\textbf{Anhang A}: 
-\textbf{Anhang B}: Eidesstattliche Erklärung
+\begin{beweis}
+	Durch die Operation von $\sigma$ wird $\Q L$ mittels $\zeta_m \cdot x := \sigma(x)$ für $x \in \Q L$ zu einem eindimensionalen $\Q \left( \zeta_m \right)$-Vektorraum und $L$ zu einem ein $\Z \left[ \zeta_m \right]$-Modul. Wegen $\Z \left[ \zeta_m \right] = \Z_{\Q\left[\zeta_m \right]}$ ist $L$ also ein gebrochenes Ideal in $\Q \left( \zeta_m \right)$.\\
+	Da $\sigma$ ein Automorphismus ist, ist die Bilinearform $b:L \times L \rightarrow \Q$ des Vektorraums $\zeta_m$-invariant. Sei nun $\lambda = \sum_{i=0}^{m-1} a_i \zeta_m^i \in \Z \left[ \zeta_m \right]$. Es ergibt sich
+	\begin{equation*}
+		b(\lambda x, y) = \sum_{i=0}^{m-1} a_i b(\zeta_m^i x, y) = \sum_{i=0}^{m-1} a_i b(x, \zeta_m^{-i} y) = \sum_{i=0}^{m-1} a_i b(x, \overline{\zeta_m^i} y) = b(x, \overline{\lambda} y).
+	\end{equation*}
+\end{beweis}
 
-\section{A: Implementierungen}
+Über die Klassifikation der Ideal-Gitter erhalten wir also alle $\Z$-Gitter mit Minimalpolynom $\Phi_m$. Wie diese Klassifikation durchgeführt werden kann, erläutern wir im nächsten Abschnitt.
 
-\section{B: Eidesstattliche Versicherung}
-Ich versichere hiermit an Eides Statt, dass ich die vorliegende Bachelorarbeit mit dem Titel
-\textit{Extremale Gitter mit großen Automorphismen} selbstständig und ohne unzulässige fremde Hilfe erbracht habe.
-Ich habe keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit hat in gleicher oder
-ähnlicher Form noch keiner Prüfungsbehörde vorgelegen.\par
-\vspace{0.5cm}
-Aachen, im September 2018 \hfill $\underline{\hspace{6cm}}$\par
-\vspace{2cm}
-\begin{small}
-\textbf{Belehrung:}\\
-\textbf{§ 156 StGB: Falsche Versicherung an Eides Statt}\\
-Wer vor einer zur Abnahme einer Versicherung an Eides Statt zuständigen Behörde eine solche Versicherung
-falsch abgibt oder unter Berufung auf eine solche Versicherung falsch aussagt, wird mit Freiheitsstrafe
-von bis zu drei Jahren oder mit Geldstrafe bestraft.\par
-\textbf{§ 161 StGB: Fahrlässiger Falscheid; fahrlässige falsche Versicherung an Eides Statt}\\
-(1) Wenn eine der in den §§ 154 bis 156 bezeichneten Handlungen aus Fahrlässigkeit begangen worden ist, so
-tritt Freiheitsstrafe von bis zu einem Jahr oder Geldstrafe ein.\\
-(2) Straflosigkeit tritt ein, wenn der Täter die falsche Angabe rechtzeitig berichtigt. Die
-Vorschriften des § 158 Abs. 2 und 3 gelten entsprechend\par
-\end{small}
-Die vorstehende Belehrung habe ich zur Kenntnis genommen:\par
-\vspace{0.5cm}
-Aachen, im September 2018 \hfill $\underline{\hspace{6cm}}$\\
+\section{Klassifikation}
+
+Die hier beschriebene Methodik ist an \cite[Abschnitt (3.2)]{juergens} und \cite[Abschnitt (5.2)]{nebe} angelehnt.\par
+In diesem Abschnitt sei stets $K = \Q \left( \zeta_m \right)$ für eine primitve $m$-te Einheitswurzel $\zeta_m$, $\Z_K = \Z \left[ \zeta_m \right]$ der Ring der ganzen Zahlen in $K$ und $K^+ = \Q \left( \zeta_m + \overline{\zeta_m} \right)$ der maximale total-reelle Teilkörper von $K$.
+
+\begin{framed}
+	\begin{definition}
+		Das $\Z_K$-ideal
+		\begin{equation*}
+			\Delta := \lbrace x \in K \mid \text{Spur}_{K/\Q}(x \overline{y}) \in \Z \text{ für alle } y \in \Z_K \rbrace
+		\end{equation*}
+		bezeichnet die \textit{inverse Differente} von $\Z_K$.
+	\end{definition}
+\end{framed}
+
+Wir können nun das Dual eines Idealgitters mithilfe der inversen Differente ausdrücken.
+
+\begin{framed}
+	\begin{lemma}\label{lem:idealdual}
+		Sei $(\I, \alpha)$ ein Ideal-Gitter. Dann ist $\I^\# = \overline{\I}^{-1} \Delta \alpha^{-1}$ das Dualgitter von $\I$ als $\Z$-Gitter.
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	\begin{align*}
+	\I^\# &= \lbrace x \in K \mid b(x,\I) \subseteq \Z \rbrace\\
+	&= \lbrace x \in K \mid \text{Spur}_{K/\Q}(\alpha x \overline{\I}) \subseteq \Z \rbrace\\
+	&= \alpha^{-1} \lbrace x \in K \mid \text{Spur}_{K/\Q}(x \overline{\I}) \subseteq \Z\rbrace\\
+	&= \alpha^{-1} \overline{\I}^{-1} \lbrace x \in K \mid \text{Spur}_{K/\Q}(x \overline{\Z_K}) \subseteq \Z\rbrace\\
+	&= \overline{\I}^{-1} \Delta \alpha^{-1}.
+	\end{align*}
+\end{beweis}
+
+Mit Blick auf modulare Gitter kann man damit die nächste Folgerung ziehen:
+
+\begin{framed}
+	\begin{korollar}
+		Sei $\ell$ quadratfrei und $(\I, \alpha)$ ein ganzes Ideal-Gitter der Stufe $\ell$. Die Menge $\B := \alpha \I \overline{\I} \Delta^{-1}$ ist ein $\Z_K$-Ideal mit $\ell \Z_K \subseteq \B$ und Norm $\No(\B) = \text{det}(\I)$.
+	\end{korollar}
+\end{framed}
+
+\begin{beweis}
+	Da $\ell$ quadratfrei ist, gilt $\ell \I^\# \subseteq \I$ nach Lemma \eqref{lem:level}. Mit Lemma \eqref{lem:idealdual} bedeutet dies:
+	\begin{align*}
+		&\ell \I^\# \subseteq \I \subseteq \I^\#\\
+		\Leftrightarrow\quad& \ell \overline{\I}^{-1} \Delta \alpha^{-1} \subseteq \I \subseteq \overline{\I}^{-1} \Delta \alpha^{-1}\\
+		\Leftrightarrow\quad& \ell \Z_K \subseteq \alpha \I \overline{\I} \Delta^{-1} \subseteq \Z_K.
+	\end{align*}
+	Für die Norm gilt
+	\begin{equation*}
+		\text{det}(\I) = \vert \I^\# / \I \vert = \vert \Z_K / \left(\I\left(\I^\#\right)^{-1}\right) \vert = \vert \Z_K / \B \vert = \No(\B).
+	\end{equation*}
+\end{beweis}
+
+Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existieren bei der Konstruktion von Idealgittern mit fester Determinante nur endlich viele Möglichkeiten für $\B$. Konkret wird unsere Strategie im groben daraus bestehen, alle (relevanten) Möglichkeiten für $\I$ und $\B$ durchzugehen und zu testen, für welche davon das Ideal $\left( \I \overline{\I} \right)^{-1} \Delta \B$ ein Hauptideal mit total-positivem Erzeuger $\alpha \in K^+$ ist. Dazu machen wir zunächst einige Einschränkungen, um den Suchraum zu verkleinern.
 
 %===================================================================
 % Literatur
 %===================================================================
+\newpage
 \bibliography{Quellen}
 
 \end{document}

@@ -1,8 +1,46 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{{Q}ue95}
 
-\bibitem{kneser}
+\bibitem[BFS05]{fluckiger}
+{E}va {B}ayer {F}luckiger and {I}van {S}uarez.
+\newblock {M}odular lattices over cyclotomic fields.
+\newblock {\em {J}ournal of {N}umber {T}heory}, 114:394--411, 2005.
+
+\bibitem[CS93]{conway}
+{J}.~{H}. {C}onway and {N}. {J}.~{A}. {S}loane.
+\newblock {\em {S}phere packings, lattices and groups}, volume 290 of {\em
+  {G}rundlehren der mathematischen {W}issenschaften}.
+\newblock {S}pringer, 3rd edition, 1993.
+
+\bibitem[{J}ü15]{juergens}
+{M}ichael {J}ürgens.
+\newblock {\em {N}icht-{E}xistenz und {K}onstruktion extremaler {G}itter}.
+\newblock PhD thesis, {T}echnische {U}niversität {D}ortmund, März 2015.
+
+\bibitem[{K}ne02]{kneser}
 {M}. {K}neser.
 \newblock {\em {Q}uadratische {F}ormen}.
 \newblock {S}pringer, 2002.
+
+\bibitem[{M}ol11]{Mollin}
+{R}ichard~{A}. {M}ollin.
+\newblock {\em {A}lgebraic number theory}.
+\newblock {CRC} {P}ress, 2nd edition, 2011.
+
+\bibitem[{N}eb13]{nebe}
+{G}abriele {N}ebe.
+\newblock {O}n automorphisms of extremal even unimodular lattices.
+\newblock {\em {I}nternational {J}ournal of {N}umber {T}heory}, 09:1933--1959,
+  2013.
+
+\bibitem[NS]{database}
+{G}abriele {N}ebe and {N}. {J}.~{A}. {S}loane.
+\newblock {A} {C}atalogue of {L}attices.
+\newblock \url{http://www.math.rwth-aachen.de/~Gabriele.Nebe/LATTICES/}.
+\newblock {A}ufgerufen: 10.08.2018.
+
+\bibitem[{Q}ue95]{quebbemann}
+{H}.~{G}. {Q}uebbemann.
+\newblock {M}odular {L}attices in {E}uclidean {S}paces.
+\newblock {\em {J}ournal of {N}umber {T}heory}, 54:190--202, 1995.
 
 \end{thebibliography}

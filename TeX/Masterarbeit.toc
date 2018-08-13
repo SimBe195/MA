@@ -5,5 +5,7 @@
 \contentsline {section}{\numberline {2.2}Modulare Gitter}{7}
 \contentsline {chapter}{\numberline {3}Ideal-Gitter}{12}
 \contentsline {section}{\numberline {3.1}Definitionen}{12}
-\contentsline {section}{\numberline {3.2}Klassifikation}{15}
-\contentsline {chapter}{\numberline {4}Literaturverzeichnis}{18}
+\contentsline {section}{\numberline {3.2}Strategie zur Klassifikation}{15}
+\contentsline {section}{\numberline {3.3}Die Klassengruppe}{17}
+\contentsline {section}{\numberline {3.4}Total-positive Erzeuger}{19}
+\contentsline {chapter}{\numberline {4}Literaturverzeichnis}{24}

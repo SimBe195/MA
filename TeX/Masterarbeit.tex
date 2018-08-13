@@ -121,12 +121,16 @@
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\G}{\mathbb{G}}
+\newcommand{\F}{\mathbb{F}}
 \newcommand{\B}{\mathcal{B}}
 \newcommand{\No}{\mathcal{N}}
 \newcommand{\Det}{\text{Det}}
 \newcommand{\Min}{\text{Min}}
 \renewcommand{\O}{\mathcal{O}}
 \newcommand{\I}{\mathcal{I}}
+\newcommand{\p}{\mathfrak{p}}
+\renewcommand{\a}{\mathfrak{a}}
+\renewcommand{\b}{\mathfrak{b}}
 
 % ========== Sonstiges ==========
 \renewcommand{\emptyset}{\text{\usefont{OMS}{cmsy}{m}{n}\symbol{59}}}
@@ -179,12 +183,13 @@
 
 \section{Quadratische Vektorräume}
 
-Wir wiederholen zunächst einige wichtige Begriffe aus der Gittertheorie, welche wir in der Folgenden Arbeit häufig benötigen werden. Zunächst benötigen wir das Konzept eines quadratischen Vektorraumes. Die nun angeführten Definitionen sind \cite[Def. (2.1)]{kneser} entnommen.
+Wir wiederholen zunächst einige wichtige Begriffe aus der Gittertheorie, welche wir in der Arbeit häufig benötigen werden. Zunächst führen wir das Konzept eines quadratischen Vektorraumes ein. Die nun angeführten Definitionen sind \cite[Def. (2.1)]{kneser} entnommen.
 
 \begin{framed}
 	\begin{definition}
 		\begin{enumerate}[label=(\roman*)]
-			\item Sei $A$ ein Ring und $E$ ein $A$-Modul. Für eine symmetrische Bilinearform $b : E \times E \rightarrow A$ heißt das Paar $(E,b)$ ein \textit{bilinearer $A$-Modul} (bzw. falls $A$ Körper ein \textit{bilinearer $A$-Vektorraum}).
+			\item Sei $A$ ein Ring und $E$ ein $A$-Modul. Für eine symmetrische Bilinearform\linebreak
+				$b : E \times E \rightarrow A$ heißt das Paar $(E,b)$ ein \textit{bilinearer $A$-Modul} (bzw. falls $A$ Körper ein \textit{bilinearer $A$-Vektorraum}).
 			\item Eine Abbildung $q : E \rightarrow A$ mit den Eigenschaften
 				\begin{align*}
 					q(ax) = a^2 q(x)\quad \text{für } a \in A, x \in E\\
@@ -368,16 +373,19 @@ Wir geben nun die Definition eines Ideal-Gitter abgeleitet aus \cite{fluckiger} 
 			\item Ein Zahlkörper $K$ heißt \textit{CM-Körper}, falls $K$ total-imaginär ist und ein total-reeller Teilkörper $K^+ \leq K$ existiert mit $\left[ K : K^+ \right] = 2$. 
 			\item Sei $K$ ein CM-Körper und $\Z_K$ der Ring der ganzen Zahlen in $K$. Ein \textit{Ideal-Gitter} ist ein Gitter $(\I,b)$, sodass $\I$ ein gebrochenes $\Z_K$-Ideal ist und\linebreak
 				$b:\I \times \I \rightarrow \R$ eine symmetrische positiv-definite Bilinearform mit $b(\lambda x, y) = b(x, \overline{\lambda} y)$ für $x,y \in \I$ und $\lambda \in \Z_K$. Die Abbildung $\bar{\ }$ bezeichnet dabei die herkömmliche komplexe Konjugation.
+			\item Ein Element $\alpha \in K^+$ heißt \textit{total-positiv}, wenn $\iota(\alpha) > 0$ für alle Einbettungen $\iota : K^+ \hookrightarrow \R$. Wir schreiben dann auch $\alpha \gg 0$. Die Menge aller total-positiven Elemente in $K^+$ wird mit $K^+_{\gg 0}$ bezeichnet.
 		\end{enumerate}
 	\end{definition}
 \end{framed}
 
+Bis auf weiteres sei im Folgenden stets $K$ ein CM-Körper, $\Z_K$ der Ring der ganzen Zahlen in $K$ und $K^+$ der maximale total-reelle Teilkörper von $K$.
+
 \begin{bemerkung}
-	Die Eigenschaften der Bilinearform in der obrigen Definition sind nach \cite{fluckiger} äquivalent dazu, dass ein total-positives Element $\alpha \in K^+$ (das bedeutet $\iota(\alpha) > 0$ für alle Einbettungen $\iota : K^+ \hookrightarrow \R$) existiert mit $b(x,y) = \text{Spur}_{K/\Q}(\alpha x \overline{y})$. Wir können Ideal-Gitter daher auch durch die Notation $(\I, \alpha)$ beschreiben.\\
+	Die Eigenschaften der Bilinearform in der obrigen Definition sind nach \cite{fluckiger} äquivalent dazu, dass ein total-positives Element $\alpha \in K^+$ existiert mit $b(x,y) = \text{Spur}_{K/\Q}(\alpha x \overline{y})$. Wir können Ideal-Gitter daher auch durch die Notation $(\I, \alpha)$ beschreiben.\\
 	Ein Ideal-Gitter $\I$ kann immer auch als $\Z$-Gitter betrachtet werden, indem man $\Z_K$-Erzeuger von $\I$ und eine $\Z$-Basis von $\Z_K$ zu $\Z$-Erzeugern von $\I$ kombiniert. Im Folgenden bezeichnen wir daher $\I$ als gerade, ganz, modular, etc., falls $\I$ als $\Z$-Gitter diese Eigenschaften erfüllt und $\I^\#$ als das Dualgitter von $\I$ als $\Z$-Gitter.
 \end{bemerkung}
 
-Wir beschäftigen uns in dieser Arbeit mit Ideal-Gittern über zyklotomischen Zahlkörpern, also Körpern der Form $\Q(\zeta_m)$ für primitive $m$-te Einheitswurzeln $\zeta_m$. Solche Körper sind CM-Körper mit maximalem total-reellem Teilkörper $K^+ = \Q(\zeta_m + \overline{\zeta_m})$. Solche Körper erhalten wir, indem wir Automorphismen von $\Z$-Gittern betrachten, die wie primitive Einheitswurzeln operieren. Diese Aussagen wollen wir nun ein wenig präzisieren. Dazu eine kurze Definition:
+Wir beschäftigen uns in dieser Arbeit mit Ideal-Gittern über zyklotomischen Zahlkörpern, also Körpern der Form $\Q(\zeta_m)$ für primitive $m$-te Einheitswurzeln $\zeta_m$. Solche Körper sind CM-Körper mit maximalem total-reellem Teilkörper $K^+ = \Q(\zeta_m + \overline{\zeta_m})$. Wir erhalten Körper dieser Form, indem wir Automorphismen von $\Z$-Gittern betrachten, die wie primitive Einheitswurzeln operieren. Diese Aussagen wollen wir nun ein wenig präzisieren. Dazu eine kurze Definition:
 
 \begin{framed}
 	\begin{definition}
@@ -401,6 +409,7 @@ Einige wichtige bekannte Fakten zu Kreisteilungspolynomen (z.B. zu finden in \ci
 			\item Gilt $\text{char}(K) \nmid m$, so enthält der Zerfällungskörper von $X^m-1$ genau $\varphi(m)$ primitive $m$-te Einheitswurzeln. Dabei ist $\varphi(m) = \vert \left( \Z / m \Z \right)^\ast \vert$ die \textit{Eulersche $\varphi$-Funktion}.
 			\item Ist $\text{char}(K) = 0$, dann ist $\Phi_m \in \Z \left[ X \right]$ und $X^m-1 = \prod_{d \vert m} \Phi_d$.
 			\item Speziell für $K = \Q$ gilt $\left[ \Q \left( \zeta_m \right) : \Q \right] = \varphi (m)$ und $\Phi (m) \in \Q \left[ X \right]$ ist irreduzibel.
+			\item Gilt $\text{char}(K) \nmid m$, so ist $K(\zeta_m) / K$ ist eine Galoiserweiterung.
 		\end{enumerate}
 	\end{satz}
 \end{framed}
@@ -415,18 +424,18 @@ Wir sehen also, dass $\zeta_m$ genau dann eine primitive $m$-te Einheitswurzel i
 
 \begin{beweis}
 	Durch die Operation von $\sigma$ wird $\Q L$ mittels $\zeta_m \cdot x := \sigma(x)$ für $x \in \Q L$ zu einem eindimensionalen $\Q \left( \zeta_m \right)$-Vektorraum und $L$ zu einem ein $\Z \left[ \zeta_m \right]$-Modul. Wegen $\Z \left[ \zeta_m \right] = \Z_{\Q\left[\zeta_m \right]}$ ist $L$ also ein gebrochenes Ideal in $\Q \left( \zeta_m \right)$.\\
-	Da $\sigma$ ein Automorphismus ist, ist die Bilinearform $b:L \times L \rightarrow \Q$ des Vektorraums $\zeta_m$-invariant. Sei nun $\lambda = \sum_{i=0}^{m-1} a_i \zeta_m^i \in \Z \left[ \zeta_m \right]$. Es ergibt sich
+	Da $\sigma$ ein Automorphismus ist, ist die Bilinearform $b:L \times L \rightarrow \Q$ des Vektorraums $\zeta_m$-invariant. Sei nun $\lambda \in \Z \left[ \zeta_m \right]$ beliebig. Wir können $\lambda = \sum_{i=0}^{m-1} a_i \zeta_m^i $ für Koeffizienten $a_i \in \Z$ schreiben und sehen
 	\begin{equation*}
-		b(\lambda x, y) = \sum_{i=0}^{m-1} a_i b(\zeta_m^i x, y) = \sum_{i=0}^{m-1} a_i b(x, \zeta_m^{-i} y) = \sum_{i=0}^{m-1} a_i b(x, \overline{\zeta_m^i} y) = b(x, \overline{\lambda} y).
+		b(\lambda x, y) = \sum_{i=0}^{m-1} a_i b(\zeta_m^i x, y) = \sum_{i=0}^{m-1} a_i b(x, \zeta_m^{-i} y) = \sum_{i=0}^{m-1} a_i b(x, \overline{\zeta_m^i} y) = b(x, \overline{\lambda} y),
 	\end{equation*}
+	womit die Eigenschaften eines Ideal-Gitters erfüllt sind.
 \end{beweis}
 
-Über die Klassifikation der Ideal-Gitter erhalten wir also alle $\Z$-Gitter mit Minimalpolynom $\Phi_m$. Wie diese Klassifikation durchgeführt werden kann, erläutern wir im nächsten Abschnitt.
+Mittels der Klassifikation der Ideal-Gitter über $\Q(\zeta_m)$ erhalten wir also zugleich alle  $\Z$-Gitter mit Minimalpolynom $\Phi_m$. Wie diese Klassifikation durchgeführt werden kann, erläutern wir in den nächsten Abschnitten.
 
-\section{Klassifikation}
+\section{Strategie zur Klassifikation}
 
-Die hier beschriebene Methodik ist an \cite[Abschnitt (3.2)]{juergens} und \cite[Abschnitt (5.2)]{nebe} angelehnt.\par
-In diesem Abschnitt sei stets $K = \Q \left( \zeta_m \right)$ für eine primitve $m$-te Einheitswurzel $\zeta_m$, $\Z_K = \Z \left[ \zeta_m \right]$ der Ring der ganzen Zahlen in $K$ und $K^+ = \Q \left( \zeta_m + \overline{\zeta_m} \right)$ der maximale total-reelle Teilkörper von $K$.
+Die in den nächsten Abschnitten beschriebenen Aussagen und Vorgehensweisen zur Klassifikation von Ideal-Gittern sind an \cite[Abschnitt (3.2)]{juergens} und \cite[Abschnitt (5.2)]{nebe} angelehnt.
 
 \begin{framed}
 	\begin{definition}
@@ -478,6 +487,148 @@ Mit Blick auf modulare Gitter kann man damit die nächste Folgerung ziehen:
 \end{beweis}
 
 Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existieren bei der Konstruktion von Idealgittern mit fester Determinante nur endlich viele Möglichkeiten für $\B$. Konkret wird unsere Strategie im groben daraus bestehen, alle (relevanten) Möglichkeiten für $\I$ und $\B$ durchzugehen und zu testen, für welche davon das Ideal $\left( \I \overline{\I} \right)^{-1} \Delta \B$ ein Hauptideal mit total-positivem Erzeuger $\alpha \in K^+$ ist. Dazu machen wir zunächst einige Einschränkungen, um den Suchraum zu verkleinern.
+
+\section{Die Klassengruppe}
+
+\begin{framed}
+	\begin{definition}
+		Die \textit{Klassengruppe} 
+		\begin{equation*}
+			\text{Cl}_K := \lbrace J \mid J \text{ ist gebrochenes } \Z_K \text{-Ideal} \rbrace / \lbrace (c)_{\Z_K} \mid c \in K^\ast \rbrace.
+		\end{equation*}
+	\end{definition}
+\end{framed}
+
+
+\begin{framed}
+	\begin{lemma}\label{lem:squares}
+		Seien $\I$ ein gebrochenes $\Z_K$-Ideal und $\alpha \in K^+_{\gg 0}$. Für $\lambda \in K^\ast$ gilt $(\lambda \I, \alpha) \cong (\I, \lambda \overline{\lambda}\alpha)$.
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	Sei $b_\alpha : K \times K \rightarrow \R, (x,y) \mapsto \text{Spur}_{K/\Q} (\alpha x \overline{y})$ die zu $\alpha$ gehörige Bilinearform. Dann ist
+	\begin{equation*}
+		b_\alpha(\lambda x, \lambda y) = \text{Spur}_{K/\Q} (\lambda \overline{\lambda} \alpha x \overline{y}) = b_{\lambda \overline{\lambda} \alpha} (x,y).
+	\end{equation*}
+	Folglich ist $\psi : (K, b_{\lambda \overline{\lambda }\alpha}) \rightarrow (K, b_\alpha), x \mapsto \lambda x$ eine Isometrie mit $\psi(\I) = (\lambda \I)$.
+\end{beweis}
+
+Mit dieser Aussage genügt es also, aus jeder Klasse der 
+jeweils nur einen Vertreter zu betrachten. Wählt man $\lambda \in \Z_K^\ast$, so zeigt das Lemma, dass $(\I, \alpha) \cong (\I, \lambda \overline{\lambda} \alpha$. Für $\alpha$ reichen also Vertreter modulo $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$.\\
+Wir wollen nun die zu untersuchenden Möglichkeiten für $\I$ noch weiter einschränken: Ist $K / \Q$ galoissch (wie es für zyklotomische Zahlkörper der Fall ist), so genügt ein Repräsentant modulo der Operation der Galosgruppe.
+
+\begin{framed}
+	\begin{lemma}
+		Sei $K / \Q$ eine Galoiserweiterung, $\I$ ein gebrochenes $\Z_K$-Ideal und $\alpha \in K^+_{\gg 0}$. Für $\sigma \in \text{Gal}(K/\Q)$ ist $(\I, \alpha) \cong \left( \sigma(\I), \sigma(\alpha) \right)$.
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	Da die Spur invariant unter der Galoisgruppe ist, erhält man die folgende Gleichungskette.
+	\begin{align*}
+		b_{\sigma(\alpha)} (\sigma(x), \sigma(y)) &= \text{Spur}_{K/\Q} \left( \sigma(\alpha) \sigma(x) \overline{\sigma(y)}\right)\\
+		&= \text{Spur}_{K/\Q} \left( \sigma\left( \alpha x \overline{y} \right) \right) = \text{Spur}_{K/\Q} \left( \alpha x \overline{y} \right) = b_\alpha (x,y)
+	\end{align*}
+	Also induziert $\sigma$ eine Isometrie $\sigma : (K, b_\alpha) \rightarrow (K, b_{\sigma(\alpha)})$.
+\end{beweis}
+
+\section{Total-positive Erzeuger}
+
+Wir benötigen nun einen Test, welcher für ein gegebenes gebrochenes $\Z_K$-Ideal $\I$ überprüft, dieses von einem total-positiven Element $\alpha \in K^+_{\gg 0}$ erzeugt wird. Dazu untersuchen wir zuerst, ob $\I$ überhaupt von einem Element aus $K^+$ erzeugt ist und anschließend, wann ein Ideal $\alpha'\Z_K$ für $\alpha' \in K^+$ einen total-positiven Erzeuger hat.
+
+\begin{framed}
+	\begin{satz}
+		Sei $\I$ ein gebrochenes $\Z_K$-Ideal. Es existiert genau dann ein $\alpha' \in K^+$ mit $\I = \alpha' \Z_K$, wenn $\I \cap K^+ = \alpha' \Z_{K^+}$ und für jeden Primteiler $\p$ von $\I$ gilt
+		\begin{itemize}
+			\item Ist $\p$ verzweigt in $K / K^+$, so ist $\nu_\p(\I) \in 2\Z$.
+			\item Ist $\p$ unverzweigt in $K / K^+$, so ist $\nu_\p(\I) = \nu_{\overline{\p}}(\I)$.
+		\end{itemize}
+	\end{satz}
+\end{framed} 
+
+\begin{beweis}
+	Wir zeigen zunächst, dass die Bedingungen an die Primteiler äquivalent dazu sind, dass $\I = (\I \cap K^+)\Z_K$.\\
+	Sei dazu zuerst $\I = (\I \cap K^+)\Z_K$ erfüllt. Seien
+	\begin{equation*}
+		\I \cap K^+ = \prod_\a \a^{\nu_\a(\I \cap K^+)},\quad \I = \prod_\p \p^{\nu\p(\I)}
+	\end{equation*} 
+	die Primidealzerlegungen. Dann folgt
+	\begin{equation*}
+		\prod_\a \a^{\nu_\a(\I \cap K^+)} \Z_K = \prod_\p \p^{\nu\p(\I)}.
+	\end{equation*}
+	Aufgrund der Eindeutigkeit der Primidealzerlegung bedeutet dies
+	\begin{equation*}
+		\a^{\nu_\a(\I \cap K^+)} \Z_K = \prod_{\p\vert \a} \p^{\nu\p(\I)}
+	\end{equation*}
+	für jedes Primideal $\a$ von $\Z_{K^+}$. Es ist $\left[ K : K^+ \right] = 2$, also kann $\a\Z_K$ nur eine der Formen $\p$, $\p^2$, oder $\p\overline{\p}$ für ein Primideal $\p$ in $\Z_K$ annehmen.
+	\begin{itemize}
+		\item Falls $\a\Z_K = \p^2$ (also falls $\p$ verzweigt ist), so folgt $\nu_\p(\I) = 2 \nu_a(\I \cap K^+) \in 2 \Z$.
+		\item In den anderen beiden Fällen (also falls $\p$ unverzweigt ist) gilt\linebreak
+		$\nu_\p(\I) = \nu_\a(\I \cap K^+) = \nu_\p(\overline{\I})$.
+	\end{itemize}
+	Seien nun andersherum die Primideal-Bedingungen erfüllt. Definiert man
+	\begin{equation*}
+		\a := \prod_\b \b^{\nu_\b(\a)}, \quad \nu_\b(\a) = \begin{cases} \nu_\p(\I) &\b \Z_K \in \lbrace \p, \p \overline{\p} \rbrace\\ \frac{1}{2}\nu_\p(\I) &\b\Z_K = \p^2 \end{cases}
+	\end{equation*}
+	so gilt
+	\begin{equation*}
+		\I = \prod_\p \p^{\nu_\p(\I)} = \prod_\b \left( \b \Z_K \right)^{\nu_\b(\a)} = \a \Z_K.
+	\end{equation*}
+	Also folgt $(\I \cap K^+)\Z_K = (\a \Z_K \cap K^+)\Z_K = \a \Z_K = \I$ und es gilt die behauptete Äquivalenz.\par
+	Die Behauptung des Satzes wurde somit darauf reduziert, dass genau dann $\I = \alpha' \Z_K$, wenn $\I \cap K^+ = \alpha' \Z_{K^+}$ und $\I = (\I \cap K^+)\Z_K$ für $\alpha' \in K^+$. Dies folgt allerdings leicht mithilfe von $(\alpha' \Z_K) \cap K^+ = \alpha'\Z_{K^+}$.
+\end{beweis}
+
+\begin{framed}
+	\begin{lemma}\label{lem:sig}
+		Sei $\alpha' \in K^+$. Ein total-positives Element $\alpha \in K_{\gg 0}^+$ ist genau dann ein Erzeuger des Ideals $\alpha' \Z_K$, wenn eine Einheit $\epsilon \in \Z_{K^+}^\ast$ existiert mit $\alpha = \alpha' \epsilon$ und\linebreak
+		$\text{sign}\left((\iota(\epsilon)\right) = \text{sign}\left( \iota(\alpha')\right)$ für alle Einbettungen $\iota : K^+ \hookrightarrow \R$.
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	Ein weiterer Erzeuger hat immer die Gestalt $\alpha = \alpha' \epsilon$ für eine Einheit $\epsilon \in (\Z_{K^+})^\ast$. Damit $\alpha$ total-positiv wird muss für alle Einbettungen $\iota : K^+ \hookrightarrow \R$ gelten:
+	\begin{equation*}
+		1 \stackrel{!}{=} \text{sign}\left( \iota(\alpha) \right) = \text{sign}\left( \iota(\alpha') \iota(\epsilon) \right) = \text{sign}\left( \iota(\alpha') \right) \text{sign}\left( \iota(\epsilon) \right)
+	\end{equation*}
+	Also müssen die Vorzeichen jeweils identisch sein.
+\end{beweis}
+
+Elemente aus $\left(\Z_{K^+}^\ast\right)^2$ haben immerzu positives Signum bezüglich allen Einbettungen. Außerdem liefern total-positive Elemente, die in der gleichen Klasse modulo Quadraten liegen nach Lemma \eqref{lem:squares} isomorphe Idealgitter. Es genügt also, sich bei der Suche nach einer Einheit wie im vorherigen Lemma auf Vertreter modulo Quadraten zu beschränken. Nach dem Dirichletschen Einheitensatz \cite[Theorem (7.4)]{neukirch} hat die Einheitengruppe die Struktur
+\begin{equation*}
+	\Z_{K^+}^\ast = \lbrace \pm 1 \rbrace \times \Z^{t-1}.
+\end{equation*}
+
+mit $t := \left[K^+ : \Q \right]$. Die Erzeuger $(\epsilon_1, \dots \epsilon_t)$ der Gruppe heißen  \textit{Grundeinheiten}. Jede Einheit $\epsilon$ lässt sich also darstellen in der Form $\epsilon = \epsilon_1^{\nu_1} \dots \epsilon_t^{\nu_t}$. Das folgende Korollar liefert uns nun die Lösung auf unsere Frage nach den total-positiven Erzeugern.
+
+
+Dann lässt sich folgendes Korollar ziehen:
+
+\begin{framed}
+	\begin{korollar}
+		Sei $\alpha' \in K^+$, seien die Einbettungen von $K^+$ in $\R$ gegeben durch $\iota_1, \dots, \iota_{t}$ und seien $\epsilon_1, \dots, \epsilon_t$ die Grundeinheiten von $\Z_{K^+}^\ast$. 				Definiere die Matrix
+		\begin{equation*}
+			M \in \F_2^{t \times t}, \quad M_{ij} = \begin{cases} 1 &, \text{sign}(\iota_i(\epsilon_j) = -1\\ 0 &, \text{sign}(\iota_i(\epsilon_j) = 1\end{cases}
+		\end{equation*}
+		und den Vektor
+		\begin{equation*}
+			V \in \F_2^{1 \times t}, \quad V_i = \begin{cases} 1 &, \text{sign}(\iota_i(\alpha') = -1\\ 0 &, \text{sign}(\iota_i(\alpha') = 1\end{cases}.
+		\end{equation*}
+		Dann sind die total-positiven Erzeuger des Ideals $\alpha' \Z_K$ genau die Elemente der Menge $\lbrace \alpha' \epsilon_1^{x_1} \dots \epsilon_t^{x_t} \epsilon^2 \mid x \in \F_2^{1 \times t}, x M = V, \epsilon \in (\Z_{K^+}^\ast) \rbrace$.
+	\end{korollar}
+\end{framed}
+
+\begin{beweis}
+	Nach Lemma \eqref{lem:sig} und da Quadrate immerzu positives Signum haben, sind die total-positiven Erzeuger gegeben durch die Elemente $u = \alpha' \epsilon_1^{x_1} \dots \epsilon_t^{x_t} \epsilon^2$, wobei $x \in \F_2^{1 \times t}$, $\epsilon \in \Z_{K^+}^\ast$ und $\epsilon_1^{x_1} \dots \epsilon_t^{x_t}$ bezüglich allen Einbettungen dasselbe Signum wie $\alpha'$ hat. Das Signum bezüglich einem $\iota_i$ ist genau dann gleich, wenn
+	\begin{equation*}
+		\vert \lbrace j \mid \text{sign}(\iota_i(\epsilon_j)) = -1 \text{ und } x_j = 1 \rbrace \vert \equiv \begin{cases} 1 \ (\text{mod } 2) &,\text{sign}(\iota_i(\alpha')) = -1 \\ 0 \ (\text{mod } 2) &,\text{sign}(\iota_i(\alpha')) = 1 \end{cases}.
+	\end{equation*}
+	Diese Kongruenz ist aber genau dann erfüllt, wenn $x$ Lösung des linearen Gleichungssystems $xM = V$ ist.
+\end{beweis}
+
+\begin{bemerkung}
+	Um später in der Implementierung Zeit zu sparen, kann man bemerken, dass sich verschiedene total-positive Erzeuger des gleichen Ideals jeweils lediglich um eine total-positive Einheit unterscheiden. Es lohnt sich also, zu Beginn des Algorithmus die Menge aller total-positiven Einheiten (also die Elemente im Kern von $M$) zu berechnen, sodass man später pro Ideal jeweils nur eine spezielle Lösung des Gleichungssystems finden muss und die Menge aller total-positiven Erzeuger durch Multiplikation mit den vorher berechneten total-positiven Einheiten erstellt.
+\end{bemerkung}
 
 %===================================================================
 % Literatur

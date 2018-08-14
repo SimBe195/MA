@@ -22,6 +22,8 @@
 \usepackage{pdfpages}
 \usepackage{url}
 \usepackage{enumitem}
+\usepackage[Algorithmus]{algorithm}
+\usepackage[noend]{algpseudocode}
 
 % Spezialpakete
 \usepackage{fp}
@@ -128,9 +130,13 @@
 \newcommand{\Min}{\text{Min}}
 \renewcommand{\O}{\mathcal{O}}
 \newcommand{\I}{\mathcal{I}}
+\newcommand{\J}{\mathcal{J}}
 \newcommand{\p}{\mathfrak{p}}
+\newcommand{\q}{\mathfrak{q}}
 \renewcommand{\a}{\mathfrak{a}}
 \renewcommand{\b}{\mathfrak{b}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\Bfrak}{\mathfrak{B}}
 
 % ========== Sonstiges ==========
 \renewcommand{\emptyset}{\text{\usefont{OMS}{cmsy}{m}{n}\symbol{59}}}
@@ -417,8 +423,8 @@ Einige wichtige bekannte Fakten zu Kreisteilungspolynomen (z.B. zu finden in \ci
 Wir sehen also, dass $\zeta_m$ genau dann eine primitive $m$-te Einheitswurzel ist, wenn sie das Minimalpolynom $\Phi_m$ hat. Wir können $\Z$-Gitter somit auf die folgende Weise als Ideal-Gitter auffassen (vgl. \cite[Abschnitt (5.2)]{nebe}):
 
 \begin{framed}
-	\begin{lemma}
-		Sei $L$ ein $\Z$-Gitter in einem bilinearen Vektorraum $(V,b)$ und $\sigma \in \text{Aut}(L)$ mit $\mu_\sigma = \Phi_m$ für ein $m \in \N$. Dann ist $L$ isomorph zu einem Ideal-Gitter in $\Q \left( \zeta_m \right)$.
+	\begin{lemma}\label{lem:ztoid}
+		Sei $L$ ein $\Z$-Gitter in einem $n$-dimensionalen bilinearen Vektorraum $(V,b)$ und $\sigma \in \text{Aut}(L)$ mit $\mu_\sigma = \Phi_m$ für ein $m \in \N$ mit $\varphi(m) = n$. Dann ist $L$ isomorph zu einem Ideal-Gitter in $\Q \left( \zeta_m \right)$.
 	\end{lemma}
 \end{framed}
 
@@ -486,7 +492,40 @@ Mit Blick auf modulare Gitter kann man damit die nächste Folgerung ziehen:
 	\end{equation*}
 \end{beweis}
 
-Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existieren bei der Konstruktion von Idealgittern mit fester Determinante nur endlich viele Möglichkeiten für $\B$. Konkret wird unsere Strategie im groben daraus bestehen, alle (relevanten) Möglichkeiten für $\I$ und $\B$ durchzugehen und zu testen, für welche davon das Ideal $\left( \I \overline{\I} \right)^{-1} \Delta \B$ ein Hauptideal mit total-positivem Erzeuger $\alpha \in K^+$ ist. Dazu machen wir zunächst einige Einschränkungen, um den Suchraum zu verkleinern.
+Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existieren bei der Konstruktion von Idealgittern mit fester Determinante nur endlich viele Möglichkeiten für $\B$. Mithilfe der Primidealzerlegung lässt sich ein rekursiver Algorithmus (Algorithmus \eqref{alg:divnorm}) konstruieren, welcher alle Teiler eines Ideals $\J$ mit bestimmter Norm $n$ berechnen kann.
+
+\begin{algorithm}
+	\caption{Berechnung aller Teiler mit fester Norm}\label{alg:divnorm}
+	\begin{algorithmic}[1]
+		\State \textbf{Eingabe}: $\Z_K$-Ideal $\J$, Norm $n$.
+		\State \textbf{Ausgabe}: Liste aller Teiler von $\J$ mit Norm $n$.
+		\\
+		\If {$n = 1$} \Return {$\left[ \Z_K \right]$} \EndIf
+		\If {$n \nmid \No(\J))$} \Return {$\left[ \ \right]$} \EndIf
+		\If {$\No(\J) = n$} \Return {$\left[ \J \right]$} \EndIf
+		\State Zerlege $\J$ in Primideale $\J = \p_1^{s_1} \dots \p_k^{s_k}$
+		\State $n_\p \gets \No(\p_1)$
+		%\If {$k = 1$}
+		%	\If {$n_\p^s = n$ \text{ für ein } $s \in \lbrace 1, \dots, s_1 \rbrace$}
+		%		\State \Return {$\left[ \p_1^s \right]$}
+		%	\Else
+		%		\State \Return {$\left[ \ \right]$}
+		%	\EndIf
+		%\EndIf
+		\State $A \gets \left[ \ \right]$
+		\For {$j \in \lbrace 0, \dots s_1 \rbrace$}
+			\If {$n_\p^j \mid n$}
+				\State $B \gets \text{Teiler von } \p_2^{s_2} \dots \p_k^{s_k} \text{ mit Norm } \frac{n}{n_\p^j} \text{ (rekursiv)}$
+				\For {$X \in B$}
+					\State $A \gets A \cup \left[\p_1^j X \right]$
+				\EndFor
+			\EndIf
+		\EndFor
+		\State \Return $A$
+	\end{algorithmic}
+\end{algorithm}
+
+Konkret wird unsere Strategie im groben daraus bestehen, alle (relevanten) Möglichkeiten für $\I$ und $\B$ durchzugehen und zu testen, für welche davon das Ideal $\left( \I \overline{\I} \right)^{-1} \Delta \B$ ein Hauptideal mit total-positivem Erzeuger $\alpha \in K^+$ ist. Dazu machen wir zunächst einige Einschränkungen, um den Suchraum zu verkleinern.
 
 \section{Die Klassengruppe}
 
@@ -515,7 +554,7 @@ Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existier
 \end{beweis}
 
 Mit dieser Aussage genügt es also, aus jeder Klasse der 
-jeweils nur einen Vertreter zu betrachten. Wählt man $\lambda \in \Z_K^\ast$, so zeigt das Lemma, dass $(\I, \alpha) \cong (\I, \lambda \overline{\lambda} \alpha$. Für $\alpha$ reichen also Vertreter modulo $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$.\\
+jeweils nur einen Vertreter zu betrachten. Wählt man $\lambda \in \Z_K^\ast$, so zeigt das Lemma, dass $(\I, \alpha) \cong (\I, \lambda \overline{\lambda} \alpha)$. Für $\alpha$ reichen also Vertreter modulo $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$.\\
 Wir wollen nun die zu untersuchenden Möglichkeiten für $\I$ noch weiter einschränken: Ist $K / \Q$ galoissch (wie es für zyklotomische Zahlkörper der Fall ist), so genügt ein Repräsentant modulo der Operation der Galosgruppe.
 
 \begin{framed}
@@ -551,33 +590,69 @@ Wir benötigen nun einen Test, welcher für ein gegebenes gebrochenes $\Z_K$-Ide
 	Wir zeigen zunächst, dass die Bedingungen an die Primteiler äquivalent dazu sind, dass $\I = (\I \cap K^+)\Z_K$.\\
 	Sei dazu zuerst $\I = (\I \cap K^+)\Z_K$ erfüllt. Seien
 	\begin{equation*}
-		\I \cap K^+ = \prod_\a \a^{\nu_\a(\I \cap K^+)},\quad \I = \prod_\p \p^{\nu\p(\I)}
+		\I' := \I \cap K^+ = \prod_\a \a^{\nu_\a(\I \cap K^+)},\quad \I = \prod_\p \p^{\nu\p(\I)}
 	\end{equation*} 
 	die Primidealzerlegungen. Dann folgt
 	\begin{equation*}
-		\prod_\a \a^{\nu_\a(\I \cap K^+)} \Z_K = \prod_\p \p^{\nu\p(\I)}.
+		\prod_\a \a^{\nu_\a(\I')} \Z_K = \prod_\p \p^{\nu\p(\I)}.
 	\end{equation*}
 	Aufgrund der Eindeutigkeit der Primidealzerlegung bedeutet dies
 	\begin{equation*}
-		\a^{\nu_\a(\I \cap K^+)} \Z_K = \prod_{\p\vert \a} \p^{\nu\p(\I)}
+		\a^{\nu_\a(\I')} \Z_K = \prod_{\p\vert \a} \p^{\nu\p(\I)}
 	\end{equation*}
 	für jedes Primideal $\a$ von $\Z_{K^+}$. Es ist $\left[ K : K^+ \right] = 2$, also kann $\a\Z_K$ nur eine der Formen $\p$, $\p^2$, oder $\p\overline{\p}$ für ein Primideal $\p$ in $\Z_K$ annehmen.
 	\begin{itemize}
-		\item Falls $\a\Z_K = \p^2$ (also falls $\p$ verzweigt ist), so folgt $\nu_\p(\I) = 2 \nu_a(\I \cap K^+) \in 2 \Z$.
+		\item Falls $\a\Z_K = \p^2$ (also falls $\p$ verzweigt ist), so folgt $\nu_\p(\I) = 2 \nu_a(\I') \in 2 \Z$.
 		\item In den anderen beiden Fällen (also falls $\p$ unverzweigt ist) gilt\linebreak
-		$\nu_\p(\I) = \nu_\a(\I \cap K^+) = \nu_\p(\overline{\I})$.
+		$\nu_\p(\I) = \nu_\a(\I') = \nu_\p(\overline{\I})$.
 	\end{itemize}
 	Seien nun andersherum die Primideal-Bedingungen erfüllt. Definiert man
 	\begin{equation*}
-		\a := \prod_\b \b^{\nu_\b(\a)}, \quad \nu_\b(\a) = \begin{cases} \nu_\p(\I) &\b \Z_K \in \lbrace \p, \p \overline{\p} \rbrace\\ \frac{1}{2}\nu_\p(\I) &\b\Z_K = \p^2 \end{cases}
+		\I' := \prod_\a \a^{\nu_\a(\I')}, \quad \nu_\a(\I') = \begin{cases} \nu_\p(\I) &\a \Z_K \in \lbrace \p, \p \overline{\p} \rbrace\\ \frac{1}{2}\nu_\p(\I) &\a\Z_K = \p^2 \end{cases}
 	\end{equation*}
 	so gilt
 	\begin{equation*}
-		\I = \prod_\p \p^{\nu_\p(\I)} = \prod_\b \left( \b \Z_K \right)^{\nu_\b(\a)} = \a \Z_K.
+		\I = \prod_\p \p^{\nu_\p(\I)} = \prod_\a \left( \a \Z_K \right)^{\nu_\a(\I')} = \I' \Z_K.
 	\end{equation*}
-	Also folgt $(\I \cap K^+)\Z_K = (\a \Z_K \cap K^+)\Z_K = \a \Z_K = \I$ und es gilt die behauptete Äquivalenz.\par
+	Also folgt $(\I \cap K^+)\Z_K = (\I' \Z_K \cap K^+)\Z_K = \I' \Z_K = \I$ und es gilt die behauptete Äquivalenz.\par
 	Die Behauptung des Satzes wurde somit darauf reduziert, dass genau dann $\I = \alpha' \Z_K$, wenn $\I \cap K^+ = \alpha' \Z_{K^+}$ und $\I = (\I \cap K^+)\Z_K$ für $\alpha' \in K^+$. Dies folgt allerdings leicht mithilfe von $(\alpha' \Z_K) \cap K^+ = \alpha'\Z_{K^+}$.
 \end{beweis}
+
+Mithilfe dieses Satzes können wir nun Algorithmus \eqref{alg:relgen} formulieren, welcher zu einem gegebenen Ideal $\I$ testet, ob dieses einen Erzeuger in $K^+$ hat und - falls ja - einen solchen zurückgibt. Ein Primideal $\a$ wie im Beweis unseres Satzes erhalten wir, indem wir eine Primzahl $p$ finden, sodass $\p \vert \left( p \Z_K \right)$, dann muss $\a$ eines der Primideale aus der Faktorisierung von $p \Z_{K^+}$ teilen.
+
+\begin{algorithm}
+	\caption{Berechnung total-reelles Erzeugers}\label{alg:relgen}
+	\begin{algorithmic}[1]
+		\State \textbf{Eingabe:} $\Z_K$-Ideal $\I$
+		\State \textbf{Ausgabe:} Element $\alpha' \in K^+$ mit $\alpha' \Z_K = \I$, oder \textit{false}, falls ein solches Element nicht existiert.
+		\\
+		\State $\I' \gets 1 \Z_{K^+}$
+		\State $\text{split} \gets \left[ \ \right]$
+		\State Zerlege $\I = \p_1^{s_1} \dots \p_k^{s_k}$ in Primideale.
+		\For {$i \in \lbrace 1 \dots k \rbrace$}
+			\If {$i \in \text{split}$} \textbf{continue} \EndIf
+			\State $p \gets \text{ minimale natürliche Zahl } p \in \N \text{ mit } \p_i \vert \left( p \Z_K \right)$
+			\State Zerlege $p \Z_{K^+}$ in Primideale: $p \Z_{K^+} = \q_1^{t_1} \dots \q_l^{t_l}$
+			\State $\a \gets \q_j$ mit $\p_i \vert \left( \q_j \Z_K \right)$
+			\If {$\a \Z_K = \p_i^2$}
+				\If {$2 \nmid s_i$} \Return \textit{false} \EndIf
+				\State $\I' \gets \I' \a^\frac{s_i}{2}$
+			\ElsIf {$\a \Z_K = \p_i$}
+				\State $\I' \gets \I' \a^{s_i}$
+			\ElsIf {$\a \Z_K = \p_i \overline{\p_i}$}
+				\If {$\nu_{\p_i}(\I) \neq \nu_{\overline{\p_i}}(\I)$} \Return \textit{false} \EndIf
+				\State $\I' \gets \I' \a^{s_i}$
+				\State $j \gets j' \text{ mit } \p_{j'} = \overline{\p_i}$
+				\State $\text{split} \gets \text{split} \cup \left[ j \right]$
+			\EndIf
+		\EndFor
+		\If {$\I' \text{ kein Hauptideal}$}
+			\State \Return{\textit{false}}
+		\Else
+			\State \Return{Erzeuger von $\I'$}
+		\EndIf
+	\end{algorithmic}
+\end{algorithm}
 
 \begin{framed}
 	\begin{lemma}\label{lem:sig}
@@ -627,8 +702,90 @@ Dann lässt sich folgendes Korollar ziehen:
 \end{beweis}
 
 \begin{bemerkung}
-	Um später in der Implementierung Zeit zu sparen, kann man bemerken, dass sich verschiedene total-positive Erzeuger des gleichen Ideals jeweils lediglich um eine total-positive Einheit unterscheiden. Es lohnt sich also, zu Beginn des Algorithmus die Menge aller total-positiven Einheiten (also die Elemente im Kern von $M$) zu berechnen, sodass man später pro Ideal jeweils nur eine spezielle Lösung des Gleichungssystems finden muss und die Menge aller total-positiven Erzeuger durch Multiplikation mit den vorher berechneten total-positiven Einheiten erstellt.
+	Um später in der Implementierung Zeit zu sparen, kann man bemerken, dass sich verschiedene total-positive Erzeuger des gleichen Ideals jeweils lediglich um eine total-positive Einheit unterscheiden. Es lohnt sich also, zu Beginn des Algorithmus die Menge aller total-positiven Einheiten (diese korrespondieren zum Kern von $M$) zu berechnen, sodass man später pro Ideal jeweils nur eine spezielle Lösung des Gleichungssystems finden muss und die Menge aller total-positiven Erzeuger durch Multiplikation mit den vorher berechneten total-positiven Einheiten erstellt.\\
+	Eine weitere Anmerkung zur Implementierung: \texttt{MAGMA} kann mit der Funktion\linebreak
+	 \texttt{pFundamentalUnits} eine Untergruppe von $\Z_{K^+}^\ast$ mit ungeradem Index berechnen. Wie das folgende Lemma zeigt, reicht dies für unser Vorhaben bereits aus, da wir nur ein Vertretersystem der Einheiten modulo Quadraten benötigen.
 \end{bemerkung}
+
+\begin{framed}
+	\begin{lemma}
+		Sei $G$ eine abelsche Gruppe und $U \leq G$ mit $\left[ G : U \right]$ ungerade. Dann ist
+		\begin{equation*}
+			G / G^2 \cong U / U^2.
+		\end{equation*}
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	Betrachte den Epimorphismus $\pi : G \rightarrow G / G^2$. Es ist bereits $\pi\vert_U$ surjektiv, denn sei $gG^2 \in G / G^2$, dann ist $g^{\left[ G : U \right]} \in U$, da $(gU)^{\left[ G : U \right]} = U$ und weil der Index ungerade ist auch $\pi\left(g^{\left[ G : U \right]}\right) = gG^2$. Zudem ist $\text{Kern}(\pi\vert_U) = U \cap G^2 = U^2$, denn für $g^2 \in U\cap G^2$ muss $\vert gU \vert \leq 2$ gelten, die Ordnung kann aber wegen des ungeraden Index nicht $2$ sein, also folgt bereits $g \in U$ und somit $g^2 \in U^2$. Mit dem Homomorphiesatz folgt die Behauptung.
+\end{beweis}
+
+
+Anhand der gewonnenen Erkenntnisse erstellen wir nun einen Algorithmus \eqref{alg:posgen}, der zu einem Ideal $\I = \alpha' \Z_K$ für $\alpha' \in K^+$ ein Vertretersystem aller total-positiven Erzeuger $\alpha \in K_{\gg 0}^+$ modulo $\lambda \overline{\lambda}$ für $\lambda \in \Z_K^\ast$ zurückgibt. Die Ergebnisse der Zeilen $6 - 14$ können in der Implementierung nach einmaliger Durchführung abgespeichert werden, sodass die Resultate anschließend für jedes zu prüfende $\alpha'$ wiederverwertet werden können. 
+
+
+\begin{algorithm}
+	\caption{Berechnung total-positiver Erzeuger}\label{alg:posgen}
+	\begin{algorithmic}[1]
+		\State \textbf{Eingabe:} Erzeuger $\alpha' \in K^+$ von $\I$.
+		\State \textbf{Ausgabe:} Liste von Vertretern der Menge aller total-positiven Erzeuger $\alpha \in K_{\gg 0}^+$ von $\I$ modulo $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$ zurückgibt.
+		\\
+		\State $\iota_1, \dots, \iota_t \gets \text{Einbettungen } K^+ \hookrightarrow \R$
+		\State $\epsilon_1, \dots \epsilon_t \gets \text{Erzeuger einer Untergruppe von } \Z_{K^+}^\ast \text{ mit ungeradem Index}$
+		\State $M \gets 0 \in \F_2^{t \times t}$
+		\For {$(i,j) \in \underline{t} \times \underline{t}$}
+			\If {$\iota_i(\epsilon_j) < 0$}
+				\State $M_{ij} \gets 1$
+			\EndIf
+		\EndFor
+		\State $U' \gets \left[ \epsilon_1^{a_1} \dots \epsilon_t^{a_t} \mid a \in \text{Kern}(M) \right]$
+		\State $U \gets \left[ \ \right]$
+		\For {$u' \in U'$}
+			\If {$u' \neq u \lambda \overline{\lambda} \text{ für alle } u \in U, \lambda \in \Z_K^\ast$}
+				\State $U \gets U \cup \left[ u' \right]$
+			\EndIf
+		\EndFor
+		\State $V \gets 0 \in \F_2^{1 \times t}$
+		\For {$i \in \lbrace 1, \dots, t \rbrace$}
+			\If {$\iota_i(\alpha') < 0$}
+				\State $V_i \gets 1$
+			\EndIf
+		\EndFor
+		\State $x \gets \text{Lösung von } xM = V$
+		\State \Return $xU$
+	\end{algorithmic}
+\end{algorithm}
+
+\section{Finaler Algorithmus und Ergebnisse}
+
+Alle bisherigen Bestandteile können nun zu einem Algorithmus zusammengesetzt werden, der zu einem quadratfreien $\ell \in \N$, einer vorgegebenen Determinante $d$ und einem CM-Körper $K$ mit total-reellem Teilkörper $K^+$ alle Ideal-Gitter berechnet.
+
+\begin{algorithm}
+	\caption{Berechnung von Ideal-Gittern}\label{alg:idlat}
+	\begin{algorithmic}[1]
+		\State \textbf{Eingabe:} Quadratfreies $\ell \in \N$, $d \in \N$, CM-Körper $K$, maximaler total-reeller Teilkörper $K^+$ von $K$
+		\State \textbf{Ausgabe:} Per Isomorphie reduzierte Liste aller geraden Ideal-Gitter $(\I, \alpha)$ in $K$ von Stufe $\ell$ und mit Determinante $d$
+		\\
+		\State $\A \gets \text{Vertretersystem von } Cl_K / \text{Gal}(K / \Q)$
+		\State $\Bfrak \gets \left[ \B \mid \B \text{ ist } \Z_K\text{-Ideal mit } \ell \Z_K \subseteq \B \subseteq \Z_K \text{ und } \No(\B) = d \right]$ (nach Algorithmus \eqref{alg:divnorm})
+		\State $\text{List} \gets \left[ \ \right]$
+		\For {$(\I, \B) \in (\A, \Bfrak)$}
+			\State $\J \gets \left( \I \overline{\I} \right)^{-1} \Delta \B$
+			\If {$\exists \alpha' \in K^+ \text{ mit } \J = \alpha' \Z_K$ (nach Algorithmus \eqref{alg:relgen})}
+				\State $X \gets \left[ \alpha \in K_{\gg 0}^+ \mid \J = \alpha \Z_K \right]$ (nach Algorithmus \eqref{alg:posgen})
+				\For {$\alpha \in X$}
+					\If {$(\I, \alpha)$ ist gerades Gitter der Stufe $\ell$}
+						\If {$(\I, \alpha) \not\cong (\tilde{\I}, \tilde{\alpha})$ für alle $(\tilde{\I}, \tilde{\alpha}) \in \text{List}$}
+							\State $\text{List} \gets \text{List} \cup \left[ (\I, \alpha) \right]$
+						\EndIf
+					\EndIf				
+				\EndFor
+			\EndIf
+		\EndFor
+	\end{algorithmic}
+\end{algorithm}
+
+Mit diesem Algorithmus kann man nun alle $\ell$-modularen Gitter in Dimension $n$ klassifizieren, welche einen Automorphismus $\sigma$ besitzen mit $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$. Dazu wendet man Algorithmus \eqref{alg:idlat} wie in Lemma \eqref{lem:mod} und Lemma \eqref{lem:ztoid} besprochen mit $d = l^\frac{n}{2}$ und $K = \Q(\zeta_m)$ an. Eine weitere kleine Erleichterung bringt in diesem Spezialfall die Tatsache, dass $\Q(\zeta_m) \cong \Q(\zeta_{2m})$, falls $m \equiv 1\  (\text{mod } 2)$. Insbesondere sind die Ideal-Gitter über $\Q(\zeta_m)$ und $\Q(\zeta_{2m})$ dieselben. Man kann also für eine vollständige Aufzählung alle $m$ mit $m \equiv 2\  (\text{mod } 4)$ weglassen. Eine Implementierung in \texttt{MAGMA} liefert die folgenden Anzahlen von $\ell$-modularen Gittern nach Dimension und Minimum für $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$.
 
 %===================================================================
 % Literatur

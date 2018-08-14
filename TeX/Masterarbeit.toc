@@ -6,6 +6,7 @@
 \contentsline {chapter}{\numberline {3}Ideal-Gitter}{12}
 \contentsline {section}{\numberline {3.1}Definitionen}{12}
 \contentsline {section}{\numberline {3.2}Strategie zur Klassifikation}{15}
-\contentsline {section}{\numberline {3.3}Die Klassengruppe}{17}
-\contentsline {section}{\numberline {3.4}Total-positive Erzeuger}{19}
-\contentsline {chapter}{\numberline {4}Literaturverzeichnis}{24}
+\contentsline {section}{\numberline {3.3}Die Klassengruppe}{19}
+\contentsline {section}{\numberline {3.4}Total-positive Erzeuger}{20}
+\contentsline {section}{\numberline {3.5}Finaler Algorithmus und Ergebnisse}{26}
+\contentsline {chapter}{\numberline {4}Literaturverzeichnis}{29}

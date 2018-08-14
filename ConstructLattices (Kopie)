@@ -148,8 +148,7 @@ function RedByNorm(TotPos, K, F)
 
 end function;
 
-
-function GenInF(I, K, F)
+function GenInF(I, K, F) // Credit to Michael Juergens
 // Finds a generator of the ideal I that lies in F or returns false if there is none.
 // Input:
 //  I : RngIdl          : ZK-ideal for which a generator in F is searched.
@@ -159,61 +158,52 @@ function GenInF(I, K, F)
 // Output:
 // BoolElt, FldNumElt   : true iff a generator in F exists; generator if one is found.
 
+    RelKF:=RelativeField(F,K);
     ZK := Integers(K);
     ZF := Integers(F);
 
+    Shape:=true; 
     ImeetF:=ideal<ZF|1>;
-    Split:=[];
+    SplitIdeals:=[];
 
-    IFac := Factorization(I);
-
-    for i in [1..#IFac] do
-    	if i in Split then
-    		continue;
-    	end if;
-
-        pi:=IFac[i][1];
-        si:=IFac[i][2];
+    for i in [1..#Factorization(I)] do
+        tup := Factorization(I)[i];
+        P:=tup[1];
+        nuP:=tup[2];
+     
+        RelP:=ideal<Integers(RelKF)|Generators(P)>;
+        Relp:=Norm(RelP);
         
-        p:=MinimalInteger(pi);
-        pFac:=Factorization(ideal< ZF | p >);
-        for fac in pFac do
-        	a := fac[1];
-        	aZK := ideal<ZK|Generators(a)>;
-        	if aZK subset pi then
-        		break;
-        	end if;
-        end for;
+        p:=MinimalInteger(P);
+        P_F:=Factorization(ideal< ZF | p >)[1][1];
+        r := #Factorization(ideal< ZK | Generators(P_F)>);
+        e := Factorization(ideal< ZK | Generators(P_F)>)[1][2];
 
-        aZK := ideal<ZK|Generators(a)>;
-
-        if aZK eq pi^2 then
-        	if not IsEven(si) then
-        		return false, _;
-        	end if;
-        	ImeetF *:= a^(Integers()! (si/2));
-        elif aZK eq pi then
-        	ImeetF *:= a^si;
-        elif aZK eq pi*ConjIdeal(pi,K) then
-        	cpi := ConjIdeal(pi, K);
-        	ConjInFac := false;
-        	for k in [1..#IFac] do
-        		if cpi eq IFac[k][1] then
-        			j := k;
-        			ConjInFac := true;
-        			break;
-        		end if;
-        	end for;
-        	if not ConjInFac then
-        		return false, _;
-        	end if;
-        	if IFac[j][2] ne IFac[i][2] then
-        		return false, _;
-        	end if;
-        	ImeetF *:= a^si;
-        	Append(~Split, j);
+        if r eq 1 and e eq 1 then   // Relative inert
+            p:=Factorization(ideal<ZF | Generators(Relp)>)[1][1];
+            ImeetF*:=p^nuP; 
+        else 
+            if r eq 1 and e eq 2 then // Relative ramified
+                if not IsEven(nuP) then Shape:=false; break; end if; 
+                p:=Factorization(ideal<ZF | Generators(Relp)>)[1][1];
+                ImeetF*:=p^Ceiling(nuP/2);
+            else 
+                if r eq 2 and e eq 1 then // Relative split
+                    if Valuation(I,P) ne Valuation(I,ConjIdeal(P,K)) then Shape:=false; break; end if; 
+                    if not ConjIdeal(P,K) in SplitIdeals then 
+                        p:=Factorization(ideal<Integers(F) | Generators(Relp)>)[1][1];
+                        ImeetF*:=p^nuP; 
+                        Append(~SplitIdeals,P);
+                        Append(~SplitIdeals,ConjIdeal(P,K)); 
+                    end if; 
+                end if;
+            end if;                  
         end if;
     end for;
+
+    if not Shape then
+        return false, _;
+    end if;
 
     return IsPrincipal(ImeetF);
 
@@ -264,7 +254,6 @@ function PosGenInF(I, UnitGens, M, K, F)
 //  See GenInF and PosGen
 	
 	genExists, alpha := GenInF(I, K, F);
-
 	if genExists then
 		return PosGen(alpha, UnitGens, M);
 	end if;
@@ -345,7 +334,8 @@ function RedByIso(Lattices)
 
 
     for i in [1..#Lattices] do
-        L := Lattices[i][1];
+        //L := Lattices[i][1];
+        L:=Lattices[i];
 
         min_computed := false;
         minimum := 0;
@@ -358,7 +348,8 @@ function RedByIso(Lattices)
 
         new := true;
         for j in [1..#LatticesReduced] do
-            M := LatticesReduced[j][1];
+            //M := LatticesReduced[j][1];
+            M := LatticesReduced[j];
 
             if not min_computed then
                 min_computed := true;

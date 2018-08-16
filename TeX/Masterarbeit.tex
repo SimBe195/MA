@@ -24,6 +24,7 @@
 \usepackage{enumitem}
 \usepackage[Algorithmus]{algorithm}
 \usepackage[noend]{algpseudocode}
+\usepackage{multirow}
 
 % Spezialpakete
 \usepackage{fp}
@@ -410,7 +411,7 @@ Wir beschäftigen uns in dieser Arbeit mit Ideal-Gittern über zyklotomischen Za
 Einige wichtige bekannte Fakten zu Kreisteilungspolynomen (z.B. zu finden in \cite[Kap. 1]{Mollin}), sind die folgenden:
 
 \begin{framed}
-	\begin{satz}
+	\begin{satz}\label{th:cycpol}
 		\begin{enumerate}[label=(\roman*)]
 			\item Gilt $\text{char}(K) \nmid m$, so enthält der Zerfällungskörper von $X^m-1$ genau $\varphi(m)$ primitive $m$-te Einheitswurzeln. Dabei ist $\varphi(m) = \vert \left( \Z / m \Z \right)^\ast \vert$ die \textit{Eulersche $\varphi$-Funktion}.
 			\item Ist $\text{char}(K) = 0$, dann ist $\Phi_m \in \Z \left[ X \right]$ und $X^m-1 = \prod_{d \vert m} \Phi_d$.
@@ -787,6 +788,249 @@ Alle bisherigen Bestandteile können nun zu einem Algorithmus zusammengesetzt we
 
 Mit diesem Algorithmus kann man nun alle $\ell$-modularen Gitter in Dimension $n$ klassifizieren, welche einen Automorphismus $\sigma$ besitzen mit $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$. Dazu wendet man Algorithmus \eqref{alg:idlat} wie in Lemma \eqref{lem:mod} und Lemma \eqref{lem:ztoid} besprochen mit $d = l^\frac{n}{2}$ und $K = \Q(\zeta_m)$ an. Eine weitere kleine Erleichterung bringt in diesem Spezialfall die Tatsache, dass $\Q(\zeta_m) \cong \Q(\zeta_{2m})$, falls $m \equiv 1\  (\text{mod } 2)$. Insbesondere sind die Ideal-Gitter über $\Q(\zeta_m)$ und $\Q(\zeta_{2m})$ dieselben. Man kann also für eine vollständige Aufzählung alle $m$ mit $m \equiv 2\  (\text{mod } 4)$ weglassen. Eine Implementierung in \texttt{MAGMA} liefert die folgenden Anzahlen von $\ell$-modularen Gittern nach Dimension und Minimum für $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$.
 
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline		
+		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{7}{c|}{Minimum}\\ \cline{5-11}
+								&						&							&					&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$\\ \hline
+		\multirow{10}{*}{$1$}	&$8$					&$1(1)$						&$\Q(\zeta_{15})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$16$					&$1(1)$						&$\Q(\zeta_{40})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{4}{*}{$24$}	&\multirow{4}{*}{$4(1)$}	&$\Q(\zeta_{35})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{45})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{54})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{75})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{4}{*}{$32$}	&\multirow{4}{*}{$7(5)$}	&$\Q(\zeta_{51})$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{68})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{80})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{17}{*}{$2$}	&$4$					&$1(1)$						&$\Q(\zeta_{8})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$8$					&$1(1)$						&$\Q(\zeta_{16})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$12$					&$1(1)$						&$\Q(\zeta_{36})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{2}{*}{$16$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{32})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{40})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$20$					&$1(1)$						&$\Q(\zeta_{33})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{2}{*}{$24$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{56})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{72})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{6}{*}{$32$}	&\multirow{6}{*}{$13(4)$}	&$\Q(\zeta_{51})$	&$-$	&$-$	&$3$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{64})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{68})$	&$-$	&$3$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{80})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$\\	\cline{2-11}
+								&\multirow{3}{*}{$36$}	&\multirow{3}{*}{$6(3)$}	&$\Q(\zeta_{57})$	&$-$	&$-$	&$3$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{76})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{108})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline		
+		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{7}{c|}{Minimum}\\ \cline{5-11}
+								&						&							&					&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$\\ \hline
+		\multirow{20}{*}{$3$}	&$4$					&$1(1)$						&$\Q(\zeta_{12})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$6$					&$1(1)$						&$\Q(\zeta_{9})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{2}{*}{$12$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{21})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{36})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$3(2)$}	&$\Q(\zeta_{40})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{48})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$18$					&$1(-)$						&$\Q(\zeta_{27})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{4}{*}{$24$}	&\multirow{4}{*}{$7(1)$}	&$\Q(\zeta_{39})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{52})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{56})$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{72})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$13(7)$}	&$\Q(\zeta_{80})$	&$-$	&$2$	&$4$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{96})$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$3$	&$2$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{4}{*}{$36$}	&\multirow{4}{*}{$8(-)$}	&$\Q(\zeta_{57})$	&$-$	&$1$	&$2$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{63})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{76})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{108})$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{3}{*}{$5$}	&$8$					&$1(1)$						&$\Q(\zeta_{15})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$12$					&$1(1)$						&$\Q(\zeta_{21})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$16$					&$1(-)$						&$\Q(\zeta_{40})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\
+		\hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline		
+		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{7}{c|}{Minimum}\\ \cline{5-11}											&						&										&						&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$\\ \hline
+					
+		\multirow{9}{*}{$5$}	&\multirow{5}{*}{$24$}	&\multirow{5}{*}{$5(1)$}	&$\Q(\zeta_{35})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{45})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{56})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{84})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$10(-)$}	&$\Q(\zeta_{80})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$2$	&$5$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{11}{*}{$6$}	&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$12$					&$1(1)$						&$\Q(\zeta_{28})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{2}{*}{$16$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$20$					&$1(1)$						&$\Q(\zeta_{33})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$24$}	&\multirow{3}{*}{$5(2)$}	&$\Q(\zeta_{56})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{84})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$12(-)$}	&$\Q(\zeta_{80})$	&$-$	&$-$	&$1$	&$5$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$-$	&$4$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{7}{*}{$7$}	&$6$					&$1(1)$						&$\Q(\zeta_{7})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$12$					&$1(-)$						&$\Q(\zeta_{28})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$4(3)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$20$					&$1(-)$						&$\Q(\zeta_{44})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \hline
+	\end{tabular}
+\end{table}
+
+
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline		
+		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{7}{c|}{Minimum}\\ \cline{5-11}											&						&										&						&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$\\ \hline
+		\multirow{5}{*}{$7$}	&\multirow{2}{*}{$24$}	&\multirow{2}{*}{$8(-)$}	&$\Q(\zeta_{56})$	&$-$	&$1$	&$2$	&$2$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$19(-)$}	&$\Q(\zeta_{80})$	&$-$	&$-$	&$1$	&$1$	&$2$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$2$	&$3$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$2$	&$7$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{15}{*}{$11$}	&$4$					&$1(1)$						&$\Q(\zeta_{12})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{2}{*}{$8$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{15})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{24})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$10$					&$1(1)$						&$\Q(\zeta_{11})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$12$					&$1(-)$						&$\Q(\zeta_{36})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$16$}	&\multirow{2}{*}{$5(-)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$-$	&$2$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{2}{*}{$20$}	&\multirow{2}{*}{$2(-)$}	&$\Q(\zeta_{33})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{44})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{5}{*}{$24$}	&\multirow{5}{*}{$7(-)$}	&$\Q(\zeta_{35})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$1$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{45})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{56})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{84})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{4}{*}{$14$}	&$4$					&$1(1)$						&$\Q(\zeta_{8})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{2}{*}{$8$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{16})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{24})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$12$					&$1(1)$						&$\Q(\zeta_{28})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline		
+		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{7}{c|}{Minimum}\\ \cline{5-11}											&						&										&						&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$\\ \hline
+		\multirow{6}{*}{$14$}	&\multirow{4}{*}{$16$}	&\multirow{4}{*}{$5(-)$}	&$\Q(\zeta_{32})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{2}{*}{$24$}	&\multirow{2}{*}{$8(-)$}	&$\Q(\zeta_{56})$	&$-$	&$-$	&$-$	&$4$	&$-$	&$2$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{10}{*}{$15$}	&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$3(1)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$24$}	&\multirow{3}{*}{$5(-)$}	&$\Q(\zeta_{56})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$1$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{84})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$2$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$23(-)$}	&$\Q(\zeta_{80})$	&$-$	&$-$	&$-$	&$-$	&$2$	&$3$	&$1$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{96})$	&$-$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$-$	&$4$	&$1$	&$9$	&$1$\\ \hline
+		\multirow{7}{*}{$23$}	&$4$					&$1(1)$						&$\Q(\zeta_{12})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$8$					&$3(-)$						&$\Q(\zeta_{24})$	&$-$	&$-$	&$1$	&$2$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&$12$					&$1(-)$						&$\Q(\zeta_{36})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-11}
+								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$5(-)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$-$	&$1$	&$2$	&$-$	&$-$	&$-$\\ \cline{4-11}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$\\ \cline{2-11}
+								&$22$					&$2(-)$						&$\Q(\zeta_{23})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$2$	&$-$\\ \hline
+	\end{tabular}
+	\caption{Anzahlen der Ideal-Gitter der Stufen $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$ und Determinante $\ell^\frac{n}{2}$ nach zugehörigem Kreisteilungskörper $K$ und Minimum.}
+\end{table}
+
+\chapter{Sub-Ideal-Gitter}
+
+\section{Einführung}
+Im letzten Kapitel haben wir gesehen, wie Gitter in Dimension $n$ mit einem Automorphismus $\sigma$ klassifiziert werden können, falls $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$ erfüllt sind. In diesem Kapitel wollen wir versuchen, Aussagen über Gitter zu treffen, welche lediglich ein Ideal-Gitter enthalten. Gilt $\Phi_m \vert \mu_\sigma$ für ein $\sigma \in \text{Aut}(L)$, so können wir den zugrundeliegenden Vektorraum $V$ in $\sigma$-invariante Teilräume aufspalten:
+\begin{equation*}
+	V = \text{Kern}(\Phi_m(\sigma)) \oplus \text{Kern}\left(\frac{\mu_\sigma}{\Phi_m}(\sigma)\right).
+\end{equation*}
+Für $\frac{n}{2} < \varphi(m) \leq n$ muss $\text{Kern}(\Phi_m(\sigma))$ die Dimension $\varphi(m)$ haben, wird also zu einem eindimensionalen $\Q(\zeta_m)$-Vektorraum und $L \cap \text{Kern}(\Phi_m(\sigma))$ hat eine Struktur als Ideal-Gitter über diesem zyklotomischen Körper. Vergleiche dazu \cite[Abs. (5.3)]{nebe}
+
+\begin{framed}
+	\begin{definition}
+		Sei $L$ ein $\Z$-Gitter der Dimension $n$.
+		\begin{enumerate}[label=(\roman*)]
+			\item Ein \textit{großer Automorphismus} von $L$ ist ein $\sigma \in \text{Aut}(L)$ mit $\Phi_m \vert \mu_\sigma$ für ein $m \in \N$, sodass $\frac{n}{2} < \varphi(m) \leq n$.
+			\item Ist $\sigma \in \text{Aut}(L)$ ein großer Automorphismus, so bezeichnet man das Ideal-Gitter $L \cap  \text{Kern}(\Phi_m(\sigma))$ über $\Q(\zeta_m)$ als \textit{Sub-Ideal-Gitter} von $L$.
+		\end{enumerate}
+	\end{definition}
+\end{framed}
+
+Für Gitter mit großen Automorphismen verstehen wir die Ideal-Gitter-Komponente mit der Theorie des letzten Kapitels sehr gut. Probleme bereitet uns allerdings der andere Teil $\text{Kern}\left(\frac{\mu_\sigma}{\Phi_m}(\sigma)\right)$ des Vektorraums, über welchen wir a priori nicht viel aussagen können. Abhilfe schaffen uns unter gewissen Umständen die Automorphismen von Primzahlordnung.
+
+\section{Automorphismen von Primzahlordnung}
+Der folgende Abschnitt ist an \cite[Kap. 4]{juergens} und \cite[Kap. 4]{nebe} angelehnt.\par
+Sei $L$ in diesem Abschnitt ein $\Z$-Gitter in einem $n$-dimensionalen bilinearen $\Q$-Vektorraum $(V,b)$ und $\sigma \in \text{Aut}(L)$ von Primzahlordnung $p$. Dann ist $\mu_\sigma \in \lbrace \Phi_p, \Phi_1 \Phi_p \rbrace$. Man erhält eine $\sigma$-invariante Zerlegung
+\begin{equation*}
+	V = \text{Kern}(\Phi_p(\sigma)) \oplus \text{Kern}(\Phi_1(\sigma)) =: V_p \oplus V_1
+\end{equation*}
+Es ist $\Phi_1(X) = X-1$, also $V_p = \text{Bild}(\sigma - 1)$, $V_1 = \text{Kern}(\sigma - 1)$. Seien $n_p$ die Dimension von $V_p$ und $n_1$ die Dimension von $V_1$ über $\Q$. Da $V_p$ eine Struktur als $\Q(\zeta_p)$-Vektorraum hat und $\text{Dim}_\Q(\Q(\zeta_p)) = p-1$, muss $(p-1) \vert n_p$ gelten.\par
+Wie das folgende Lemma zeigt, ist die Summe sogar orthogonal.
+
+\begin{framed}
+	\begin{lemma}
+		Sei $\sigma \in O(V,b)$ von Primzahlordnung $p$, dann ist
+		\begin{equation*}
+			V = \text{Kern}(\Phi_p(\sigma)) \perp \text{Kern}(\Phi_1(\sigma)).
+		\end{equation*}
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	Sei $x_p \in \text{Kern}(\Phi_p(\sigma))$ und $x_1 \in \text{Kern}(\Phi_1(\sigma))$. Dann gilt $\sigma(x_1) = x_1$ und es existiert ein $y \in V$ mit $(\sigma - 1)(y) = x_p$. Zusammen mit der Tatsache, dass die Bilinearform $b$ invariant unter $\sigma$ ist, folgt:
+	\begin{equation*}
+		b(x_1, x_p) = b(x_1, (\sigma-1)(y)) = b(\sigma(x_1), \sigma(y)) - b(x_1, y) = b(x_1, y) - b(x_1, y) = 0.
+	\end{equation*}
+\end{beweis}
+
+Damit induziert $\sigma$ ein Teilgitter von $L$. Definiert man nämlich $L_p := L \cap V_p$ und $L_1 := L \cap V_1$, so ist offensichtlich $M := L_p \perp L_1 \leq L$. Im Folgenden wollen wir die Struktur von $M$ näher untersuchen.
+
+\begin{framed}
+	\begin{lemma}
+		Seien $\sigma$, $L_1$ und $L_p$ wie oben.
+		\begin{enumerate}[label=(\roman*)]
+			\item Es existiert ein Polynom $v \in \Z\left[ X \right]$ mit $1 = \frac{1}{p} v \cdot \Phi_1 + \frac{1}{p}\Phi_p$.
+			\item Es gilt $pL \subseteq L_p \perp L_1 \subseteq L$.
+		\end{enumerate}
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	\begin{enumerate}[label=(\roman*)]
+		\item Nach \eqref{th:cycpol} ist $\Phi_p(X) = \frac{X^p-1}{X-1} = X^{p-1} + X^{p-2} + \dots + 1$, also ist $\Phi_p(1) = p$ und somit $1$ eine Nullstelle von $p - \Phi_p \in \Z\left[ X \right]$. Da $\Phi_1(X) = X-1$ folgt daher 
+			\begin{equation}\label{eq:pol}
+				p - \Phi_p = v \cdot\Phi_1 \text{ für ein } v \in \Q\left[X\right].
+			\end{equation}
+			Mit dem Lemma von Gauß muss $v \in \Z \left[ X \right]$ gelten. Umstellen der Gleichung \eqref{eq:pol} liefert die Behauptung.
+		\item Zu zeigen ist $p x \in L_p \perp L_1$ für alle $x \in L$. Wegen $(\Phi_1 \Phi_p)(\sigma) = 0$ und der $\sigma$-Invarianz von $L$ ist
+			\begin{align*}
+				px = (v \cdot \Phi_1)(\sigma)(x) + \Phi_p(\sigma)(x) \in &\text{ Kern}(\Phi_p(\sigma)) \cap L + \text{Kern}(\Phi_1(\sigma))(\sigma) \cap L\\
+				= &V_p \perp V_1
+			\end{align*}
+	\end{enumerate}
+\end{beweis}
+   
 %===================================================================
 % Literatur
 %===================================================================

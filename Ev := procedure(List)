@@ -1,0 +1,6 @@
+Ev := procedure(List)                            
+for L in List do
+printf "m = %o, min = %o\n", L[4], Minimum(L[1]);
+end for;
+"";
+end procedure;

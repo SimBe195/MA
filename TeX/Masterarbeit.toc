@@ -9,4 +9,7 @@
 \contentsline {section}{\numberline {3.3}Die Klassengruppe}{19}
 \contentsline {section}{\numberline {3.4}Total-positive Erzeuger}{20}
 \contentsline {section}{\numberline {3.5}Finaler Algorithmus und Ergebnisse}{26}
-\contentsline {chapter}{\numberline {4}Literaturverzeichnis}{29}
+\contentsline {chapter}{\numberline {4}Sub-Ideal-Gitter}{34}
+\contentsline {section}{\numberline {4.1}Einf\IeC {\"u}hrung}{34}
+\contentsline {section}{\numberline {4.2}Automorphismen von Primzahlordnung}{35}
+\contentsline {chapter}{\numberline {5}Literaturverzeichnis}{38}

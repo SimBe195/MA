@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.15)  16 AUG 2018 14:28
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.15)  19 AUG 2018 17:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1509,23 +1509,31 @@ ein $\U/fplmbb/m/n/12 Z$\T1/lmr/m/n/12 -Gitter in ei-nem $\OML/lmm/m/it/12 n$\T
 ektorraum
  []
 
-[35] [36] [37] (./Masterarbeit.bbl
+[35] [36] [37] [38] [39] [40]
+Overfull \hbox (7.00102pt too wide) in paragraph at lines 1157--1159
+\T1/lmr/m/n/12 Analog zeigt das-sel-be Lem-ma, dass $\OML/lmm/m/it/12 L[]\OT1/z
+plm/m/n/12 /\OML/lmm/m/it/12 L[]$ \T1/lmr/m/n/12 ein Quo-ti-ent der Grup-pe $\O
+ML/lmm/m/it/12 L[]\OT1/zplm/m/n/12 /(\OT1/lmr/m/n/12 1 \OMS/lmsy/m/n/12 ^^@ \OM
+L/lmm/m/it/12 ^^[\OT1/zplm/m/n/12 )\OML/lmm/m/it/12 L[] []
+ []
+
+[41] [42] (./Masterarbeit.bbl
 chapter 5.
 )
 \tf@thm=\write5
 \openout5 = `Masterarbeit.thm'.
 
- [38
+ [43
 
 ] (./Masterarbeit.aux) ) 
 Here is how much of TeX's memory you used:
- 23515 strings out of 492649
- 477561 string characters out of 6129607
- 776853 words of memory out of 5000000
- 26835 multiletter control sequences out of 15000+600000
+ 23521 strings out of 492649
+ 477670 string characters out of 6129607
+ 776904 words of memory out of 5000000
+ 26841 multiletter control sequences out of 15000+600000
  70086 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 64i,11n,67p,9091b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 64i,15n,67p,9091b,403s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/
 lm-ec.enc}{/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{/usr/local/t
@@ -1555,10 +1563,10 @@ lmsy9.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb>
 pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msb
 m10.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb
 >
-Output written on Masterarbeit.pdf (38 pages, 393338 bytes).
+Output written on Masterarbeit.pdf (43 pages, 412316 bytes).
 PDF statistics:
- 239 PDF objects out of 1000 (max. 8388607)
- 173 compressed objects within 2 object streams
+ 257 PDF objects out of 1000 (max. 8388607)
+ 186 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

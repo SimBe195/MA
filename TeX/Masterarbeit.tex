@@ -476,7 +476,7 @@ Mit Blick auf modulare Gitter kann man damit die nächste Folgerung ziehen:
 
 \begin{framed}
 	\begin{korollar}
-		Sei $\ell$ quadratfrei und $(\I, \alpha)$ ein ganzes Ideal-Gitter der Stufe $\ell$. Die Menge $\B := \alpha \I \overline{\I} \Delta^{-1}$ ist ein $\Z_K$-Ideal mit $\ell \Z_K \subseteq \B$ und Norm $\No(\B) = \text{det}(\I)$.
+		Sei $\ell$ quadratfrei und $(\I, \alpha)$ ein gerades Ideal-Gitter der Stufe $\ell$. Die Menge $\B := \alpha \I \overline{\I} \Delta^{-1}$ ist ein $\Z_K$-Ideal mit $\ell \Z_K \subseteq \B$ und Norm $\No(\B) = \text{det}(\I)$.
 	\end{korollar}
 \end{framed}
 
@@ -1007,7 +1007,7 @@ Wie das folgende Lemma zeigt, ist die Summe sogar orthogonal.
 Damit induziert $\sigma$ ein Teilgitter von $L$. Definiert man nämlich $L_p := L \cap V_p$ und $L_1 := L \cap V_1$, so ist offensichtlich $M := L_p \perp L_1 \leq L$. Im Folgenden wollen wir die Struktur von $M$ näher untersuchen.
 
 \begin{framed}
-	\begin{lemma}
+	\begin{lemma}\label{lem:pL}
 		Seien $\sigma$, $L_1$ und $L_p$ wie oben.
 		\begin{enumerate}[label=(\roman*)]
 			\item Es existiert ein Polynom $v \in \Z\left[ X \right]$ mit $1 = \frac{1}{p} v \cdot \Phi_1 + \frac{1}{p}\Phi_p$.
@@ -1026,11 +1026,152 @@ Damit induziert $\sigma$ ein Teilgitter von $L$. Definiert man nämlich $L_p := 
 		\item Zu zeigen ist $p x \in L_p \perp L_1$ für alle $x \in L$. Wegen $(\Phi_1 \Phi_p)(\sigma) = 0$ und der $\sigma$-Invarianz von $L$ ist
 			\begin{align*}
 				px = (v \cdot \Phi_1)(\sigma)(x) + \Phi_p(\sigma)(x) \in &\text{ Kern}(\Phi_p(\sigma)) \cap L + \text{Kern}(\Phi_1(\sigma))(\sigma) \cap L\\
-				= &V_p \perp V_1
+				=& (V_p \cap L) \perp (V_1 \cap L) = L_p \perp L_1
 			\end{align*}
 	\end{enumerate}
 \end{beweis}
-   
+
+Mit diesem Lemma muss $M$ ein Gitter der Dimension $n$ sein, also gilt $\text{Dim}(L_p) = n_p$ und $\text{Dim}(L_1) = n_1$. Ist $L$ gerade und von quadratfreier Stufe $\ell$, so gilt $\ell L^\# \subseteq L$. Lemma \eqref{lem:pL}(ii) ist äquivalent zu $p M^\# \subseteq L^\#$. Zusammen erhält man folglich
+\begin{equation*}
+	\ell p M^\# \subseteq \ell L^\# \subseteq L
+\end{equation*}
+Schneidet man mit $V_p$, so folgt
+\begin{equation*}
+	\ell p (M^\# \cap V_p) \subseteq (L \cap V_p) \Leftrightarrow \ell p L_p^\# \subseteq L_p
+\end{equation*}
+und analog $\ell p L_1^\# \subseteq L_1$.
+
+Im Spezialfall $\text{ggT}(\ell, p) = 1$ bedeutet dies, dass die Stufe der Gitter $L_p$ und $L_1$ die Zahl $\ell p$ teilt.\\
+Als nächstes wollen wir die Determinanten von $L_p$ und $L_1$ untersuchen. Dazu werden die partiellen Dualgitter betrachtet.
+
+\begin{framed}
+	\begin{lemma}\label{lem:fpinc}
+		Sei $L$ ein gerades Gitter der quadratfreien Stufe $\ell$ und $\sigma \in \text{Aut}(L)$ von Primzahlordnung $p$ mit $\text{ggT}(p, \ell) = 1$.
+		\begin{enumerate}[label=(\roman*)]
+			\item $p L_1^{\#,p} \subseteq L_1$.
+			\item $(1 - \sigma)L_p^{\#,p} \subseteq L_p$.
+		\end{enumerate}
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	Teil (i) folgt bereits aus der Definition des partiellen Duals, denn es gilt
+	\begin{equation*}
+		p L_1^{\#,p} = p \left( \frac{1}{p}L_1 \cap L_1^\# \right) = L_1 \cap p L_1^\# \subseteq L_1.
+	\end{equation*}
+	Kommen wir nun zu Teil (ii). Definiere dazu die Projektionen $\pi_1 := \frac{1}{p} \Phi_p(\sigma)$ und\linebreak$\pi_p := 1-\pi_1$ auf $V_1$ bzw. $V_p$ (vgl. Lemma \eqref{lem:pL}). Es zeigt sich:
+	\begin{align*}
+		(1 - \sigma) \pi_p 	&= (1-\sigma) (1 - \pi_1)\\
+							&= 1 - \sigma - \pi_1 + \sigma \pi_1\\
+							&= 1 - \sigma - \pi_1 + \frac{1}{p} (\sigma^p + \sigma^{p-1} + \dots + \sigma)\\
+							&= 1 - \sigma - \pi_1 + \frac{1}{p} (1 + \sigma^{p-1} + \dots + \sigma)\\
+							&= 1 - \sigma - \pi_1 + \pi_1\\
+							&= 1 - \sigma.
+	\end{align*}
+	Sei nun $(b_1, \dots, b_n)$ eine Basis von $L$ mit zugehöriger Dualbasis $(b_1^\#, \dots, b_n^\#)$, sodass $(b_1, \dots, b_{n_p})$ Basis von $L_p$ ist. Dann gilt
+	\begin{equation*}
+		\pi_p(L^\#) = \pi_p(\langle b_1^\#, \dots, b_{n}^\# \rangle) = \langle b_1^\#, \dots, b_{n_p}^\# \rangle = L_p^\#.
+	\end{equation*}
+	Setzt man diese beiden Fakten zusammen, so erhält man
+	\begin{equation*}
+		(1 - \sigma) L_p^\# = (1 - \sigma) \pi_p(L^\#) = (1 - \sigma) L^\# \stackrel{\text{Stufe } \ell}{\subseteq} (1 - \sigma) \frac{1}{\ell} L \stackrel{L \ \sigma \text{-invariant}}{\subseteq} \frac{1}{\ell} L.
+	\end{equation*}
+	Außerdem ist $(1 - \sigma) L_p^\# \subseteq V_p$, also zusammen
+	\begin{equation*}
+		(1 - \sigma) L_p^\# \subseteq \frac{1}{\ell} L \cap V_p = \frac{1}{\ell} L_p
+	\end{equation*}
+	Für das partielle Dual ergibt sich hiermit
+	\begin{equation*}
+		(1-\sigma) L_p^{\#,p} = (1 - \sigma) \left(\frac{1}{p}L_p \cap L_p^\# \right) \subseteq \frac{1}{p} L_p \cap \frac{1}{\ell} L_p  = \frac{1}{\text{ggT}(p, \ell)} L_p = L_p
+	\end{equation*}
+\end{beweis}
+
+Wir benötigen noch ein weiteres Hilfslemma.
+
+\begin{framed}
+	\begin{lemma}\label{lem:quotiso}
+		Sei $\Lambda$ ein gerades Gitter, dessen Stufe $p \ell$ teilt, wobei $p$ prim und $\ell$ quadratfrei mit $\text{ggT}(p, \ell) = 1$. Dann ist $\Lambda^{\#,p} / \Lambda \cong \Lambda^\# / \Lambda^{\#,\ell}$.
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	Sei $\psi:\Lambda^{\#,p} \rightarrow \Lambda^\# / \Lambda^{\#, \ell}, x \mapsto x + \Lambda^{\#, \ell}$.
+	\begin{itemize}[align=left, leftmargin = *]
+		\item[Surjektivität:] Sei $x \in \Lambda^\#$. Wegen $p \ell \Lambda^\# \subseteq \Lambda$ ist $p \Lambda^\# \subseteq \Lambda^{\#, \ell}$ und $\ell \Lambda^\# \subseteq \Lambda^{\#, p}$. Nach Euklid existieren Zahlen $s, t \in \Z$ mit $s p + t \ell = 1$. Dann ist $x = s p x + t \ell x \subseteq \Lambda^{\#, \ell} + \Lambda^{\#, p}$ und somit $\psi(t \ell x) = x + \Lambda^{\#, \ell}$.
+		\item[Kern:] Der Kern der Abbildung ist $\Lambda^{\#, p} \cap \Lambda^{\#, \ell}$. Es ist einerseits
+		\begin{equation*}
+			\Lambda^{\#, p} \cap \Lambda^{\#, \ell} \subseteq \frac{1}{p} \Lambda \cap \frac{1}{\ell} \Lambda = \frac{1}{\text{ggT}(p, \ell)}\Lambda = \Lambda
+		\end{equation*}
+		und andersherum per Definition $\Lambda \subseteq \Lambda^{\#,p}$ und $\Lambda \subseteq \Lambda^{\#, \ell}$. Insgesamt ist\linebreak
+		$\text{Kern}(\psi) = \Lambda$.
+	\end{itemize}
+	Die Behauptung folgt nun mit dem Homomorphiesatz.
+\end{beweis}
+
+Nun ein wichtiger Satz zur Bestimmung der Determinanten:
+
+\begin{framed}
+	\begin{satz}
+		Sei $L$ wie vorher von Stufe quadratfreien Stufe $\ell$ und $\sigma \in \text{Aut}(L)$ mit $\vert \sigma \vert = p$, $\text{ggT}(p,\ell) = 1$. Seien außerdem $L_1$ und $L_p$ definiert wie zuvor mit Dimensionen $n_1$ und $n_p$. Dann gilt:
+		\begin{equation*}
+			L_1^{\#,p} / L_1 \cong \F_p^s \cong L_p^{\#,p} / L_p
+		\end{equation*}
+		für ein $s \in \lbrace 0, \dots, \min(n_1, \frac{n_p}{p-1})\rbrace$.
+	\end{satz}
+\end{framed}
+
+\begin{beweis}
+	Wir zeigen zunächst$ L_1^{\#,p} / L_1  \cong L_p^{\#,p} / L_p$. Dies ist nach Lemma \eqref{lem:quotiso} äquivalent zu $L_1^\# / L_1^{\#,\ell} \cong L_p^\# / L_p^{\#, \ell}$.\par
+	Sei $y \in L_1^\#$ beliebig. Die Abbildung $L_1 \rightarrow \Z, x \mapsto b(x,y)$ ist eine Linearform. Da $L_1$ der Schnitt von $L$ mit dem Untervektorraum $V_1$ ist, lässt sich diese Linearform sich eindeutig fortsetzen zu einer Linearform auf ganz $L$. Unter Ausnutzung der Isomorphie $\text{Hom}_\Z(L, \Z) \cong L^\#$ existiert ein Element $\hat{y} \in L^\#$, welches diese Linearform darstellt, insbesondere gilt also $b(x,y) = b(x, \hat{y})$ für alle $x \in L_1$. Zunächst zeigt sich für das Element $\hat{y} - y$:
+	\begin{equation*}
+		b(x, \hat{y} - y) = 0 \quad \text{für alle } x \in L_1
+	\end{equation*}
+	und somit $\hat{y} - y \in V_1^\perp = V_p$. Außerdem ist
+	\begin{equation*}
+		b(x, \hat{y} - y) = b(x, \hat{y}) - b(x,y) = b(x, \hat{y}) \in \Z \quad \text{für alle } x \in L_p.
+	\end{equation*}
+	Insgesamt gilt damit $\hat{y} - y \in L_p^\#$. Wir können somit die folgende Abbildung definieren:
+	\begin{equation*}
+		\psi: L_1^\# \rightarrow L_p^\# / L_p^{\#, \ell}, y \mapsto (\hat{y} - y) + L_p^{\#, \ell}.
+	\end{equation*}
+	Wir zeigen nun, dass $\psi$ ein wohldefinierter Epimomorphismus mit Kern $L_1^{\#, \ell}$ ist und folgern dann die Behauptung erneut mit dem Homomorphiesatz.
+	
+	\begin{itemize}[align=left, leftmargin = *]
+		\item[Wohldefiniert:] Es definiere $\tilde{y} \in L^\#$ eine weitere Fortsetzung. Da $L$ von Stufe $\ell$ ist, gilt $\hat{y} - \tilde{y} \in L^\# \subseteq \frac{1}{\ell} L$. Wir schlussfolgern für $y \in L_1^\#$:
+			\begin{equation*}
+				(\hat{y} - y) - (\tilde{y} - y) = \hat{y} - \tilde{y} \in \frac{1}{\ell} L \cap L_p^\# = \frac{1}{\ell} L_p \cap L_p^\# = L_p^{\#,\ell}.
+			\end{equation*}
+			Das Bild unter $\psi$ hängt daher nicht von der gewählten Fortsetzung ab.
+		\item[Linearität:] Seien $y_1, y_2 \in L_1^\#$ mit Elementen $\hat{y_1}, \hat{y_2} \in L^\#$, welche die zugehörigen fortgesetzten Linearformen darstellen. Für $s,t \in \Z$ definiert dann $s \hat{y_1} + t \hat{y_2}$ eine Fortsetzung der Linearform $x \mapsto b(x, s y_1 + t y_2)$.
+		\item[Surjektivität:] Sei $y' \in L_p^\#$. Es korrespondiere $\hat{y} \in L^\#$ zu einer Fortsetzung von\linebreak
+		$x \mapsto b(x,y) \in \text{Hom}_\Z(L_p, \Z)$ auf $L$. Wie zuvor liegt dann das Element $y := \hat{y} - y'$ in $L_1^\#$. Durch $\hat{y}$ wird zudem eine Fortsetzung der Linearform $L_1 \rightarrow \Z, x \mapsto b(x,y)$ dargestellt, denn für alle $x \in L_1$ ist
+			\begin{equation*}
+				b(x,y) = b(x, \hat{y} - y') = b(x, \hat{y}) - b(x, y') = b(x, \hat{y})
+			\end{equation*}
+			Somit ist $\psi(y) = (\hat{y} - y) + L_1^{\#, \ell} = y' + L_1^{\#, \ell}$.
+		\item[Kern:] Es ist $\text{Kern}(\psi) \subseteq L_1^{\#, \ell}$, denn sei $y \in \text{Kern}(\psi)$, so gilt $\hat{y} - y \in \frac{1}{\ell}L_p^{\#, \ell} \subseteq \frac{1}{\ell} L_p \subseteq \frac{1}{\ell} L$. Da zudem $\hat{y} \in L^\# \subseteq \frac{1}{\ell} L$ ist, folgt $y = \hat{y} - (\hat{y} - y) \in \frac{1}{\ell}$. Insgesamt gilt daher\linebreak
+			$y \in \frac{1}{\ell}L \cap L_1^\# = \frac{1}{\ell} L_1 \cap L_1^\# = L_1^{\#, \ell}$\par
+			Andersherum ist $L_1^{\#, \ell} \subseteq \text{Kern}(\psi)$, denn sei $y \in L_1^{\#, \ell}$, so ist $y \in \frac{1}{\ell} L_1 \subseteq \frac{1}{\ell}L$. Somit gilt $\hat{y} - y \in \frac{1}{\ell} L \cap L_p^\# = \frac{1}{\ell} L_p \cap L_p^\# = L_p^{\#, \ell}$ und damit $y \in \text{Kern}(\psi)$.
+	\end{itemize}
+	Die erste Behauptung folgt nun aus dem Homomorphiesatz.\par
+	Verwendet man nun Lemma \eqref{lem:fpinc}, so zeigt sich, dass $L_1^{\#, p} / L_1$ ein Quotient der Gruppe $L_1^{\#, p} / p L_1^{\#,p} \cong \F_p^{n_1}$ ist und somit die Gestalt $\F_p^s$ für ein $s \in \lbrace 0, \dots, n_1 \rbrace$ besitzt.\\
+	Analog zeigt dasselbe Lemma, dass $L_p^{\#,p} / L_p$ ein Quotient der Gruppe $L_p^{\#,p} / (1 - \sigma) L_p^{\#,p} \cong (\Z\left[ \zeta_p \right] / (1 - \zeta_p) \Z\left[ \zeta_p \right])^\frac{n_p}{p-1}$. In letzterer Gruppe ist
+	\begin{align*}
+		p + (1 - \zeta_p) \Z\left[ \zeta_p \right] &= \underbrace{1 + \dots + 1}_{p \text{ mal}} + (1 - \zeta_p) \Z\left[ \zeta_p \right]\\
+		&= 1^{p-1} + \dots + 1^0 + (1 - \zeta_p) \Z\left[ \zeta_p \right]\\
+		 &= \zeta_p^{p-1} + \dots + \zeta_p^0 + (1 - \zeta_p) \Z\left[ \zeta_p \right]\\
+		 &= 0 + (1 - \zeta_p) \Z\left[ \zeta_p \right],
+	\end{align*}
+	diese enthält also genau $p$ Elemente und wir erhalten finalerweise, dass $L_p^{\#, p} / L_p$ ein Quotient von $(\F_p)^\frac{n_p}{p-1}$ ist. Damit folgt $s \leq \frac{n_p}{p-1}$.
+\end{beweis}
+
+Nach Lemma \eqref{lem:quotiso} ist
+\begin{equation*}
+	\Det(L_p) = \left[ L_p^\# : L_p \right] = \left[ L_p^\# : L_p^{\#,\ell} \right] \cdot \left[ L_p^{\#, \ell} : L_p \right] = \left[ L_p^{\#,p} : L_p \right] \cdot \left[ L_p^{\#, \ell} : L_p \right].
+\end{equation*}
+Außerdem teilt $p$ den Index $\left[ L_p^{\#, \ell} : L_p \right]$ nicht, da dieser wegen $\ell L_p^{\#, \ell} \subseteq L_p$ ein Teiler von $\ell$ sein muss und $\text{ggT}(\ell,p) = 1$. Ist also $s$ wie im vorigen Satz, so ist $s$ bereits die $p$-Bewertung der Determinante von $L_p$. Die Überlegungen funktionieren selbstverständlich analog für $L_1$. Der Satz sagt uns also, dass $\Det(L_p) = p^s c$ und $\Det(L_1) = p^s d$ für $c, d \in \N$ teilerfremd zu $p$.
+
+
 %===================================================================
 % Literatur
 %===================================================================

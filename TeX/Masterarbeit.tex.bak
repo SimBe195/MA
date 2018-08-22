@@ -25,7 +25,6 @@
 \usepackage[Algorithmus]{algorithm}
 \usepackage[noend]{algpseudocode}
 \usepackage{multirow}
-\usepackage{diagbox}
 
 % Spezialpakete
 \usepackage{fp}
@@ -332,70 +331,28 @@ Wir können also definieren:
 \end{framed}
 
 Die Dimensionen, welche jeweils echt von $k_1$ geteilt werden bezeichnet man häufig auch als \textit{Sprungdimensionen}, da in diesen Fällen das Minimum im Vergleich zur nächst kleineren Dimension um $2$ nach oben $"$springt$"$.\\
-Da die Determinante für $\ell$-modulare Gitter in fester Dimension nach Lemma \eqref{lem:mod} eindeutig bestimmt ist, liefern modulare Gitter mit möglichst großem Minimum die dichtesten Kugelpackungen. In diesem Sinne ist die Klassifikation extremaler Gitter besonders interessant.
-
-\begin{framed}
-	\begin{definition}
-		Die Funktion
-		\begin{equation}
-			\gamma : \lbrace L \mid L \text{ ist } n\text{-dimensionales } \Z \text{-Gitter} \rbrace \rightarrow \R, L \mapsto \frac{\Min(L)}{\Det(L)^\frac{1}{n}}
-		\end{equation}
-		heißt \textit{Hermite-Funktion}. Der Wert
-		\begin{equation*}
-			\gamma_n := \text{max} \lbrace \gamma(L) \mid L \text{ ist } n \text{-dimensionales } \Z\text{-Gitter} \rbrace
-		\end{equation*}
-		heißt \textit{Hermite-Konstante} zur Dimension $n$.
-	\end{definition}
-\end{framed} 
-
-Ein höherer Wert bezüglich der Funktion $\gamma$ bedeutet dabei ein dichteres Gitter im Hinblick auf die dazugehörige Kugelpackung. In der Literatur wird häufig alternativ mit der sogenannten \textit{Zentrumsdichte} $\delta(L) = \frac{\Min(L)^{\frac{n}{2}}}{2^n \sqrt{\Det(L)}}$ gearbeitet (vgl. \cite[(1.5)]{conway}). Cohn und Elkies haben in \cite{cohn} obere Schranken für die Zentrumsdichte ermittelt. Mithilfe der Identität $\gamma(L) = 4 \delta(L)^\frac{2}{n}$ lassen sich daraus obere Schranken für die Hermite-Konstante herleiten. Zusätzlich sind für die Dimensionen $1$ bis $8$ und $24$ die Werte von $\gamma_n$ explizit bekannt. Hierfür können wir also die Hermite-Funktionen der dichtesten bekannten Gitter als Schranken festhalten (vgl. \cite{database}). Die sich ergebenden oberen Schranken in Dimensionen $1$ bis $36$ sind in Tabelle \eqref{tab:hermites} festgehalten.
-
-\begin{table}\label{tab:hermites}
-\centering
-	\begin{tabular}{|c|c||c|c||c|c||c|c|}
-		\hline
-		$n$		&$\gamma_n\leq$		&$n$	&$\gamma_n\leq$		&$n$	&$\gamma_n\leq$		&$n$	&$\gamma_n\leq$ \\ \hline
-		$1$		&$1$				&$10$	&$2,2636$			&$19$	&$3.3975$			&$28$	&$4.4887$ \\ \hline
-		$2$		&$1.1547$			&$11$	&$2.3934$			&$20$	&$3.5201$			&$29$	&$4.6087$ \\ \hline
-		$3$		&$1.2599$			&$12$	&$2.3934$			&$21$	&$3.6423$			&$30$	&$4.7286$ \\ \hline
-		$4$		&$1.4142$			&$13$	&$2.6494$			&$22$	&$3.7641$			&$31$	&$4.8484$ \\ \hline
-		$5$		&$1.5157$			&$14$	&$2.7759$			&$23$	&$3.8855$			&$32$	&$4.9681$ \\ \hline
-		$6$		&$1.6654$			&$15$	&$2.9015$			&$24$	&$4.0000$			&$33$	&$5.0877$ \\ \hline
-		$7$		&$1.8115$			&$16$	&$3.0264$			&$25$	&$4.1275$			&$34$	&$5.2072$ \\ \hline
-		$8$		&$2.0000$			&$17$	&$3.1507$			&$26$	&$4.2481$			&$35$	&$5.3267$ \\ \hline
-		$9$		&$2.1327$			&$18$	&$3.2744$			&$27$	&$4.3685$			&$36$	&$5.4462$ \\
-		\hline
-	\end{tabular}
-	\caption{Obere Schranken für $\gamma_n$ bei $1 \leq n \leq 36$.}
-\end{table}
-
-Diese Schranken sind sehr nütlich, da sie in vielen Fällen die Existenz von bestimmten Gittern von vorneherein ausschließt. Beispielsweise hätte ein hypothetisches extremales $23$-modulares Gitter $L$ in Dimension $6$ bereits Minimum $\geq 8$ und Determinante $23^3$, also $\gamma(L) \geq \frac{8}{\sqrt{23}} \approx 1.6681 > 1.6654$ und kann somit nicht existieren. Genauer schließen die Schranken die folgenden extremalen Gitter aus:
-
-\begin{framed}
-	\begin{lemma}
-		Erfüllen $\ell \in \N$ und $n \in \underline{36}$ eine der Bedingungen
-		\begin{itemize}
-			\item $\ell = 1$ und $n \in \lbrace 2,4,6 \rbrace$.
-			\item $\ell = 2$ und $n = 2$.
-			\item $\ell = 11$ und $n \in \lbrace 20, 24, 28, 30, 32, 34, 36 \rbrace$.
-			\item $\ell = 23$ und $n \in \lbrace 6, 8, 10, \dots, 34, 36 \rbrace$,
-		\end{itemize}
-		so existiert kein extremales $\ell$-modulares Gitter in Dimension $n$.
-	\end{lemma}
-\end{framed}
-\begin{beweis}
-	Tabelle \eqref{tab:hermites}.
-\end{beweis}
-
-Vergleicht man die hypothetischen Zentrumsdichten extremaler Gitter (deren Existenz bisher nach \cite{juergens} noch offen ist) mit denen der dichtesten bisher bekannten Gitter (zu finden in \cite{database}), so fällt auf, dass die Entdeckung extremaler Gitter in den folgenden Stufen $\ell$ und Dimensionen $1 \leq n\leq 48$ jeweils neue dichteste Kugelpackungen liefern würden:
+Da die Determinante für $\ell$-modulare Gitter in fester Dimension nach Lemma \eqref{lem:mod} eindeutig bestimmt ist, liefern modulare Gitter mit möglichst großem Minimum die dichtesten Kugelpackungen. In diesem Sinne ist die Klassifikation extremaler Gitter besonders interessant. Defininiert man für ein $n$-dimensionales Gitter $L$ den Wert
+\begin{equation}
+	\gamma(L) := \frac{\Min(L)}{\Det(L)^\frac{1}{n}}
+\end{equation} (die \textit{Hermite-Konstante}), so bedeutet eine größerer Wert für $\gamma$ ein dichteres Gitter (vgl. \cite[(1.5)]{conway}). Vergleicht man die hypothetischen Hermite-Konstanten extremaler Gitter (deren Existenz bisher nach \cite{juergens} noch nicht ausgeschlossen wurde) mit denen der dichtesten bisher bekannten Gitter (zu finden in \cite{database}), so fällt auf, dass die Entdeckung extremaler Gitter in den folgenden Stufen und Dimensionen $\leq 48$ jeweils neue dichteste Kugelpackungen liefern würden:
 \begin{itemize}
-	\item $\ell = 3$ und $n \in \lbrace 36,38 \rbrace$.
-	\item $\ell = 5$ und $n \in \lbrace 32, 36, 40, 44, 48 \rbrace$.
-	\item $\ell = 6$ und $n = 40$.
-	\item $\ell = 7$ und $n \in \lbrace 32, 34, 38, 40, 36 \rbrace$.
-	\item $\ell = 11$ und $n \in \lbrace 18, 22 \rbrace$.
-	\item $\ell = 14$ und $n = 28$.
-	\item $\ell = 15$ und $n = 28$.
+	\item $3$-modular und $36$-dimensional
+	\item $3$-modular und $38$-dimensional
+	\item $5$-modular und $32$-dimensional
+	\item $5$-modular und $36$-dimensional
+	\item $5$-modular und $40$-dimensional
+	\item $5$-modular und $44$-dimensional
+	\item $5$-modular und $48$-dimensional
+	\item $6$-modular und $40$-dimensional
+	\item $7$-modular und $32$-dimensional
+	\item $7$-modular und $34$-dimensional
+	\item $7$-modular und $38$-dimensional
+	\item $7$-modular und $40$-dimensional
+	\item $7$-modular und $46$-dimensional
+	\item $11$-modular und $18$-dimensional
+	\item $11$-modular und $22$-dimensional
+	\item $14$-modular und $28$-dimensional
+	\item $15$-modular und $28$-dimensional
 \end{itemize}
 Wie man sieht, ist die Erforschung extremaler modularer Gitter also von großem Interesse für die Gittertheorie. Im nächsten Kapitel beschreiben wir nun eine Vorgehensweise, modulare Gitter zu klassifizieren, welche zusätzlich eine Struktur als gebrochenes Ideal eines Zahlkörpers aufweisen, sogenannte \textit{Ideal-Gitter}.
 
@@ -768,7 +725,7 @@ Dann lässt sich folgendes Korollar ziehen:
 Anhand der gewonnenen Erkenntnisse erstellen wir nun einen Algorithmus \eqref{alg:posgen}, der zu einem Ideal $\I = \alpha' \Z_K$ für $\alpha' \in K^+$ ein Vertretersystem aller total-positiven Erzeuger $\alpha \in K_{\gg 0}^+$ modulo $\lambda \overline{\lambda}$ für $\lambda \in \Z_K^\ast$ zurückgibt. Die Ergebnisse der Zeilen $6 - 14$ können in der Implementierung nach einmaliger Durchführung abgespeichert werden, sodass die Resultate anschließend für jedes zu prüfende $\alpha'$ wiederverwertet werden können. 
 
 
-\begin{algorithm}[H]
+\begin{algorithm}
 	\caption{Berechnung total-positiver Erzeuger}\label{alg:posgen}
 	\begin{algorithmic}[1]
 		\State \textbf{Eingabe:} Erzeuger $\alpha' \in K^+$ von $\I$.
@@ -804,7 +761,7 @@ Anhand der gewonnenen Erkenntnisse erstellen wir nun einen Algorithmus \eqref{al
 
 Alle bisherigen Bestandteile können nun zu einem Algorithmus zusammengesetzt werden, der zu einem quadratfreien $\ell \in \N$, einer vorgegebenen Determinante $d$ und einem CM-Körper $K$ mit total-reellem Teilkörper $K^+$ alle Ideal-Gitter berechnet.
 
-\begin{algorithm}[H]
+\begin{algorithm}
 	\caption{Berechnung von Ideal-Gittern}\label{alg:idlat}
 	\begin{algorithmic}[1]
 		\State \textbf{Eingabe:} Quadratfreies $\ell \in \N$, $d \in \N$, CM-Körper $K$, maximaler total-reeller Teilkörper $K^+$ von $K$
@@ -829,27 +786,139 @@ Alle bisherigen Bestandteile können nun zu einem Algorithmus zusammengesetzt we
 	\end{algorithmic}
 \end{algorithm}
 
-Mit diesem Algorithmus kann man nun alle $\ell$-modularen Gitter in Dimension $n$ klassifizieren, welche einen Automorphismus $\sigma$ besitzen mit $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$. Dazu wendet man Algorithmus \eqref{alg:idlat} wie in Lemma \eqref{lem:mod} und Lemma \eqref{lem:ztoid} besprochen mit $d = l^\frac{n}{2}$ und $K = \Q(\zeta_m)$ an. Eine weitere kleine Erleichterung bringt in diesem Spezialfall die Tatsache, dass $\Q(\zeta_m) \cong \Q(\zeta_{2m})$, falls $m \equiv 1\  (\text{mod } 2)$. Insbesondere sind die Ideal-Gitter über $\Q(\zeta_m)$ und $\Q(\zeta_{2m})$ dieselben. Man kann also für eine vollständige Aufzählung alle $m$ mit $m \equiv 2\  (\text{mod } 4)$ weglassen. Eine Implementierung in \texttt{MAGMA} liefert nun alle $\ell$-modularen Ideal-Gitter mit Dimension $n \leq 36$ (eine Steigerung der Dimension beansprucht exponentiell höheren Zeitaufwand) und $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$. In Tabelle \eqref{tab:numidlat} sind die Gesamtzahlen der Ideal-Gitter zu finden, außerdem befindet sich in Anhang A eine ausführlichere Zusammenfassung der Klassifikationsergebnisse mit zusätzlicher Angabe der zugrundeliegenden zyklotomischen Zahlkörpern und Anzahl der Gitter aufgeteilt nach Minimum.
+Mit diesem Algorithmus kann man nun alle $\ell$-modularen Gitter in Dimension $n$ klassifizieren, welche einen Automorphismus $\sigma$ besitzen mit $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$. Dazu wendet man Algorithmus \eqref{alg:idlat} wie in Lemma \eqref{lem:mod} und Lemma \eqref{lem:ztoid} besprochen mit $d = l^\frac{n}{2}$ und $K = \Q(\zeta_m)$ an. Eine weitere kleine Erleichterung bringt in diesem Spezialfall die Tatsache, dass $\Q(\zeta_m) \cong \Q(\zeta_{2m})$, falls $m \equiv 1\  (\text{mod } 2)$. Insbesondere sind die Ideal-Gitter über $\Q(\zeta_m)$ und $\Q(\zeta_{2m})$ dieselben. Man kann also für eine vollständige Aufzählung alle $m$ mit $m \equiv 2\  (\text{mod } 4)$ weglassen. Eine Implementierung in \texttt{MAGMA} liefert die folgenden Anzahlen von $\ell$-modularen Gittern nach Dimension und Minimum für $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$.
 
-\begin{table}\label{tab:numidlat}
+\begin{table}
 	\centering
-	\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
-		\hline
-		\backslashbox{$n$}{$\ell$}	&$1$	&$2$	&$3$	&$5$	&$6$	&$7$	&$11$	&$14$	&$15$	&$23$\\ \hline \hline
-		$4$		&$-$		&$1(1)$		&$1(1)$		&$-$		&$-$		&$-$		&$1(1)$		&$1(1)$		&$-$		&$1(1)$ \\ \hline
-		$6$		&$-$		&$-$		&$1(1)$		&$-$		&$-$		&$1(1)$		&$-$		&$-$		&$-$		&$-$ \\ \hline
-		$8$		&$1(1)$		&$1(1)$		&$1(1)$		&$1(1)$		&$1(1)$		&$1(1)$		&$2(1)$		&$2(1)$		&$1(1)$		&$3(-)$ \\ \hline
-		$10$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$1(1)$		&$-$		&$-$		&$-$ \\ \hline
-		$12$	&$-$		&$1(1)$		&$2(1)$		&$1(1)$		&$1(1)$		&$1(-)$		&$1(-)$		&$1(1)$		&$-$		&$1(-)$ \\ \hline
-		$16$	&$1(1)$		&$2(1)$		&$3(2)$		&$1(-)$		&$2(1)$		&$4(3)$		&$5(-)$		&$5(-)$		&$3(1)$		&$5(-)$ \\ \hline
-		$18$	&$-$		&$-$		&$1(-)$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$ \\ \hline
-		$20$	&$-$		&$1(1)$		&$-$		&$-$		&$1(1)$		&$1(-)$		&$2(-)$		&$-$		&$-$		&$-$ \\ \hline
-		$22$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$2(-)$ \\ \hline
-		$24$	&$4(1)$		&$2(1)$		&$7(1)$		&$5(1)$		&$5(2)$		&$8(-)$		&$7(-)$		&$8(-)$		&$5(-)$		&$-$ \\ \hline
-		$32$	&$7(5)$		&$13(4)$	&$13(7)$	&$10(-)$	&$12(-)$	&$19(-)$	&$42(-)$	&$21(-)$	&$23(-)$	&$-$ \\ \hline
-		$36$	&$-$		&$6(3)$		&$8(-)$		&$8(-)$		&$-$		&$-$		&$2(-)$		&$36(-)$	&$4(-)$		&$-$ \\ \hline
+	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
+		\hline		
+		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{9}{c|}{Minimum}\\ \cline{5-13}
+								&						&							&					&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$	&$16$	&$18$\\ \hline
+		\multirow{10}{*}{$1$}	&$8$					&$1(1)$						&$\Q(\zeta_{15})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$16$					&$1(1)$						&$\Q(\zeta_{40})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{4}{*}{$24$}	&\multirow{4}{*}{$4(1)$}	&$\Q(\zeta_{35})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{45})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{54})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{75})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{4}{*}{$32$}	&\multirow{4}{*}{$7(5)$}	&$\Q(\zeta_{51})$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{68})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{80})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{17}{*}{$2$}	&$4$					&$1(1)$						&$\Q(\zeta_{8})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$8$					&$1(1)$						&$\Q(\zeta_{16})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$12$					&$1(1)$						&$\Q(\zeta_{36})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{2}{*}{$16$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{32})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{40})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$20$					&$1(1)$						&$\Q(\zeta_{33})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{2}{*}{$24$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{56})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{72})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{6}{*}{$32$}	&\multirow{6}{*}{$13(4)$}	&$\Q(\zeta_{51})$	&$-$	&$-$	&$3$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{64})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{68})$	&$-$	&$3$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{80})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$36$}	&\multirow{3}{*}{$6(3)$}	&$\Q(\zeta_{57})$	&$-$	&$-$	&$3$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{76})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{108})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{20}{*}{$3$}	&$4$					&$1(1)$						&$\Q(\zeta_{12})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$6$					&$1(1)$						&$\Q(\zeta_{9})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{2}{*}{$12$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{21})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{36})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$3(2)$}	&$\Q(\zeta_{40})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{48})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$18$					&$1(-)$						&$\Q(\zeta_{27})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{4}{*}{$24$}	&\multirow{4}{*}{$7(1)$}	&$\Q(\zeta_{39})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{52})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{56})$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{72})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$13(7)$}	&$\Q(\zeta_{80})$	&$-$	&$2$	&$4$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{96})$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$3$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{4}{*}{$36$}	&\multirow{4}{*}{$8(-)$}	&$\Q(\zeta_{57})$	&$-$	&$1$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{63})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{76})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{108})$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{12}{*}{$5$}	&$8$					&$1(1)$						&$\Q(\zeta_{15})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$12$					&$1(1)$						&$\Q(\zeta_{21})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$16$					&$1(-)$						&$\Q(\zeta_{40})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{5}{*}{$24$}	&\multirow{5}{*}{$5(1)$}	&$\Q(\zeta_{35})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{45})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{56})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{84})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$10(-)$}	&$\Q(\zeta_{80})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$2$	&$5$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{11}{*}{$6$}	&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$12$					&$1(1)$						&$\Q(\zeta_{28})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{2}{*}{$16$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$20$					&$1(1)$						&$\Q(\zeta_{33})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$24$}	&\multirow{3}{*}{$5(2)$}	&$\Q(\zeta_{56})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{84})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$12(-)$}	&$\Q(\zeta_{80})$	&$-$	&$-$	&$1$	&$5$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$-$	&$4$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{12}{*}{$7$}	&$6$					&$1(1)$						&$\Q(\zeta_{7})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$12$					&$1(-)$						&$\Q(\zeta_{28})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$4(3)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$20$					&$1(-)$						&$\Q(\zeta_{44})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{2}{*}{$24$}	&\multirow{2}{*}{$8(-)$}	&$\Q(\zeta_{56})$	&$-$	&$1$	&$2$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$19(-)$}	&$\Q(\zeta_{80})$	&$-$	&$-$	&$1$	&$1$	&$2$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$2$	&$3$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$2$	&$7$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{15}{*}{$11$}	&$4$					&$1(1)$						&$\Q(\zeta_{12})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{2}{*}{$8$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{15})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{24})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$10$					&$1(1)$						&$\Q(\zeta_{11})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$12$					&$1(-)$						&$\Q(\zeta_{36})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$16$}	&\multirow{2}{*}{$5(-)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{2}{*}{$20$}	&\multirow{2}{*}{$2(-)$}	&$\Q(\zeta_{33})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{44})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{5}{*}{$24$}	&\multirow{5}{*}{$7(-)$}	&$\Q(\zeta_{35})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{45})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{56})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{84})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{10}{*}{$14$}	&$4$					&$1(1)$						&$\Q(\zeta_{8})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{2}{*}{$8$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{16})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{24})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$12$					&$1(1)$						&$\Q(\zeta_{28})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{4}{*}{$16$}	&\multirow{4}{*}{$5(-)$}	&$\Q(\zeta_{32})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{2}{*}{$24$}	&\multirow{2}{*}{$8(-)$}	&$\Q(\zeta_{56})$	&$-$	&$-$	&$-$	&$4$	&$-$	&$2$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
+		\multirow{10}{*}{$15$}	&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$3(1)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$24$}	&\multirow{3}{*}{$5(-)$}	&$\Q(\zeta_{56})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{72})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{84})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$2$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$23(-)$}	&$\Q(\zeta_{80})$	&$-$	&$-$	&$-$	&$-$	&$2$	&$3$	&$-$	&$-$	&$1$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{96})$	&$-$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$-$	&$4$	&$1$	&$9$	&$-$	&$-$	&$1$\\ \hline
+		\multirow{7}{*}{$23$}	&$4$					&$1(1)$						&$\Q(\zeta_{12})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$8$					&$3(-)$						&$\Q(\zeta_{24})$	&$-$	&$-$	&$1$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$12$					&$1(-)$						&$\Q(\zeta_{36})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$5(-)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{48})$	&$-$	&$-$	&$1$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
+								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{2-13}
+								&$22$					&$2(-)$						&$\Q(\zeta_{23})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$2$	&$-$	&$-$	&$-$\\ \hline
 	\end{tabular}
-	\caption{Anzahl der $\ell$-modularen Ideal-Gitter in Dimension $n \leq 36$, sowie der Anzahl der extremalen Gitter darunter}
+	\caption{Anzahlen der Ideal-Gitter der Stufen $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$ und Determinante $\ell^\frac{n}{2}$ nach zugehörigem Kreisteilungskörper $K$ und Minimum.}
 \end{table}
 
 \chapter{Sub-Ideal-Gitter}
@@ -877,9 +946,9 @@ Für Gitter mit großen Automorphismen verstehen wir die Ideal-Gitter-Komponente
 Der folgende Abschnitt ist an \cite[Kap. 4]{juergens} und \cite[Kap. 4]{nebe} angelehnt.\par
 Sei $L$ in diesem Abschnitt ein $\Z$-Gitter in einem $n$-dimensionalen bilinearen $\Q$-Vektorraum $(V,b)$ und $\sigma \in \text{Aut}(L)$ von Primzahlordnung $p$. Dann ist $\mu_\sigma \in \lbrace \Phi_p, \Phi_1 \Phi_p \rbrace$. Man erhält eine $\sigma$-invariante Zerlegung
 \begin{equation*}
-	V = \text{Kern}(\Phi_1(\sigma)) \oplus \text{Kern}(\Phi_p(\sigma)) =: V_1 \oplus V_p
+	V = \text{Kern}(\Phi_p(\sigma)) \oplus \text{Kern}(\Phi_1(\sigma)) =: V_p \oplus V_1
 \end{equation*}
-Es ist $\Phi_1(X) = X-1$, also $V_p = \text{Bild}(\sigma - 1)$, $V_1 = \text{Kern}(\sigma - 1)$. Seien $n_p$ die Dimension von $V_p$ und $n_1$ die Dimension von $V_1$ über $\Q$. Da $V_p$ eine Struktur als $\Q(\zeta_p)$-Vektorraum hat und $\text{Dim}_\Q(\Q(\zeta_p)) = p-1$, muss $n_p$ von $p-1$ geteilt werden.\par
+Es ist $\Phi_1(X) = X-1$, also $V_p = \text{Bild}(\sigma - 1)$, $V_1 = \text{Kern}(\sigma - 1)$. Seien $n_p$ die Dimension von $V_p$ und $n_1$ die Dimension von $V_1$ über $\Q$. Da $V_p$ eine Struktur als $\Q(\zeta_p)$-Vektorraum hat und $\text{Dim}_\Q(\Q(\zeta_p)) = p-1$, muss $(p-1) \vert n_p$ gelten.\par
 Wie das folgende Lemma zeigt, ist die Summe sogar orthogonal.
 
 \begin{framed}
@@ -935,7 +1004,7 @@ Schneidet man mit $V_p$, so folgt
 \end{equation*}
 und analog $\ell p L_1^\# \subseteq L_1$.
 
-Im Spezialfall $\text{ggT}(\ell, p) = 1$ bedeutet dies, dass die Stufe der Gitter $L_p$ und $L_1$ das Produkt $\ell p$ teilt.\\
+Im Spezialfall $\text{ggT}(\ell, p) = 1$ bedeutet dies, dass die Stufe der Gitter $L_p$ und $L_1$ die Zahl $\ell p$ teilt.\\
 Als nächstes wollen wir die Determinanten von $L_p$ und $L_1$ untersuchen. Dazu werden die partiellen Dualgitter betrachtet.
 
 \begin{framed}
@@ -1005,7 +1074,7 @@ Wir benötigen noch ein weiteres Hilfslemma.
 Nun ein wichtiger Satz zur Bestimmung der Determinanten:
 
 \begin{framed}
-	\begin{satz} \label{th:fps}
+	\begin{satz}
 		Sei $L$ wie vorher von Stufe quadratfreien Stufe $\ell$ und $\sigma \in \text{Aut}(L)$ mit $\vert \sigma \vert = p$, $\text{ggT}(p,\ell) = 1$. Seien außerdem $L_1$ und $L_p$ definiert wie zuvor mit Dimensionen $n_1$ und $n_p$. Dann gilt:
 		\begin{equation*}
 			L_1^{\#,p} / L_1 \cong \F_p^s \cong L_p^{\#,p} / L_p
@@ -1083,258 +1152,28 @@ Außerdem teilt $p$ den Index $\left[ L_p^{\#, \ell} : L_p \right]$ nicht, da de
 	\caption{Inklusionsverband}\label{abb:inkverb}
 \end{figure}
 
+Ist $\Det(L) = \ell^k$ und $\ell = p_1^{a_1} \dots p_m^{a_m}$ die Primfaktorzerlegung von $\ell$, dann müssen die Determinanten der induzierten Teilgitter die Gestalten
+\begin{equation*}
+	\Det(L_1) = p^s p_1^{c_1} \dots p_m^{c_m}, \quad \Det(L_p) = p^s p_1^{d_1} \dots p_m^{d_m}
+\end{equation*}
+mit $c_i \in \lbrace 0, \dots, \min(n_1, k) \rbrace$, $d_i \in \lbrace 0, \dots, \min(n_p, k) \rbrace$ und $c_i + d_i = k$ für $i \in \underline{m}$ besitzen.
 Diese Überlegungen erlauben uns folgende Definition:
 
 \begin{framed}
 	\begin{definition}
-		Sei $L$ ein gerades Gitter der quadratfreien Stufe $\ell$. Sei weiterhin $\sigma \in \text{Aut}(L)$ von Ordnung $p$ und $L_1$ und $L_p$ mit Dimensionen $n_1$ und $n_p$ wie zuvor die von $\sigma$ induzierten Teilgitter. Die Primfaktorzerlegung von $\ell$ sei gegeben durch $\ell = q_1 \dots q_m$. Ist $\Det(L_1) = p^s q_1^{k_{1,1}} \dots q_m^{k_{1,m}}$ und $\Det(L_p) = p^s q_1^{k_{p,1}} \dots q_m^{k_{p,m}}$, so nennen wir das Tupel
+		Sei $L$ ein gerades Gitter der quadratfreien Stufe $\ell$. Sei weiterhin $\sigma \in \text{Aut}(L)$ von Ordnung $p$ und $L_1$ und $L_p$ mit Dimensionen $n_1$ und $n_p$ wie zuvor die von $\sigma$ induzierten Teilgitter. Die Primfaktorzerlegung von $\ell$ sei gegeben durch $\ell = q_1 \dots q_m$. Ist $\Det(L_1) = p^s q_1^{c_1} \dots q_m^{c_m}$ und $\Det(L_p) = p^s q_1^{d_1} \dots q_m^{d_m}$, so nennen wir das Tupel
 		\begin{equation*}
-			p - (n_1, n_p) - s - q_1 - (k_{1,1}, k_{p,1}) - q_2 - (k_{1,2}, k_{p,2}) - \dots - q_m - (k_{1,m}, k_{p,m})
+			p - (n_1, n_p) - s - q_1 - (c_1, d_1) - q_2 - (c_2, d_2) - \dots - q_m - (c_m, d_m)
 		\end{equation*}
-		den \textit{Typen} von $\sigma$.\par
+		den \textit{Typ} von $\sigma$.\par
 		Ist $m = 1$, also $\ell$ prim, so können wir die Schreibweise verkürzen zu
 		\begin{equation*}
-			p - (n_1, n_p) - s - (k_{1}, k_{p}).
+			p - (n_1, n_p) - s - (c_1, d_1).
 		\end{equation*}
 	\end{definition}
 \end{framed}
 
-Wir können nun einige Einschränkungen an den Typen eines solchen Automorphismus machen.
 
-\begin{framed}
-	\begin{satz}
-		Sei $L$ ein gerades, $n$-dimensionales Gitter der quadratfreien Stufe $\ell$ mit Determinante $\Det(L) = \ell^k$. Sei zudem $\sigma \in \text{Aut}(L)$ von Typ $p - (n_1, n_p) - s - q_1 - (k_{1,1}, k_{p,1}) - \dots - q_m - (k_{1,m}, k_{p,m})$, wobei $\text{ggT}(p, \ell) = 1$. Dann gelten folgende Einschränkungen (für alle $i \in \underline{m}$):
-		\begin{enumerate}[label=(\roman*)]
-			\item $n_1 + n_p = n$.
-			\item $s \in \lbrace 0, \dots, \min(n_1, \frac{n_p}{p-1}) \rbrace$.
-			\item $s \equiv_2 (p-2) \frac{n_p}{p-1}$.
-			\item $k_{1,i} \in \lbrace 0, \dots, \min(n_1, k) \rbrace$.
-			\item $k_{1,i} \equiv_2 k$.
-			\item $k_{p,i} \in \lbrace 0, \dots, \min(n_p, k) \rbrace$.
-			\item $k_{p,i} \equiv_2 0$.
-			\item $\left( 2f(\ell)\right) \vert k_{p,i}$, wobei $f(\ell)$ den Trägheitsgrad von $\ell \Z_{\Q(\zeta_p + \zeta_p^{-1})}$ bezeichne.
-			\item $k_{1,i} + k_{p,i} = k$.
-		\end{enumerate}
-	\end{satz}
-\end{framed}
-
-\begin{beweis}
-	Eigenschaft (i) ist klar, (ii) ist Satz \eqref{th:fps}, Nummer (iv), (vi) und (ix) ergeben sich daraus, dass die Stufen von $L_p$ und $L_1$ Teiler von $p \ell$ sind und der Tatsache, dass $\frac{\Det(L_1) \Det(L_p)}{p^{2s}} = \Det(L)$.\par
-	Nach \cite[Satz (3.1.4)(d) und Lemma (3.1.1)]{juergens} existiert ein $\Z_{\Q(\zeta_p + \zeta_p^{-1})}$-Ideal $\a$ mit
-	\begin{equation*}
-		\Det(L_p) = p^s q_1^{k_{p,1}} \dots q_m^{k_{p,m}} = p^{(p-2)\frac{n_p}{p-1}} \cdot \No(\a)^2.
-	\end{equation*}
-	Daraus folgt sofort Eigenschaft (iii) und mit $\text{ggT}(p, \ell) = 1$ auch (vii). Zuletzt ergibt sich (v) aus (vii) und (ix).
-\end{beweis}
-
-\chapter{Anhang}
-\section{Anhang A: Ergebnissse der Ideal-Gitter-Klassifikation}
-\begin{table}[H]
-	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-		\hline		
-		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{9}{c|}{Minimum}\\ \cline{5-13}
-								&						&							&					&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$	&$16$	&$18$\\ \hline
-		\multirow{10}{*}{$1$}	&$8$					&$1(1)$						&$\Q(\zeta_{15})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$16$					&$1(1)$						&$\Q(\zeta_{40})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{4}{*}{$24$}	&\multirow{4}{*}{$4(1)$}	&$\Q(\zeta_{35})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{45})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{54})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{75})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{4}{*}{$32$}	&\multirow{4}{*}{$7(5)$}	&$\Q(\zeta_{51})$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{68})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{80})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{120})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
-		\multirow{3}{*}{$2$}	&$4$					&$1(1)$						&$\Q(\zeta_{8})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$8$					&$1(1)$						&$\Q(\zeta_{16})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$12$					&$1(1)$						&$\Q(\zeta_{36})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
-	\end{tabular}
-\end{table}
-
-\begin{table}
-	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-		\hline		
-		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{9}{c|}{Minimum}\\ \cline{5-13}
-								&						&							&					&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$	&$16$	&$18$\\ \hline
-		\multirow{14}{*}{$2$}	&\multirow{2}{*}{$16$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{32})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{40})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$20$					&$1(1)$						&$\Q(\zeta_{33})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{2}{*}{$24$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{56})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{72})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{6}{*}{$32$}	&\multirow{6}{*}{$13(4)$}	&$\Q(\zeta_{51})$	&$-$	&$-$	&$3$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{64})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{68})$	&$-$	&$3$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{80})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{120})$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$36$}	&\multirow{3}{*}{$6(3)$}	&$\Q(\zeta_{57})$	&$-$	&$-$	&$3$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{76})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{108})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
-		\multirow{13}{*}{$3$}	&$4$					&$1(1)$						&$\Q(\zeta_{12})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$6$					&$1(1)$						&$\Q(\zeta_{9})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{2}{*}{$12$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{21})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{36})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$3(2)$}	&$\Q(\zeta_{40})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{48})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{60})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$18$					&$1(-)$						&$\Q(\zeta_{27})$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{4}{*}{$24$}	&\multirow{4}{*}{$7(1)$}	&$\Q(\zeta_{39})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{52})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{56})$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{72})$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
-	\end{tabular}
-\end{table}
-
-\begin{table}
-	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-		\hline		
-		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{9}{c|}{Minimum}\\ \cline{5-13}
-								&						&							&					&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$	&$16$	&$18$\\ \hline
-		\multirow{7}{*}{$3$}	&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$13(7)$}	&$\Q(\zeta_{80})$	&$-$	&$2$	&$4$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{96})$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{120})$	&$-$	&$3$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{4}{*}{$36$}	&\multirow{4}{*}{$8(-)$}	&$\Q(\zeta_{57})$	&$-$	&$1$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{63})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{76})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{108})$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
-		\multirow{12}{*}{$5$}	&$8$					&$1(1)$						&$\Q(\zeta_{15})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$12$					&$1(1)$						&$\Q(\zeta_{21})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$16$					&$1(-)$						&$\Q(\zeta_{40})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{5}{*}{$24$}	&\multirow{5}{*}{$5(1)$}	&$\Q(\zeta_{35})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{45})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{56})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{72})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{84})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$10(-)$}	&$\Q(\zeta_{80})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$2$	&$5$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$36$					&$8(-)$						&$\Q(\zeta_{63})$	&$-$	&$1$	&$-$	&$7$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
-		\multirow{8}{*}{$6$}	&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$12$					&$1(1)$						&$\Q(\zeta_{28})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{2}{*}{$16$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{48})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$20$					&$1(1)$						&$\Q(\zeta_{33})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$24$}	&\multirow{3}{*}{$5(2)$}	&$\Q(\zeta_{56})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{72})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{84})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\  \hline
-	\end{tabular}
-\end{table}
-
-\begin{table}
-	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-		\hline		
-		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{9}{c|}{Minimum}\\ \cline{5-13}
-								&						&							&					&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$	&$16$	&$18$\\ \hline
-		\multirow{3}{*}{$6$}	&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$12(-)$}	&$\Q(\zeta_{80})$	&$-$	&$-$	&$1$	&$5$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$-$	&$4$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
-		\multirow{12}{*}{$7$}	&$6$					&$1(1)$						&$\Q(\zeta_{7})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$12$					&$1(-)$						&$\Q(\zeta_{28})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$4(3)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{48})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$20$					&$1(-)$						&$\Q(\zeta_{44})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{2}{*}{$24$}	&\multirow{2}{*}{$8(-)$}	&$\Q(\zeta_{56})$	&$-$	&$1$	&$2$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{72})$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$19(-)$}	&$\Q(\zeta_{80})$	&$-$	&$-$	&$1$	&$1$	&$2$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$2$	&$3$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$2$	&$7$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \hline
-		\multirow{10}{*}{$11$}	&$4$					&$1(1)$						&$\Q(\zeta_{12})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{2}{*}{$8$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{15})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{24})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$10$					&$1(1)$						&$\Q(\zeta_{11})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$12$					&$1(-)$						&$\Q(\zeta_{36})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$5(-)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{48})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{2}{*}{$20$}	&\multirow{2}{*}{$2(-)$}	&$\Q(\zeta_{33})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{44})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\  \hline
-	\end{tabular}
-\end{table}
-
-\begin{table}
-	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-		\hline		
-		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{9}{c|}{Minimum}\\ \cline{5-13}
-								&						&							&					&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$	&$16$	&$18$\\ \hline
-		\multirow{9}{*}{$11$}	&\multirow{5}{*}{$24$}	&\multirow{5}{*}{$7(-)$}	&$\Q(\zeta_{35})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{45})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{56})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{72})$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{84})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$42(-)$}	&$\Q(\zeta_{80})$	&$-$	&$-$	&$1$	&$1$	&$1$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{96})$	&$-$	&$1$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$1$	&$13$	&$18$	&$4$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$36$					&$2(-)$						&$\Q(\zeta_{108})$	&$-$	&$1$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \hline
-		\multirow{10}{*}{$14$}	&$4$					&$1(1)$						&$\Q(\zeta_{8})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{2}{*}{$8$}	&\multirow{2}{*}{$2(1)$}	&$\Q(\zeta_{16})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{24})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$12$					&$1(1)$						&$\Q(\zeta_{28})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{4}{*}{$16$}	&\multirow{4}{*}{$5(-)$}	&$\Q(\zeta_{32})$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{40})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{48})$	&$-$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{2}{*}{$24$}	&\multirow{2}{*}{$8(-)$}	&$\Q(\zeta_{56})$	&$-$	&$-$	&$-$	&$4$	&$-$	&$2$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{72})$	&$-$	&$-$	&$1$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{4}{*}{$32$}	&\multirow{3}{*}{$21(-)$}	&$\Q(\zeta_{64})$	&$-$	&$1$	&$-$	&$-$	&$2$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{80})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$2$	&$1$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{96})$	&$-$	&$-$	&$1$	&$1$	&$2$	&$2$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$-$	&$4$	&$-$	&$5$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$36$					&$36(-)$					&$\Q(\zeta_{57})$	&$-$	&$-$	&$-$	&$-$	&$3$	&$25$	&$8$	&$-$	&$-$\\  \hline
-	\end{tabular}
-\end{table}
-
-\begin{table}
-	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-		\hline		
-		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{9}{c|}{Minimum}\\ \cline{5-13}
-								&						&							&					&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$	&$16$	&$18$\\ \hline
-		\multirow{10}{*}{$15$}	&$8$					&$1(1)$						&$\Q(\zeta_{24})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$3(1)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{48})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$24$}	&\multirow{3}{*}{$5(-)$}	&$\Q(\zeta_{56})$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{72})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{84})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$2$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$23(-)$}	&$\Q(\zeta_{80})$	&$-$	&$-$	&$-$	&$-$	&$2$	&$3$	&$1$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{96})$	&$-$	&$-$	&$1$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$-$	&$4$	&$1$	&$9$	&$1$	&$-$	&$-$\\ \cline{2-13}
-								&$36$					&$4(-)$						&$\Q(\zeta_{76})$	&$-$	&$-$	&$-$	&$-$	&$2$	&$1$	&$-$	&$1$	&$-$\\ \hline
-		\multirow{7}{*}{$23$}	&$4$					&$1(1)$						&$\Q(\zeta_{12})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$8$					&$3(-)$						&$\Q(\zeta_{24})$	&$-$	&$-$	&$1$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$12$					&$1(-)$						&$\Q(\zeta_{36})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$16$}	&\multirow{3}{*}{$5(-)$}	&$\Q(\zeta_{40})$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{48})$	&$-$	&$-$	&$1$	&$2$	&$-$	&$-$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{60})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&$22$					&$2(-)$						&$\Q(\zeta_{23})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$2$	&$-$	&$-$	&$-$\\  \hline
-	\end{tabular}
-\end{table}
-
-\begin{table}
-	\centering
-	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}
-		\hline		
-		\multirow{2}{*}{$\ell$}	&\multirow{2}{*}{Dim}	&\multirow{2}{*}{Gesamtzahl(extremal)}	&\multirow{2}{*}{$K$}	&\multicolumn{9}{c|}{Minimum}\\ \cline{5-13}
-								&						&							&					&$2$	&$4$	&$6$	&$8$	&$10$	&$12$	&$14$	&$16$	&$18$\\ \hline
-		\multirow{9}{*}{$23$}	&\multirow{5}{*}{$24$}	&\multirow{5}{*}{$14(-)$}	&$\Q(\zeta_{39})$	&$-$	&$-$	&$-$	&$-$	&$1$	&$1$	&$-$	&$1$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{52})$	&$-$	&$-$	&$-$	&$-$	&$1$	&$2$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{56})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{72})$	&$-$	&$-$	&$1$	&$2$	&$1$	&$2$	&$-$	&$-$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{84})$	&$-$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$\\ \cline{2-13}
-								&\multirow{3}{*}{$32$}	&\multirow{3}{*}{$20(-)$}	&$\Q(\zeta_{80})$	&$-$	&$-$	&$-$	&$-$	&$1$	&$-$	&$1$	&$1$	&$1$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{96})$	&$-$	&$-$	&$1$	&$2$	&$-$	&$-$	&$2$	&$2$	&$-$\\ \cline{4-13}
-								&						&							&$\Q(\zeta_{120})$	&$-$	&$-$	&$-$	&$-$	&$1$	&$3$	&$1$	&$4$	&$-$\\ \cline{2-13}
-								&$36$					&$2(-)$						&$\Q(\zeta_{108})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$\\ \hline
-	\end{tabular}
-	\caption{Anzahlen der Ideal-Gitter der Stufen $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$ und Determinante $\ell^\frac{n}{2}$ mit Dimensionen $\leq 36$ nach zugehörigem Kreisteilungskörper $K$ und Minimum.}
-\end{table}
 %===================================================================
 % Literatur
 %===================================================================

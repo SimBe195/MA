@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.15)  22 AUG 2018 20:01
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.15)  26 AUG 2018 16:28
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1570,29 +1570,46 @@ LaTeX Font Info:    Font shape `U/msb/m/n' will be
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
 (Font)              scaled to size 6.25204pt on input line 1079.
 [39] [40] [41]
+Underfull \hbox (badness 3291) in paragraph at lines 1156--1159
+\T1/lmr/m/n/12 Nach den ob-ri-gen Über-le-gun-gen kön-nen oh-ne Ein-schrän-kung
+ an-neh-men, dass
+ []
+
+
+Overfull \hbox (16.15364pt too wide) in paragraph at lines 1166--1168
+\T1/lmr/m/n/12 ein Teil-git-ter von $\OML/lmm/m/it/12 M$ \T1/lmr/m/n/12 vom In-
+dex $\OT1/lmr/m/n/12 2$ \T1/lmr/m/n/12 und mit Jor-dan-zer-le-gung $[] \OMS/lms
+y/m/n/12 ? [] []$\T1/lmr/m/n/12 .
+ []
+
+[42] [43]
+Overfull \vbox (36.36555pt too high) has occurred while \output is active []
+
+
+[44] [45]
 chapter 5.
 
-LaTeX Warning: Float too large for page by 25.84953pt on input line 1188.
+LaTeX Warning: Float too large for page by 25.84953pt on input line 1274.
 
 
-LaTeX Warning: Float too large for page by 26.24953pt on input line 1224.
+LaTeX Warning: Float too large for page by 26.24953pt on input line 1310.
 
-[42
+[46
 
-] [43] [44] [45] [46] [47] [48] (./Masterarbeit.bbl
+] [47] [48] [49] [50] [51] [52] (./Masterarbeit.bbl
 chapter 6.
-[49
+[53
 
 ])
 \tf@thm=\write5
 \openout5 = `Masterarbeit.thm'.
 
- [50] (./Masterarbeit.aux) ) 
+ [54] (./Masterarbeit.aux) ) 
 Here is how much of TeX's memory you used:
- 23879 strings out of 492649
- 483417 string characters out of 6129607
- 807956 words of memory out of 5000000
- 27173 multiletter control sequences out of 15000+600000
+ 23883 strings out of 492649
+ 483468 string characters out of 6129607
+ 807995 words of memory out of 5000000
+ 27177 multiletter control sequences out of 15000+600000
  91661 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,16n,67p,9091b,709s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1626,10 +1643,10 @@ ocal/texlive/2018/texmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texli
 ve/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/t
 exlive/2018/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/loc
 al/texlive/2018/texmf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on Masterarbeit.pdf (50 pages, 440387 bytes).
+Output written on Masterarbeit.pdf (54 pages, 452124 bytes).
 PDF statistics:
- 288 PDF objects out of 1000 (max. 8388607)
- 207 compressed objects within 3 object streams
+ 300 PDF objects out of 1000 (max. 8388607)
+ 215 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

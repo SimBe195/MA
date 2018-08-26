@@ -52,6 +52,7 @@ function KneserNeighboringMethod(dim, det, min)
 		if IsEven(L) and Minimum(L) ge min then
     		"Found a new possible candidate for F.";
 			Append(~Candidates, L);
+			break;
 		end if;
 
 		m := 1/AutoSize[1];
@@ -117,6 +118,7 @@ function KneserNeighboringMethod(dim, det, min)
 		        	if IsEven(M) and Minimum(M) ge min then
 		        		"Found a new possible candidate for F.";
 						Append(~Candidates, M);
+						break L;
 					end if;
 
 		        	if m eq Ma then
@@ -133,7 +135,6 @@ function KneserNeighboringMethod(dim, det, min)
 
 	end for;
 
-	PrintFileMagma(Sprintf("Gen_%o_%o", dim, det), Candidates : Overwrite := true);
 	return Candidates;
 end function;
 

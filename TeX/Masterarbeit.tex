@@ -1102,7 +1102,7 @@ Diese Überlegungen erlauben uns folgende Definition:
 Wir können nun einige Einschränkungen an den Typen eines solchen Automorphismus machen.
 
 \begin{framed}
-	\begin{satz}
+	\begin{satz} \label{th:restrict}
 		Sei $L$ ein gerades, $n$-dimensionales Gitter der quadratfreien Stufe $\ell$ mit Determinante $\Det(L) = \ell^k$. Sei zudem $\sigma \in \text{Aut}(L)$ von Typ $p - (n_1, n_p) - s - q_1 - (k_{1,1}, k_{p,1}) - \dots - q_m - (k_{1,m}, k_{p,m})$, wobei $\text{ggT}(p, \ell) = 1$. Dann gelten folgende Einschränkungen (für alle $i \in \underline{m}$):
 		\begin{enumerate}[label=(\roman*)]
 			\item $n_1 + n_p = n$.
@@ -1124,11 +1124,97 @@ Wir können nun einige Einschränkungen an den Typen eines solchen Automorphismu
 	\begin{equation*}
 		\Det(L_p) = p^s q_1^{k_{p,1}} \dots q_m^{k_{p,m}} = p^{(p-2)\frac{n_p}{p-1}} \cdot \No(\a)^2.
 	\end{equation*}
-	Daraus folgt sofort Eigenschaft (iii) und mit $\text{ggT}(p, \ell) = 1$ auch (vii). Zuletzt ergibt sich (v) aus (vii) und (ix).
+	Daraus folgt sofort Eigenschaft (iii) und mit $\text{ggT}(p, \ell) = 1$ auch (vii). Zuletzt ergibt sich (v) aus (vii) und (ix). Teil (viii) ist \cite[Korollar (4.1.9)]{juergens}.
 \end{beweis}
 
+Im Spezialfall $p=2$ hat die Gruppe $M^{\#, 2} / M$ Exponent $2$, mit einer Verallgemeinerung von \cite[Lemma (4.9)]{nebe} können wir eine weitere Einschränkung machen.
+
+\begin{framed}
+	\begin{lemma} \label{lem:2sub}
+		Sei $M$ ein gerades Gitter in einem bilinearen Vektorraum $(V,b)$ und $M^{\#, 2} / M$ habe Exponent $2$. Dann enthält $M$ ein Teilgitter isometrisch zu $\sqrt{2}U$, wobei $U$ ein Gitter mit $U = U^{\#,2}$ ist und der Index $ \left[M :\sqrt{2} U \right]$ eine Zweierpotenz. 
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	Wir betrachten die $2$-adische Jordanzerlegung (vgl. \cite[Kapitel 7]{conway}
+	\begin{equation*}
+		\Z_2 \otimes M \cong f_1 \oplus \sqrt{2} f_2
+	\end{equation*}
+	mit einem geraden Gitter $f_1$ und einem ganzen Gitter $f_2$, sodass $\Det(f_1)$ und  $\Det(f_2)$ teilerfremd zu $2$ sind. Da $f_1$ ein regulärer $\Z_2$-Modul ist, erlaubt uns \cite[Satz (4.1)]{kneser} eine Zerlegung
+	\begin{equation*}
+		f_1 = E_1 \perp E_2 \perp \dots \perp E_m
+	\end{equation*}
+	mit regulären Teilmoduln $E_i$ von Dimension $\leq 2$. Da jedes $E_i$ ein gerades Gitter sein muss, folgt $\text{Dim}(E_i) = 2$ für alle $i=1, \dots, m$. Insbesondere hat $f_1$ die gerade Dimension $2m$.\par
+	Ist $m = 0$, so sind wir fertig mit $U := f_2$. Sei also nun $m > 0$.\\
+	Wir zeigen nun, $f_1$ enthält ein Element $v$ mit $b(v,v) \in 2 \Z_2^\ast$. Dazu schreiben wir $E_1 =  \langle x, y\rangle$ und definieren $s,t$ durch $b(x,x) \in 2^s \Z_2^\ast$ und $b(y,y) \in 2^t \Z_2^\ast$. Ist $s = 1$ oder $t = 1$, so haben wir mit $v := x$ bzw. $v := y$ ein solches Element gefunden. Seien also nun $s,t \geq 2$. Dann folgt
+	\begin{equation*}
+		b(x-y, x-y) = b(x,x) + b(y,y) - 2 b(x,y).
+	\end{equation*}
+	Nun muss $b(x,y)$ in $\Z_2^\ast$ liegen, da sonst die Gram-Matrix von $E_1$ nur gerade Einträge und somit auch eine gerade Determinante hätte. Somit erhalten wir
+	\begin{equation*}
+		b(x-y, x-y) \in 2^s \Z_2^\ast + 2^t \Z_2^\ast + 2 \Z_2^\ast = 2 ( \underbrace{2^{s-1} \Z_2^\ast + 2^{t-1} \Z_2^\ast}_{\subseteq 2 \Z_2} + \Z_2^\ast )  \subseteq 2 \Z_2^\ast.
+	\end{equation*}
+	Damit ist $v := x-y$ ein Element wie gesucht.\\
+	Nach den obrigen Überlegungen können ohne Einschränkung annehmen, dass\linebreak
+	$E_1 = \langle x,v \rangle$, sonst vertausche $x$ und $y$. Setze nun $w := b(v,v) x - b(v,x) v$, dann ist $b(v,w) = b(v,v) b(v,x) - b(v,x) b(v,v) = 0$ und mit $b(x,v) \in \Z_2^\ast$ außerdem 	\begin{equation*}
+		b(w,w) = b(v,v)^2 b(x,x) - b(v,v) b(x,v)^2 \in 2^{2+s} \Z_2^\ast + 2 \Z_2^\ast = 2 \Z_2^\ast.
+	\end{equation*}
+	Nun folgt: $\langle v \rangle \perp  \langle w \rangle \perp E_2 \perp \dots \perp E_m$ ist ein Teilgitter von $f_1$ vom Index $2$ und
+	$\langle v \rangle \perp \langle w \rangle = \sqrt{2} g$ für ein reguläres, ganzes Gitter $g$. Insgesamt ist somit
+	\begin{equation*}
+		U' := \langle v \rangle \perp \langle w \rangle \perp E_2 \perp \dots \perp E_m \perp \sqrt{2}f_2
+	\end{equation*}
+	ein Teilgitter von $M$ vom Index $2$ und mit Jordanzerlegung $\left( E_2 \perp \dots \perp E_m \right) \perp \sqrt{2} \left( g \perp f_2 \right)$. Induktion liefert nun die Behauptung.
+\end{beweis}
+
+Ist $M$ wie im obigen Lemma mit Determinante $2^s a$ für ein ungerades $a \in \N$, dann hat das Gitter $U$ somit Determinante $a$ und Minimum $\Min(U) \geq \frac{\Min(M)}{2}$.
+Wir können nun mithilfe der Einschränkungen aus Satz \eqref{th:restrict}, Lemma \eqref{lem:2sub} und der Hermite-Schranken aus \eqref{tab:hermites} den Algorithmus \eqref{alg:autotypes} entwerfen, welcher die möglichen Automorphismentypen gerader Gitter mit quadratfreier Stufe zurückgibt.
+
+\begin{algorithm}[H]
+	\caption{Aufzählung von Automorphismen-Typen}\label{alg:autotypes}
+	\begin{algorithmic}[1]
+		\State \textbf{Eingabe:} Quadratfreies $\ell \in \N$, $k \in \N$, $n \in \N$, $m \in \N$.
+		\State \textbf{Ausgabe:} Liste aller Typen von Automorphismen mit Primzahlordnung $p$ von geraden Gittern der Stufe $\ell$, Determinante $\ell^k$, Dimension $n$, und Minimum $\geq m$, wobei $\text{ggT}(p, \ell) = 1$.
+		\\
+		\State $\text{Res} \gets \left[ \ \right]$
+		\State $b \gets \text{ Liste von Schranken für die Hermite-Konstante } \gamma_i \text{ für } 1 \leq i \leq n$
+		\State $q_1, \dots, q_m \gets$ Primfaktoren von $\ell$
+		\For{$p \in \mathbb{P}_{\leq n} - \lbrace q_1, \dots, q_m \rbrace$}
+			\State $f := \text{ Trägheitsgrad von } \ell \Z_{\Q(\zeta_p + \zeta_p^{-1})}$
+			\For {$n_p \in \lbrace i(p-1) \mid 1 \leq i \leq \lfloor \frac{n}{p-1} \rfloor \rbrace$}
+				\State $n_1 \gets n - n_p$
+				\For {$(k_{p,1}, k_{p,2}, \dots, k_{p,m}) \in \lbrace (2f)i \mid i \in \lbrace 0, \dots, \lfloor \frac{\text{min}(n_p, k)}{2f} \rfloor\rbrace \rbrace^m$}
+					\State $k_{1,i} \gets k - k_{p,i}, \quad i \in \underline{m}$
+					\If {$\exists i \in \underline{m}: \left(k_{1,i} > \text{min}(n_1, k)\right) \vee \left(k_{1,i} \not\equiv_2 k\right) \vee \left(k_{p,i} \not\equiv_2 0 \right)$}
+						\State \textbf{continue}
+					\EndIf
+					\For {$s \in \lbrace 0, \dots, \text{min}(n_1, \frac{n_p}{p-1}) \rbrace$}
+						\If {$s \not\equiv_2 (p-2)\frac{n_p}{p-1}$} \textbf{continue} \EndIf
+						\State $\gamma_1 \gets \frac{m}{\left(p^s q_1^{k_{1,1}} \dots q_m^{k_{1,m}}\right)^{1/n_1}}$
+						\State $\gamma_p \gets \frac{m}{\left(p^s q_1^{k_{p,1}} \dots q_m^{k_{p,m}}\right)^{1/n_p}}$
+						
+						\If {$\gamma_1 > b_{n_1}$ oder $\gamma_p > b_{n_p}$} \textbf{continue} \EndIf
+						\If {$p = 2$}
+							\State $\gamma_1' \gets \frac{m/2}{\left(q_1^{k_{1,1}} \dots q_m^{k_{1,m}}\right)^{1/n_1}}$
+							\State $\gamma_p' \gets \frac{m/2}{\left(q_1^{k_{p,1}} \dots q_m^{k_{p,m}}\right)^{1/n_p}}$
+							\If {$\gamma_1' > b_{n_1}$ oder $\gamma_p' > b_{n_p}$} \textbf{continue} \EndIf
+						\EndIf
+						\State $\text{Res} \gets \text{Res} \cup \left[ p - (n_1, n_p) - s - q_1 - (k_{1,1}, k_{p,1}) - \dots - (k_{1,m}, k_{p,m}) \right]$
+					\EndFor
+				\EndFor 
+			\EndFor
+		\EndFor
+		\State \Return Res
+	\end{algorithmic}
+\end{algorithm}
+
+Wir haben in diesem Kapitel die möglichen Typen von Automorphismen mit Primzahlordnung studiert und Aussagen über die Determinanten der induzierten Teilgitter getroffen. Als nächstes beschreiben wir, wie wir mithilfe der Kneser'schen Nachbarschaftsmethode alle Gitter in fester (kleiner) Dimension und Determinante klassifizieren können.
+
+\section{Kneser-Nachbarschaftsmethode}
+
+
 \chapter{Anhang}
-\section{Anhang A: Ergebnissse der Ideal-Gitter-Klassifikation}
+\section*{Anhang A: Ergebnissse der Ideal-Gitter-Klassifikation}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}

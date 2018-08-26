@@ -12,6 +12,6 @@
 \contentsline {chapter}{\numberline {4}Sub-Ideal-Gitter}{31}
 \contentsline {section}{\numberline {4.1}Einf\IeC {\"u}hrung}{31}
 \contentsline {section}{\numberline {4.2}Automorphismen von Primzahlordnung}{32}
-\contentsline {chapter}{\numberline {5}Anhang}{42}
-\contentsline {section}{\numberline {5.1}Anhang A: Ergebnissse der Ideal-Gitter-Klassifikation}{42}
-\contentsline {chapter}{\numberline {6}Literaturverzeichnis}{49}
+\contentsline {section}{\numberline {4.3}Kneser-Nachbarschaftsmethode}{45}
+\contentsline {chapter}{\numberline {5}Anhang}{46}
+\contentsline {chapter}{\numberline {6}Literaturverzeichnis}{53}

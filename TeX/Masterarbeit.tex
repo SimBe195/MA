@@ -1,4 +1,4 @@
-\documentclass[12pt,a4paper,halfparskip,headsepline, bibtotocnumbered]{scrreprt}
+\documentclass[12pt,a4paper,halfparskip,headsepline,bibtotocnumbered]{scrreprt}
 
 % ========== Pakete einbinden ==========
 \usepackage[utf8]{inputenc}          % um Umlaute direkt eingeben zu können
@@ -126,6 +126,7 @@
 \newcommand{\C}{\mathbb{C}}
 \newcommand{\G}{\mathbb{G}}
 \newcommand{\F}{\mathbb{F}}
+\renewcommand{\P}{\mathbb{P}}
 \newcommand{\B}{\mathcal{B}}
 \newcommand{\No}{\mathcal{N}}
 \newcommand{\Det}{\text{Det}}
@@ -1136,9 +1137,9 @@ Im Spezialfall $p=2$ hat die Gruppe $M^{\#, 2} / M$ Exponent $2$, mit einer Vera
 \end{framed}
 
 \begin{beweis}
-	Wir betrachten die $2$-adische Jordanzerlegung (vgl. \cite[Kapitel 7]{conway}
+	Wir betrachten die $2$-adische Jordanzerlegung (vgl. \cite[(7.1)]{conway})
 	\begin{equation*}
-		\Z_2 \otimes M \cong f_1 \oplus \sqrt{2} f_2
+		\Z_2 \otimes M \cong f_1 \perp \sqrt{2} f_2
 	\end{equation*}
 	mit einem geraden Gitter $f_1$ und einem ganzen Gitter $f_2$, sodass $\Det(f_1)$ und  $\Det(f_2)$ teilerfremd zu $2$ sind. Da $f_1$ ein regulärer $\Z_2$-Modul ist, erlaubt uns \cite[Satz (4.1)]{kneser} eine Zerlegung
 	\begin{equation*}
@@ -1208,13 +1209,195 @@ Wir können nun mithilfe der Einschränkungen aus Satz \eqref{th:restrict}, Lemm
 	\end{algorithmic}
 \end{algorithm}
 
-Wir haben in diesem Kapitel die möglichen Typen von Automorphismen mit Primzahlordnung studiert und Aussagen über die Determinanten der induzierten Teilgitter getroffen. Als nächstes beschreiben wir, wie wir mithilfe der Kneser'schen Nachbarschaftsmethode alle Gitter in fester (kleiner) Dimension und Determinante klassifizieren können.
+Wir haben in diesem Kapitel die möglichen Typen von Automorphismen mit Primzahlordnung studiert und Aussagen über die Determinanten der induzierten Teilgitter getroffen. Als nächstes definieren wir den Begriff des \textit{Geschlechts} von Gittern und beschreiben eine Möglichkeit zur Aufzählung eines Geschlechts
+
+\section{Geschlechter}
+
+\begin{framed}
+	\begin{definition}
+		Wir sagen, zwei ganze Gitter $L$ und $L'$ liegen im selben \textit{Geschlecht}, wenn
+		\begin{equation*}
+			\R \otimes L \cong \R \otimes L' \quad \text{und} \quad \Z_p \otimes L \cong \Z_p \otimes L' \text{ für alle } p \in \P. 
+		\end{equation*}
+		Dabei bezeichnet $\Z_p$ den Ring der $p$-adischen ganzen Zahlen.
+	\end{definition}
+\end{framed}
+
+Conway und Sloane geben in\cite[Kap. 15, Abs. 7]{conway} eine trennende Invariante der Geschlechter von Gittern an, das sogenannte \textit{Geschlechtssymbol}. Dessen Gestalt und Eigenschaften werden im Folgenden erläutert.\par
+Das gesamte Symbol setzt sich aus mehreren lokalen Symbolen zusammen; eines für jede Primzahl und eines für $(-1)$.\\
+Sei $L$ ein ganzes Gitter in einem bilinearen $\Q$-Vektorraum $(V,b)$. Das $(-1)$-adische Symbol ist von der Gestalt
+\begin{equation*}
+	+^r -^s
+\end{equation*}
+und beschreibt die Signatur der Bilinearform $b$.\par
+Für die $p$-adischen Symbole, wobei $p \in \P$, betrachte die Jordanzerlegung
+\begin{equation*}
+	\Z_p \otimes L \cong f_1 \perp \sqrt{p} f_p \perp \dots \perp \sqrt{p}^k f_{p^k}
+\end{equation*}
+Klar ist: haben zwei Gitter die gleiche Signatur und über allen Primzahlen die gleiche Jordanzerlegung, so liegen sie im gleichen Geschlecht. Leider ist die Jordanzerlegung im allgemeinen nicht eindeutig, es ist jedoch bekannt, inwiefern sich zwei unterschiedliche Jordanzerlegungen desselben Gitters unterscheiden.\\
+Für $p > 2$ ist die Zerlegung eindeutig bis auf die Determinanten der Teilgitter $f_1, \dots f_{p^k}$, welche sich um ein Quadrat unterscheiden können. Genauer: definiere die Invarianten
+\begin{equation*}
+	n_q := \text{dim}(f_q), \quad \epsilon_q := \left( \frac{\Det(f_q)}{p} \right) := \begin{cases} +1 &,\ \Det(f_q) \in (\Z_p^\ast)^2 \\ -1 &,\ \Det(f_q) \not\in (\Z_p^\ast)^2 \end{cases}
+\end{equation*}
+für $q \in \lbrace 1, p, \dots, p^k \rbrace$, dann sind zwei Gitter genau dann isometrisch über $\Z_p$, wenn sie dieselben Invarianten $n_q$ und $\epsilon_q$ haben. Wir definieren nun das $p$-adische Symbol für $p > 2$ als das formale Produkt
+\begin{equation*}
+	1^{\epsilon_1 n_1}\ p^{\epsilon_p n_p} \dots \left(p^k\right)^{\epsilon_{p^k} n_{p^k}}.
+\end{equation*}
+Beispielsweise bedeutet das Symbol $1^{-2} 3^{+5}$, dass jede Jordanzerlegung des Gitters die Form $\Z_3 \otimes L \cong f_1 \perp \sqrt{3} f_3$ besitzt mit $\text{dim}(f_1) = 2$, $\text{dim}(f_3) = 5$, außerdem $\Det(f_1)$ kein Quadrat, aber $\Det(f_3)$ ein Quadrat mod $3$.\par
+Der Fall $p=2$ ist aufwändiger. Da $b$ ursprünglich eine Bilinearform über $\Q$ ist, können wir sie nach \cite[Satz (1.20)]{kneser} diagonalisieren. Sei $G_q$ jeweils die diagonalisierte Matrix der Bilinearform auf dem zu $f_q$ gehörigen Teilraum. Wir definieren
+\begin{align*}
+	n_q &:= \text{dim}(f_i)\\
+	S_q &:= \begin{cases} I&,\ f_q \text{ ist kein gerades Gitter}\\ II &,\ f_q \text{ ist gerades Gitter} \end{cases}\\
+	\epsilon_q &:= \left( \frac{\Det(f_q)}{2} \right) := \begin{cases} +1 &,\ \Det(f_q) \equiv_8 \pm 1\\ -1 &,\ \Det(f_q) \equiv_8 \pm 3 \end{cases}\\
+	t_q &:= \begin{cases} \text{Spur}(G_q) \text{ mod } 8 &,\ S_q = I\\ 0 &,\ S_q = II\end{cases}
+\end{align*}
+für $q \in \lbrace 1, 2, 4, \dots, 2^k \rbrace$. Wir erhalten nun das vorläufige Symbol
+\begin{equation*}
+	1_{t_1 / II}^{\epsilon_1 n_1}\ 2_{t_2 / II}^{\epsilon_2 n_2} \dots \left( 2^k \right)_{t_{2^k} / II}^{\epsilon_{2^k} n_{2^k}}
+\end{equation*}
+Wobei der Index für Komponenten mit $S_q = I$ den Wert $t_q$ darstellt und andernfalls $II$ ist. Dieses Symbol ist noch immer nicht eindeutig, wir benötigen zusätzliche Normierungsbedingungen. Wir fassen nun maximale Teilintervalle mit der Eigenschaft, dass alle Faktoren in den Intervallen den Typ $S_q = I$ haben (mit eckigen Klammern) zu sogenannten \textit{Abteilen} zusammen. Außerdem trennen wir (mit Doppelpunkten) das Symbol in maximale Teilintervalle, genannt \textit{Züge}, sodass in jedem Zug mindestens einer von je zwei aufeinanderfolgenden Faktoren den Typ $S_q = I$ hat. Beispielsweise wird so das Symbol
+\begin{equation}\label{symbol}
+	1_{II}^{+2}\ 2_6^{-2}\ 4_5^{+3}\ 8_{II}^{+0}\ 16_{II}^{+1}\ 32_{II}^{+2}\ 64_{3}^{+1}
+\end{equation}
+zu
+\begin{equation*}
+	1_{II}^{+2} \left[ 2_6^{-2}\ 4_5^{+3} \right] 8_{II}^{+0} : 16_{II}^{+1} : 32_{II}^{+2} \left[ 64_{3}^{+1} \right].
+\end{equation*}
+Es gibt nun genau zwei mögliche Transformationen des Symbols, sodass diese Jordanzerlegungen desselben Gitters entsprechen.\\
+Erstens stellen zwei solche Symbole das gleiche Gitter dar, wenn sie sich nur durch Änderungen der $t_q$ bei den Typ-$I$-Faktoren unterscheidet, die Summen aller $t_q$ pro Abteil jedoch kongruent sind modulo $8$. Nach dieser Regel genügt es also, im $2$-adischen Symbol jeweils nur einen Index pro Abteil anzugeben, der die Summe der enthaltenen $t_q$ modulo $8$ darstellt.\\
+Zweitens sind zwei Symbole äquivalent, sie durch beliebig häufige Anwendung der folgenden Schritte auseinander hervorgehen:
+\begin{itemize}
+	\item Wähle $2^{k_1} < 2^{k_2} \in \lbrace 1, 2, \dots, 2^k \rbrace$ so, dass die zugehörigen Komponenten im selben Zug liegen.
+	\item Setzte $\epsilon_{2^{k_1}} = - \epsilon_{2^{k_1}}$ und $\epsilon_{2^{k_2}} = - \epsilon_{2^{k_2}}$.
+	\item Definiere den Weg $W := \lbrace (a,2a) \mid a = k_1, 2 k_1, \dots, \frac{1}{2}k_2 \rbrace$.
+	\item In jedem Abteil, sodass $\vert \lbrace (a, 2a) \in W \mid a \text{ oder } 2a \text{ im Abteil} \rbrace \vert$ ungerade, ändere die Werte $t_q$ aller Komponenten so, dass die Summe dieser sich um genau $4$ modulo $8$ unterscheidet.
+\end{itemize}
+Beispielsweise korrespondieren die Symbole
+\begin{equation*}
+	1_{II}^{+2} \left[ 2^{-2}\ 4^{+3} \right]_3 8_{II}^{+0} \left[ 16^{-1} \right]_5
+\end{equation*}
+und
+\begin{equation*}
+	1_{II}^{+2} \left[ 2^{+2}\ 4^{+3} \right]_3 8_{II}^{+0} \left[ 16^{+1} \right]_1
+\end{equation*}
+zum gleichen Gitter. Es wurden die Vorzeichen bei $2$ und $16$ verändert. Dabei involvieren zwei Schritte das erste Abteil und ein Schritt das zweite Abteil, also muss der Index des zweiten Abteils um $4$ geändert werden, der Index des ersten Abteils jedoch nicht.\\
+Als Normierungsbedingung für diese Transformation können wir fordern, dass jeder Zug höchstens einmal das Vorzeichen $\epsilon_q = -1$ enthalten soll und dass dieses bei der ersten Komponente von Dimension $n_q > 0$ auftritt. Dies schließt die Beschreibung des $2$-adischen Symbols ab. Es können bloß noch kosmetische Änderungen vorgenommen werden, so wie das Auslassen der Komponenten von Dimension $0$. So hat beispielsweise das fertige $2$-adische Symbol von \eqref{symbol} die Form
+\begin{equation*}
+	1^{-2} \left[2^{+2} 4^{+3} \right]_7 : 16^{+1} : 32^{+2} \left[ 64^{+1} \right]_3.
+\end{equation*}
+Als nächstes stellt sich andersherum die Frage, zu welchen möglichen Symbolen überhaupt Gitter existieren können. Dazu müssen folgende Bedingungen erfüllt sein.
+\begin{enumerate}[label=(\roman*)]
+	\item Für alle $p \in \P$ gilt $\prod_{q \in \lbrace 1, p, p^2, \dots \rbrace} \epsilon_q = \left( \frac{a}{p} \right)$, wobei $\Det(L) = p^\alpha a$ und $\text{ggT}(p,a) = 1$.
+	\item Sei für $p \in \P$ der Wert $k_p$ definiert als die Anzahl der Potenzen $q$ von $p$, sodass $q$ kein Quadrat ist, aber $\epsilon_q = -1$. Dann ist
+		\begin{equation*}
+			r - s + \sum_{p > 2} \left( 4 k_p + \sum_{q \in \lbrace 1, p, p^2, \dots \rbrace} n_q (q-1) \right) \equiv 4 k_2 + \sum_{q \in \lbrace 1, 2, 4, \dots \rbrace} t_q \quad \text{(mod } 8 \text{).}
+		\end{equation*}
+	\item Für alle $q$ mit $n_q = 0$ gilt $\epsilon_q = +1$.
+	\item Sei $q$ eine Zweierpotenz. Dann:
+		\begin{itemize}
+			\item $n_q = 0 \Rightarrow S_q = II$ und $\epsilon_q = +1$.
+			\item $n_q = 1, \epsilon_q = +1 \Rightarrow t_q \equiv_8 \pm 1$
+			\item $n_q = 1, \epsilon_q = -1 \Rightarrow t_q \equiv_8 \pm 3$
+			\item $n_q = 2, S_q = I, \epsilon_q = +1 \Rightarrow t_q \equiv_8 0$ oder $\pm 2$
+			\item $n_q = 2, S_q = I, \epsilon_q = -1 \Rightarrow t_q \equiv_8 4$ oder $\pm 2$
+			\item $n_q \equiv_2 t_q$
+			\item $n_q$ ungerade $\Rightarrow S_q = I$.
+		\end{itemize}
+\end{enumerate}
+
+Erfüllt ein System von $p$-adischen Symbolen für $p \in \P \cup \lbrace -1 \rbrace$ all diese Bedingungen, dann exisitiert ein ganzes Gitter mit diesem Symbolen.\par
+Wir können nun alle lokalen Symbole zum gesamten Geschlechtssymbol kombinieren. Dieses hat die Form
+\begin{equation*}
+	I_{r,s}(...), \quad \text{bzw.}\quad II_{r,s}(...).
+\end{equation*}
+Wobei $I/II$ dem Typen $S_1$ entspricht, $r,s$ der reellen Signatur und die Klammern die $p$-adischen Symbole für $p \in \P$ enthalten. Dabei werden die Komponenten zur Potenz $0$ jeweils ausgelassen, deren Invarianten lassen sich jedoch mithilfe der Dimension und Determinante von $L$, sowie den angegebenen Bedingungen an die $p$-adischen Symbole bei Bedarf herleiten.
+
+\begin{beispiel}
+	Das Gitter $L := A_2 \times D_4$ hat Dimension $8$ und Determinante $2^4 3^4$. Über $\Z_2$ hat es eine Jordanzerlegung
+	\begin{equation*}
+		\Z_2 \otimes L \cong f_1 \perp \sqrt{2} f_2,
+	\end{equation*}
+	wobei $f_1$ und $f_2$ gerade Gitter sind, $\text{dim}(f_2) = 4$ und $\Det(f_2) = 225 \equiv_8 1$. Über $\Z_3$ hat es eine Zerlegung
+	\begin{equation*}
+		\Z_3 \otimes L \cong g_1 \perp \sqrt{3} g_2,
+	\end{equation*}
+	wobei $\text{dim}(g_2) = 4$ und $\Det(g_2) = 1$, also ein Quadrat in $\Z_3^\ast$, ist. Das Geschlecht von $L$ hat somit das Geschlechtssymbol
+	\begin{equation*}
+		II_8(2^{+4}\ 3^{+4}).
+	\end{equation*}
+\end{beispiel}
 
 \section{Kneser-Nachbarschaftsmethode}
 
+Wir kommen nun zur Aufzählung aller Gitter eines gegebenen Geschlechtes. Kneser beschreibt in \cite[Abschnitt 28]{kneser} eine Methode, welche Gitter in \textit{Spinorgeschlechtern} mithilfe einer Nachbar-Konstruktion aufzählt.
+
+\begin{framed}
+	\begin{definition}
+		Sei $p$ eine Primzahl, sowie $L$ und $M$ $\Z$-Gitter im gleichen Vektorraum. Man bezeichnet $L$ und $M$ als \textit{$p$-Nachbarn}, falls $\left[ L : L \cap M \right] = p = \left[ M : L \cap M \right]$.\par
+		Sei $\mathcal{G}$ ein Geschlecht und $C$ die Menge aller Isometrie-Klassen von Gittern in $\mathcal{G}$. Der Graph mit Knotenmenge $C$ und Kanten zwischen $C_1, C_2 \in C$ genau dann, wenn $C_1$ und $C_2$ $p$-Nachbarn sind, heißt \textit{Nachbarschafts-Graph} bezüglich $p$.
+	\end{definition}
+\end{framed}
+
+Kneser beschreibt, wie die Menge aller $p$-Nachbarn eines gegebenen Gittes $L$ gebildet werden kann.  Nach \cite{scharlau} ist der Nachbarschafts-Graph endlich. Außerdem gilt der folgende Satz:
+
+\begin{framed}
+	\begin{satz}
+		Sei $L$ ein Gitter von Dimension $\geq 3$. Hat für jede Primzahl $q \in \P$ die Jordanzerlegung von $\Z_q L$ mindestens eine Komponente von Dimension $\geq 2$, so besteht jeder Nachbarschafts-Graph von $L$ aus genau einer Zusammenhangskomponente.
+	\end{satz}
+\end{framed}
+
+Diese recht schwache Bedingung ist für alle von uns zu untersuchende Geschlechter erfüllt, also können wir durch sukzessive Nachbar-Bildung das gesamte Geschlecht aufzählen. Als Heuristik, um auszuwählen, für welchen Knoten als nächstes die Nachbarn konstruiert werden, verwenden wir die Häufigkeit mit der ein Gitter bisher gefunden wurde - unter den am seltensten gefundenen Gittern wird zufällig eines ausgewählt. Es sind noch andere Strategien denkbar, wie beispielsweise eine einfache Breiten- oder Tiefensuche, oder Auswählen eines Gitters mit der größten Automorphismengruppe. Des Weiteren können wir als Abbruchbedingung das sogenannte \textit{Maß} eines Geschlechtes benutzen (vgl. \cite[Abschnitt 35]{kneser}).
+
+\begin{framed}
+	\begin{definition}
+		Es sei $\mathcal{G}$ ein Geschlecht von Gittern und $L_1, \dots, L_h$ ein Vertretersystem der Isometrieklassen von Gittern in $\mathcal{G}$. Der Wert
+		\begin{equation*}
+			\text{Maß}(\mathcal{G}) = \sum_{i=1}^h \frac{1}{\vert \text{Aut}(L_i) \vert}
+		\end{equation*}
+		heißt das \textit{Maß} des Geschlechtes $\mathcal{G}$.
+	\end{definition}
+\end{framed}
+
+Das Maß eines Geschlechtes kann ohne tatsächliche Aufzählung mithilfe der \textit{Maßformel} berechnet werden. Indem wir die Kehrwerte der Ordnungen der Automorphismengruppen aller bisher gefundenen Gitter während des Algorithmus aufaddieren, können wir also über die Differenz zum tatsächlichen Maß feststellen, ob wir bereits alle Isometrieklassen gefunden haben. Zusätzlich können wir eine weitere nützliche Einschränkung machen: haben wir bisher Gitter $L_1, \dots, L_{h'}$ gefunden und ist $m := \sum_{i=1}^{h'} \frac{1}{\vert \text{Aut}(L_i) \vert}$, so muss jedes weitere Gitter $M$ im Geschlecht eine Automorphismengruppe mit $\vert \text{Aut}(M) \vert \geq \frac{1}{\text{Maß}(\mathcal{G}) - m}$ besitzen. Sobald das verbleibende Maß also kleiner als $1$ ist, können wir bei gefundenen Nachbarn mit zu kleiner Automorphismengruppe Isometrietests sparen. Insgesamt kommen wir so auf Algorithmus \eqref{alg:knesneigh} zur Aufzählung eines Geschlechtes anhand eines Vertreters. Für die Bestimmung eines Vertreters zu einem gegebenen Geschlechtssymbol wird ein \texttt{MAGMA}-Programm aus der Diplomarbiet von David Lorch \cite{lorch} verwendet.
+
+\begin{algorithm}[H]
+	\caption{Aufzählung aller Isometrieklassen eines Geschlechtes}\label{alg:knesneigh}
+	\begin{algorithmic}[1]
+		\State \textbf{Eingabe}: Gitter $L$.
+		\State \textbf{Ausgabe}: Liste von Vertretern aller Isometrieklassen im Geschlecht von $L$.
+		\\
+		\State $\mathcal{G} \gets \text{ Geschlecht von } L$
+		\State $M \gets \text{Maß}(\mathcal{G})$
+		\State $m \gets \frac{1}{\vert \text{Aut} (L) \vert}$
+		\State $Gen \gets \left[ L\right]$
+		\State $Explored \gets \left[ false \right]$
+		\State $NumFound \gets \left[ 1 \right]$
+		\While {$m < M$}
+			\State $RareFound \gets \lbrace i \mid \neg Explored[i] \wedge NumFound[i] \leq NumFound[j]\  \forall j\rbrace$
+			\State $i \gets \text{ zufälliges Element aus } RareFound$
+			\State $Neigh \gets 2\text{-Nachbarn von } Gen[i]$
+			\State $Explored[i] \gets true$
+			\For {$N \in Neigh$}
+				\State $MinAuto \gets \frac{1}{M-m}$
+				\If {$\vert \text{Aut}(N) \vert < MinAuto$}
+					\State \textbf{continue}
+				\EndIf
+				\If {$\exists j : Gen[j] \cong N$}
+					\State $NumFound[j] \gets NumFound[j] + 1$
+				\Else
+					\State $Gen \gets Gen \cup \left[ N \right]$
+					\State $Explored \gets Explored \cup \left[ false \right]$
+					\State $NumFound \gets NumFound \cup \left[ 1 \right]$
+				\EndIf
+			\EndFor
+		\EndWhile
+		\State \Return $Gen$
+	\end{algorithmic}
+\end{algorithm}
+
 
 \chapter{Anhang}
-\section*{Anhang A: Ergebnissse der Ideal-Gitter-Klassifikation}
+\section{Ergebnisse der Ideal-Gitter-Klassifikation}
 \begin{table}[H]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|}

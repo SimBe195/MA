@@ -26,6 +26,11 @@
 \newblock {\em {Q}uadratische {F}ormen}.
 \newblock {S}pringer, 2002.
 
+\bibitem[{L}or11]{lorch}
+{D}avid {L}orch.
+\newblock {E}inklassige {G}eschlechter positiv definiter dreidimensionaler
+  {G}itter, 2011.
+
 \bibitem[{M}ol11]{Mollin}
 {R}ichard~{A}. {M}ollin.
 \newblock {\em {A}lgebraic number theory}.
@@ -52,5 +57,10 @@
 {H}.~{G}. {Q}uebbemann.
 \newblock {M}odular {L}attices in {E}uclidean {S}paces.
 \newblock {\em {J}ournal of {N}umber {T}heory}, 54:190--202, 1995.
+
+\bibitem[SH98]{scharlau}
+{R}udolf {S}charlau and {B}oris {H}emkemeier.
+\newblock {C}lassification of integral lattices with large class number.
+\newblock {\em {M}athematics of computation}, 67(222):737--749, {A}pril 1998.
 
 \end{thebibliography}

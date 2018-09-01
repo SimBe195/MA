@@ -5,45 +5,47 @@ The style file: alpha.bst
 Database file #1: Quellen.bib
 Warning--I'm ignoring Mollin's extra "edition" field
 --line 117 of file Quellen.bib
-You've used 10 entries,
+Warning--entry type for "lorch" isn't style-file defined
+--line 195 of file Quellen.bib
+You've used 12 entries,
             2543 wiz_defined-function locations,
-            620 strings with 5595 characters,
-and the built_in function-call counts, 3276 in all, are:
-= -- 317
-> -- 124
-< -- 7
-+ -- 36
-- -- 36
-* -- 209
-:= -- 555
-add.period$ -- 31
-call.type$ -- 10
-change.case$ -- 51
-chr.to.int$ -- 10
-cite$ -- 10
-duplicate$ -- 145
-empty$ -- 262
-format.name$ -- 52
-if$ -- 668
+            633 strings with 5870 characters,
+and the built_in function-call counts, 3940 in all, are:
+= -- 381
+> -- 151
+< -- 8
++ -- 44
+- -- 44
+* -- 254
+:= -- 663
+add.period$ -- 36
+call.type$ -- 12
+change.case$ -- 62
+chr.to.int$ -- 12
+cite$ -- 12
+duplicate$ -- 170
+empty$ -- 317
+format.name$ -- 63
+if$ -- 805
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 12
-newline$ -- 54
-num.names$ -- 30
-pop$ -- 62
+missing$ -- 13
+newline$ -- 63
+num.names$ -- 36
+pop$ -- 75
 preamble$ -- 1
-purify$ -- 64
+purify$ -- 77
 quote$ -- 0
-skip$ -- 110
+skip$ -- 134
 stack$ -- 0
-substring$ -- 160
-swap$ -- 12
-text.length$ -- 7
-text.prefix$ -- 6
+substring$ -- 195
+swap$ -- 14
+text.length$ -- 8
+text.prefix$ -- 7
 top$ -- 0
-type$ -- 64
+type$ -- 80
 warning$ -- 0
-while$ -- 28
-width$ -- 11
-write$ -- 131
-(There was 1 warning)
+while$ -- 34
+width$ -- 14
+write$ -- 154
+(There were 2 warnings)

@@ -1,17 +1,19 @@
 \babel@toc {ngerman}{}
-\contentsline {chapter}{\numberline {1}Einleitung}{3}
-\contentsline {chapter}{\numberline {2}Grundbegriffe}{4}
-\contentsline {section}{\numberline {2.1}Quadratische Vektorr\IeC {\"a}ume}{4}
-\contentsline {section}{\numberline {2.2}Modulare Gitter}{7}
-\contentsline {chapter}{\numberline {3}Ideal-Gitter}{13}
-\contentsline {section}{\numberline {3.1}Definitionen}{13}
-\contentsline {section}{\numberline {3.2}Strategie zur Klassifikation}{16}
-\contentsline {section}{\numberline {3.3}Die Klassengruppe}{20}
-\contentsline {section}{\numberline {3.4}Total-positive Erzeuger}{21}
-\contentsline {section}{\numberline {3.5}Finaler Algorithmus und Ergebnisse}{28}
-\contentsline {chapter}{\numberline {4}Sub-Ideal-Gitter}{31}
-\contentsline {section}{\numberline {4.1}Einf\IeC {\"u}hrung}{31}
-\contentsline {section}{\numberline {4.2}Automorphismen von Primzahlordnung}{32}
-\contentsline {section}{\numberline {4.3}Kneser-Nachbarschaftsmethode}{45}
-\contentsline {chapter}{\numberline {5}Anhang}{46}
-\contentsline {chapter}{\numberline {6}Literaturverzeichnis}{53}
+\contentsline {chapter}{\numberline {1}Einleitung}{4}
+\contentsline {chapter}{\numberline {2}Grundbegriffe}{5}
+\contentsline {section}{\numberline {2.1}Quadratische Vektorr\IeC {\"a}ume}{5}
+\contentsline {section}{\numberline {2.2}Modulare Gitter}{8}
+\contentsline {chapter}{\numberline {3}Ideal-Gitter}{14}
+\contentsline {section}{\numberline {3.1}Definitionen}{14}
+\contentsline {section}{\numberline {3.2}Strategie zur Klassifikation}{17}
+\contentsline {section}{\numberline {3.3}Die Klassengruppe}{21}
+\contentsline {section}{\numberline {3.4}Total-positive Erzeuger}{22}
+\contentsline {section}{\numberline {3.5}Finaler Algorithmus und Ergebnisse}{29}
+\contentsline {chapter}{\numberline {4}Sub-Ideal-Gitter}{32}
+\contentsline {section}{\numberline {4.1}Einf\IeC {\"u}hrung}{32}
+\contentsline {section}{\numberline {4.2}Automorphismen von Primzahlordnung}{33}
+\contentsline {section}{\numberline {4.3}Geschlechter}{46}
+\contentsline {section}{\numberline {4.4}Kneser-Nachbarschaftsmethode}{51}
+\contentsline {chapter}{\numberline {5}Anhang}{55}
+\contentsline {section}{\numberline {5.1}Ergebnisse der Ideal-Gitter-Klassifikation}{55}
+\contentsline {chapter}{\numberline {6}Literaturverzeichnis}{62}

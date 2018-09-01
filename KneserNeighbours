@@ -133,7 +133,7 @@ function KneserNeighboringMethod(dim, det, min)
 
 	end for;
 
-	PrintFileMagma(Sprintf("Gen_%o_%o", dim, det), Candidates : Overwrite := true);
+	//PrintFileMagma(Sprintf("Gen_%o_%o", dim, det), Candidates : Overwrite := true);
 	return Candidates;
 end function;
 

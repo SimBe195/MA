@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.15)  1 SEP 2018 16:21
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.15)  4 SEP 2018 17:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1291,26 +1291,26 @@ File: block.tss 2016/03/15
 (./Masterarbeit.aux)
 \openout1 = `Masterarbeit.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 150.
-LaTeX Font Info:    ... okay on input line 150.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 150.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 150.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 159.
+LaTeX Font Info:    ... okay on input line 159.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 159.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 159.
 
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    ... okay on input line 159.
 
 
 Package scrpage2 Warning: seems you are using a very small headheight.
@@ -1396,7 +1396,7 @@ ABD: EveryShipout initializing macros [1
 
 
 {/usr/local/texlive/2018/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+lmss on input line 179.
+LaTeX Font Info:    Try loading font information for T1+lmss on input line 188.
 
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmss.fd
@@ -1473,13 +1473,13 @@ chapter 2.
 [5
 
 ]
-LaTeX Font Info:    Try loading font information for U+fplmbb on input line 224
+LaTeX Font Info:    Try loading font information for U+fplmbb on input line 233
 .
  (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/ufplmbb.fd
 File: ufplmbb.fd 2003/10/30 Fontinst v1.914 font definitions for U/fplmbb.
 ) [6]
 [7] [8] [9] [10] [11]
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 379.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 388.
 
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/ts1lmr.fd
@@ -1489,7 +1489,7 @@ chapter 3.
 [14
 
 ]
-Overfull \hbox (3.61917pt too wide) in paragraph at lines 435--437
+Overfull \hbox (3.61917pt too wide) in paragraph at lines 444--446
 \T1/lmr/m/n/12 lent da-zu, dass ein total-positives Ele-ment $\OML/lmm/m/it/12 
  \OMS/lmsy/m/n/12 2 \OML/lmm/m/it/12 K[]$ \T1/lmr/m/n/12 exis-tiert mit $\OML/
 lmm/m/it/12 b\OT1/zplm/m/n/12 (\OML/lmm/m/it/12 x\OT1/lmr/m/n/12 , \OML/lmm/m/i
@@ -1498,30 +1498,30 @@ t/12 y\OT1/zplm/m/n/12 ) = [][](\OML/lmm/m/it/12 x[]\OT1/zplm/m/n/12 )$\T1/lmr
  []
 
 [15] [16] [17]
-Overfull \hbox (0.31564pt too wide) in paragraph at lines 501--502
+Overfull \hbox (0.31564pt too wide) in paragraph at lines 510--511
 []\T1/lmr/m/n/12 Wir kön-nen nun das Du-al ei-nes Ide-al-git-ters mit-hil-fe de
 r in-ver-sen Dif-fe-ren-te aus-drücken. 
  []
 
 [18] [19] [20] [21] [22]
-Underfull \hbox (badness 10000) in paragraph at lines 651--653
+Underfull \hbox (badness 10000) in paragraph at lines 660--662
 []\T1/lmr/m/n/12 In den an-de-ren bei-den Fäl-len (al-so falls $\U/euf/m/n/12 p
 $ \T1/lmr/m/n/12 un-ver-zweigt ist) gilt
  []
 
 [23] [24] [25] [26]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 751.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 760.
 
  (/usr/local/texlive/2018/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 2418) in paragraph at lines 750--753
+Underfull \hbox (badness 2418) in paragraph at lines 759--762
 \T1/lmr/m/n/12 Eine wei-te-re An-mer-kung zur Im-ple-men-tie-rung: \T1/lmtt/m/n
 /12 MAGMA \T1/lmr/m/n/12 kann mit der Funk-ti-on
  []
 
 [27] [28] [29] [30]
-Overfull \hbox (8.76471pt too wide) in paragraph at lines 837--853
+Overfull \hbox (8.76471pt too wide) in paragraph at lines 846--862
  [][] 
  []
 
@@ -1530,54 +1530,46 @@ chapter 4.
 [32
 
 ]
-Overfull \hbox (6.87611pt too wide) in paragraph at lines 879--880
+Overfull \hbox (6.87611pt too wide) in paragraph at lines 888--889
 []\T1/lmr/m/n/12 Sei $\OML/lmm/m/it/12 L$ \T1/lmr/m/n/12 in die-sem Ab-schnitt 
 ein $\U/fplmbb/m/n/12 Z$\T1/lmr/m/n/12 -Gitter in ei-nem $\OML/lmm/m/it/12 n$\T
 1/lmr/m/n/12 -dimensionalen bi-li-nea-ren $\U/fplmbb/m/n/12 Q$\T1/lmr/m/n/12 -V
 ektorraum
  []
 
-[33] [34] [35] [36] [37] [38]
-Overfull \hbox (7.00102pt too wide) in paragraph at lines 1052--1054
-\T1/lmr/m/n/12 Analog zeigt das-sel-be Lem-ma, dass $\OML/lmm/m/it/12 L[]\OT1/z
-plm/m/n/12 /\OML/lmm/m/it/12 L[]$ \T1/lmr/m/n/12 ein Quo-ti-ent der Grup-pe $\O
-ML/lmm/m/it/12 L[]\OT1/zplm/m/n/12 /(\OT1/lmr/m/n/12 1 \OMS/lmsy/m/n/12 ^^@ \OM
-L/lmm/m/it/12 ^^[\OT1/zplm/m/n/12 )\OML/lmm/m/it/12 L[] []
- []
-
-[39]
-Overfull \hbox (0.21028pt too wide) in paragraph at lines 1066--1068
+[33] [34] [35] [36] [37] [38] [39]
+Overfull \hbox (0.21028pt too wide) in paragraph at lines 1076--1078
 \T1/lmr/m/n/12 Auÿerdem teilt $\OML/lmm/m/it/12 p$ \T1/lmr/m/n/12 den In-dex $[
 ]$ nicht, da der Ex-po-nent der Fak-tor-grup-pe $\OML/lmm/m/it/12 L[]\OT1/zplm/
 m/n/12 /\OML/lmm/m/it/12 L[]$
  []
 
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10> on input line 1080.
+(Font)              <10> on input line 1090.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <7.6> on input line 1080.
+(Font)              <7.6> on input line 1090.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 1080.
+(Font)              <6> on input line 1090.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 1080.
+(Font)              scaled to size 10.42007pt on input line 1090.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 1080.
+(Font)              scaled to size 7.91925pt on input line 1090.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 1080.
+(Font)              scaled to size 6.25204pt on input line 1090.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 1080.
+(Font)              scaled to size 10.42007pt on input line 1090.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 1080.
+(Font)              scaled to size 7.91925pt on input line 1090.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 6.25204pt on input line 1080.
+(Font)              scaled to size 6.25204pt on input line 1090.
 [40] [41] [42]
-Underfull \hbox (badness 3291) in paragraph at lines 1157--1160
+Underfull \hbox (badness 3291) in paragraph at lines 1167--1170
 \T1/lmr/m/n/12 Nach den ob-ri-gen Über-le-gun-gen kön-nen oh-ne Ein-schrän-kung
  an-neh-men, dass
  []
 
 
-Overfull \hbox (16.15364pt too wide) in paragraph at lines 1167--1169
+Overfull \hbox (16.15364pt too wide) in paragraph at lines 1177--1179
 \T1/lmr/m/n/12 ein Teil-git-ter von $\OML/lmm/m/it/12 M$ \T1/lmr/m/n/12 vom In-
 dex $\OT1/lmr/m/n/12 2$ \T1/lmr/m/n/12 und mit Jor-dan-zer-le-gung $[] \OMS/lms
 y/m/n/12 ? [] []$\T1/lmr/m/n/12 .
@@ -1587,34 +1579,40 @@ y/m/n/12 ? [] []$\T1/lmr/m/n/12 .
 Overfull \vbox (36.36555pt too high) has occurred while \output is active []
 
 
-[45] [46] [47] [48] [49] [50] [51] [52] [53] [54]
+[45] [46] [47] [48] [49] [50] [51]
+
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 1363.
+
+[52] [53] [54] [55] [56] [57]
 chapter 5.
 
-LaTeX Warning: Float too large for page by 25.84953pt on input line 1457.
+LaTeX Warning: Float too large for page by 25.84953pt on input line 1531.
 
 
-LaTeX Warning: Float too large for page by 26.24953pt on input line 1493.
+LaTeX Warning: Float too large for page by 26.24953pt on input line 1567.
 
-[55
+[58
 
-] [56] [57] [58] [59] [60] [61] (./Masterarbeit.bbl
+] [59] [60] [61] [62] [63] [64] (./Masterarbeit.bbl
 chapter 6.
-[62
+[65
 
 ])
 \tf@thm=\write5
 \openout5 = `Masterarbeit.thm'.
 
- [63] (./Masterarbeit.aux)
+ [66] (./Masterarbeit.aux)
 
 LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 
  ) 
 Here is how much of TeX's memory you used:
- 23891 strings out of 492649
- 483569 string characters out of 6129607
- 808034 words of memory out of 5000000
- 27185 multiletter control sequences out of 15000+600000
+ 23898 strings out of 492649
+ 483603 string characters out of 6129607
+ 808098 words of memory out of 5000000
+ 27192 multiletter control sequences out of 15000+600000
  91661 words of font info for 96 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,16n,67p,9091b,709s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1648,10 +1646,10 @@ st/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2018/texmf-dist/fonts/t
 ype1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2018/texmf-dist/fon
 ts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2018/texmf-dist
 /fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on Masterarbeit.pdf (63 pages, 478399 bytes).
+Output written on Masterarbeit.pdf (66 pages, 488007 bytes).
 PDF statistics:
- 329 PDF objects out of 1000 (max. 8388607)
- 235 compressed objects within 3 object streams
+ 338 PDF objects out of 1000 (max. 8388607)
+ 241 compressed objects within 3 object streams
  0 named destinations out of 1000 (max. 500000)
  13 words of extra memory for PDF output out of 10000 (max. 10000000)
 

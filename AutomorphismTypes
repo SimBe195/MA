@@ -20,7 +20,6 @@ for p in PrimesUpTo(dim+1) do
 	N := [i*(p-1) : i in [1..Floor(dim/(p-1))]];
 
 	for nI in N do
-		if p eq 2 and not nI in [12..24] then continue; end if;
 		nF := dim - nI;
 
 		for kI in [0..Min(nI, Integers() ! (dim/2))] do

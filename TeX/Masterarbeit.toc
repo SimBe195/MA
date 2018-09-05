@@ -15,6 +15,6 @@
 \contentsline {section}{\numberline {4.3}Geschlechter}{46}
 \contentsline {section}{\numberline {4.4}Kneser-Nachbarschaftsmethode}{52}
 \contentsline {section}{\numberline {4.5}Konstruktion von Gittern mit gro\IeC {\ss }em Automorphismus}{56}
-\contentsline {chapter}{\numberline {5}Anhang}{58}
-\contentsline {section}{\numberline {5.1}Ergebnisse der Ideal-Gitter-Klassifikation}{58}
-\contentsline {chapter}{\numberline {6}Literaturverzeichnis}{65}
+\contentsline {chapter}{\numberline {5}Anhang}{60}
+\contentsline {section}{\numberline {5.1}Ergebnisse der Ideal-Gitter-Klassifikation}{60}
+\contentsline {chapter}{\numberline {6}Literaturverzeichnis}{67}

@@ -1060,7 +1060,7 @@ Nun ein wichtiger Satz zur Bestimmung der Determinanten:
 	Die erste Behauptung folgt nun aus dem Homomorphiesatz.\par
 	
 	Verwendet man nun Lemma \eqref{lem:fpinc}, so zeigt sich, dass $L_1^{\#, p} / L_1$ ein Quotient der Gruppe $L_1^{\#, p} / p L_1^{\#,p} \cong \F_p^{n_1}$ ist und somit die Gestalt $\F_p^s$ für ein $s \in \lbrace 0, \dots, n_1 \rbrace$ besitzt.\\
-	Analog zeigt dasselbe Lemma, dass $L_p^{\#,p} / L_p$ ein Faktor der Gruppe $L_p^{\#,p} / (1 - \sigma) L_p^{\#,p} \cong (\Z\left[ \zeta_p \right] / (1 - \zeta_p) \Z\left[ \zeta_p \right])^\frac{n_p}{p-1}$ ist. In letzterer Gruppe ist
+	Analog zeigt dasselbe Lemma, dass $L_p^{\#,p} / L_p$ ein Faktor der Gruppe $L_p^{\#,p} / (1 - \sigma) L_p^{\#,p} \cong (\Z\left[ \zeta_p \right] / (1 - \zeta_p) \Z\left[ \zeta_p \right])^\frac{n_p}{p-1}$ ist. Hier ist
 	\begin{align*}
 		p + (1 - \zeta_p) \Z\left[ \zeta_p \right] &= \underbrace{1 + \dots + 1}_{p \text{ mal}} + (1 - \zeta_p) \Z\left[ \zeta_p \right]\\
 		&= 1^{p-1} + \dots + 1^0 + (1 - \zeta_p) \Z\left[ \zeta_p \right]\\
@@ -1459,15 +1459,61 @@ Mithilfe der Typen von Automorphismen mit Primzahlordnung kennen wir die Geschle
 	\end{equation*}
 	Somit hat $\sigma\vert_{V_i}$ jeweils Minimalpolynom $\Phi_{n_i}$ für $i=1,\dots, k$. Es folgt:
 	\begin{equation*}
-		\mu_{\sigma} = \kgV( \mu_{\sigma \vert_{V_1}}, \dots, \mu_{\sigma\vert_{V_k}}) = \kgV(\Phi_{n_1 / \ggT(n_1, d)}, \dots, \Phi_{n_k / \ggT(n_k,d)})
+		\mu_{\sigma^d} = \kgV( \mu_{\sigma^d \vert_{V_1}}, \dots, \mu_{\sigma^d\vert_{V_k}}) = \kgV(\Phi_{n_1 / \ggT(n_1, d)}, \dots, \Phi_{n_k / \ggT(n_k,d)})
 	\end{equation*}
 \end{beweis}
 
-Sei nun $L$ ein Gitter der Dimension $n$ und $\sigma \in \Aut(L)$ ein großer Automorphismus von Ordnung $m$. Dann hat das Minimalpolynom von $\sigma$ die Form $\mu_\sigma = \Phi_m \Phi_{n_1} \dots \Phi_{n_k}$. Ist $\kgV(n_1, \dots, n_k) < m$, so existiert eine Primzahl $p$ mit $\kgV(n_1, \dots, n_k) \vert \frac{m}{p} =: d$. Der Automorphismus $\sigma^d$ hat Primzahlordnung $p$ und liefert wie in Abschnitt (4.2) eine Zerlegung 
+Sei nun $L$ ein Gitter der Dimension $n$ und $\sigma \in \Aut(L)$ ein großer Automorphismus von Ordnung $m$. Dann hat das Minimalpolynom von $\sigma$ die Form $\mu_\sigma = \Phi_m \Phi_{n_1} \dots \Phi_{n_k}$. Ist $\kgV(n_1, \dots, n_k) < m$, so existiert eine Primzahl $p$ mit $\kgV(n_1, \dots, n_k) \vert \frac{m}{p} =: d$. Der Automorphismus $\sigma^d$ hat Primzahlordnung $p$ und liefert wie in Abschnitt (4.2) eine $\sigma$-invariante Zerlegung 
 \begin{equation*}
 	V = \Bild(\sigma^d-1) \oplus \Kern(\sigma^d-1).
 \end{equation*}
-Nun ist allerdings $\Kern(\sigma^d-1) = \Kern\left((\Phi_{n_1} \dots \Phi_{n_k})(\sigma)\right)$ und somit $\Bild(\sigma^d-1) = \Kern(\Phi_m(\sigma))$. Das zu $\sigma^d$ gehörige Bildgitter $L_p = L \cap \Bild(\sigma^d-1) = L \cap \Kern(\Phi_m(\sigma))$ ist also ein Sub-Ideal-Gitter von $L$. Das Fix-Gitter $L_1 = L \cap \Kern(\sigma^d-1)$ hat die Dimension $n-m < \frac{n}{2}$.
+Nun ist allerdings $\Kern(\sigma^d-1) = \Kern\left((\Phi_{n_1} \dots \Phi_{n_k})(\sigma)\right)$ und somit $\Bild(\sigma^d-1) = \Kern(\Phi_m(\sigma))$. Das zu $\sigma^d$ gehörige Bildgitter $L_p = L \cap \Bild(\sigma^d-1) = L \cap \Kern(\Phi_m(\sigma))$ ist also ein Sub-Ideal-Gitter von $L$. Das Fix-Gitter $L_1 = L \cap \Kern(\sigma^d-1)$ hat die Dimension $n-m < \frac{n}{2}$.\par
+Nun ein paar Worte zum Minimalpolynom von $\sigma$ auf den Faktorgruppen $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$. Wir erinnern uns aus Abschnitt (4.2), dass $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$ isomorph als Gruppen waren. Der zugehörige Isomorphismus war insgesamt die Komposition der drei Isomorphismen
+\begin{align*}
+	L_1^{\#,p} / L_1 \rightarrow L_1^\# / L_1^{\#, \ell}&, x + L_1 \mapsto x + L_1^{\#, \ell}\\
+	L_1^\#/L_1^{\#,\ell} \rightarrow L_p^\# / L_p^{\#,\ell}&, y + L_1^{\#, \ell} \mapsto (\hat{y} - y) + L_p^{\#, \ell}\\
+	L_p^\# / L_p^{\#, \ell} \rightarrow L_p^{\#,p} / L_p&, x + L_p^{\#, \ell} \mapsto x + L_p,
+\end{align*}
+wobei $\hat{y} \in L^\#$ mit $b(x,y) = b(x,\hat{y})$ für alle $x \in L_1$. Man sieht leicht ein, dass $\sigma(\hat{y})$ eine mögliche Wahl für $\widehat{\sigma(y)}$ darstellt, da alle beteiligten Gitter und die Bilinearform invariant unter $\sigma$ sind. Alle drei Isomorphismen vertauschen also mit $\sigma$. Daraus folgt, dass die Faktorgruppen auch als $\Z[\sigma]$-Moduln, bzw. wegen $p L_p^{\#,p} \subseteq L_p$ und $p L_1^{\#,p} \subseteq L_1$ sogar als $\F_p[\sigma]$-Moduln isomorph sind. Insbesondere hat $\sigma$ auf $L_1^{\#,p}/L_1$ und $L_p^{\#,p}/L_p$ dasselbe Minimalpolynom. Wegen $(1-\sigma^d) L_p^{\#,p} \subseteq L_p$ wird $L_p^{\#,p}/L_p$ zu einem $\F_p[\sigma] / (1-\sigma^d) \cong \F_p[\zeta_d]$-Modul. Das Minimalpolynom der Operation von $\sigma$ ist somit $\Phi_d$, außerdem ist die Mächtigkeit $\vert L_p^{\#,p} / L_p \vert = p^s$ ein Vielfaches von $\vert \F_p[\zeta_d] \vert = p^{\varphi(d)}$ und daher $\varphi(d) \leq s$.\par
+Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
+
+\begin{algorithm}[H]
+	\caption{Konstruktion von Gittern mit großem Automorphismus}\label{alg:largeauto}
+	\begin{algorithmic}[1]
+		\State \textbf{Eingabe}: $n \in \N$, quadratfreies $\ell \in \N$, $m \in \N$ mit $\frac{n}{2} < \varphi(m) \leq n$.
+		\State \textbf{Ausgabe}: Liste von Gittern der Dimension $n$, Stufe $\ell$ und Determinante $\ell^{\frac{n}{2}}$ mit einem großen Automorphismus $\sigma$ der Ordnung $m$, sodass ein $p \in \P$, $\ggT(p, \ell) = 1$ existiert mit $\frac{\mu_\sigma}{\Phi_m} \vert (X^\frac{m}{p}-1)$
+		\\
+		\State $Results \gets []$
+		\State $AutoTypes \gets \text{ Liste von Aut.-Typen von Primzahlordnung nach Algorithmus \eqref{alg:autotypes}}$
+		\For {$p \in \lbrace q \in \P \mid q \vert m, \ggT(q, \ell) > 1 \rbrace$}
+			\State $d \gets \frac{m}{p}$
+			\State $PossibleTypes \gets \lbrace q - (n_1, n_p) - s - \dots \in AutoTypes \mid q = p$ und $d \leq s \rbrace$
+			\For {$t \in PossibleTypes$}
+				\State $L_p\_List \gets$ Liste von Ideal-Gittern über $\Q(\zeta_m)$ mit durch $t$ für $L_p$ vorgegebene Dimension und Determinante nach Algorithmus \eqref{alg:idlat}
+				\For {$L_p \in L_p\_List$}
+					\For {$\sigma_p \in \lbrace \sigma \in \text{Aut}(L_p) \mid \sigma$ op. auf $L_p^{\#,p}/L_p$ mit Mi.-Po. $\Phi_m \rbrace$}
+						\State $L_1\_List \gets$ Liste von allen Gittern mit durch $t$ für $L_1$ vorgebenene Dimension und Determinante und mit quadratfreier Stufe nach Algorithmus \eqref{alg:knesneigh}
+						\For{$L_1 \in L_1\_List$}
+							\For {$\sigma_1 \in \lbrace \sigma \in \text{Aut}(L_1) \mid \sigma$ op. auf $L_1^{\#,p}/L_1$ mit Mi.-Po. $\Phi_m \rbrace$}
+								\State $M \gets L_1 \perp L_p$
+								\State $\sigma \gets \text{diag}(\sigma_1, \sigma_p)$
+								\State $L\_List \gets$ Liste $\sigma$-invarianter Obergitter von $M$ mit Index $p^s$
+								\For {$L \in L\_List$}
+									\If {$L$ von Stufe $\ell$ und Determinante $\ell^\frac{n}{2}$}
+										\State $Results \gets Results \cup [L]$							
+									\EndIf
+								\EndFor
+							\EndFor
+						\EndFor
+					\EndFor
+				\EndFor
+			\EndFor
+		\EndFor
+		\Return $Results$
+	\end{algorithmic}
+\end{algorithm}
+
+Der Algorithmus findet nur spezielle Gitter mit einem Automorphismus bestimmter Ordnung mit einem bestimmten Minimalpolynom, dies sind recht weitreichende Einschränkungen. Zudem war die Suche nicht vollständig, da die Konstruktion der Obergitter durch \texttt{MAGMA}, so wie die Aufzählung gewisser Geschlechter zu ressourcenintensiv sind. Dennoch ist es damit gelungen, einige neue modulare, extremale Gitter zu konstruieren.
 
 
 \chapter{Anhang}

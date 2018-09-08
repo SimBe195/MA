@@ -551,13 +551,13 @@ Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existier
 \begin{algorithm}
 	\caption{Berechnung aller Teiler mit fester Norm}\label{alg:divnorm}
 	\begin{algorithmic}[1]
-		\State \textbf{Eingabe}: $\Z_K$-Ideal $\J$, Norm $n$.
-		\State \textbf{Ausgabe}: Liste aller Teiler von $\J$ mit Norm $n$.
+		\State \textbf{Eingabe}: $\Z_K$-Ideal $\I$, Norm $n$.
+		\State \textbf{Ausgabe}: Liste aller Teiler von $\I$ mit Norm $n$.
 		\\
 		\If {$n = 1$} \Return {$\left[ \Z_K \right]$} \EndIf
-		\If {$n \nmid \No(\J))$} \Return {$\left[ \ \right]$} \EndIf
-		\If {$\No(\J) = n$} \Return {$\left[ \J \right]$} \EndIf
-		\State Zerlege $\J$ in Primideale $\J = \p_1^{s_1} \dots \p_k^{s_k}$
+		\If {$n \nmid \No(\I))$} \Return {$\left[ \ \right]$} \EndIf
+		\If {$\No(\I) = n$} \Return {$\left[ \I \right]$} \EndIf
+		\State Zerlege $\I$ in Primideale $\I = \p_1^{s_1} \dots \p_k^{s_k}$
 		\State $n_\p \gets \No(\p_1)$
 		%\If {$k = 1$}
 		%	\If {$n_\p^s = n$ \text{ für ein } $s \in \lbrace 1, \dots, s_1 \rbrace$}
@@ -566,16 +566,16 @@ Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existier
 		%		\State \Return {$\left[ \ \right]$}
 		%	\EndIf
 		%\EndIf
-		\State $A \gets \left[ \ \right]$
+		\State $Results \gets \left[ \ \right]$
 		\For {$j \in \lbrace 0, \dots s_1 \rbrace$}
 			\If {$n_\p^j \mid n$}
-				\State $B \gets \text{Teiler von } \p_2^{s_2} \dots \p_k^{s_k} \text{ mit Norm } \frac{n}{n_\p^j} \text{ (rekursiv)}$
-				\For {$X \in B$}
-					\State $A \gets A \cup \left[\p_1^j X \right]$
+				\State $D \gets \text{Teiler von } \p_2^{s_2} \dots \p_k^{s_k} \text{ mit Norm } \frac{n}{n_\p^j} \text{ (rekursiv)}$
+				\For {$\J \in D$}
+					\State $Results \gets Results \cup \left[\p_1^j \J \right]$
 				\EndFor
 			\EndIf
 		\EndFor
-		\State \Return $A$
+		\State \Return $Results$
 	\end{algorithmic}
 \end{algorithm}
 
@@ -626,6 +626,10 @@ Wir wollen nun die zu untersuchenden Möglichkeiten für $\I$ noch weiter einsch
 	Also induziert $\sigma$ eine Isometrie $\sigma : (K, b_\alpha) \rightarrow (K, b_{\sigma(\alpha)})$.
 \end{beweis}
 
+\begin{bemerkung}
+	Mit \texttt{MAGMA} kann die Klassengruppe berechnet werden, in gewissen Fällen ist der zugehörige Algorithmus jedoch sehr kostspielig. Unter Annahme der unbewiesenen \textit{verallgemeinerten Riemann-Hypothese} erlauben gewisse Schranken eine leichtere Berechnung. Für die Implementierung gehen wir daher von der Korrektheit der Riemann-Hypothese aus. Sollte diese falsch sein, so sind die später angeführten Listen der gefundenen modularen Gitter möglicherweise unvollständig.
+\end{bemerkung}
+
 \section{Total-positive Erzeuger}
 
 Wir benötigen nun einen Test, welcher für ein gegebenes gebrochenes $\Z_K$-Ideal $\I$ überprüft, dieses von einem total-positiven Element $\alpha \in K^+_{\gg 0}$ erzeugt wird. Dazu untersuchen wir zuerst, ob $\I$ überhaupt von einem Element aus $K^+$ erzeugt ist und anschließend, wann ein Ideal $\alpha'\Z_K$ für $\alpha' \in K^+$ einen total-positiven Erzeuger hat.
@@ -675,17 +679,17 @@ Wir benötigen nun einen Test, welcher für ein gegebenes gebrochenes $\Z_K$-Ide
 Mithilfe dieses Satzes können wir nun Algorithmus \eqref{alg:relgen} formulieren, welcher zu einem gegebenen Ideal $\I$ testet, ob dieses einen Erzeuger in $K^+$ hat und - falls ja - einen solchen zurückgibt. Ein Primideal $\a$ wie im Beweis unseres Satzes erhalten wir, indem wir eine Primzahl $p$ finden, sodass $\p \vert \left( p \Z_K \right)$, dann muss $\a$ eines der Primideale aus der Faktorisierung von $p \Z_{K^+}$ teilen.
 
 \begin{algorithm}
-	\caption{Berechnung total-reelles Erzeugers}\label{alg:relgen}
+	\caption{Berechnung eines total-reellen Erzeugers}\label{alg:relgen}
 	\begin{algorithmic}[1]
 		\State \textbf{Eingabe:} $\Z_K$-Ideal $\I$
 		\State \textbf{Ausgabe:} Element $\alpha' \in K^+$ mit $\alpha' \Z_K = \I$, oder \textit{false}, falls ein solches Element nicht existiert.
 		\\
 		\State $\I' \gets 1 \Z_{K^+}$
-		\State $\text{split} \gets \left[ \ \right]$
+		\State $\text{Split} \gets \left[ \ \right]$
 		\State Zerlege $\I = \p_1^{s_1} \dots \p_k^{s_k}$ in Primideale.
 		\For {$i \in \lbrace 1 \dots k \rbrace$}
-			\If {$i \in \text{split}$} \textbf{continue} \EndIf
-			\State $p \gets \text{ minimale natürliche Zahl } p \in \N \text{ mit } \p_i \vert \left( p \Z_K \right)$
+			\If {$i \in \text{Split}$} \textbf{continue} \EndIf
+			\State $p \gets \text{ Minimale natürliche Zahl } p \in \N \text{ mit } \p_i \vert \left( p \Z_K \right)$
 			\State Zerlege $p \Z_{K^+}$ in Primideale: $p \Z_{K^+} = \q_1^{t_1} \dots \q_l^{t_l}$
 			\State $\a \gets \q_j$ mit $\p_i \vert \left( \q_j \Z_K \right)$
 			\If {$\a \Z_K = \p_i^2$}
@@ -697,7 +701,7 @@ Mithilfe dieses Satzes können wir nun Algorithmus \eqref{alg:relgen} formuliere
 				\If {$\nu_{\p_i}(\I) \neq \nu_{\overline{\p_i}}(\I)$} \Return \textit{false} \EndIf
 				\State $\I' \gets \I' \a^{s_i}$
 				\State $j \gets j' \text{ mit } \p_{j'} = \overline{\p_i}$
-				\State $\text{split} \gets \text{split} \cup \left[ j \right]$
+				\State $\text{Split} \gets \text{Split} \cup \left[ j \right]$
 			\EndIf
 		\EndFor
 		\If {$\I' \text{ kein Hauptideal}$}
@@ -737,11 +741,11 @@ Dann lässt sich folgendes Korollar ziehen:
 	\begin{korollar}
 		Sei $\alpha' \in K^+$, seien die Einbettungen von $K^+$ in $\R$ gegeben durch $\iota_1, \dots, \iota_{t}$ und seien $\epsilon_1, \dots, \epsilon_t$ die Grundeinheiten von $\Z_{K^+}^\ast$. 				Definiere die Matrix
 		\begin{equation*}
-			M \in \F_2^{t \times t}, \quad M_{ij} = \begin{cases} 1 &, \text{sign}(\iota_i(\epsilon_j) = -1\\ 0 &, \text{sign}(\iota_i(\epsilon_j) = 1\end{cases}
+			M \in \F_2^{t \times t}, \quad M_{ij} = \begin{cases} 1 &, \text{sign}(\iota_j(\epsilon_i)) = -1\\ 0 &, \text{sign}(\iota_j(\epsilon_i)) = 1\end{cases}
 		\end{equation*}
 		und den Vektor
 		\begin{equation*}
-			V \in \F_2^{1 \times t}, \quad V_i = \begin{cases} 1 &, \text{sign}(\iota_i(\alpha') = -1\\ 0 &, \text{sign}(\iota_i(\alpha') = 1\end{cases}.
+			V \in \F_2^{1 \times t}, \quad V_i = \begin{cases} 1 &, \text{sign}(\iota_i(\alpha')) = -1\\ 0 &, \text{sign}(\iota_i(\alpha')) = 1\end{cases}.
 		\end{equation*}
 		Dann sind die total-positiven Erzeuger des Ideals $\alpha' \Z_K$ genau die Elemente der Menge $\lbrace \alpha' \epsilon_1^{x_1} \dots \epsilon_t^{x_t} \epsilon^2 \mid x \in \F_2^{1 \times t}, x M = V, \epsilon \in (\Z_{K^+}^\ast) \rbrace$.
 	\end{korollar}
@@ -750,7 +754,7 @@ Dann lässt sich folgendes Korollar ziehen:
 \begin{beweis}
 	Nach Lemma \eqref{lem:sig} und da Quadrate immerzu positives Signum haben, sind die total-positiven Erzeuger gegeben durch die Elemente $u = \alpha' \epsilon_1^{x_1} \dots \epsilon_t^{x_t} \epsilon^2$, wobei $x \in \F_2^{1 \times t}$, $\epsilon \in \Z_{K^+}^\ast$ und $\epsilon_1^{x_1} \dots \epsilon_t^{x_t}$ bezüglich allen Einbettungen dasselbe Signum wie $\alpha'$ hat. Das Signum bezüglich einem $\iota_i$ ist genau dann gleich, wenn
 	\begin{equation*}
-		\vert \lbrace j \mid \text{sign}(\iota_i(\epsilon_j)) = -1 \text{ und } x_j = 1 \rbrace \vert \equiv \begin{cases} 1 \ (\text{mod } 2) &,\text{sign}(\iota_i(\alpha')) = -1 \\ 0 \ (\text{mod } 2) &,\text{sign}(\iota_i(\alpha')) = 1 \end{cases}.
+		\vert \lbrace j \mid \text{sign}(\iota_j(\epsilon_i)) = -1 \text{ und } x_i = 1 \rbrace \vert \equiv \begin{cases} 1 \ (\text{mod } 2) &,\text{sign}(\iota_j(\alpha')) = -1 \\ 0 \ (\text{mod } 2) &,\text{sign}(\iota_j(\alpha')) = 1 \end{cases}.
 	\end{equation*}
 	Diese Kongruenz ist aber genau dann erfüllt, wenn $x$ Lösung des linearen Gleichungssystems $xM = V$ ist.
 \end{beweis}
@@ -788,7 +792,7 @@ Anhand der gewonnenen Erkenntnisse erstellen wir nun einen Algorithmus \eqref{al
 		\State $\epsilon_1, \dots \epsilon_t \gets \text{Erzeuger einer Untergruppe von } \Z_{K^+}^\ast \text{ mit ungeradem Index}$
 		\State $M \gets 0 \in \F_2^{t \times t}$
 		\For {$(i,j) \in \underline{t} \times \underline{t}$}
-			\If {$\iota_i(\epsilon_j) < 0$}
+			\If {$\iota_j(\epsilon_i) < 0$}
 				\State $M_{ij} \gets 1$
 			\EndIf
 		\EndFor
@@ -806,7 +810,7 @@ Anhand der gewonnenen Erkenntnisse erstellen wir nun einen Algorithmus \eqref{al
 			\EndIf
 		\EndFor
 		\State $x \gets \text{Lösung von } xM = V$
-		\State \Return $xU$
+		\State \Return $\alpha'\epsilon_1^{x_1} \dots \epsilon_t^{x_t} U$
 	\end{algorithmic}
 \end{algorithm}
 
@@ -818,19 +822,19 @@ Alle bisherigen Bestandteile können nun zu einem Algorithmus zusammengesetzt we
 	\caption{Berechnung von Ideal-Gittern}\label{alg:idlat}
 	\begin{algorithmic}[1]
 		\State \textbf{Eingabe:} Quadratfreies $\ell \in \N$, $d \in \N$, CM-Körper $K$, maximaler total-reeller Teilkörper $K^+$ von $K$
-		\State \textbf{Ausgabe:} Per Isomorphie reduzierte Liste aller geraden Ideal-Gitter $(\I, \alpha)$ in $K$ von Stufe $\ell$ und mit Determinante $d$
+		\State \textbf{Ausgabe:} Per Isomorphie reduzierte Liste aller geraden Ideal-Gitter $(\I, \alpha)$ über $K$ mit Determinante $d$, deren Stufe $\ell$ teilt.
 		\\
 		\State $\A \gets \text{Vertretersystem von } Cl_K / \text{Gal}(K / \Q)$
 		\State $\Bfrak \gets \left[ \B \mid \B \text{ ist } \Z_K\text{-Ideal mit } \ell \Z_K \subseteq \B \subseteq \Z_K \text{ und } \No(\B) = d \right]$ (nach Algorithmus \eqref{alg:divnorm})
-		\State $\text{List} \gets \left[ \ \right]$
+		\State $Results \gets \left[ \ \right]$
 		\For {$(\I, \B) \in (\A, \Bfrak)$}
 			\State $\J \gets \left( \I \overline{\I} \right)^{-1} \Delta \B$
 			\If {$\exists \alpha' \in K^+ \text{ mit } \J = \alpha' \Z_K$ (nach Algorithmus \eqref{alg:relgen})}
 				\State $X \gets \left[ \alpha \in K_{\gg 0}^+ \mid \J = \alpha \Z_K \right]$ (nach Algorithmus \eqref{alg:posgen})
 				\For {$\alpha \in X$}
-					\If {$(\I, \alpha)$ ist gerades Gitter der Stufe $\ell$}
-						\If {$(\I, \alpha) \not\cong (\tilde{\I}, \tilde{\alpha})$ für alle $(\tilde{\I}, \tilde{\alpha}) \in \text{List}$}
-							\State $\text{List} \gets \text{List} \cup \left[ (\I, \alpha) \right]$
+					\If {$(\I, \alpha)$ ist gerades Gitter}
+						\If {$(\I, \alpha) \not\cong (\tilde{\I}, \tilde{\alpha})$ für alle $(\tilde{\I}, \tilde{\alpha}) \in Results$}
+							\State $Results \gets Results \cup \left[ (\I, \alpha) \right]$
 						\EndIf
 					\EndIf				
 				\EndFor
@@ -839,7 +843,7 @@ Alle bisherigen Bestandteile können nun zu einem Algorithmus zusammengesetzt we
 	\end{algorithmic}
 \end{algorithm}
 
-Mit diesem Algorithmus kann man nun alle $\ell$-modularen Gitter in Dimension $n$ klassifizieren, welche einen Automorphismus $\sigma$ besitzen mit $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$. Dazu wendet man Algorithmus \eqref{alg:idlat} wie in Lemma \eqref{lem:mod} und Lemma \eqref{lem:ztoid} besprochen mit $d = l^\frac{n}{2}$ und $K = \Q(\zeta_m)$ an. Eine weitere kleine Erleichterung bringt in diesem Spezialfall die Tatsache, dass $\Q(\zeta_m) \cong \Q(\zeta_{2m})$, falls $m \equiv 1\  (\text{mod } 2)$. Insbesondere sind die Ideal-Gitter über $\Q(\zeta_m)$ und $\Q(\zeta_{2m})$ dieselben. Man kann also für eine vollständige Aufzählung alle $m$ mit $m \equiv 2\  (\text{mod } 4)$ weglassen. Eine Implementierung in \texttt{MAGMA} liefert nun alle $\ell$-modularen Ideal-Gitter mit Dimension $n \leq 36$ (eine Steigerung der Dimension beansprucht exponentiell höheren Zeitaufwand) und $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$. In Tabelle \eqref{tab:numidlat} sind die Gesamtzahlen der Ideal-Gitter zu finden, außerdem befindet sich in Anhang A eine ausführlichere Zusammenfassung der Klassifikationsergebnisse mit zusätzlicher Angabe der zugrundeliegenden zyklotomischen Zahlkörpern und Anzahl der Gitter aufgeteilt nach Minimum.
+Mit diesem Algorithmus kann man nun alle $\ell$-modularen Gitter in Dimension $n$ klassifizieren, welche einen Automorphismus $\sigma$ besitzen mit $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$. Dazu wendet man Algorithmus \eqref{alg:idlat} wie in Lemma \eqref{lem:mod} und Lemma \eqref{lem:ztoid} besprochen mit $d = l^\frac{n}{2}$ und $K = \Q(\zeta_m)$ an. Eine weitere kleine Erleichterung bringt in diesem Spezialfall die Tatsache, dass $\Q(\zeta_m) \cong \Q(\zeta_{2m})$, falls $m \equiv 1\  (\text{mod } 2)$. Insbesondere sind die Ideal-Gitter über $\Q(\zeta_m)$ und $\Q(\zeta_{2m})$ dieselben. Man kann also für eine vollständige Aufzählung alle $m$ mit $m \equiv 2\  (\text{mod } 4)$ weglassen. Eine Implementierung in \texttt{MAGMA} liefert nun alle $\ell$-modularen Ideal-Gitter mit Dimension $n \leq 36$ (eine Steigerung der Dimension beansprucht exponentiell höheren Zeitaufwand) und $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$. In Tabelle \eqref{tab:numidlat} sind die Gesamtzahlen der Ideal-Gitter zu finden, außerdem befindet sich in Anhang (5.1) eine ausführlichere Zusammenfassung der Klassifikationsergebnisse mit zusätzlicher Angabe der zugrundeliegenden zyklotomischen Zahlkörpern und Anzahl der Gitter aufgeteilt nach Minimum. Beachte dabei: der Zahlkörper ist im allgemeinen nicht eindeutig, ein Gitter kann möglicherweise Ideal-Gitter-Struktur über mehreren Kreisteilungskörpern gleichzeitig aufweisen; in der Tabelle im Anhang ist jeweils nur einer davon genannt.
 
 \begin{table}\label{tab:numidlat}
 	\centering
@@ -855,7 +859,7 @@ Mit diesem Algorithmus kann man nun alle $\ell$-modularen Gitter in Dimension $n
 		$18$	&$-$		&$-$		&$1(-)$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$ \\ \hline
 		$20$	&$-$		&$1(1)$		&$-$		&$-$		&$1(1)$		&$1(-)$		&$2(-)$		&$-$		&$-$		&$-$ \\ \hline
 		$22$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$2(-)$ \\ \hline
-		$24$	&$4(1)$		&$2(1)$		&$7(1)$		&$5(1)$		&$5(2)$		&$8(-)$		&$7(-)$		&$8(-)$		&$5(-)$		&$-$ \\ \hline
+		$24$	&$4(1)$		&$2(1)$		&$7(1)$		&$5(1)$		&$5(2)$		&$8(-)$		&$7(-)$		&$8(-)$		&$5(-)$		&$14(-)$ \\ \hline
 		$32$	&$7(5)$		&$13(4)$	&$13(7)$	&$10(-)$	&$12(-)$	&$19(-)$	&$42(-)$	&$21(-)$	&$23(-)$	&$-$ \\ \hline
 		$36$	&$-$		&$6(3)$		&$8(-)$		&$8(-)$		&$-$		&$-$		&$2(-)$		&$36(-)$	&$4(-)$		&$-$ \\ \hline
 	\end{tabular}
@@ -1123,7 +1127,7 @@ Wir können nun einige Einschränkungen an den Typen eines solchen Automorphismu
 			\item $k_{1,i} \equiv_2 k$.
 			\item $k_{p,i} \in \lbrace 0, \dots, \min(n_p, k) \rbrace$.
 			\item $k_{p,i} \equiv_2 0$.
-			\item $\left( 2f(\ell)\right) \vert k_{p,i}$, wobei $f(\ell)$ den Trägheitsgrad von $\ell \Z_{\Q(\zeta_p + \zeta_p^{-1})}$ bezeichne.
+			\item $\left( 2f(q_i)\right) \vert k_{p,i}$, wobei $f(q_i)$ den Trägheitsgrad von $q_i \Z_{\Q(\zeta_p + \zeta_p^{-1})}$ bezeichne.
 			\item $k_{1,i} + k_{p,i} = k$.
 		\end{enumerate}
 	\end{satz}
@@ -1184,30 +1188,30 @@ Wir können nun mithilfe der Einschränkungen aus Satz \eqref{th:restrict}, Lemm
 \begin{algorithm}[H]
 	\caption{Aufzählung von Automorphismen-Typen}\label{alg:autotypes}
 	\begin{algorithmic}[1]
-		\State \textbf{Eingabe:} Quadratfreies $\ell \in \N$, $k \in \N$, $n \in \N$, $m \in \N$.
-		\State \textbf{Ausgabe:} Liste aller Typen von Automorphismen mit Primzahlordnung $p$ von geraden Gittern der Stufe $\ell$, Determinante $\ell^k$, Dimension $n$, und Minimum $\geq m$, wobei $\ggT(p, \ell) = 1$.
+		\State \textbf{Eingabe:} Quadratfreies $\ell \in \N$, $k \in \N$, $n \in \N$, $t \in \N$.
+		\State \textbf{Ausgabe:} Liste aller Typen von Automorphismen mit Primzahlordnung $p$ von geraden Gittern der Stufe $\ell$, Determinante $\ell^k$, Dimension $n$, und Minimum $\geq t$, wobei $\ggT(p, \ell) = 1$.
 		\\
 		\State $\text{Res} \gets \left[ \ \right]$
 		\State $b \gets \text{ Liste von Schranken für die Hermite-Konstante } \gamma_i \text{ für } 1 \leq i \leq n$
 		\State $q_1, \dots, q_m \gets$ Primfaktoren von $\ell$
-		\For{$p \in \mathbb{P}_{\leq n} - \lbrace q_1, \dots, q_m \rbrace$}
-			\State $f := \text{ Trägheitsgrad von } \ell \Z_{\Q(\zeta_p + \zeta_p^{-1})}$
+		\For{$p \in \mathbb{P}_{\leq n+1} - \lbrace q_1, \dots, q_m \rbrace$}
+			\State $f_i := \text{ Trägheitsgrad von } q_i \Z_{\Q(\zeta_p + \zeta_p^{-1})}$ für $i=1, \dots, m$
 			\For {$n_p \in \lbrace i(p-1) \mid 1 \leq i \leq \lfloor \frac{n}{p-1} \rfloor \rbrace$}
 				\State $n_1 \gets n - n_p$
-				\For {$(k_{p,1}, k_{p,2}, \dots, k_{p,m}) \in \lbrace (2f)i \mid i \in \lbrace 0, \dots, \lfloor \frac{\text{min}(n_p, k)}{2f} \rfloor\rbrace \rbrace^m$}
+				\For {$(k_{p,1}, k_{p,2}, \dots, k_{p,m}) \in \prod_{i=1}^m \lbrace (2f_i)j \mid j \in \lbrace 0, \dots, \lfloor \frac{\text{min}(n_p, k)}{2f_i} \rfloor\rbrace \rbrace$}
 					\State $k_{1,i} \gets k - k_{p,i}, \quad i \in \underline{m}$
 					\If {$\exists i \in \underline{m}: \left(k_{1,i} > \text{min}(n_1, k)\right) \vee \left(k_{1,i} \not\equiv_2 k\right) \vee \left(k_{p,i} \not\equiv_2 0 \right)$}
 						\State \textbf{continue}
 					\EndIf
 					\For {$s \in \lbrace 0, \dots, \text{min}(n_1, \frac{n_p}{p-1}) \rbrace$}
 						\If {$s \not\equiv_2 (p-2)\frac{n_p}{p-1}$} \textbf{continue} \EndIf
-						\State $\gamma_1 \gets \frac{m}{\left(p^s q_1^{k_{1,1}} \dots q_m^{k_{1,m}}\right)^{1/n_1}}$
-						\State $\gamma_p \gets \frac{m}{\left(p^s q_1^{k_{p,1}} \dots q_m^{k_{p,m}}\right)^{1/n_p}}$
+						\State $\gamma_1 \gets \frac{t}{\left(p^s q_1^{k_{1,1}} \dots q_m^{k_{1,m}}\right)^{1/n_1}}$
+						\State $\gamma_p \gets \frac{t}{\left(p^s q_1^{k_{p,1}} \dots q_m^{k_{p,m}}\right)^{1/n_p}}$
 						
 						\If {$\gamma_1 > b_{n_1}$ oder $\gamma_p > b_{n_p}$} \textbf{continue} \EndIf
 						\If {$p = 2$}
-							\State $\gamma_1' \gets \frac{m/2}{\left(q_1^{k_{1,1}} \dots q_m^{k_{1,m}}\right)^{1/n_1}}$
-							\State $\gamma_p' \gets \frac{m/2}{\left(q_1^{k_{p,1}} \dots q_m^{k_{p,m}}\right)^{1/n_p}}$
+							\State $\gamma_1' \gets \frac{t/2}{\left(q_1^{k_{1,1}} \dots q_m^{k_{1,m}}\right)^{1/n_1}}$
+							\State $\gamma_p' \gets \frac{t/2}{\left(q_1^{k_{p,1}} \dots q_m^{k_{p,m}}\right)^{1/n_p}}$
 							\If {$\gamma_1' > b_{n_1}$ oder $\gamma_p' > b_{n_p}$} \textbf{continue} \EndIf
 						\EndIf
 						\State $\text{Res} \gets \text{Res} \cup \left[ p - (n_1, n_p) - s - q_1 - (k_{1,1}, k_{p,1}) - \dots - (k_{1,m}, k_{p,m}) \right]$
@@ -1318,7 +1322,7 @@ Als nächstes stellt sich andersherum die Frage, zu welchen möglichen Symbolen 
 Erfüllt ein System von $p$-adischen Symbolen für $p \in \P \cup \lbrace -1 \rbrace$ all diese Bedingungen, dann exisitiert ein ganzes Gitter mit diesem Symbolen. Die Gleichung (ii) bezeichnen Conway und Sloane auch als \textit{Oddity-Formel}.\par
 Wir können nun alle lokalen Symbole zum gesamten Geschlechtssymbol kombinieren. Dieses hat die Form
 \begin{equation*}
-	\i_{r,s}(...), \quad \text{bzw.}\quad \ii_{r,s}(...).
+	\i_{r-s}(...), \quad \text{bzw.}\quad \ii_{r-s}(...).
 \end{equation*}
 Wobei $\i/\ii$ dem Typen $S_1$ entspricht, $r,s$ der reellen Signatur und die Klammern die $p$-adischen Symbole für $p \in \P$ enthalten. Dabei werden die Komponenten zur Potenz $0$ jeweils ausgelassen, deren Invarianten lassen sich jedoch mithilfe der Dimension und Determinante von $L$, sowie den angegebenen Bedingungen an die $p$-adischen Symbole bei Bedarf herleiten.
 
@@ -1336,14 +1340,25 @@ Wobei $\i/\ii$ dem Typen $S_1$ entspricht, $r,s$ der reellen Signatur und die Kl
 			\begin{equation*}
 				\ii_8(2^{+4}\ 3^{+4}).
 			\end{equation*}
-		\item Ist $L$ ein positiv-definites, gerades, $n$-dimensionales Gitter der Stufe $3$ mit Determinante $3^\frac{n}{2}$, so ergibt sich aus der Oddity-Formel die Gleichung
+		\item Ist $L$ ein positiv-definites, gerades, $n$-dimensionales Gitter der Stufe $\ell \in \P_{> 2}$ mit Determinante $\ell^\frac{n}{2}$, so ergibt sich aus der Oddity-Formel die Gleichung
 			\begin{equation*}
-				2n + 4 k_3 \equiv_8 0.
+				\frac{n(\ell+1)}{2} \equiv_8 4 k_\ell.
 			\end{equation*}
-			Da $\Det(L)$ eine reine Dreierpotenz ist, muss außerdem $\epsilon_1 \epsilon_3 = 1$ oder äquivalent $\epsilon_1 = \epsilon_3$ sein. Da genau dann $k_3 = 1$ gilt, wenn $\epsilon_3 = 1$ und sonst $k_3 = 0$, ist das zu $L$ gehörige Geschlechtssymbol:
+			Weiterhin muss $\epsilon_1 \epsilon_3 = \left( \frac{\Det(L) / \ell^\frac{n}{2}}{\ell}\right) = 1$ oder äquivalent $\epsilon_1 = \epsilon_\ell$ sein. Da genau dann $k_\ell = 1$ gilt, wenn $\epsilon_\ell = 1$ und sonst $k_\ell = 0$, ist das zu $L$ gehörige Geschlechtssymbol:
 			\begin{align*}
-				\ii_n\left(3^{+\frac{n}{2}}\right) \quad \text{, falls } n \equiv_4 0,\\
-				\ii_n\left(3^{-\frac{n}{2}}\right) \quad \text{, falls } n \equiv_4 2.\\
+				\ii_n\left(\ell^{+\frac{n}{2}}\right), \quad \text{falls } \frac{n(\ell+1)}{2} \equiv_8 0,\\
+				\ii_n\left(\ell^{-\frac{n}{2}}\right), \quad \text{falls } \frac{n(\ell+1)}{2} \equiv_8 4.\\
+			\end{align*}
+		\item Ähnlich können wir für $2$-modulare Gitter vorgehen. Sei $L$ ein positiv-definites, gerades, $n$-dimensionales Gitter der Stufe $2$ mit Determinante $2^\frac{n}{2}$. Wie zuvor muss $\epsilon_1 = \epsilon_2$ sein und $k_2 = 1 \Leftrightarrow \epsilon_2 = 1$. Die Oddity-Formel ergibt
+			\begin{equation*}
+				n \equiv_8 4 k_2 + t_2.
+			\end{equation*}
+			Demnach ergeben sich die folgenden möglichen Geschlechtssymbole:
+			\begin{align*}
+				\ii_n \left( 2_4^{-\frac{n}{2}} \right) \text{ oder } \ii_n \left( 2^{+\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 0,\\
+				\ii_n \left( 2_6^{-\frac{n}{2}} \right) \text{ oder } \ii_n \left( 2_2^{+\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 2,\\
+				\ii_n \left( 2^{-\frac{n}{2}} \right) \text{ oder } \ii_n \left( 2_4^{+\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 4,\\
+				\ii_n \left( 2_2^{-\frac{n}{2}} \right) \text{ oder } \ii_n \left( 2_6^{+\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 6.
 			\end{align*}
 	\end{enumerate}
 \end{beispiele}
@@ -1431,6 +1446,7 @@ Das Maß eines Geschlechtes kann ohne tatsächliche Aufzählung mithilfe der \te
 					\State $Gen \gets Gen \cup \left[ N \right]$
 					\State $Explored \gets Explored \cup \left[ false \right]$
 					\State $NumFound \gets NumFound \cup \left[ 1 \right]$
+					\State $m \gets m + \frac{1}{\vert \text{Aut(N)} \vert}$
 				\EndIf
 			\EndFor
 		\EndWhile
@@ -1474,14 +1490,14 @@ Nun ein paar Worte zum Minimalpolynom von $\sigma$ auf den Faktorgruppen $L_1^{\
 	L_1^\#/L_1^{\#,\ell} \rightarrow L_p^\# / L_p^{\#,\ell}&, y + L_1^{\#, \ell} \mapsto (\hat{y} - y) + L_p^{\#, \ell}\\
 	L_p^\# / L_p^{\#, \ell} \rightarrow L_p^{\#,p} / L_p&, x + L_p^{\#, \ell} \mapsto x + L_p,
 \end{align*}
-wobei $\hat{y} \in L^\#$ mit $b(x,y) = b(x,\hat{y})$ für alle $x \in L_1$. Man sieht leicht ein, dass $\sigma(\hat{y})$ eine mögliche Wahl für $\widehat{\sigma(y)}$ darstellt, da alle beteiligten Gitter und die Bilinearform invariant unter $\sigma$ sind. Alle drei Isomorphismen vertauschen also mit $\sigma$. Daraus folgt, dass die Faktorgruppen auch als $\Z[\sigma]$-Moduln, bzw. wegen $p L_p^{\#,p} \subseteq L_p$ und $p L_1^{\#,p} \subseteq L_1$ sogar als $\F_p[\sigma]$-Moduln isomorph sind. Insbesondere hat $\sigma$ auf $L_1^{\#,p}/L_1$ und $L_p^{\#,p}/L_p$ dasselbe Minimalpolynom. Wegen $(1-\sigma^d) L_p^{\#,p} \subseteq L_p$ wird $L_p^{\#,p}/L_p$ zu einem $\F_p[\sigma] / (1-\sigma^d) \cong \F_p[\zeta_d]$-Modul. Das Minimalpolynom der Operation von $\sigma$ ist somit $\Phi_d$, außerdem ist die Mächtigkeit $\vert L_p^{\#,p} / L_p \vert = p^s$ ein Vielfaches von $\vert \F_p[\zeta_d] \vert = p^{\varphi(d)}$ und daher $\varphi(d) \leq s$.\par
+wobei $\hat{y} \in L^\#$ mit $b(x,y) = b(x,\hat{y})$ für alle $x \in L_1$. Man sieht leicht ein, dass $\sigma(\hat{y})$ eine mögliche Wahl für $\widehat{\sigma(y)}$ darstellt, da alle beteiligten Gitter und die Bilinearform invariant unter $\sigma$ sind. Alle drei Isomorphismen vertauschen also mit $\sigma$. Daraus folgt, dass die Faktorgruppen auch als $\Z[\sigma]$-Moduln, bzw. wegen $p L_p^{\#,p} \subseteq L_p$ und $p L_1^{\#,p} \subseteq L_1$ sogar als $\F_p[\sigma]$-Moduln isomorph sind. Insbesondere hat $\sigma$ auf $L_1^{\#,p}/L_1$ und $L_p^{\#,p}/L_p$ dasselbe Minimalpolynom. Wegen $(1-\sigma^d) L_p^{\#,p} \subseteq L_p$ wird $L_p^{\#,p}/L_p$ zu einem $\F_p[\sigma] / (1-\sigma^d) \cong \F_p[\zeta_d]$-Modul. Das Minimalpolynom der Operation von $\sigma$ ist somit $\Phi_d$. Das Minimalpolynom von $\sigma \vert_{\Kern(\sigma^d-1)}$ muss daher $\text{Grad}(\mu_{\sigma \vert_{\Kern(\sigma^d-1)}}) \geq \text{Grad}(\Phi_d) = \varphi(d)$ erfüllen. Außerdem gilt $\varphi(d) \leq \text{Dim}_{\F_p}(L_p^{\#,p} / L_p) = s$.\par
 Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
 
 \begin{algorithm}[H]
 	\caption{Konstruktion von Gittern mit großem Automorphismus}\label{alg:largeauto}
 	\begin{algorithmic}[1]
 		\State \textbf{Eingabe}: $n \in \N$, quadratfreies $\ell \in \N$, $m \in \N$ mit $\frac{n}{2} < \varphi(m) \leq n$.
-		\State \textbf{Ausgabe}: Liste von Gittern der Dimension $n$, Stufe $\ell$ und Determinante $\ell^{\frac{n}{2}}$ mit einem großen Automorphismus $\sigma$ der Ordnung $m$, sodass ein $p \in \P$, $\ggT(p, \ell) = 1$ existiert mit $\frac{\mu_\sigma}{\Phi_m} \vert (X^\frac{m}{p}-1)$
+		\State \textbf{Ausgabe}: Liste von extremalen $\ell$-modularen Gittern der Dimension $n$ mit einem großen Automorphismus $\sigma$ der Ordnung $m$, sodass ein $p \in \P$, $\ggT(p, \ell) = 1$ existiert mit $\frac{\mu_\sigma}{\Phi_m} \vert (X^\frac{m}{p}-1)$
 		\\
 		\State $Results \gets []$
 		\State $AutoTypes \gets \text{ Liste von Aut.-Typen von Primzahlordnung nach Algorithmus \eqref{alg:autotypes}}$
@@ -1491,15 +1507,15 @@ Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
 			\For {$t \in PossibleTypes$}
 				\State $L_p\_List \gets$ Liste von Ideal-Gittern über $\Q(\zeta_m)$ mit durch $t$ für $L_p$ vorgegebene Dimension und Determinante nach Algorithmus \eqref{alg:idlat}
 				\For {$L_p \in L_p\_List$}
-					\For {$\sigma_p \in \lbrace \sigma \in \text{Aut}(L_p) \mid \sigma$ op. auf $L_p^{\#,p}/L_p$ mit Mi.-Po. $\Phi_m \rbrace$}
+					\For {$\sigma_p \in \lbrace \sigma \in \text{Aut}(L_p) \mid \sigma$ op. auf $L_p^{\#,p}/L_p$ mit Mi.-Po. $\Phi_d \rbrace$}
 						\State $L_1\_List \gets$ Liste von allen Gittern mit durch $t$ für $L_1$ vorgebenene Dimension und Determinante und mit quadratfreier Stufe nach Algorithmus \eqref{alg:knesneigh}
 						\For{$L_1 \in L_1\_List$}
-							\For {$\sigma_1 \in \lbrace \sigma \in \text{Aut}(L_1) \mid \sigma$ op. auf $L_1^{\#,p}/L_1$ mit Mi.-Po. $\Phi_m \rbrace$}
+							\For {$\sigma_1 \in \lbrace \sigma \in \text{Aut}(L_1) \mid \sigma$ op. auf $L_1^{\#,p}/L_1$ mit Mi.-Po. $\Phi_d \rbrace$}
 								\State $M \gets L_1 \perp L_p$
 								\State $\sigma \gets \text{diag}(\sigma_1, \sigma_p)$
 								\State $L\_List \gets$ Liste $\sigma$-invarianter Obergitter von $M$ mit Index $p^s$
 								\For {$L \in L\_List$}
-									\If {$L$ von Stufe $\ell$ und Determinante $\ell^\frac{n}{2}$}
+									\If {$L$ ist $\ell$-modulares extremales Gitter}
 										\State $Results \gets Results \cup [L]$							
 									\EndIf
 								\EndFor
@@ -1509,7 +1525,7 @@ Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
 				\EndFor
 			\EndFor
 		\EndFor
-		\Return $Results$
+		\State \Return $Results$
 	\end{algorithmic}
 \end{algorithm}
 
@@ -1724,6 +1740,55 @@ Der Algorithmus findet nur spezielle Gitter mit einem Automorphismus bestimmter 
 	\end{tabular}
 	\caption{Anzahlen der Ideal-Gitter der Stufen $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$ und Determinante $\ell^\frac{n}{2}$ mit Dimensionen $\leq 36$ nach zugehörigem Kreisteilungskörper $K$ und Minimum.}
 \end{table}
+
+\section{\texttt{MAGMA}-Implementierungen von Hilfsfunktionen}
+Es folgt der Quellcode zu folgenden Hilfsfunktionen:
+\begin{itemize}
+	\item Das komplex-konjugierte eines $Z_K$-Ideals berechnen.
+	\item Eine Liste von Gittern nach Isometrie reduzieren.
+	\item Das Minimum ausgeben, was ein $\ell$-modulares Gitter der Dimension $n$ mindestens haben. muss
+\end{itemize}
+\includepdf[pages=-, pagecommand={}]{Utility.pdf}
+
+\section{\texttt{MAGMA}-Implementierungen der Ideal-Gitter-Algorithmen}
+Es folgt der Quellcode zu den Algorithmen aus Kapitel 3. Die implementierten Funktionen sind
+\begin{itemize}
+	\item Alle Teiler eines $\Z_K$-Ideals $\I$ von festgelegter Norm berechnen. Siehe Algorithmus \eqref{alg:divnorm}.
+	\item Einen total-reellen Erzeuger eines $\Z_K$-Ideals $\I$ bestimmen. Siehe Algorithmus \eqref{alg:relgen}.
+	\item Matrix, deren Einträge die Vorzeichen der reellen Einbettung der Grundeinheiten kodieren, sowie eine Liste aller total-positiven Elemente in $\Z_{K^+}^\ast$ reduziert nach $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$ und eine Liste von Erzeugern einer Untergruppe von $\Z_{K^+}^\ast$ mit ungeradem Index bestimmen. Siehe Algorithmus \eqref{alg:posgen}.
+	\item Liste aller total-positiven Erzeuger eines $\Z_K$-Ideals $\I$ reduziert nach $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$ bestimmen. Siehe ebenfalls Algorithmus \eqref{alg:posgen}.
+	\item Liste von Vertretern der Klassengruppe von $K$ modulo der Operation der Galoisgruppe $\text{Gal}(K/\Q)$ bestimmen. Siehe Abschnitt (3.3).
+	\item Aus einem $\Z_K$-Ideal $\I$ und einem total-positiven Element $\alpha$ das Gitter, welches durch Auffassung von $\I$ als $\Z$-Gitter mit Bilinearform $b(x,y) := \text{Spur}(\alpha x \overline{y})$ entsteht.
+	\item Alle Ideal-Gittern über gegebenem CM-Körper mit vorgegebener Determinante und quadratfreier Stufe aufzählen. Siehe Algorithmus \eqref{alg:idlat}.
+	\item Liste von allen $\ell$-modularen Gittern in Dimension $n$ erstellen, welche einen Automorphismus $\sigma$ besitzen mit $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$. Siehe Abschnitt (3.5).
+\end{itemize}
+\includepdf[pages=-, pagecommand={}]{IdealLattices.pdf}
+
+\newpage
+\section{Eidesstattliche Versicherung}
+Ich versichere hiermit an Eides Statt, dass ich die vorliegende Masterarbeit mit dem Titel
+\textit{Extremale Gitter mit großen Automorphismen} selbstständig und ohne unzulässige fremde Hilfe erbracht habe.
+Ich habe keine anderen als die angegebenen Quellen und Hilfsmittel benutzt. Die Arbeit hat in gleicher oder
+ähnlicher Form noch keiner Prüfungsbehörde vorgelegen.\par
+\vspace{0.5cm}
+Aachen, im September 2018 \hfill $\underline{\hspace{6cm}}$\par
+\vspace{2cm}
+\begin{small}
+\textbf{Belehrung:}\\
+\textbf{§ 156 StGB: Falsche Versicherung an Eides Statt}\\
+Wer vor einer zur Abnahme einer Versicherung an Eides Statt zuständigen Behörde eine solche Versicherung
+falsch abgibt oder unter Berufung auf eine solche Versicherung falsch aussagt, wird mit Freiheitsstrafe
+von bis zu drei Jahren oder mit Geldstrafe bestraft.\par
+\textbf{§ 161 StGB: Fahrlässiger Falscheid; fahrlässige falsche Versicherung an Eides Statt}\\
+(1) Wenn eine der in den §§ 154 bis 156 bezeichneten Handlungen aus Fahrlässigkeit begangen worden ist, so
+tritt Freiheitsstrafe von bis zu einem Jahr oder Geldstrafe ein.\\
+(2) Straflosigkeit tritt ein, wenn der Täter die falsche Angabe rechtzeitig berichtigt. Die
+Vorschriften des § 158 Abs. 2 und 3 gelten entsprechend\par
+\end{small}
+Die vorstehende Belehrung habe ich zur Kenntnis genommen:\par
+\vspace{0.5cm}
+Aachen, im September 2018 \hfill $\underline{\hspace{6cm}}$\\
+
 %===================================================================
 % Literatur
 %===================================================================

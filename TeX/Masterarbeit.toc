@@ -13,8 +13,11 @@
 \contentsline {section}{\numberline {4.1}Einf\IeC {\"u}hrung}{32}
 \contentsline {section}{\numberline {4.2}Automorphismen von Primzahlordnung}{33}
 \contentsline {section}{\numberline {4.3}Geschlechter}{46}
-\contentsline {section}{\numberline {4.4}Kneser-Nachbarschaftsmethode}{52}
-\contentsline {section}{\numberline {4.5}Konstruktion von Gittern mit gro\IeC {\ss }em Automorphismus}{56}
-\contentsline {chapter}{\numberline {5}Anhang}{60}
-\contentsline {section}{\numberline {5.1}Ergebnisse der Ideal-Gitter-Klassifikation}{60}
-\contentsline {chapter}{\numberline {6}Literaturverzeichnis}{67}
+\contentsline {section}{\numberline {4.4}Kneser-Nachbarschaftsmethode}{53}
+\contentsline {section}{\numberline {4.5}Konstruktion von Gittern mit gro\IeC {\ss }em Automorphismus}{57}
+\contentsline {chapter}{\numberline {5}Anhang}{61}
+\contentsline {section}{\numberline {5.1}Ergebnisse der Ideal-Gitter-Klassifikation}{61}
+\contentsline {section}{\numberline {5.2}\texttt {MAGMA}-Implementierungen von Hilfsfunktionen}{68}
+\contentsline {section}{\numberline {5.3}\texttt {MAGMA}-Implementierungen der Ideal-Gitter-Algorithmen}{72}
+\contentsline {section}{\numberline {5.4}Eidesstattliche Versicherung}{81}
+\contentsline {chapter}{\numberline {6}Literaturverzeichnis}{82}

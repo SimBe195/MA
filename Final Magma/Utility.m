@@ -15,10 +15,10 @@ function IdealConjugate(I, K)
 end function;
 
 
-function ReduceByIsometry(Lattices, k)
-// Input: List of lattices, k in N
+function ReduceByIsometry(Lattices)
+// Input: List of lattices
 
-// Output: Reduced list for which the elements are pairwise non-isometric  
+// Output: Reduced list for which the elements are pairwise non-isometric
 
     LatticesReduced := [* *];
     Minima := [* *];
@@ -134,13 +134,16 @@ HermiteBounds := [1, 1.1547, 1.2599, 1.1412, 1.5157, 1.6654, 1.8115, 2, 2.1327, 
 
 
 function GenSymbol(L)
-// Input: Positive definite Numberfield Lattice L of SQUARE FREE level
+// Input: Positive definite Numberfield Lattice L of square-free level
 
 // Output: Genus symbol of L in the form [S_1, n, <2, n_2, epsilon_2, S_2, t_2>, <3, n_3, epsilon_3>, <5,...>, ...] for all primes dividing Det(L)
-    Symbol := [];
+    Symbol := [* *];
 
-    Int := Integers(RationalsAsNumberField());
-    _, Grams2, Vals2 := JordanDecomposition(L,ideal<Int | 2>);
+    Rat := RationalsAsNumberField();
+    Int := Integers(Rat);
+
+    LNF := NumberFieldLatticeWithGram(Matrix(Rat, GramMatrix(L)));
+    _, Grams2, Vals2 := JordanDecomposition(LNF,ideal<Int|2>);
 
     // Checks if all diagonal entries of the 1-component of the 2-adic jordan decomposition are even
     if Vals2[1] ne 0 or (Vals2[1] eq 0 and &and([Valuation(Rationals() ! (Grams2[1][i][i]), 2) ge 1 : i in [1..NumberOfRows(Grams2[1])]])) then
@@ -149,15 +152,17 @@ function GenSymbol(L)
         Append(~Symbol, 1);
     end if;
 
-    rminuss := pSignature(L, -1);
     Append(~Symbol, Dimension(L));
 
 
     for p in PrimeDivisors(Integers() ! (Determinant(L))) do
-
-        _, Gramsp, _ := JordanDecomposition(L, ideal<Int|p>);
-
-        G := Matrix(Rationals(), 1/p * Gramsp[2]);
+        _, Gramsp, Valsp := JordanDecomposition(LNF, ideal<Int|p>);
+        
+        if Valsp[1] eq 0 then
+            G := Matrix(Rationals(), 1/p * Gramsp[2]);
+        else
+            G := Matrix(Rationals(), 1/p * Gramsp[1]);
+        end if;
 
         sym := <p, NumberOfRows(G)>;
 
@@ -180,7 +185,7 @@ function GenSymbol(L)
             if sym[4] eq 2 then
                 Append(~sym, 0);
             else
-                Append(~sym, Trace(G) mod 8);
+                Append(~sym, Integers() ! (Trace(G)* Denominator(Trace(G))^2) mod 8);
             end if;
         else
             Append(~sym, LegendreSymbol(det, p));
@@ -209,16 +214,6 @@ function ToZLattice(L)
 end function;
 
 
-function ToNFLattice(L)
-// Input: Z-lattice L
-
-// Output: L as Numberfield lattice
-    Rat := RationalsAsNumberField();
-    LNF := NumberFieldLatticeWithGram(Matrix(Rat, GramMatrix(L)));
-    return LNF;
-end function;
-
-
 function MiPoQuotient(sigma, L, p);
 // Input : Automorphism sigma of L; Lattice L
 
@@ -226,13 +221,13 @@ function MiPoQuotient(sigma, L, p);
 
     sigma := Matrix(Rationals(), sigma);
     L := CoordinateLattice(L);
-    LD := PartialDual(L, p : Rescaled := false);
+    LD := PartialDual(L, p : Rescale := false);
     _,phi := LD / L;
-    MiPo := PolynomialRing(Integers()) ! 1;
+    MiPo := PolynomialRing(GF(p)) ! 1;
 
     B := [];
 
-    for i in [1..Rank(FD)] do
+    for i in [1..Rank(LD)] do
 
         b := LD.i;
         if b in sub<LD|L,B> then
@@ -251,7 +246,7 @@ function MiPoQuotient(sigma, L, p);
                 coeff := Basis(Kernel(Mat))[1];
                 coeff /:= coeff[#C];
                 coeff := Eltseq(coeff);
-                MiPo := LCM(MiPo, Polynomial(Integers(), coeff));
+                MiPo := LCM(MiPo, Polynomial(GF(p), coeff));
             else
                 Append(~B, b);
             end if;
@@ -259,5 +254,23 @@ function MiPoQuotient(sigma, L, p);
     end for;
 
     return MiPo;
+
+end function;
+
+function IsModular(L, l)
+// Input: Lattice L; l in N
+
+// Output: true iff L is a l-modular lattice
+    
+    return IsIsometric(L, LatticeWithGram(l*GramMatrix(Dual(L:Rescale:=false))));
+
+end function;
+
+function IsStronglyModular(L,l)
+// Input: Lattice L; l in N
+
+// Output: true iff L is a strongly l-modular lattice
+
+    return &and[IsIsometric(L, LatticeWithGram(m*GramMatrix(PartialDual(L, m : Rescale:=false)))) : m in [m : m in Divisors(l) | Gcd(m, Integers() ! (l/m)) eq 1]];
 
 end function;

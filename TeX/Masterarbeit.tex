@@ -551,8 +551,8 @@ Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existier
 \begin{algorithm}
 	\caption{Berechnung aller Teiler mit fester Norm}\label{alg:divnorm}
 	\begin{algorithmic}[1]
-		\State \textbf{Eingabe}: $\Z_K$-Ideal $\I$, Norm $n$.
-		\State \textbf{Ausgabe}: Liste aller Teiler von $\I$ mit Norm $n$.
+		\State \textbf{Eingabe}: $\Z_K$-Ideal $\I$, Norm $n$
+		\State \textbf{Ausgabe}: Liste aller Teiler von $\I$ mit Norm $n$
 		\\
 		\If {$n = 1$} \Return {$\left[ \Z_K \right]$} \EndIf
 		\If {$n \nmid \No(\I))$} \Return {$\left[ \ \right]$} \EndIf
@@ -682,7 +682,7 @@ Mithilfe dieses Satzes können wir nun Algorithmus \eqref{alg:relgen} formuliere
 	\caption{Berechnung eines total-reellen Erzeugers}\label{alg:relgen}
 	\begin{algorithmic}[1]
 		\State \textbf{Eingabe:} $\Z_K$-Ideal $\I$
-		\State \textbf{Ausgabe:} Element $\alpha' \in K^+$ mit $\alpha' \Z_K = \I$, oder \textit{false}, falls ein solches Element nicht existiert.
+		\State \textbf{Ausgabe:} Element $\alpha' \in K^+$ mit $\alpha' \Z_K = \I$, oder \textit{false}, falls ein solches Element nicht existiert
 		\\
 		\State $\I' \gets 1 \Z_{K^+}$
 		\State $\text{Split} \gets \left[ \ \right]$
@@ -785,8 +785,8 @@ Anhand der gewonnenen Erkenntnisse erstellen wir nun einen Algorithmus \eqref{al
 \begin{algorithm}[H]
 	\caption{Berechnung total-positiver Erzeuger}\label{alg:posgen}
 	\begin{algorithmic}[1]
-		\State \textbf{Eingabe:} Erzeuger $\alpha' \in K^+$ von $\I$.
-		\State \textbf{Ausgabe:} Liste von Vertretern der Menge aller total-positiven Erzeuger $\alpha \in K_{\gg 0}^+$ von $\I$ modulo $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$ zurückgibt.
+		\State \textbf{Eingabe:} Erzeuger $\alpha' \in K^+$ von $\I$
+		\State \textbf{Ausgabe:} Liste von Vertretern der Menge aller total-positiven Erzeuger $\alpha \in K_{\gg 0}^+$ von $\I$ modulo $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$ zurückgibt
 		\\
 		\State $\iota_1, \dots, \iota_t \gets \text{Einbettungen } K^+ \hookrightarrow \R$
 		\State $\epsilon_1, \dots \epsilon_t \gets \text{Erzeuger einer Untergruppe von } \Z_{K^+}^\ast \text{ mit ungeradem Index}$
@@ -822,7 +822,7 @@ Alle bisherigen Bestandteile können nun zu einem Algorithmus zusammengesetzt we
 	\caption{Berechnung von Ideal-Gittern}\label{alg:idlat}
 	\begin{algorithmic}[1]
 		\State \textbf{Eingabe:} Quadratfreies $\ell \in \N$, $d \in \N$, CM-Körper $K$, maximaler total-reeller Teilkörper $K^+$ von $K$
-		\State \textbf{Ausgabe:} Per Isomorphie reduzierte Liste aller geraden Ideal-Gitter $(\I, \alpha)$ über $K$ mit Determinante $d$, deren Stufe $\ell$ teilt.
+		\State \textbf{Ausgabe:} Per Isomorphie reduzierte Liste aller geraden Ideal-Gitter $(\I, \alpha)$ über $K$ mit Determinante $d$, deren Stufe $\ell$ teilt
 		\\
 		\State $\A \gets \text{Vertretersystem von } Cl_K / \text{Gal}(K / \Q)$
 		\State $\Bfrak \gets \left[ \B \mid \B \text{ ist } \Z_K\text{-Ideal mit } \ell \Z_K \subseteq \B \subseteq \Z_K \text{ und } \No(\B) = d \right]$ (nach Algorithmus \eqref{alg:divnorm})
@@ -1375,7 +1375,7 @@ Jürgens beschreibt in \cite[Abschnitt (4.1.3)]{juergens}, welche Gestalt die Ge
 		\begin{enumerate}[label=(\roman*)]
 			\item $\epsilon_1 \epsilon_p = \epsilon$
 			\item $\delta_1 \delta_p = (-1)^{\frac{s(p-1)}{2}}$
-			\item $\delta_p = (-1)^{\frac{k_p}{f(\ell)} + \frac{p-1}{2}\left({N+1 \choose 2} + {s \choose 2}\right)}$
+			\item $\delta_p = (-1)^{\frac{k_p}{f(\ell)} + \frac{p-1}{2}\left({n_p / (p-1) +1 \choose 2} + {s \choose 2}\right)}$
 			\item falls $\ell \neq 2$: $\epsilon_p = (-1)^{\frac{k_p}{f(\ell)} + \frac{l-1}{2} {k_p \choose 2}}$
 			\item falls $\ell = 2$: $\epsilon_p = \delta_p \Leftrightarrow n_p + s(p-1) \equiv_8 0$.
 		\end{enumerate}
@@ -1399,12 +1399,12 @@ Wir kommen nun zur Aufzählung aller Gitter eines gegebenen Geschlechtes. Kneser
 Kneser beschreibt, wie die Menge aller $p$-Nachbarn eines gegebenen Gittes $L$ gebildet werden kann.  Nach \cite{scharlau} ist der Nachbarschafts-Graph endlich. Außerdem gilt der folgende Satz:
 
 \begin{framed}
-	\begin{satz}
+	\begin{satz}\label{th:neighbourgraph}
 		Sei $L$ ein Gitter von Dimension $\geq 3$. Hat für jede Primzahl $q \in \P$ die Jordanzerlegung von $\Z_q \otimes L$ mindestens eine Komponente von Dimension $\geq 2$, so besteht jeder Nachbarschafts-Graph von $L$ aus genau einer Zusammenhangskomponente.
 	\end{satz}
 \end{framed}
 
-Diese recht schwache Bedingung ist für alle von uns zu untersuchende Geschlechter erfüllt, also können wir durch sukzessive Nachbar-Bildung das gesamte Geschlecht aufzählen. Als Heuristik, um auszuwählen, für welchen Knoten als nächstes die Nachbarn konstruiert werden, verwenden wir die Häufigkeit mit der ein Gitter bisher gefunden wurde - unter den am seltensten gefundenen Gittern wird zufällig eines ausgewählt. Es sind noch andere Strategien denkbar, wie beispielsweise eine einfache Breiten- oder Tiefensuche, oder Auswählen eines Gitters mit der größten Automorphismengruppe. Des Weiteren können wir als Abbruchbedingung das sogenannte \textit{Maß} eines Geschlechtes benutzen (vgl. \cite[Abschnitt 35]{kneser}).
+Die recht schwache Bedingung zur Jordanzerlegung ist beispielsweise für alle Gitter von quadratfreier Stufe - also für alle von uns zu untersuchende Geschlechter - erfüllt. Daher können wir durch sukzessive Nachbar-Bildung das gesamte Geschlecht aufzählen. Als Heuristik, um auszuwählen, für welchen Knoten als nächstes die Nachbarn konstruiert werden, verwenden wir die Häufigkeit mit der ein Gitter bisher gefunden wurde - unter den am seltensten gefundenen Gittern wird zufällig eines ausgewählt. Es sind noch andere Strategien denkbar, wie beispielsweise eine einfache Breiten- oder Tiefensuche, oder Auswählen eines Gitters mit der größten Automorphismengruppe. Des Weiteren können wir als Abbruchbedingung das sogenannte \textit{Maß} eines Geschlechtes benutzen (vgl. \cite[Abschnitt 35]{kneser}).
 
 \begin{framed}
 	\begin{definition}
@@ -1416,13 +1416,14 @@ Diese recht schwache Bedingung ist für alle von uns zu untersuchende Geschlecht
 	\end{definition}
 \end{framed}
 
-Das Maß eines Geschlechtes kann ohne tatsächliche Aufzählung mithilfe der \textit{Maßformel} berechnet werden. Indem wir die Kehrwerte der Ordnungen der Automorphismengruppen aller bisher gefundenen Gitter während des Algorithmus aufaddieren, können wir also über die Differenz zum tatsächlichen Maß feststellen, ob wir bereits alle Isometrieklassen gefunden haben. Zusätzlich können wir eine weitere nützliche Einschränkung machen: haben wir bisher Gitter $L_1, \dots, L_{h'}$ gefunden und ist $m := \sum_{i=1}^{h'} \frac{1}{\vert \Aut(L_i) \vert}$, so muss jedes weitere Gitter $M$ im Geschlecht eine Automorphismengruppe mit $\vert \Aut(M) \vert \geq \frac{1}{\text{Maß}(\mathcal{G}) - m}$ besitzen. Sobald das verbleibende Maß also kleiner als $1$ ist, können wir bei gefundenen Nachbarn mit zu kleiner Automorphismengruppe Isometrietests sparen. Insgesamt kommen wir so auf Algorithmus \eqref{alg:knesneigh} zur Aufzählung eines Geschlechtes anhand eines Vertreters. Für die Bestimmung eines Vertreters zu einem gegebenen Geschlechtssymbol wird ein \texttt{MAGMA}-Programm aus der Diplomarbiet von David Lorch \cite{lorch} verwendet.
+Das Maß eines Geschlechtes kann ohne tatsächliche Aufzählung mithilfe der \textit{Maßformel} berechnet werden. Indem wir die Kehrwerte der Ordnungen der Automorphismengruppen aller bisher gefundenen Gitter während des Algorithmus aufaddieren, können wir also über die Differenz zum tatsächlichen Maß feststellen, ob wir bereits alle Isometrieklassen gefunden haben. Zusätzlich können wir eine weitere nützliche Einschränkung machen: haben wir bisher Gitter $L_1, \dots, L_{h'}$ gefunden und ist $m := \sum_{i=1}^{h'} \frac{1}{\vert \Aut(L_i) \vert}$, so muss jedes weitere Gitter $M$ im Geschlecht eine Automorphismengruppe mit $\vert \Aut(M) \vert \geq \frac{1}{\text{Maß}(\mathcal{G}) - m}$ besitzen. Sobald das verbleibende Maß also kleiner als $1$ ist, können wir bei gefundenen Nachbarn mit zu kleiner Automorphismengruppe Isometrietests sparen. Insgesamt kommen wir so auf Algorithmus \eqref{alg:knesneigh} zur Aufzählung eines Geschlechtes anhand eines Vertreters. Für die Bestimmung eines Vertreters zu einem gegebenen Geschlechtssymbol wird ein \texttt{MAGMA}-Programm aus der Diplomarbiet von David Lorch \cite{lorch} verwendet.\par
+Für Dimension $n \leq 2$ sind die Voraussetzungen von Satz \eqref{th:neighbourgraph} nicht erfükkt, dennoch ist die Aufzählung eines Geschlechtes leicht. Das Geschlechtssymbol legt insbesondere die Determinante $d$ aller Gitter des Geschlechtes fest. Im Falle $n = 1$ muss jedes Gitter im Geschlecht folglich die Gram-Matrix $(d) \in \Z^{1 \times 1}$ besitzen. Nun zum Fall $n = 2$. Die Hermite-Konstante $\gamma_2$ hat ungefähr den Wert $1.1547$. Für alle Gitter $L$ des Geschlechtes muss also $\Min(L) \leq 1.1548 \sqrt{\Det(L)}$ gelten. Sei $t := \Min(L)$ und $(e_1, e_2)$ eine Basis von $L$ mit $b(e_1, e_1) = t$. Die Gram-Matrix von $L$ bezüglich dieser Basis hat die Gestalt $\left(\begin{matrix} t & x\\x & y\end{matrix}\right)$. Ohne Einschränkung gilt $-t < x < t$, sonst ersetze sukzessiv $e_2$ durch $e_2 + e_1$ für $x < -t$, bzw. durch $e_2 - e_1$ für $t < x$, denn $b(e_1, e_2 \pm e_1) = x \pm t$. Der Wert $y$ ist dann eindeutig bestimmt durch $\Det(L) =  ty - x^2$. Diese Überlegungen ergeben Algorithmus \eqref{alg:gen2dim}.
 
 \begin{algorithm}[H]
 	\caption{Aufzählung aller Isometrieklassen eines Geschlechtes}\label{alg:knesneigh}
 	\begin{algorithmic}[1]
-		\State \textbf{Eingabe}: Gitter $L$.
-		\State \textbf{Ausgabe}: Liste von Vertretern aller Isometrieklassen im Geschlecht von $L$.
+		\State \textbf{Eingabe}: Gitter $L$ von Dimension $\geq 3$
+		\State \textbf{Ausgabe}: Liste von Vertretern aller Isometrieklassen im Geschlecht von $L$
 		\\
 		\State $\mathcal{G} \gets \text{ Geschlecht von } L$
 		\State $M \gets \text{Maß}(\mathcal{G})$
@@ -1454,6 +1455,45 @@ Das Maß eines Geschlechtes kann ohne tatsächliche Aufzählung mithilfe der \te
 	\end{algorithmic}
 \end{algorithm}
 
+\begin{algorithm}
+	\caption{Aufzählung aller Isometrieklassen eines Geschlechtes von Dimension $2$}\label{alg:gen2dim}
+	\begin{algorithmic}[1]
+		\State \textbf{Eingabe}: Geschlechtssymbol $S$ mit Dimension $2$
+		\State \textbf{Ausgabe}: Liste von Vertretern aller Isometrieklassen im zugehörigen Geschlecht
+		\\
+		\State $d \gets$ durch $S$ festgelegte Determinante
+		\State $Gen \gets []$
+		\For {$t \in \lbrace 0, \dots, \lfloor1.1548\sqrt{d} \rfloor \rbrace$}
+			\For {$x \in \lbrace -t+1, \dots, t-1 \rbrace$}
+				\State $y := \frac{\Det(L)-x^2}{t}$
+				\If {$y \not \in \Z$}
+					\State \textbf{continue}
+				\EndIf
+				\State $L \gets$ Gitter mit Gram-Matrix $\left(\begin{matrix} t & x\\x & y\end{matrix}\right)$
+				\If {$L$ hat Geschlechtssymbol $S$ und $\not\exists M \in Gen : L \cong M$}
+					\State $Gen \gets Gen \cup [L]$
+				\EndIf
+			\EndFor
+		\EndFor
+		\State \Return $Gen$
+	\end{algorithmic}
+\end{algorithm}
+
+
+\section{Konstruktion von Obergittern}
+
+Haben wir einen Kandidaten für das Teilgitter $M := L_1 \perp L_p$ und für den Automorphismus $\sigma = \text{diag}(\sigma_1, \sigma_p)$ gefunden, so gilt es, die $\sigma$-invarianten Obergitter von $M$ mit Index $p^s$ zu bestimmen. Hierfür verwenden wir je nach Fall verschiedene Methoden. Zunächst ist auf die Konstruktion von Michael Jürgens in \cite[Abschnitt (1.4)]{juergens} hinzuweisen. Hier wird eine Methode beschrieben, um mithilfe der isotropen Teilräume von $(M^{\#,p} / M, \overline{b})$, wobei $\overline{b} : M^{\#,p} / M \times M^{\#,p} / M \rightarrow \frac{1}{p} \Z / \Z, (x+M,y+M) \mapsto b(x,y) + \Z$, sämtliche ganzen Obergitter von Index $p^s$ zu bestimmen - unabhängig von $\sigma$. Da diese Methode wegen Nichtbeachtung der $\sigma$-invarianz potentiell noch mehr Gitter liefert als solche mit den geforderten Eigenschaften, ist sie unsere erste Wahl. Leider scheitert sie in größeren Dimensionen zum Teil an der steigenden Ressourcenintensivität.\par
+
+Um tatsächlich die $\sigma$-invarianten Obergitter zu bestimmen, bemerken wir zunächst die Tatsache, dass jedes Obergitter $L \geq M$, sodass $[L : M]$ eine $p$-Potenz ist, ein Teilgitter von $M^{\#,p} = L_1^{\#,p} \perp L_p^{\#,p}$ sein muss. Definiere nun $b_1 := b \vert_{V_1 \times V_1}$ und $b_p := b \vert_{V_p \times V_p}$, sowie $\overline{b_1} := \overline{b}\vert_{(L_1^{\#,p} / L_1) \times (L_1^{\#,p} / L_1)}$ und $\overline{b_p} := \overline{b}\vert_{(L_p^{\#,p} / L_p) \times (L_p^{\#,p} / L_p)}$. Ist nun $(x_1,x_p) \in L$, wobei $x_1 \in L_1^{\#,p}$ und $x_p \in L_p^{\#,p}$. Damit $L$ ein ganzes Gitter wird, muss für alle $(y_1, y_p) \in L$ gelten:
+\begin{align*}
+	0 + \Z &\stackrel{!}{=} \overline{b}((x_1,x_p) + M, (y_1, y_p) + M)\\
+	&= b_1(x_1,y_1) + b(x_1, y_p) + b(x_p, y_1) + b_p(x_p, y_p) + \Z\\
+	&= \overline{b_1}(x_1+M, y_1 + M) + \overline{b_p}(x_p+M, y_p+M).
+\end{align*}
+Also $\overline{b_1}(x_1+M, y_1+M) = - \overline{b_p}(x_p+M, y_p+M)$. Demnach sind die ganzen Obergitter von Index $p^s$ gegeben durch $L_\varphi := \lbrace (x_1,x_p) \in L_1^{\#,p} \perp L_p^{\#,p} \mid \varphi(x_1+L_1) = x_p + L_p \rbrace$ für die Isometrien $\varphi : (L_1^{\#,p} / L_1, \overline{b_1}) \rightarrow (L_p^{\#,p} / L_p, -\overline{b_p})$. Damit ein solches Gitter $L_\varphi$ invariant unter $\sigma$ ist, muss für alle $(x_1,x_p) \in L_\varphi$ auch $(\sigma_1(x_1), \sigma_p(x_p)) \in L_\varphi$ sein, also $\varphi(\sigma_1(x_1) + L_1) = \sigma_p(x_p) + L_p = \sigma_p(\varphi(x_1 + L_1))$. Dies führt zur Bedingung\linebreak
+$\varphi \circ \sigma_1 = \sigma_p \circ \varphi$. 
+
+
 \section{Konstruktion von Gittern mit großem Automorphismus}
 
 Mithilfe der Typen von Automorphismen mit Primzahlordnung kennen wir die Geschlechter von Fix- und Bild-Gitter. In der Regel ist mindestens eines der Geschlechter zu groß, um es mithilfe der Kneser-Methode in akzeptabler Zeit aufzuzählen. Hat das Gitter jedoch einen großen Automorphismus, so kann das $L_p$ eine Ideal-Gitter-Gestalt besitzen, was uns die Konstruktion erleichtert. Wir untersuchen zunächst, welche Form die Potenzen der Minimalpolynome von Automorphismen besitzen.
@@ -1483,7 +1523,7 @@ Sei nun $L$ ein Gitter der Dimension $n$ und $\sigma \in \Aut(L)$ ein großer Au
 \begin{equation*}
 	V = \Bild(\sigma^d-1) \oplus \Kern(\sigma^d-1).
 \end{equation*}
-Nun ist allerdings $\Kern(\sigma^d-1) = \Kern\left((\Phi_{n_1} \dots \Phi_{n_k})(\sigma)\right)$ und somit $\Bild(\sigma^d-1) = \Kern(\Phi_m(\sigma))$. Das zu $\sigma^d$ gehörige Bildgitter $L_p = L \cap \Bild(\sigma^d-1) = L \cap \Kern(\Phi_m(\sigma))$ ist also ein Sub-Ideal-Gitter von $L$. Das Fix-Gitter $L_1 = L \cap \Kern(\sigma^d-1)$ hat die Dimension $n-m < \frac{n}{2}$.\par
+Nun ist allerdings $\Kern(\sigma^d-1) = \Kern\left((\Phi_{n_1} \dots \Phi_{n_k})(\sigma)\right)$ und somit $\Bild(\sigma^d-1) = \Kern(\Phi_m(\sigma))$. Das zu $\sigma^d$ gehörige Bildgitter $L_p = L \cap \Bild(\sigma^d-1) = L \cap \Kern(\Phi_m(\sigma))$ ist also ein Sub-Ideal-Gitter von $L$. Das Fix-Gitter $L_1 = L \cap \Kern(\sigma^d-1)$ hat die Dimension $n-\varphi(m) < \frac{n}{2}$.\par
 Nun ein paar Worte zum Minimalpolynom von $\sigma$ auf den Faktorgruppen $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$. Wir erinnern uns aus Abschnitt (4.2), dass $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$ isomorph als Gruppen waren. Der zugehörige Isomorphismus war insgesamt die Komposition der drei Isomorphismen
 \begin{align*}
 	L_1^{\#,p} / L_1 \rightarrow L_1^\# / L_1^{\#, \ell}&, x + L_1 \mapsto x + L_1^{\#, \ell}\\
@@ -1503,14 +1543,14 @@ Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
 		\State $AutoTypes \gets \text{ Liste von Aut.-Typen von Primzahlordnung nach Algorithmus \eqref{alg:autotypes}}$
 		\For {$p \in \lbrace q \in \P \mid q \vert m, \ggT(q, \ell) > 1 \rbrace$}
 			\State $d \gets \frac{m}{p}$
-			\State $PossibleTypes \gets \lbrace q - (n_1, n_p) - s - \dots \in AutoTypes \mid q = p$ und $d \leq s \rbrace$
+			\State $PossibleTypes \gets \lbrace p - (n - \varphi(m), \varphi(m)) - s - \dots \in AutoTypes \mid \varphi(d) \leq s \rbrace$
 			\For {$t \in PossibleTypes$}
 				\State $L_p\_List \gets$ Liste von Ideal-Gittern über $\Q(\zeta_m)$ mit durch $t$ für $L_p$ vorgegebene Dimension und Determinante nach Algorithmus \eqref{alg:idlat}
 				\For {$L_p \in L_p\_List$}
-					\For {$\sigma_p \in \lbrace \sigma \in \text{Aut}(L_p) \mid \sigma$ op. auf $L_p^{\#,p}/L_p$ mit Mi.-Po. $\Phi_d \rbrace$}
-						\State $L_1\_List \gets$ Liste von allen Gittern mit durch $t$ für $L_1$ vorgebenene Dimension und Determinante und mit quadratfreier Stufe nach Algorithmus \eqref{alg:knesneigh}
-						\For{$L_1 \in L_1\_List$}
-							\For {$\sigma_1 \in \lbrace \sigma \in \text{Aut}(L_1) \mid \sigma$ op. auf $L_1^{\#,p}/L_1$ mit Mi.-Po. $\Phi_d \rbrace$}
+					\State $L_1\_List \gets$ Liste von allen Gittern mit durch $t$ für $L_1$ vorgebenene Dimension und Determinante und mit quadratfreier Stufe nach Algorithmus \eqref{alg:knesneigh}
+					\For{$L_1 \in L_1\_List$}
+						\For {$\sigma_p \in \lbrace \sigma \in \text{Aut}(L_p) \mid \sigma$ op. auf $L_p^{\#,p}/L_p$ mit Mi.-Po. $\Phi_d \rbrace$}
+							\For {$\sigma_1 \in \lbrace \sigma \in \text{Aut}(L_1) \mid \sigma$ op. auf $L_1^{\#,p}/L_1$ mit Mi.-Po. $\Phi_d$ und $\text{Grad}(\mu_\sigma) \leq \varphi(d) \rbrace$}
 								\State $M \gets L_1 \perp L_p$
 								\State $\sigma \gets \text{diag}(\sigma_1, \sigma_p)$
 								\State $L\_List \gets$ Liste $\sigma$-invarianter Obergitter von $M$ mit Index $p^s$
@@ -1529,7 +1569,7 @@ Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
 	\end{algorithmic}
 \end{algorithm}
 
-Der Algorithmus findet nur spezielle Gitter mit einem Automorphismus bestimmter Ordnung mit einem bestimmten Minimalpolynom, dies sind recht weitreichende Einschränkungen. Zudem war die Suche nicht vollständig, da die Konstruktion der Obergitter durch \texttt{MAGMA}, so wie die Aufzählung gewisser Geschlechter zu ressourcenintensiv sind. Dennoch ist es damit gelungen, einige neue modulare, extremale Gitter zu konstruieren.
+Der Algorithmus findet nur spezielle Gitter mit einem Automorphismus bestimmter Ordnung mit einem bestimmten Minimalpolynom, dies sind recht weitreichende Einschränkungen. Zur Konstruktion der Obergitter wurde je nach Effizienz die \texttt{MAGMA}-native Funktion \texttt{Sublattices} oder die von Michael Jürgens in \cite[Abschnitt (1.4)]{juergens} beschriebene Vorgehensweise (die allerdings $\sigma$ nicht berücksichtigt) verwendet. Insgesamt konnten so leider noch immer  in einigen Fällen die Konstruktion von Obergittern zu ressourcenintensiv, daher ist die Liste der gefundenen Gitter unter Umständen nicht vollständig. Dennoch ist es damit gelungen, einige neue modulare, extremale Gitter zu konstruieren.
 
 
 \chapter{Anhang}
@@ -1763,6 +1803,10 @@ Es folgt der Quellcode zu den Algorithmen aus Kapitel 3. Die implementierten Fun
 	\item Liste von allen $\ell$-modularen Gittern in Dimension $n$ erstellen, welche einen Automorphismus $\sigma$ besitzen mit $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$. Siehe Abschnitt (3.5).
 \end{itemize}
 \includepdf[pages=-, pagecommand={}]{IdealLattices.pdf}
+
+\section{\texttt{MAGMA}-Implementierungen der Subideal-Gitter-Algorithmen}
+Beschreibung
+\includepdf[pages=-, pagecommand={}]{SubidealLattices.pdf}
 
 \newpage
 \section{Eidesstattliche Versicherung}

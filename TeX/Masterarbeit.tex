@@ -215,6 +215,7 @@ Wir wiederholen zunächst einige wichtige Begriffe aus der Gittertheorie, welche
 				\end{align*}
 				mit einer symmetrischen Bilinearform $b_q$ heißt \textit{quadratische Form}. Ein solches Paar $(E,q)$ heißt \textit{quadratischer $A$-Modul} (bzw. falls $A$ Körper ein \textit{quadratischer $A$-Vektorraum}).
 			\item Eine \textit{isometrische Abbildung} (oder kurz \textit{Isometrie}) zwischen zwei bilinearen Moduln $(E,b)$ und $(E', b')$ ist ein Modulisomorphismus $f : E \rightarrow E'$ mit $b(x,y) = b'(f(x), f(y))$.
+			\item Die Gruppe $O(E,b) := \lbrace f : E \rightarrow E \mid \text{ f ist Isometrie}\rbrace$ aller Isometrien eines bilinearen Vektorraums $(E,b)$ in sich selbst heißt die \textit{Isometriegruppe} von $(E,b)$.
 			\item Analog ist eine Isometrie zwischen zwei quadratischen Moduln $(E,q)$ und $(E', q')$ ist ein Modulisomorphismus $f : E \rightarrow E'$ mit $q(x) = q'(f(x))$ für alle $x \in E$.
 		\end{enumerate}
 	\end{definition}
@@ -873,6 +874,25 @@ Im letzten Kapitel haben wir gesehen, wie Gitter in Dimension $n$ mit einem Auto
 \begin{equation*}
 	V = \Kern(\Phi_m(\sigma)) \oplus \Kern\left(\frac{\mu_\sigma}{\Phi_m}(\sigma)\right).
 \end{equation*}
+Diese Zerlegung ist sogar orthogonal:
+\begin{framed}
+	\begin{lemma}
+		Sei $(V,b)$ ein bilinearer Vektorraum und $\sigma \in O(V,b)$ mit $\mu_\sigma = \Phi_{m_1} \Phi_{m_2} \dots \Phi_{m_k}$, dann ist
+		\begin{equation*}
+			V = \Kern(\Phi_{m_1}(\sigma)) \perp \Kern(\Phi_{m_2}(\sigma)) \perp \dots \perp \Kern(\Phi_{m_k}(\sigma))
+		\end{equation*}
+		eine Zerlegung in $\sigma$-invariante, orthogonale Teilräume.
+	\end{lemma}
+\end{framed}
+
+\begin{beweis}
+	Die $\sigma$-invarianz ist klar. Da jeweils $\Phi_{m_i}$ und $\Phi_{m_j}$ teilerfremd sind für $i \neq j$ ergibt sich außerdem sofort eine Zerlegung als direkte Summe
+	\begin{equation*}
+			V = \Kern(\Phi_{m_1}(\sigma)) \oplus \Kern(\Phi_{m_2}(\sigma)) \oplus \dots \oplus \Kern(\Phi_{m_k}(\sigma)).
+		\end{equation*}
+		Zu zeigen bleibt also nur Orthogonalität bezüglich $b$. Seien dazu $e_i : V \twoheadrightarrow \Kern(\Phi_{m_i}(\sigma))$ für $i=1,\dots,k$ die Projektionen 
+\end{beweis}
+
 Für $\frac{n}{2} < \varphi(m) \leq n$ muss $\Kern(\Phi_m(\sigma))$ die Dimension $\varphi(m)$ haben, wird also zu einem eindimensionalen $\Q(\zeta_m)$-Vektorraum und $L \cap \Kern(\Phi_m(\sigma))$ hat eine Struktur als Ideal-Gitter über diesem zyklotomischen Körper. Vergleiche dazu \cite[Abs. (5.3)]{nebe}
 
 \begin{framed}
@@ -1115,34 +1135,7 @@ Diese Überlegungen erlauben uns folgende Definition:
 \end{framed}
 
 Wir können nun einige Einschränkungen an den Typen eines solchen Automorphismus machen.
-
-\begin{framed}
-	\begin{satz} \label{th:restrict}
-		Sei $L$ ein gerades, $n$-dimensionales Gitter der quadratfreien Stufe $\ell$ mit Determinante $\Det(L) = \ell^k$. Sei zudem $\sigma \in \Aut(L)$ von Typ $p - (n_1, n_p) - s - q_1 - (k_{1,1}, k_{p,1}) - \dots - q_m - (k_{1,m}, k_{p,m})$, wobei $\ggT(p, \ell) = 1$. Dann gelten folgende Einschränkungen (für alle $i \in \underline{m}$):
-		\begin{enumerate}[label=(\roman*)]
-			\item $n_1 + n_p = n$.
-			\item $s \in \lbrace 0, \dots, \min(n_1, \frac{n_p}{p-1}) \rbrace$.
-			\item $s \equiv_2 (p-2) \frac{n_p}{p-1}$.
-			\item $k_{1,i} \in \lbrace 0, \dots, \min(n_1, k) \rbrace$.
-			\item $k_{1,i} \equiv_2 k$.
-			\item $k_{p,i} \in \lbrace 0, \dots, \min(n_p, k) \rbrace$.
-			\item $k_{p,i} \equiv_2 0$.
-			\item $\left( 2f(q_i)\right) \vert k_{p,i}$, wobei $f(q_i)$ den Trägheitsgrad von $q_i \Z_{\Q(\zeta_p + \zeta_p^{-1})}$ bezeichne.
-			\item $k_{1,i} + k_{p,i} = k$.
-		\end{enumerate}
-	\end{satz}
-\end{framed}
-
-\begin{beweis}
-	Eigenschaft (i) ist klar, (ii) ist Satz \eqref{th:fps}, Nummer (iv), (vi) und (ix) ergeben sich daraus, dass die Stufen von $L_p$ und $L_1$ Teiler von $p \ell$ sind und der Tatsache, dass $\frac{\Det(L_1) \Det(L_p)}{p^{2s}} = \Det(L)$.\par
-	Nach \cite[Satz (3.1.4)(d) und Lemma (3.1.1)]{juergens} existiert ein $\Z_{\Q(\zeta_p + \zeta_p^{-1})}$-Ideal $\a$ mit
-	\begin{equation*}
-		\Det(L_p) = p^s q_1^{k_{p,1}} \dots q_m^{k_{p,m}} = p^{(p-2)\frac{n_p}{p-1}} \cdot \No(\a)^2.
-	\end{equation*}
-	Daraus folgt sofort Eigenschaft (iii) und mit $\ggT(p, \ell) = 1$ auch (vii). Zuletzt ergibt sich (v) aus (vii) und (ix). Teil (viii) ist \cite[Korollar (4.1.9)]{juergens}.
-\end{beweis}
-
-Im Spezialfall $p=2$ hat die Gruppe $M^{\#, 2} / M$ Exponent $2$, mit einer Verallgemeinerung von \cite[Lemma (4.9)]{nebe} können wir eine weitere Einschränkung machen.
+Im Spezialfall $p=2$ hat die Gruppe $M^{\#, 2} / M$ Exponent $2$, wir zeigen nun eine Verallgemeinerung von \cite[Lemma (4.9)]{nebe}.
 
 \begin{framed}
 	\begin{lemma} \label{lem:2sub}
@@ -1183,7 +1176,39 @@ Im Spezialfall $p=2$ hat die Gruppe $M^{\#, 2} / M$ Exponent $2$, mit einer Vera
 \end{beweis}
 
 Ist $M$ wie im obigen Lemma mit Determinante $2^s a$ für ein ungerades $a \in \N$, dann hat das Gitter $U$ somit Determinante $a$ und Minimum $\Min(U) \geq \frac{\Min(M)}{2}$.
-Wir können nun mithilfe der Einschränkungen aus Satz \eqref{th:restrict}, Lemma \eqref{lem:2sub} und der Hermite-Schranken aus \eqref{tab:hermites} den Algorithmus \eqref{alg:autotypes} entwerfen, welcher die möglichen Automorphismentypen gerader Gitter mit quadratfreier Stufe zurückgibt.
+Nun können wir einige Einschränkungen an die Typ-Parameter zeigen.
+
+\begin{framed}
+	\begin{satz} \label{th:restrict}
+		Sei $L$ ein gerades, $n$-dimensionales Gitter der quadratfreien Stufe $\ell$ mit Determinante $\Det(L) = \ell^k$. Sei zudem $\sigma \in \Aut(L)$ von Typ $p - (n_1, n_p) - s - q_1 - (k_{1,1}, k_{p,1}) - \dots - q_m - (k_{1,m}, k_{p,m})$, wobei $\ggT(p, \ell) = 1$. Dann gelten folgende Einschränkungen (für alle $i \in \underline{m}$):
+		\begin{enumerate}[label=(\roman*)]
+			\item $n_1 + n_p = n$.
+			\item $s \in \lbrace 0, \dots, \min(n_1, \frac{n_p}{p-1}) \rbrace$.
+			\item $s \equiv_2 \frac{n_p}{p-1}$ und für $p = 2$ zusätzlich $s \equiv_2 0$.
+			\item $k_{1,i} \in \lbrace 0, \dots, \min(n_1, k) \rbrace$.
+			\item $k_{1,i} \equiv_2 k$.
+			\item $k_{p,i} \in \lbrace 0, \dots, \min(n_p, k) \rbrace$.
+			\item $k_{p,i} \equiv_2 0$.
+			\item $\left( 2f(q_i)\right) \vert k_{p,i}$, wobei $f(q_i)$ den Trägheitsgrad von $q_i \Z_{\Q(\zeta_p + \zeta_p^{-1})}$ bezeichne.
+			\item $k_{1,i} + k_{p,i} = k$.
+		\end{enumerate}
+	\end{satz}
+\end{framed}
+
+\begin{beweis}
+	Eigenschaft (i) ist klar, (ii) ist Satz \eqref{th:fps}, Nummer (iv), (vi) und (ix) ergeben sich daraus, dass die Stufen von $L_p$ und $L_1$ Teiler von $p \ell$ sind und der Tatsache, dass $\frac{\Det(L_1) \Det(L_p)}{p^{2s}} = \Det(L)$.\par
+	Nach \cite[Satz (3.1.4)(d) und Lemma (3.1.1)]{juergens} existiert ein $\Z_{\Q(\zeta_p + \zeta_p^{-1})}$-Ideal $\a$ mit
+	\begin{equation*}
+		\Det(L_p) = p^s q_1^{k_{p,1}} \dots q_m^{k_{p,m}} = p^{(p-2)\frac{n_p}{p-1}} \cdot \No(\a)^2.
+	\end{equation*}
+	Mit $\ggT(p, \ell) = 1$ zeigt die Gleichung sofort Eigenschaft (vii). Außerdem kann man ablesen, dass $s \equiv_2 (p-2)\frac{n_p}{p-1}$ sein muss. Für (iii) bleibt also zu zeigen, dass im Falle $p=2$ ebenfalls $s \equiv_2 \frac{n_p}{p-1}$ gilt. Hierfür verwenden Wir Lemma \eqref{lem:2sub} mit $M := L_p$. Für das $U$ aus dem Lemma gilt
+	\begin{equation*}
+		2^{n_p} = \vert (\sqrt{2}U)^{\#,2} / \sqrt{2} U \vert = \vert L_2^{\#,2} / L_2 \vert [L_2 : U]^2 = 2^{s + 2 \nu_2([L_2 : U])}.
+	\end{equation*}
+	Zuletzt ergibt sich (v) aus (vii) und (ix). Teil (viii) ist \cite[Korollar (4.1.9)]{juergens}.
+\end{beweis}
+
+Wir können nun mithilfe der Einschränkungen aus Satz \eqref{th:restrict} und den Hermite-Schranken aus \eqref{tab:hermites} den Algorithmus \eqref{alg:autotypes} entwerfen, welcher die möglichen Automorphismentypen gerader Gitter mit quadratfreier Stufe zurückgibt.
 
 \begin{algorithm}[H]
 	\caption{Aufzählung von Automorphismen-Typen}\label{alg:autotypes}
@@ -1482,16 +1507,64 @@ Für Dimension $n \leq 2$ sind die Voraussetzungen von Satz \eqref{th:neighbourg
 
 \section{Konstruktion von Obergittern}
 
-Haben wir einen Kandidaten für das Teilgitter $M := L_1 \perp L_p$ und für den Automorphismus $\sigma = \text{diag}(\sigma_1, \sigma_p)$ gefunden, so gilt es, die $\sigma$-invarianten Obergitter von $M$ mit Index $p^s$ zu bestimmen. Hierfür verwenden wir je nach Fall verschiedene Methoden. Zunächst ist auf die Konstruktion von Michael Jürgens in \cite[Abschnitt (1.4)]{juergens} hinzuweisen. Hier wird eine Methode beschrieben, um mithilfe der isotropen Teilräume von $(M^{\#,p} / M, \overline{b})$, wobei $\overline{b} : M^{\#,p} / M \times M^{\#,p} / M \rightarrow \frac{1}{p} \Z / \Z, (x+M,y+M) \mapsto b(x,y) + \Z$, sämtliche ganzen Obergitter von Index $p^s$ zu bestimmen - unabhängig von $\sigma$. Da diese Methode wegen Nichtbeachtung der $\sigma$-invarianz potentiell noch mehr Gitter liefert als solche mit den geforderten Eigenschaften, ist sie unsere erste Wahl. Leider scheitert sie in größeren Dimensionen zum Teil an der steigenden Ressourcenintensivität.\par
+Haben wir einen Kandidaten für das Teilgitter $M := L_1 \perp L_p$ und für den Automorphismus $\sigma = \text{diag}(\sigma_1, \sigma_p)$ gefunden, so gilt es, die $\sigma$-invarianten Obergitter von $M$ mit Index $p^s$ zu bestimmen. Hierfür verwenden wir je nach Fall verschiedene Methoden. Zunächst ist auf die Konstruktion von Michael Jürgens in \cite[Abschnitt (1.4)]{juergens} hinzuweisen. Hier wird eine Methode beschrieben, um mithilfe der isotropen Teilräume des bilinearen $\F_p$-Vektorraums $(M^{\#,p} / M, \overline{b})$, wobei $\overline{b} : M^{\#,p} / M \times M^{\#,p} / M \rightarrow \F_p, (x+M,y+M) \mapsto pb(x,y) + p\Z$, sämtliche ganzen Obergitter von Index $p^s$ zu bestimmen - unabhängig von $\sigma$. Da diese Methode wegen Nichtbeachtung der $\sigma$-invarianz potentiell noch mehr Gitter liefert als solche mit den geforderten Eigenschaften, ist sie unsere erste Wahl. Leider scheitert sie in größeren Dimensionen zum Teil an der steigenden Ressourcenintensivität.\par
 
 Um tatsächlich die $\sigma$-invarianten Obergitter zu bestimmen, bemerken wir zunächst die Tatsache, dass jedes Obergitter $L \geq M$, sodass $[L : M]$ eine $p$-Potenz ist, ein Teilgitter von $M^{\#,p} = L_1^{\#,p} \perp L_p^{\#,p}$ sein muss. Definiere nun $b_1 := b \vert_{V_1 \times V_1}$ und $b_p := b \vert_{V_p \times V_p}$, sowie $\overline{b_1} := \overline{b}\vert_{(L_1^{\#,p} / L_1) \times (L_1^{\#,p} / L_1)}$ und $\overline{b_p} := \overline{b}\vert_{(L_p^{\#,p} / L_p) \times (L_p^{\#,p} / L_p)}$. Ist nun $(x_1,x_p) \in L$, wobei $x_1 \in L_1^{\#,p}$ und $x_p \in L_p^{\#,p}$. Damit $L$ ein ganzes Gitter wird, muss für alle $(y_1, y_p) \in L$ gelten:
 \begin{align*}
-	0 + \Z &\stackrel{!}{=} \overline{b}((x_1,x_p) + M, (y_1, y_p) + M)\\
-	&= b_1(x_1,y_1) + b(x_1, y_p) + b(x_p, y_1) + b_p(x_p, y_p) + \Z\\
+	0 + p\Z &\stackrel{!}{=} \overline{b}((x_1,x_p) + M, (y_1, y_p) + M)\\
+	&= pb_1(x_1,y_1) + pb(x_1, y_p) + pb(x_p, y_1) + pb_p(x_p, y_p) + p\Z\\
 	&= \overline{b_1}(x_1+M, y_1 + M) + \overline{b_p}(x_p+M, y_p+M).
 \end{align*}
-Also $\overline{b_1}(x_1+M, y_1+M) = - \overline{b_p}(x_p+M, y_p+M)$. Demnach sind die ganzen Obergitter von Index $p^s$ gegeben durch $L_\varphi := \lbrace (x_1,x_p) \in L_1^{\#,p} \perp L_p^{\#,p} \mid \varphi(x_1+L_1) = x_p + L_p \rbrace$ für die Isometrien $\varphi : (L_1^{\#,p} / L_1, \overline{b_1}) \rightarrow (L_p^{\#,p} / L_p, -\overline{b_p})$. Damit ein solches Gitter $L_\varphi$ invariant unter $\sigma$ ist, muss für alle $(x_1,x_p) \in L_\varphi$ auch $(\sigma_1(x_1), \sigma_p(x_p)) \in L_\varphi$ sein, also $\varphi(\sigma_1(x_1) + L_1) = \sigma_p(x_p) + L_p = \sigma_p(\varphi(x_1 + L_1))$. Dies führt zur Bedingung\linebreak
-$\varphi \circ \sigma_1 = \sigma_p \circ \varphi$. 
+Also $\overline{b_1}(x_1+M, y_1+M) = - \overline{b_p}(x_p+M, y_p+M)$. Demnach sind die ganzen Obergitter von Index $p^s$ gegeben durch
+\begin{equation*}
+	L_\varphi := \lbrace (x_1,x_p) \in L_1^{\#,p} \perp L_p^{\#,p} \mid \varphi(x_1+L_1) = x_p + L_p \rbrace
+\end{equation*}
+für die Isometrien $\varphi : (L_1^{\#,p} / L_1, \overline{b_1}) \rightarrow (L_p^{\#,p} / L_p, -\overline{b_p})$.\par
+Nun zur $\sigma$-invarianz eines solchen Gitters $L_\varphi$. Beachte, dass $\sigma$ auf $M^{\#,p}/M$ durch $\sigma(x+M) := \sigma(x) + M$ operiert. Analog operieren $\sigma_1$ auf $L_1^{\#,p}/L_1$ und $\sigma_p$ auf $L_p^{\#,p}/L_p$. Damit ein Gitter $L_\varphi$ nun $\sigma$-invariant ist, muss für alle $(x_1,x_p) \in L_\varphi$ auch $(\sigma_1(x_1), \sigma_p(x_p)) \in L_\varphi$ sein, also $\varphi(\sigma_1(x_1) + L_1) = \sigma_p(x_p) + L_p = \sigma_p(\varphi(x_1 + L_1))$. Dies führt zur Bedingung
+\begin{equation}\label{eq:isocond}
+\varphi \circ \sigma_1 = \sigma_p \circ \varphi.
+\end{equation}
+Die Menge aller Isometrien bilden in höheren Dimensionen einen zu großen Suchraum, wir können allerdings einige Einschränkungen machen. Seien $\varphi_0$ und $\varphi_1 : (L_1^{\#,p} / L_1, \overline{b_1}) \rightarrow (L_p^{\#,p} / L_p, -\overline{b_p})$ Isometrien, welche Bedingung \eqref{eq:isocond} erfüllen. Dann gilt
+\begin{equation*}
+	\sigma_1 \varphi_0 \varphi_1^{-1} \sigma_1^{-1} = (\sigma_1 \varphi_0) (\sigma_1 \varphi_1)^{-1} = \varphi_0 \sigma_p \sigma_p^{-1} \varphi_1^{-1} = \varphi_0 \varphi_1^{-1}.
+\end{equation*}
+Demnach ist $\varphi_0 \varphi_1^{-1}$ enthalten im Zentralisator $C_{O(L_1^{\#,p} / L_1)}(\sigma_1)$. Fixieren wir also eine Isometrie $\varphi_0$, so erhalten wir alle weiteren durch Verkettung mit Zentralisatorelementen. \texttt{MAGMA} kann eine einzelne Isometrie $\tilde{\varphi_0}$ konstruieren, diese erfüllt jedoch nicht notwendigerweise Bedingung \eqref{eq:isocond}. Wir machen den Ansatz $\varphi_0 \stackrel{!}{=} \tilde{\varphi_0} \circ u$ für $u \in O(L_1^{\#,p}/L_1)$. Dann muss gelten
+\begin{align*}
+	&\quad\varphi_0 \circ \sigma_1 = \sigma_p \circ \varphi_0\\
+	\Leftrightarrow& \quad\tilde{\varphi_0} \circ u \circ \sigma_1 = \sigma_p \circ \tilde{\varphi_0} \circ u \\
+	\Leftrightarrow& \quad u \circ \sigma_1 \circ u^{-1} = \tilde{\varphi_0} \circ \sigma_p \circ \tilde{\varphi_0}^{-1}.
+\end{align*}
+Das Element $u$ konjugiert also die Abbildung $\sigma_1$ zu $\tilde{\varphi_0} \circ \sigma_p \circ \tilde{\varphi_0}^{-1}$. Ein solches Element lässt sich durch \texttt{MAGMA} bestimmen.\par
+Eine letzte Beobachtung, ist die folgende: Sei $\varphi$ eine Isometrie mit den gesuchten Eigenschaften und $c \in C_{\text{Aut}(L_1)}(\sigma_1)$. Dann operiert $c$ auf $L_1^{\#,p} / L_1$ und wir können $\varphi_c := \varphi \circ c$ definieren. Da $c$ im Zentralisator von $\sigma_1$ liegt, erfüllt auch $\varphi_c$ Eigenschaft \eqref{eq:isocond} und liefert somit ebenfalls ein $\sigma$-invariantes ganzes Obergitter $L_{\varphi_c}$ von $M$. Definiere nun die Isometrie
+\begin{equation*}
+	\psi : L_1^{\#,p} \perp L_p^{\#,p} \rightarrow L_1^{\#,p} \perp L_p^{\#,p}, (x, y) \mapsto ( c^{-1}(x), y),
+\end{equation*}
+dann ist $\psi(L_\varphi) = L_{\varphi_c}$, also sind die Gitter isometrisch. Um Redundanz bei der Konstruktion zu vermeiden, genügt es also, jeweils einen Vertreter nach den Restklassen modulo $C_{\text{Aut}(L_1)}(\sigma_1)$ zu wählen.\par
+Insgesamt erhalten wir also den Algorithmus:
+
+\begin{algorithm}[H]
+	\caption{Konstruktion von $\sigma$-invarianten Obergittern}\label{alg:superlat}
+	\begin{algorithmic}[1]
+		\State \textbf{Eingabe}: Gitter $L_1$, $L_p$, Automorphismen $\sigma_1$ von $L_1$ und $\sigma_p$ von $L_p$, $p \in \P$, sodass $L_1^{\#,p}/L_1 \cong (\F_p)^s \cong L_p^{\#,p}/L_p$
+		\State \textbf{Ausgabe}: Liste aller nicht-isometrischen, ganzen Obergitter von $L_1 \perp L_p$ von Index $p^s$
+		\\
+		\State $\tilde{\varphi_0} \gets$ Isometrie $(L_1^{\#,p} / L_1, \overline{b_1}) \rightarrow (L_p^{\#,p} / L_p, -\overline{b_p})$
+		\State $u \gets$ Element in $O(L_1^{\#,p}/L_1)$, sodass u $\circ \sigma_1 \circ u^{-1} = \tilde{\varphi_0} \circ \sigma_p \circ \tilde{\varphi_0}^{-1}$
+		\State $\varphi_0 \gets \tilde{\varphi_0} \circ u$
+		\State $C \gets$ Vertretersystem von $C_{O(L_1^{\#,p} / L_1)}(\sigma_1) / C_{\text{Aut}(L_1)}(\sigma_1)$
+		\State $Results \gets []$
+		\For {$c \in C$}
+			\State $\varphi \gets \varphi_0 \circ c$
+			\State $L_\varphi \gets \lbrace (x_1,x_p) \in L_1^{\#,p} \perp L_p^{\#,p} \mid \varphi(x_1+L_1) = x_p + L_p \rbrace$
+			\If{$\not\exists M \in Results \mid L_\varphi \cong M$}
+				\State $Results \gets Results \cup [L_\varphi]$
+			\EndIf
+		\EndFor
+		\State \Return $Results$
+	\end{algorithmic}
+\end{algorithm}
+Es ist anzumerken, dass auch diese Methode in zu hohen Dimensionen zu ineffizient wird. Als letzte Möglichkeit können wir deshalb mit der \texttt{MAGMA}-Methode \texttt{Sublattices} $\sigma$-invariante Teilgitter von $M^{\#,p}$ bestimmen. Da die konstruierten Gitter in diesem Fall jedoch nicht notwendigerweise ganz sein müssen, steigt die Anzahl schnell an und es kann in der Regel keine vollständige Liste gebildet werden, sondern nur eine Teilmenge der Gitter. Bei Benutzung dieser Methode kann also die Vollständigkeit der Ergebnisse nicht garantiert werden.
+
 
 
 \section{Konstruktion von Gittern mit großem Automorphismus}
@@ -1524,7 +1597,7 @@ Sei nun $L$ ein Gitter der Dimension $n$ und $\sigma \in \Aut(L)$ ein großer Au
 	V = \Bild(\sigma^d-1) \oplus \Kern(\sigma^d-1).
 \end{equation*}
 Nun ist allerdings $\Kern(\sigma^d-1) = \Kern\left((\Phi_{n_1} \dots \Phi_{n_k})(\sigma)\right)$ und somit $\Bild(\sigma^d-1) = \Kern(\Phi_m(\sigma))$. Das zu $\sigma^d$ gehörige Bildgitter $L_p = L \cap \Bild(\sigma^d-1) = L \cap \Kern(\Phi_m(\sigma))$ ist also ein Sub-Ideal-Gitter von $L$. Das Fix-Gitter $L_1 = L \cap \Kern(\sigma^d-1)$ hat die Dimension $n-\varphi(m) < \frac{n}{2}$.\par
-Nun ein paar Worte zum Minimalpolynom von $\sigma$ auf den Faktorgruppen $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$. Wir erinnern uns aus Abschnitt (4.2), dass $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$ isomorph als Gruppen waren. Der zugehörige Isomorphismus war insgesamt die Komposition der drei Isomorphismen
+Nun ein paar Worte zum Minimalpolynom von $\sigma$ auf den Faktorgruppen $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$. Wir erinnern uns aus Abschnitt (4.2), dass $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$ isomorph waren. Der zugehörige Isomorphismus war die Komposition der drei Isomorphismen
 \begin{align*}
 	L_1^{\#,p} / L_1 \rightarrow L_1^\# / L_1^{\#, \ell}&, x + L_1 \mapsto x + L_1^{\#, \ell}\\
 	L_1^\#/L_1^{\#,\ell} \rightarrow L_p^\# / L_p^{\#,\ell}&, y + L_1^{\#, \ell} \mapsto (\hat{y} - y) + L_p^{\#, \ell}\\
@@ -1569,7 +1642,22 @@ Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
 	\end{algorithmic}
 \end{algorithm}
 
-Der Algorithmus findet nur spezielle Gitter mit einem Automorphismus bestimmter Ordnung mit einem bestimmten Minimalpolynom, dies sind recht weitreichende Einschränkungen. Zur Konstruktion der Obergitter wurde je nach Effizienz die \texttt{MAGMA}-native Funktion \texttt{Sublattices} oder die von Michael Jürgens in \cite[Abschnitt (1.4)]{juergens} beschriebene Vorgehensweise (die allerdings $\sigma$ nicht berücksichtigt) verwendet. Insgesamt konnten so leider noch immer  in einigen Fällen die Konstruktion von Obergittern zu ressourcenintensiv, daher ist die Liste der gefundenen Gitter unter Umständen nicht vollständig. Dennoch ist es damit gelungen, einige neue modulare, extremale Gitter zu konstruieren.
+Für $p = 2$ kann bei Zeile $12$ des Algorithmus alternativ auch mit Lemma \eqref{lem:2sub} vorgegangen werden: man zählt stattdessen die möglichen $U$ auf und erhält die Kandidaten für $L_1$ als Obergitter von $\sqrt{2} U$ vom Index $p^\frac{\varphi(n)-m - s}{2}$.
+Für diesen Algorithmus wurden Einschränkungen an die Minimalpolynome der Automorphismen von Gittern gemacht, es ist also a priori nicht klar, welcher Grad von Vollständigkeit durch die Klassifikation mit unserem Algorithmus gegeben ist. Dennoch ist es gelungen, einige neue extremale Gitter zu konstruieren. Die 
+
+
+\section{Automorphismen extremaler 3-modularer Gitter in Dimension 24}
+
+Wir wollen nun die bisher gewonnenen Erkenntnisse nutzen, um die Automorphismen von Gittern in bestimmten Spezialfällen genauer zu untersuchen. Wir beginnen mit den $3$-modularen Gittern in Dimension $24$.
+\begin{framed}
+	\begin{satz}
+		Sei $L$ ein extremales $3$-modulares Gitter in Dimension $24$. Dann hat $L$ keine Automorphismen der Ordnung $7$, sowie der Ordnung $p \in P_{\ge 17}$. Ist $\sigma \in \Aut(L)$ von Ordnung $m$ mit $12 < \varphi(m) \leq 24$, so ist $\mu_\sigma \in \lbrace \Phi_{12} \Phi_{20},\ \Phi_4 \Phi_{12} \Phi_{20},\ \Phi_3, \Phi_{11},\ \Phi_1 \Phi_3 \Phi_{11} \rbrace$, also insbesondere $m \in \lbrace 33, 60 \rbrace$.
+	\end{satz}
+\end{framed}
+
+\begin{beweis}
+	Es muss $\Min(L) \ge 6$ sein. Algorithmus \eqref{alg:autotypes} liefert uns $50$ mögliche Automorphismentypen. Zählt man das durch die Typen festgelegte Geschlecht in der kleineren der beiden Dimensionen $n_1$ und $n_p$ auf, so fällt auf, das viele der Geschlechter leer sind, was die möglichen Automorphismentypen stark einschränkt.
+\end{beweis}
 
 
 \chapter{Anhang}

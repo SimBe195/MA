@@ -1,0 +1,92 @@
+
+Types := AutomorphismTypes(3, 12, 24, 6);
+
+#Types;
+
+for type in Types do
+	type;
+	p := type[1];
+	n1 := type[2];
+	np := type[3];
+	s := type[4];
+
+	k1 := type[6];
+	kp := type[7];
+
+	det1 := p^s*3^k1;
+	detp := p^s*3^kp;
+
+	if p eq 2 then
+
+		if n1 le 12 then
+			UList := EnumerateGenusDeterminant(3^k1, n1, false);
+
+			List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((n1 - s)/2)) : U in UList | Dimension(U) eq 0 or Minimum(U) ge 3];
+
+			List := [L : L in List | IsEven(L) and Minimum(L) ge 6];
+			if #List eq 0 then
+				continue;
+			end if;
+		end if;
+
+		if np le 12 then
+			UList := EnumerateGenusDeterminant(3^kp, np, false);
+			List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((np - s)/2)) : U in UList | Dimension(U) eq 0 or Minimum(U) ge 3];
+
+			List := [L : L in List | IsEven(L) and Minimum(L) ge 6];
+			if #List eq 0 then
+				continue;
+			end if;
+		end if;
+
+	else
+
+		K<z> := CyclotomicField(p);
+		Kpos := sub<K|z+1/z>;
+
+		f := InertiaDegree(Factorization(ideal<Integers(Kpos) | 3>)[1][1]);
+		deltap := (-1)^(Integers() ! (kp/f + (p-1)/2 * (Binomial(Integers() ! (np / (p-1) + 1), 2) + Binomial(s, 2))));
+		delta1 := deltap * (-1)^(Integers() ! (s*(p-1)/2));
+
+		epsilonp := (-1)^(Integers() ! (kp / f + Binomial(kp,2)));
+
+		epsilon1 := epsilonp;
+
+		if n1 le 12 then
+			Sym := [* 2, n1 *];
+			if 3 lt p then
+				Append(~Sym, <3, k1, epsilon1>);
+				Append(~Sym, <p, s, delta1>);
+			else
+				Append(~Sym, <p, s, delta1>);
+				Append(~Sym, <3, k1, epsilon1>);
+			end if;
+
+			List := [L : L in EnumerateGenusSymbol(Sym) | IsEven(L) and Minimum(L) ge 6];
+			if #List eq 0 then
+				continue;
+			end if;
+		end if;
+
+		if np le 12 then
+			Sym := [* 2, np *];
+			if 3 lt p then
+				Append(~Sym, <3, kp, epsilonp>);
+				Append(~Sym, <p, s, deltap>);
+			else
+				Append(~Sym, <p, s, deltap>);
+				Append(~Sym, <3, kp, epsilonp>);
+			end if;
+
+			List := [L : L in EnumerateGenusSymbol(Sym) | IsEven(L) and Minimum(L) ge 6];
+			if #List eq 0 then
+				continue;
+			end if;
+		end if;
+
+	end if;
+
+	"!!!!!!POSSIBLE!!!!!!";
+
+end for;
+

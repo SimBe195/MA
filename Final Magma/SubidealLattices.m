@@ -16,7 +16,7 @@ function AutomorphismTypes(l, k, n, t)
 		f := [];
 
 		for q in lFactors do
-			if p le 3 then 
+			if p le 3 then
 				Append(~f, 1);
 			else
 				Append(~f, InertiaDegree(Factorization(ideal<Integers(Kpos) | q>)[1][1]));
@@ -26,36 +26,34 @@ function AutomorphismTypes(l, k, n, t)
 		for np in [i*(p-1) : i in [1..Floor(n/(p-1))]] do
 
 			n1 := n - np;
-			if l eq 1 then
-				for s in [0..Min(n1, Integers() ! (np/(p-1)))] do
-					if not IsDivisibleBy(s - Integers() ! (np / (p-1)), 2) then continue s; end if;
+			for s in [0..Min(n1, Integers() ! (np/(p-1)))] do
+				if not IsDivisibleBy(s - Integers() ! (np / (p-1)), 2) then continue s; end if;
+				if p eq 2 and not IsDivisibleBy(s, 2) then continue s; end if;
+
+				if l eq 1 then
 					if n1 gt 0 then
 						Gamma1 := t/p^(s/n1);
-						if Gamma1 gt HermiteBounds[n1] + 0.1 then continue s; end if;
+						if Gamma1 gt HermiteBounds[n1] + 0.1 then continue; end if;
 					end if;
 
 					if np gt 0 then
 						Gammap := t/p^(s/np);
-						if Gammap gt HermiteBounds[np] + 0.1 then continue s; end if;
+						if Gammap gt HermiteBounds[np] + 0.1 then continue; end if;
 					end if;
 					type := <p, n1, np, s>;
 
 					Append(~Results, type);
-				end for;
-			else
-				for kp in CartesianProduct([[2*f[i]*j : j in [0..Floor(Min(np,k)/(2*f[i]))]] : i in [1..#f]]) do
-					
-					k1 := [k - kp[i] : i in [1..#kp]];
-
-					for i in [1..#kp] do
-						if k1[i] gt Min(n1,k) then continue kp; end if;
-						if not IsDivisibleBy(k1[i] - k, 2) then continue kp; end if;
-						if not IsDivisibleBy(kp[i], 2) then continue kp; end if;
-					end for;
-
-					for s in [0..Min(n1, Integers() ! (np / (p-1)))] do
-						if not IsDivisibleBy(s - Integers() ! ((p-2) * np / (p-1)), 2) then continue s; end if;
+				else
+					for kp in CartesianProduct([[2*f[i]*j : j in [0..Floor(Min(np,k)/(2*f[i]))]] : i in [1..#f]]) do
 						
+						k1 := [k - kp[i] : i in [1..#kp]];
+
+						for i in [1..#kp] do
+							if k1[i] gt Min(n1,k) then continue kp; end if;
+							if not IsDivisibleBy(k1[i] - k, 2) then continue kp; end if;
+							if not IsDivisibleBy(kp[i], 2) then continue kp; end if;
+						end for;
+							
 						if n1 gt 0 then
 							Gamma1 := p^s;
 							for i in [1..#lFactors] do
@@ -63,7 +61,7 @@ function AutomorphismTypes(l, k, n, t)
 							end for;
 							Gamma1 := t / Gamma1^(1/n1);
 
-							if Gamma1 gt HermiteBounds[n1] + 0.1 then continue s; end if;
+							if Gamma1 gt HermiteBounds[n1] + 0.1 then continue; end if;
 						end if;
 
 						if np gt 0 then
@@ -73,7 +71,7 @@ function AutomorphismTypes(l, k, n, t)
 							end for;
 							Gammap := t / Gammap^(1/np);
 
-							if Gammap gt HermiteBounds[np] + 0.1 then continue s; end if;
+							if Gammap gt HermiteBounds[np] + 0.1 then continue; end if;
 						end if;
 
 						if p eq 2 then
@@ -84,7 +82,7 @@ function AutomorphismTypes(l, k, n, t)
 								end for;
 								Gamma1 := t/2 / Gamma1^(1/n1);
 
-								if Gamma1 gt HermiteBounds[n1] + 0.1 then continue s; end if;
+								if Gamma1 gt HermiteBounds[n1] + 0.1 then continue; end if;
 							end if;
 
 							if np gt 0 then
@@ -94,7 +92,7 @@ function AutomorphismTypes(l, k, n, t)
 								end for;
 								Gammap := t/2 / Gammap^(1/np);
 
-								if Gammap gt HermiteBounds[np] + 0.1 then continue s; end if;
+								if Gammap gt HermiteBounds[np] + 0.1 then continue; end if;
 							end if;
 						end if;
 
@@ -107,8 +105,8 @@ function AutomorphismTypes(l, k, n, t)
 
 						Append(~Results, type);
 					end for;
-				end for;
-			end if;
+				end if;
+			end for;
 		end for;
 	end for;
 
@@ -117,11 +115,14 @@ function AutomorphismTypes(l, k, n, t)
 end function;
 
 
-function EnumerateGenusOfRepresentative(L, t)
+function EnumerateGenusOfRepresentative(L)
 // Input: Lattice L, t in N
 
-// Output: List of all representatives of isometry-classes in the genus of L with Minimum at least t
-	if Dimension(L) le 8 then
+// Output: List of all representatives of isometry-classes in the genus of L
+	
+	try return eval Read(Sprintf("GenusSymbols/Gen_%o", GenSymbol(L))); catch e; end try;
+
+	if Dimension(L) le 2 then
 		Gen := GenusRepresentatives(L);
 		ZGen := [];
 		for M in Gen do
@@ -131,7 +132,7 @@ function EnumerateGenusOfRepresentative(L, t)
 				Append(~ZGen, LatticeWithGram(LLLGram(Matrix(Rationals(), GramMatrix(SimpleLattice(M))))));
 			end if;
 		end for;
-		return [M : M in ZGen | Minimum(M) ge t];
+		return ZGen;
 	end if;
 
 	M := Mass(L);
@@ -142,12 +143,6 @@ function EnumerateGenusOfRepresentative(L, t)
 	Minima := [* *];
     NumShortest := AssociativeArray();
     SizeAuto := AssociativeArray();
-
-	if Minimum(L) ge t then
-		GenMin := [L];
-	else
-		GenMin := [];
-	end if;
 
 	if m lt M then
 		"Entering Kneser neighboring-method";
@@ -257,11 +252,7 @@ function EnumerateGenusOfRepresentative(L, t)
 	        	auto := #AutomorphismGroup(N);
 	        end if;
             SizeAuto[NewIndex] := auto;
-        	m +:= auto;
-
-        	if Minimum(N) lt t then
-        		Append(~GenMin, LLL(N));
-        	end if;
+        	m +:= 1/auto;
 
         	if m eq M then
         		break N;
@@ -269,27 +260,42 @@ function EnumerateGenusOfRepresentative(L, t)
         end for;
     end while;
 
-    return GenMin;
+    return Gen;
 
 end function;
 
 
-function EnumerateGenusDeterminant(det, n, t)
-// Input: det in N, n in N, t
+function EnumerateGenusDeterminant(det, n, even)
+// Input: det in N; n in N; boolean even that indicates whether only even lattices shall be enumerated
 
-// Output: Representatives of all isometry-classes with minimum >= tbelonging to a genus with even lattices with determinant det, dimension n, and square-free level
+// Output: Representatives of all isometry-classes belonging to a genus of integral lattices with determinant det, dimension n, and square-free level
+
+	if n eq 0 then
+		return [LatticeWithGram(Matrix(Rationals(),0,0,[]))];
+	end if;
+
+	if n eq 1 then
+		L := LatticeWithGram(Matrix(Rationals(), 1, 1, [det]));
+		Symbol := GenSymbol(L);
+		if even and not Symbol[1] eq 2 then return []; end if;
+		if not IsSquarefree(Level(L)) then return []; end if;
+		if even and IsDivisibleBy(Determinant(L), 2) then
+			if not Symbol[3][4] eq 2 then return []; end if;
+		end if;
+		return [L];
+	end if;
+
 	if n eq 2 then
-
 		Results := [];
 
-		for m:= t to Floor(1.155*Sqrt(det)) by 2 do
+		for m in [1..Floor(1.155*Sqrt(det))] do
 			for a in [-m+1..m-1] do
 
 				if not IsDivisibleBy(det + a^2, m) then continue; end if;
 				b := Integers() ! ((det + a^2) / m);
 
 				if b lt m then continue; end if;
-				if not IsEven(b) then continue; end if;
+				if even and not IsEven(b) then continue; end if;
 
 				Mat := Matrix(Rationals(), 2, 2, [m,a,a,b]);
 				if not IsPositiveDefinite(Mat) then continue; end if;
@@ -299,8 +305,8 @@ function EnumerateGenusDeterminant(det, n, t)
 				if not IsSquarefree(Level(L)) then continue; end if;
 
 				Symbol := GenSymbol(L);
-				if not Symbol[1] eq 2 then continue; end if;
-				if IsDivisibleBy(Determinant(L), 2) then
+				if even and not Symbol[1] eq 2 then continue; end if;
+				if even and IsDivisibleBy(Determinant(L), 2) then
 					if not Symbol[3][4] eq 2 then continue; end if;
 				end if;
 				
@@ -308,7 +314,7 @@ function EnumerateGenusDeterminant(det, n, t)
 			end for;
 		end for;
 
-		return Results;
+		return ReduceByIsometry(Results);
 	end if;
 
 
@@ -328,6 +334,8 @@ function EnumerateGenusDeterminant(det, n, t)
 		e := Abs(exps[i]);
 		if n eq e then
 			Append(~IdealList, <ideal<Int|p>, [[1,e]]>);
+		elif e eq 0 then
+			Append(~IdealList, <ideal<Int|p>, [[0,n]]>);
 		else
 			Append(~IdealList, <ideal<Int|p>, [[0,n-e],[1,e]]>);
 		end if;
@@ -341,35 +349,55 @@ function EnumerateGenusDeterminant(det, n, t)
 		return [];
 	end try;
 
-	PossibleRep := [];
+	Results := [];
+
 	for L in Rep do
 
 		LZ := ToZLattice(L);
 		if IsSquarefree(Level(LZ)) then
 			Symbol := GenSymbol(LZ);
-			if not Symbol[1] eq 2 then continue L; end if;
-			if IsDivisibleBy(det, 2) then
+			if even and not Symbol[1] eq 2 then continue L; end if;
+			if even and IsDivisibleBy(det, 2) then
 				if not Symbol[3][4] eq 2 then continue L; end if;
 			end if;
 			
-			Append(~PossibleRep, LZ);
+			Gen := EnumerateGenusOfRepresentative(LZ);
+			PrintFileMagma(Sprintf("GenusSymbols/Gen_%o",Symbol), Gen : Overwrite := true);
+			Results cat:= Gen;
 		end if;
 	end for;
 
-	return &cat([EnumerateGenusOfRepresentative(L, t) : L in PossibleRep]);
+	return Results;
 
 end function;
 
 
-function EnumerateGenusSymbol(Symbol, t)
+function EnumerateGenusSymbol(Symbol)
 // Input: Genus-symbol Symbol of positive definite lattices of square-free level; t in N
 
-// Output: Representatives of all isometry-classes with minimum >= t belonging to the genus
+// Output: Representatives of all isometry-classes belonging to the genus
 
-	if Symbol[2] eq 2 then
+	try return eval Read(Sprintf("GenusSymbols/Gen_%o", Symbol)); catch e; end try;
+
+	n := Symbol[2];
+
+	if n eq 0 then
+		return [LatticeWithGram(Matrix(Rationals(),0,0,[]))];
+	end if;
+
+	if n eq 1 then 
+		det := &*[Symbol[i][1]^Symbol[i][2] : i in [3..#Symbol]];
+		L := LatticeWithGram(Matrix(Rationals(), 1, 1, [det]));
+		if GenSymbol(L) eq Symbol then
+			return [L];
+		end if;
+		return [];
+	end if;
+
+	if n eq 2 then
 		det := &*[Symbol[i][1]^Symbol[i][2] : i in [3..#Symbol]];
 
-		for m:= t to Floor(1.155*Sqrt(det)) by 2 do
+		for m := 2 to Floor(1.155*Sqrt(det)) by 2 do
 			for a in [-m+1..m-1] do
 
 				if not IsDivisibleBy(det + a^2, m) then continue; end if;
@@ -386,7 +414,7 @@ function EnumerateGenusSymbol(Symbol, t)
 				if not IsSquarefree(Level(L)) then continue; end if;
 				
 				if Symbol eq GenSymbol(L) then
-					return EnumerateGenusOfRepresentative(L, t);
+					return EnumerateGenusOfRepresentative(L);
 				end if;
 			end for;
 		end for;
@@ -397,8 +425,6 @@ function EnumerateGenusSymbol(Symbol, t)
 
 	Rat := RationalsAsNumberField();
 	Int := Integers(Rat);
-
-	n := Symbol[2];
 
 	IdealList := [];
 	if Symbol[3][1] ne 2 then
@@ -411,6 +437,8 @@ function EnumerateGenusSymbol(Symbol, t)
 
 		if n eq np then
 			Append(~IdealList, <ideal<Int|p>, [[1,np]]>);
+		elif np eq 0 then
+			Append(~IdealList, <ideal<Int|p>, [[0,n]]>);
 		else
 			Append(~IdealList, <ideal<Int|p>, [[0,n-np],[1,np]]>);
 		end if;
@@ -427,7 +455,9 @@ function EnumerateGenusSymbol(Symbol, t)
 	for L in Rep do
 		LZ := ToZLattice(L);
 		if GenSymbol(LZ) eq Symbol then
-			return EnumerateGenusOfRepresentative(LZ, t);
+			Gen := EnumerateGenusOfRepresentative(LZ);
+			PrintFileMagma(Sprintf("GenusSymbols/Gen_%o",Symbol), Gen : Overwrite := true);
+			return Gen;
 		end if;
 	end for;
 
@@ -437,9 +467,9 @@ end function;
 
 
 function SuperLatticesMagma(L, p, s, sigma)
-// Input: Lattice L; Prime p; s in N; t in N; Automorphism sigma of L
+// Input: Lattice L; Prime p; s in N; Automorphism sigma of L
 
-// Output: All integral sigma-invariant superlattices of L with index p^s and minimum at least t using magmas method
+// Output: All even sigma-invariant superlattices of L with index p^s using magmas method
 
 
 	LD := PartialDual(L,p:Rescale:=false);
@@ -471,6 +501,9 @@ end function;
 
 
 function SuperLattices(L1, Lp, p, sigma1, sigmap)
+// Input: Lattice L1; Lattice Lp; Prime p; Automorphism sigma of L
+
+// Output: All even sigma-invariant superlattices of L with index p^s and minimum at least t using magmas method
 
 	M := OrthogonalSum(L1, Lp);
 
@@ -553,18 +586,22 @@ end function;
 function SuperLatticesJuergens(L, p, s)
 // Input: Lattice L; Prime p; s in N; t in N
 
-// Output: All integral superlattices of L with index p^s and minimum at least t using juergens method
-	T,_,mapT:=DualQuotient(L);
-	mapTinv := Inverse(mapT);
-    Tp:=pPrimaryComponent(T,p);
+// Output: All even superlattices of L with index p^s using juergens method
+	
+	if s eq 0 then
+		return [L];
+	end if;
 
-    m:=#Generators(Tp);
+	T,mapT:=PartialDual(L,p:Rescale:=false) / L;
+	mapTinv := Inverse(mapT);
+
+    m:=#Generators(T);
     G:=GramMatrix(L);
     G_F:=MatrixAlgebra(GF(p),m)!0;
 
     for i:=1 to m do
         for j:=1 to m do
-            G_F[i,j]:=GF(p)!(p*InnerProduct(mapTinv(Tp.i),mapTinv(Tp.j))); 
+            G_F[i,j]:=GF(p)!(p*InnerProduct(mapTinv(T.i),mapTinv(T.j))); 
         end for;  
     end for;
 
@@ -583,7 +620,7 @@ function SuperLatticesJuergens(L, p, s)
     for g in Generators(Aut) do
         g_F:=MatrixAlgebra(GF(p),m)!0;
         for i:=1 to m do
-            g_F[i]:=V!Vector(Eltseq(Tp!mapT(mapTinv(T!Tp!Eltseq(V.i))*MatrixAlgebra(Rationals(),Dimension(L))!g)));
+            g_F[i]:=V!Vector(Eltseq(mapT(mapTinv(T!Eltseq(V.i))*Matrix(Rationals(),g))));
         end for;
         Append(~Gens,g_F);
     end for;
@@ -591,7 +628,7 @@ function SuperLatticesJuergens(L, p, s)
     O_L:=sub< O | Gens>;
     mapS,S,Kernel:=OrbitAction(O_L,Orbit(O,M));
     Set:=[Inverse(mapS)(i[2]) : i in OrbitRepresentatives(S)];
-    SuperLat := [CoordinateLattice(ext< L | [mapTinv(Tp!Eltseq(x)) : x in Basis(W)] >) : W in Set]; 
+    SuperLat := [CoordinateLattice(ext< L | [mapTinv(T!Eltseq(x)) : x in Basis(W)] >) : W in Set]; 
 	
     return [L : L in SuperLat | IsEven(L)];
 
@@ -652,8 +689,21 @@ function ConstructLattices(l, n)
 					    end if;
 			    		// Enumerate genus
 
-			    		if IsPrime(l) and p gt 2 then
-			    			// In this case the genus symbol of L_1 is known and allows for a more efficient enumeration
+					    if p eq 2 then
+
+					    	// In this case use the sublattice U of L_1 with U^{#,2} = U
+					    	det1U := 1;
+							for i := 5 to #type by 3 do
+								det1U *:= type[i]^type[i+1];
+							end for;
+
+							UList := EnumerateGenusDeterminant(det1U, n1, false);
+
+							L1List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((n1 - s)/2)) : U in UList | Dimension(U) eq 0 or Minimum(U) ge Ceiling(min/2)];
+							L1List := [L : L in L1List | Dimension(L) eq 0 or (IsEven(L) and Minimum(L) ge min)];
+
+						elif IsPrime(l) then
+				    		// In this case the genus symbol of L_1 is known and allows for a more efficient enumeration
 							k1 := type[6];
 							kp := type[7];
 
@@ -699,14 +749,17 @@ function ConstructLattices(l, n)
 								end if;
 							end if;
 
-							L1List := EnumerateGenusSymbol(Sym1, min);
+							L1List := [L : L in EnumerateGenusSymbol(Sym1) | Dimension(L) eq 0 or (IsEven(L) and Minimum(L) ge min)];
+							
 						else
+
 							det1 := p^s;
 							for i := 5 to #type by 3 do
 								det1 *:= type[i]^type[i+1];
 							end for;
 
-							L1List := EnumerateGenusDeterminant(det1, n1, min);
+							L1List := [L : L in EnumerateGenusDeterminant(det1, n1, true) | Dimension(L) eq 0 or Minimum(L) ge min];
+
 						end if;
 
 						for L1 in L1List do
@@ -715,7 +768,7 @@ function ConstructLattices(l, n)
 					    		continue L1;
 					    	end if;
 
-					    	if <l,n> in [] then
+					    	if <l,n> in [<6,24>] then
 						    	for sigma1 in sigma1List do
 						    		for sigmap in sigmapList do
 						    			LList cat:= SuperLatticesMagma(CoordinateLattice(OrthogonalSum(L1,Lp)), p, s, DiagonalJoin(sigma1, sigmap));

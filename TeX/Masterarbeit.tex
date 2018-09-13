@@ -191,6 +191,9 @@
 % Kapitel 1: Einleitung
 %===================================================================
 \chapter{Einleitung}
+Die Gittertheorie ist seit vielen Jahren ein wesentlicher Bestandteil der theoretischen Mathematik in Themengebieten wie beispielsweise der algebraischen Zahlentheorie und der Gruppentheorie. In der Anwendung sind oftmals besonders \textit{dichte} Gitter von Interesse, also Gitter, die im Vergleich zu ihrer Determinante ein möglichst großes Minimum besitzen, die Klassifikation möglichst dichter Gitter stellt jedoch eine große Herausforderung dar. H.-G. Quebbemann definiert in seiner Arbeit \cite{quebbemann} den Begriff eines \textit{modularen} Gitters und zeigt, dass die Thetareihen solcher modularen Gitter Modulformen einer bestimmten Gruppe sind. Diese Struktur erlaubt die Beschreibung sogenannter \textit{extremaler} modularer Gitter, welche innerhalb der Klasse der modularen Gitter eine maximale Dichte haben. Die Klassifikation extremaler Gitter ist eines der großen Forschungsgebiete aus der Gittertheorie. In dieser Arbeit versuchen wir, extremale Gitter mithilfe ihrer Automorphismengruppen zu untersuchen und zu konstruieren.\par
+Zunächst definieren wir dazu unsere grundlegenden Begriffe und werfen einen genaueren Blick auf die Dichte extremaler Gitter. Anschließend beschreiben wir modulare Gitter $L$ mit einer Struktur als gebrochene Ideale eines zyklotomischen Zahlkörpers $\Q(\zeta_m)$, sogenannte \textit{Ideal-Gitter}. Diese Struktur ist gegeben, falls $L$ einen Automorphismus $\sigma$ mit $\mu_\sigma = \Phi_m$ besitzt, sodass $\varphi(m) = \text{Dim}(L)$ gilt. Mithilfe dieser zusätzlichen Struktur lässt sich ein Algorithmus entwickeln, welcher zu gegebener Stufe, Determinante und Dimension eine vollständige Liste der Ideal-Gitter mit den festgelegten Parametern konstruiert. Die einzelnen Schritte dieses Algorithmus wurden im Zuge dieser Arbeit genau beschrieben und im Computer-Algebra-System \texttt{MAGMA} implementiert.\par
+Anschließend folgt der Hauptteil der Arbeit: die Beschreibung extremaler Gitter mit \textit{großem} Automorphismus. Hier gehen wir lediglich von den Voraussetzungen $\vert \sigma \vert = m$ und $\Phi_m \vert \mu_\sigma$ mit $\varphi(m) > \frac{\text{Dim}(L)}{2}$ aus. In diesem Falle induziert $\sigma$ ein Teilgitter $M := L \cap \Kern(\Phi_m(\sigma)) \perp L \cap \Kern(\frac{\mu_\sigma}{\Phi_m}(\sigma))$. Der erste Summand hat dabei eine Struktur als Ideal-Gitter und ist damit nach dem vorherigen Kapitel gut verstanden, für den anderen Summanden benötigen wir weitere Theorie. Mithilfe der Primteiler von $m$ von Automorphismen von Primzahlordnung können wir die Struktur dieses induzierten Teilgitters genauer beschreiben, insbesondere lassen sich weitreichende Einschränkungen an die Determinanten der Summanden zeigen. Zu den verbleibenden Optionen können wir mittels Aufzählung der wichtigen Geschlechter über das \textit{Kneser'sche Nachbarverfahren} eine Liste von Kandidaten für $M$ bestimmen und $L$ schließlich als Obergitter konstruieren. Alle dazugehörigen Algorithmen wurden ebenfalls in \texttt{MAGMA} implementiert und es konnten so einige neue extremale Gitter konstruiert werden.
 
 
 %===================================================================
@@ -199,31 +202,20 @@
 
 \chapter{Grundbegriffe}
 
-\section{Quadratische Vektorräume}
+\section{Bilineare Vektorräume}
 
-Wir wiederholen zunächst einige wichtige Begriffe aus der Gittertheorie, welche wir in der Arbeit häufig benötigen werden. Zunächst führen wir das Konzept eines quadratischen Vektorraumes ein. Die nun angeführten Definitionen sind \cite[Def. (2.1)]{kneser} entnommen.
+Wir wiederholen zunächst einige wichtige Begriffe aus der Gittertheorie, welche wir in der Arbeit häufig benötigen werden. Zunächst führen wir das Konzept eines bilinearen Vektorraumes ein. Die nun angeführten Definitionen sind \cite[Def. (2.1)]{kneser} entnommen.
 
 \begin{framed}
 	\begin{definition}
 		\begin{enumerate}[label=(\roman*)]
 			\item Sei $A$ ein Ring und $E$ ein $A$-Modul. Für eine symmetrische Bilinearform\linebreak
 				$b : E \times E \rightarrow A$ heißt das Paar $(E,b)$ ein \textit{bilinearer $A$-Modul} (bzw. falls $A$ Körper ein \textit{bilinearer $A$-Vektorraum}).
-			\item Eine Abbildung $q : E \rightarrow A$ mit den Eigenschaften
-				\begin{align*}
-					q(ax) = a^2 q(x)\quad \text{für } a \in A, x \in E\\
-					q(x+y) = q(x) + q(y) + b_q(x,y)
-				\end{align*}
-				mit einer symmetrischen Bilinearform $b_q$ heißt \textit{quadratische Form}. Ein solches Paar $(E,q)$ heißt \textit{quadratischer $A$-Modul} (bzw. falls $A$ Körper ein \textit{quadratischer $A$-Vektorraum}).
 			\item Eine \textit{isometrische Abbildung} (oder kurz \textit{Isometrie}) zwischen zwei bilinearen Moduln $(E,b)$ und $(E', b')$ ist ein Modulisomorphismus $f : E \rightarrow E'$ mit $b(x,y) = b'(f(x), f(y))$.
 			\item Die Gruppe $O(E,b) := \lbrace f : E \rightarrow E \mid \text{ f ist Isometrie}\rbrace$ aller Isometrien eines bilinearen Vektorraums $(E,b)$ in sich selbst heißt die \textit{Isometriegruppe} von $(E,b)$.
-			\item Analog ist eine Isometrie zwischen zwei quadratischen Moduln $(E,q)$ und $(E', q')$ ist ein Modulisomorphismus $f : E \rightarrow E'$ mit $q(x) = q'(f(x))$ für alle $x \in E$.
 		\end{enumerate}
 	\end{definition}
 \end{framed}
-
-\begin{bemerkung}
-	Auf einem quadratischen $A$-Modul $(E,q)$ ist $b_q : E \times E \rightarrow A, (x,y) \mapsto q(x+y) - q(x) - q(y)$ eine symmetrische Bilinearform. Andersherum erhält man aus jeder symmetrischen Bilinearform $b$ auf $E$ eine quadratische Form $q_b : E \rightarrow A, x \mapsto b(x,x)$. Es ist dabei $b_{q_b} = 2b$ und $q_{b_q} = 2q$. Ist $2 \in A^*$, so kann man daher stattdessen $q_b : E \rightarrow A, x \mapsto \frac{1}{2} b(x,x)$ wählen, womit die Konzepte der quadratischen Formen und der symmetrischen Bilinearformen auf $E$ vertauschbar sind.
-\end{bemerkung}
 
 Nun folgen Definitionen zum Gitterbegriff, zu finden in \cite[Def. (14.1), (14.2)]{kneser}.
 \begin{framed}
@@ -870,11 +862,13 @@ Mit diesem Algorithmus kann man nun alle $\ell$-modularen Gitter in Dimension $n
 \chapter{Sub-Ideal-Gitter}
 
 \section{Einführung}
-Im letzten Kapitel haben wir gesehen, wie Gitter in Dimension $n$ mit einem Automorphismus $\sigma$ klassifiziert werden können, falls $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$ erfüllt sind. In diesem Kapitel wollen wir versuchen, Aussagen über Gitter zu treffen, welche lediglich ein Ideal-Gitter enthalten. Gilt $\Phi_m \vert \mu_\sigma$ für ein $\sigma \in \Aut(L)$, so können wir den zugrundeliegenden Vektorraum $V$ in $\sigma$-invariante Teilräume aufspalten:
+Im letzten Kapitel haben wir gesehen, wie Gitter in Dimension $n$ mit einem Automorphismus $\sigma$ klassifiziert werden können, falls $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$ erfüllt sind. In diesem Kapitel wollen wir versuchen, Aussagen über Gitter $L$ zu treffen, welche nicht selbst Ideal-Gitter-Struktur aufweisen, aber zumindest ein Ideal-Gitter enthalten.\par
+Ist $L$ ein Gitter und $\sigma \in \Aut(L)$ von endlicher Ordnung mit Minimalpolynom $\mu_\sigma = \Phi_{m_1} \dots \Phi_{m_k}$, so können wir den zugrundeliegenden Vektorraum $V$ in $\sigma$-invariante Teilräume aufspalten:
 \begin{equation*}
-	V = \Kern(\Phi_m(\sigma)) \oplus \Kern\left(\frac{\mu_\sigma}{\Phi_m}(\sigma)\right).
+	V = \Kern(\Phi_{m_1}(\sigma)) \oplus \dots \oplus \Kern(\Phi_{m_k}(\sigma)).
 \end{equation*}
-Diese Zerlegung ist sogar orthogonal:
+Wie das folgende Lemma zeigt, ist diese Zerlegung sogar orthogonal:
+
 \begin{framed}
 	\begin{lemma}
 		Sei $(V,b)$ ein bilinearer Vektorraum und $\sigma \in O(V,b)$ mit $\mu_\sigma = \Phi_{m_1} \Phi_{m_2} \dots \Phi_{m_k}$, dann ist
@@ -886,14 +880,18 @@ Diese Zerlegung ist sogar orthogonal:
 \end{framed}
 
 \begin{beweis}
-	Die $\sigma$-invarianz ist klar. Da jeweils $\Phi_{m_i}$ und $\Phi_{m_j}$ teilerfremd sind für $i \neq j$ ergibt sich außerdem sofort eine Zerlegung als direkte Summe
-	\begin{equation*}
-			V = \Kern(\Phi_{m_1}(\sigma)) \oplus \Kern(\Phi_{m_2}(\sigma)) \oplus \dots \oplus \Kern(\Phi_{m_k}(\sigma)).
+	Seien $\pi_i : V \twoheadrightarrow \Kern(\Phi_{m_i}(\sigma))$ für $i=1,\dots,k$ die Projektionen auf die Komponenten. Da $\sigma$ eine Isometrie ist, gilt $\sigma^{ad} = \sigma^{-1}$, also ist $\sigma$ insbesondere normal und damit auch die $\pi_i$, welche sich als Polynome in $\sigma$ mit rationalen Koeffizienten ausdrücken lassen. Normale Projektionen sind allerdings selbstadjungiert, also gilt für alle $x,y \in V$, sowie $i \neq j$:
+		\begin{equation*}
+			b(\pi_i(x), \pi_j(y)) = b(x, \pi_i^{ad} (\pi_j(y))) = b(x, \pi_i(\pi_j(y))) = b(x,0) = 0
 		\end{equation*}
-		Zu zeigen bleibt also nur Orthogonalität bezüglich $b$. Seien dazu $e_i : V \twoheadrightarrow \Kern(\Phi_{m_i}(\sigma))$ für $i=1,\dots,k$ die Projektionen 
+		und daher $\pi_i(V) \perp \pi_j(V)$. Die angegebene Zerlegung von $V$ ist somit orthogonal.
 \end{beweis}
 
-Für $\frac{n}{2} < \varphi(m) \leq n$ muss $\Kern(\Phi_m(\sigma))$ die Dimension $\varphi(m)$ haben, wird also zu einem eindimensionalen $\Q(\zeta_m)$-Vektorraum und $L \cap \Kern(\Phi_m(\sigma))$ hat eine Struktur als Ideal-Gitter über diesem zyklotomischen Körper. Vergleiche dazu \cite[Abs. (5.3)]{nebe}
+Besitzt $\mu_\sigma$ einen Teiler $\Phi_m$, wobei $\frac{n}{2} < \varphi(m) \leq n$, so muss $\Kern(\Phi_m(\sigma))$ die Dimension $\varphi(m)$ haben, wird also zu einem eindimensionalen $\Q(\zeta_m)$-Vektorraum. Die orthogonale Zerlegung des Vektorraums induziert also ein volles Teilgitter
+\begin{equation*}
+	\left(L \cap \Kern(\Phi_m(\sigma))\right) \perp \left(L \cap \Kern\left( \frac{\mu_\sigma}{\Phi_m} (\sigma) \right)\right) \leq L,
+\end{equation*}
+und $L \cap \Kern(\Phi_m(\sigma))$ hat eine Struktur als Ideal-Gitter über dem zyklotomischen Zahlkörper $\Q(\zeta_m)$. Vergleiche dazu \cite[Abs. (5.3)]{nebe}. Dies halten wir in der folgenden Definition fest.
 
 \begin{framed}
 	\begin{definition}
@@ -905,41 +903,26 @@ Für $\frac{n}{2} < \varphi(m) \leq n$ muss $\Kern(\Phi_m(\sigma))$ die Dimensio
 	\end{definition}
 \end{framed}
 
+
 Für Gitter mit großen Automorphismen verstehen wir die Ideal-Gitter-Komponente mit der Theorie des letzten Kapitels sehr gut. Probleme bereitet uns allerdings der andere Teil $\Kern\left(\frac{\mu_\sigma}{\Phi_m}(\sigma)\right)$ des Vektorraums, über welchen wir a priori nicht viel aussagen können. Abhilfe schaffen uns unter gewissen Umständen die Automorphismen von Primzahlordnung.
 
 \section{Automorphismen von Primzahlordnung}
 Der folgende Abschnitt ist an \cite[Kap. 4]{juergens} und \cite[Kap. 4]{nebe} angelehnt.\par
-Sei $L$ in diesem Abschnitt ein $\Z$-Gitter in einem $n$-dimensionalen bilinearen $\Q$-Vektorraum $(V,b)$ und $\sigma \in \Aut(L)$ von Primzahlordnung $p$. Dann ist $\mu_\sigma \in \lbrace \Phi_p, \Phi_1 \Phi_p \rbrace$. Man erhält eine $\sigma$-invariante Zerlegung
+Sei $L$ in diesem Abschnitt ein $\Z$-Gitter in einem $n$-dimensionalen bilinearen $\Q$-Vektorraum $(V,b)$ und $\sigma \in \Aut(L)$ von Primzahlordnung $p$. Dann ist $\mu_\sigma \in \lbrace \Phi_p, \Phi_1 \Phi_p \rbrace$. Wie vorher erhält man eine $\sigma$-invariante Zerlegung
 \begin{equation*}
-	V = \Kern(\Phi_1(\sigma)) \oplus \Kern(\Phi_p(\sigma)) =: V_1 \oplus V_p
+	V = \Kern(\Phi_1(\sigma)) \perp \Kern(\Phi_p(\sigma)) =: V_1 \oplus V_p
 \end{equation*}
-Es ist $\Phi_1(X) = X-1$, also $V_p = \Bild(\sigma - 1)$, $V_1 = \Kern(\sigma - 1)$. Seien $n_p$ die Dimension von $V_p$ und $n_1$ die Dimension von $V_1$ über $\Q$. Da $V_p$ eine Struktur als $\Q(\zeta_p)$-Vektorraum hat und $\text{Dim}_\Q(\Q(\zeta_p)) = p-1$, muss $n_p$ von $p-1$ geteilt werden.\par
-Wie das folgende Lemma zeigt, ist die Summe sogar orthogonal.
+Es ist $\Phi_1(X) = X-1$, also $V_p = \Bild(\sigma - 1)$ und $V_1 = \Kern(\sigma - 1)$. Seien $n_p$ die Dimension von $V_p$ und $n_1$ die Dimension von $V_1$ über $\Q$. Da $V_p$ eine Struktur als $\Q(\zeta_p)$-Vektorraum hat und $\text{Dim}_\Q(\Q(\zeta_p)) = p-1$, muss $n_p$ von $p-1$ geteilt werden.\par
 
-\begin{framed}
-	\begin{lemma}
-		Sei $\sigma \in O(V,b)$ von Primzahlordnung $p$, dann ist
-		\begin{equation*}
-			V = \Kern(\Phi_p(\sigma)) \perp \Kern(\Phi_1(\sigma)).
-		\end{equation*}
-	\end{lemma}
-\end{framed}
-
-\begin{beweis}
-	Sei $x_p \in \Kern(\Phi_p(\sigma))$ und $x_1 \in \Kern(\Phi_1(\sigma))$. Dann gilt $\sigma(x_1) = x_1$ und es existiert ein $y \in V$ mit $(\sigma - 1)(y) = x_p$. Zusammen mit der Tatsache, dass die Bilinearform $b$ invariant unter $\sigma$ ist, folgt:
-	\begin{equation*}
-		b(x_1, x_p) = b(x_1, (\sigma-1)(y)) = b(\sigma(x_1), \sigma(y)) - b(x_1, y) = b(x_1, y) - b(x_1, y) = 0.
-	\end{equation*}
-\end{beweis}
-
-Damit induziert $\sigma$ ein Teilgitter von $L$. Definiert man nämlich das \textit{Bild-Gitter} $L_p := L \cap V_p$ und das \textit{Fix-Gitter} $L_1 := L \cap V_1$, so ist offensichtlich $M := L_p \perp L_1 \leq L$. Im Folgenden wollen wir die Struktur von $M$ näher untersuchen.
+Die durch die orthogonale Zerlegung von $V$ induzierten Gitter $L_p := L \cap V_p$ und das $L_1 := L \cap V_1$ nenen wir das \textit{Bild-Gitter} und das \textit{Fix-Gitter}. Außerdem sei\linebreak
+$M := L_1 \perp L_p \leq L$. Im Folgenden wollen wir die Struktur von $M$ näher untersuchen.
 
 \begin{framed}
 	\begin{lemma}\label{lem:pL}
 		Seien $\sigma$, $L_1$ und $L_p$ wie oben.
 		\begin{enumerate}[label=(\roman*)]
-			\item Es existiert ein Polynom $v \in \Z\left[ X \right]$ mit $1 = \frac{1}{p} v \cdot \Phi_1 + \frac{1}{p}\Phi_p$.
-			\item Es gilt $pL \subseteq L_p \perp L_1 \subseteq L$.
+			\item Es existiert ein Polynom $v \in \Z\left[ X \right]$ mit $1 = \frac{1}{p}\Phi_p + \frac{1}{p} v \cdot \Phi_1$.
+			\item Es gilt $pL \subseteq L_1 \perp L_p \subseteq L$.
 		\end{enumerate}
 	\end{lemma}
 \end{framed}
@@ -951,10 +934,10 @@ Damit induziert $\sigma$ ein Teilgitter von $L$. Definiert man nämlich das \tex
 				p - \Phi_p = v \cdot\Phi_1 \text{ für ein } v \in \Q\left[X\right].
 			\end{equation}
 			Mit dem Lemma von Gauß muss $v \in \Z \left[ X \right]$ gelten. Umstellen der Gleichung \eqref{eq:pol} liefert die Behauptung.
-		\item Zu zeigen ist $p x \in L_p \perp L_1$ für alle $x \in L$. Wegen $(\Phi_1 \Phi_p)(\sigma) = 0$ und der $\sigma$-Invarianz von $L$ ist
+		\item Zu zeigen ist $p x \in L_1 \perp L_p$ für alle $x \in L$. Wegen $(\Phi_1 \Phi_p)(\sigma) = 0$ und der $\sigma$-Invarianz von $L$ ist
 			\begin{align*}
-				px = (v \cdot \Phi_1)(\sigma)(x) + \Phi_p(\sigma)(x) \in &\text{ Kern}(\Phi_p(\sigma)) \cap L + \Kern(\Phi_1(\sigma))(\sigma) \cap L\\
-				=& (V_p \cap L) \perp (V_1 \cap L) = L_p \perp L_1
+				px = \Phi_p(\sigma)(x) + (v \cdot \Phi_1)(\sigma)(x) \in & L \cap \Kern(\Phi_1(\sigma)) + L \cap\text{ Kern}(\Phi_p(\sigma))\\
+				=& (L \cap V_1) \perp (L \cap V_p) = L_1 \perp L_p
 			\end{align*}
 	\end{enumerate}
 \end{beweis}
@@ -969,8 +952,8 @@ Schneidet man mit $V_p$, so folgt
 \end{equation*}
 und analog $\ell p L_1^\# \subseteq L_1$.
 
-Im Spezialfall $\ggT(\ell, p) = 1$ bedeutet dies, dass die Stufe der Gitter $L_p$ und $L_1$ das Produkt $\ell p$ teilt.\\
-Als nächstes wollen wir die Determinanten von $L_p$ und $L_1$ untersuchen. Dazu werden die partiellen Dualgitter betrachtet.
+Im Spezialfall $\ggT(\ell, p) = 1$ bedeutet dies, dass die Stufe der Gitter $L_1$ und $L_p$ das Produkt $\ell p$ teilt.\\
+Als nächstes wollen wir die Determinanten von $L_1$ und $L_p$ untersuchen. Dazu werden die partiellen Dualgitter betrachtet.
 
 \begin{framed}
 	\begin{lemma}\label{lem:fpinc}
@@ -1201,7 +1184,7 @@ Nun können wir einige Einschränkungen an die Typ-Parameter zeigen.
 	\begin{equation*}
 		\Det(L_p) = p^s q_1^{k_{p,1}} \dots q_m^{k_{p,m}} = p^{(p-2)\frac{n_p}{p-1}} \cdot \No(\a)^2.
 	\end{equation*}
-	Mit $\ggT(p, \ell) = 1$ zeigt die Gleichung sofort Eigenschaft (vii). Außerdem kann man ablesen, dass $s \equiv_2 (p-2)\frac{n_p}{p-1}$ sein muss. Für (iii) bleibt also zu zeigen, dass im Falle $p=2$ ebenfalls $s \equiv_2 \frac{n_p}{p-1}$ gilt. Hierfür verwenden Wir Lemma \eqref{lem:2sub} mit $M := L_p$. Für das $U$ aus dem Lemma gilt
+	Mit $\ggT(p, \ell) = 1$ zeigt die Gleichung sofort Eigenschaft (vii). Außerdem kann man ablesen, dass $s \equiv_2 (p-2)\frac{n_p}{p-1}$ sein muss. Für (iii) bleibt also lediglich zu zeigen, dass im Falle $p=2$ ebenfalls $s \equiv_2 \frac{n_p}{p-1}$ gilt. Hierfür verwenden wir Lemma \eqref{lem:2sub} mit $M := L_p$. Für das $U$ aus dem Lemma gilt
 	\begin{equation*}
 		2^{n_p} = \vert (\sqrt{2}U)^{\#,2} / \sqrt{2} U \vert = \vert L_2^{\#,2} / L_2 \vert [L_2 : U]^2 = 2^{s + 2 \nu_2([L_2 : U])}.
 	\end{equation*}
@@ -1378,12 +1361,22 @@ Wobei $\i/\ii$ dem Typen $S_1$ entspricht, $r,s$ der reellen Signatur und die Kl
 			\begin{equation*}
 				n \equiv_8 4 k_2 + t_2.
 			\end{equation*}
-			Demnach ergeben sich die folgenden möglichen Geschlechtssymbole:
+			Weiterhin können wir die Modularität von $L$ ausnutzen. Sei
+			\begin{equation*}
+				\Z_2 \otimes L \cong f_1 \perp \sqrt{2} f_2
+			\end{equation*}
+			die $2$-adische Jordanzerlegung von $L$, dann hat $L^\#$ die Jordanzerlegung
+			\begin{equation*}
+				\Z_2 \otimes L^\# = f_1 \perp \sqrt{2}^{-1} f_2
+			\end{equation*}
+			und somit
+			\begin{equation*}
+				\Z_2 \otimes (\sqrt{2} L^\#) = f_2 \perp \sqrt{2} f_1.
+			\end{equation*}
+			Nun ist aber $\sqrt{2} L^\# \cong L$ und damit ein gerades Gitter, also muss auch $f_2$ gerade sein und $t_2 = 0$. Erneut ist allein anhand der Dimension das Geschlechtssymbol eindeutig festgelegt:
 			\begin{align*}
-				\ii_n \left( 2_4^{-\frac{n}{2}} \right) \text{ oder } \ii_n \left( 2^{+\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 0,\\
-				\ii_n \left( 2_6^{-\frac{n}{2}} \right) \text{ oder } \ii_n \left( 2_2^{+\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 2,\\
-				\ii_n \left( 2^{-\frac{n}{2}} \right) \text{ oder } \ii_n \left( 2_4^{+\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 4,\\
-				\ii_n \left( 2_2^{-\frac{n}{2}} \right) \text{ oder } \ii_n \left( 2_6^{+\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 6.
+				\ii_n \left( 2^{+\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 0,\\
+				\ii_n \left( 2^{-\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 4.\\
 			\end{align*}
 	\end{enumerate}
 \end{beispiele}
@@ -1651,12 +1644,26 @@ Für diesen Algorithmus wurden Einschränkungen an die Minimalpolynome der Autom
 Wir wollen nun die bisher gewonnenen Erkenntnisse nutzen, um die Automorphismen von Gittern in bestimmten Spezialfällen genauer zu untersuchen. Wir beginnen mit den $3$-modularen Gittern in Dimension $24$.
 \begin{framed}
 	\begin{satz}
-		Sei $L$ ein extremales $3$-modulares Gitter in Dimension $24$. Dann hat $L$ keine Automorphismen der Ordnung $7$, sowie der Ordnung $p \in P_{\ge 17}$. Ist $\sigma \in \Aut(L)$ von Ordnung $m$ mit $12 < \varphi(m) \leq 24$, so ist $\mu_\sigma \in \lbrace \Phi_{12} \Phi_{20},\ \Phi_4 \Phi_{12} \Phi_{20},\ \Phi_3, \Phi_{11},\ \Phi_1 \Phi_3 \Phi_{11} \rbrace$, also insbesondere $m \in \lbrace 33, 60 \rbrace$.
+		Sei $L$ ein extremales $3$-modulares Gitter in Dimension $24$. Dann hat $L$ keine Automorphismen der Ordnung $7$, sowie der Ordnung $p \in P_{\ge 13}$. Ist $\sigma \in \Aut(L)$ von Ordnung $m$ mit $12 < \varphi(m) \leq 24$, so ist $\mu_\sigma \in \lbrace \Phi_{12} \Phi_{20},\ \Phi_4 \Phi_{12} \Phi_{20},\ \Phi_3, \Phi_{11},\ \Phi_1 \Phi_3 \Phi_{11} \rbrace$, also insbesondere $m \in \lbrace 33, 60 \rbrace$.
 	\end{satz}
 \end{framed}
 
 \begin{beweis}
-	Es muss $\Min(L) \ge 6$ sein. Algorithmus \eqref{alg:autotypes} liefert uns $50$ mögliche Automorphismentypen. Zählt man das durch die Typen festgelegte Geschlecht in der kleineren der beiden Dimensionen $n_1$ und $n_p$ auf, so fällt auf, das viele der Geschlechter leer sind, was die möglichen Automorphismentypen stark einschränkt.
+	Es muss $\Min(L) \ge 6$ sein. Algorithmus \eqref{alg:autotypes} liefert uns $50$ mögliche Automorphismentypen. Der Versuch einer Aufzählung des jeweils durch die Typen festgelegte Geschlecht in der kleineren Dimension auf, ergibt bei einigen dieser Typen ein leeres Geschlecht, wodurch diese Typen ausgeschlossen werden können. Die verbleibenden Typen von Automorphismen der Ordnung $p \in \P - \lbrace 3 \rbrace$  sind
+	\begin{align*}
+		&2 - (22, 2) - 2 - (10, 2)		&&2 - (20, 4) - 4 - (8, 4)\\
+		&2 - (18, 6) - 6 - (6, 6)		&&2 - (14, 10) - 10 - (4, 8)	\\
+		&2 - (12, 12) - 6 - (6, 6)		&&2 - (12, 12) - 8 - (8,4)\\
+		&2 - (12, 12) - 8 - (4, 8)		&&2 - (12, 12) - 10 - (8, 4)	\\
+		&2 - (12, 12) - 10 - (4,8)		&&2 - (12, 12) - 12 - (10, 2)\\
+		&2 - (12, 12) - 12 - (8, 4)		&&2 - (12, 12) - 12 - (6, 6)\\
+		&2 - (12, 12) - 12 - (4, 8)		&&2 - (12, 12) - 12 - (2, 10)\\
+		&2 - (10, 14) - 10 - (8, 4)		&&2 - (6, 18) - 6 - (6, 6)\\
+		&2 - (4, 20) - 4 - (4, 8)		&&2 - (2, 22) - 2 - (2, 10)\\
+		&5 - (8, 16) - 4 - (8, 4)		&&5 - (8, 16) - 4 - (4, 8)\\
+		&11 - (4, 20) - 2 - (2, 10).
+	\end{align*}
+	Insbesondere stellt man fest, dass keine Automorphismen der Ordnung $7$ und $\ge 13$ existieren.
 \end{beweis}
 
 

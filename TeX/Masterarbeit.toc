@@ -1,7 +1,7 @@
 \babel@toc {ngerman}{}
 \contentsline {chapter}{\numberline {1}Einleitung}{4}
-\contentsline {chapter}{\numberline {2}Grundbegriffe}{5}
-\contentsline {section}{\numberline {2.1}Quadratische Vektorr\IeC {\"a}ume}{5}
+\contentsline {chapter}{\numberline {2}Grundbegriffe}{6}
+\contentsline {section}{\numberline {2.1}Bilineare Vektorr\IeC {\"a}ume}{6}
 \contentsline {section}{\numberline {2.2}Modulare Gitter}{9}
 \contentsline {chapter}{\numberline {3}Ideal-Gitter}{15}
 \contentsline {section}{\numberline {3.1}Definitionen}{15}
@@ -14,13 +14,13 @@
 \contentsline {section}{\numberline {4.2}Automorphismen von Primzahlordnung}{35}
 \contentsline {section}{\numberline {4.3}Geschlechter}{47}
 \contentsline {section}{\numberline {4.4}Kneser-Nachbarschaftsmethode}{54}
-\contentsline {section}{\numberline {4.5}Konstruktion von Obergittern}{59}
-\contentsline {section}{\numberline {4.6}Konstruktion von Gittern mit gro\IeC {\ss }em Automorphismus}{62}
-\contentsline {section}{\numberline {4.7}Automorphismen extremaler 3-modularer Gitter in Dimension 24}{66}
-\contentsline {chapter}{\numberline {5}Anhang}{67}
-\contentsline {section}{\numberline {5.1}Ergebnisse der Ideal-Gitter-Klassifikation}{67}
-\contentsline {section}{\numberline {5.2}\texttt {MAGMA}-Implementierungen von Hilfsfunktionen}{74}
-\contentsline {section}{\numberline {5.3}\texttt {MAGMA}-Implementierungen der Ideal-Gitter-Algorithmen}{82}
-\contentsline {section}{\numberline {5.4}\texttt {MAGMA}-Implementierungen der Subideal-Gitter-Algorithmen}{91}
-\contentsline {section}{\numberline {5.5}Eidesstattliche Versicherung}{109}
-\contentsline {chapter}{\numberline {6}Literaturverzeichnis}{110}
+\contentsline {section}{\numberline {4.5}Konstruktion von Obergittern}{60}
+\contentsline {section}{\numberline {4.6}Konstruktion von Gittern mit gro\IeC {\ss }em Automorphismus}{63}
+\contentsline {section}{\numberline {4.7}Automorphismen extremaler 3-modularer Gitter in Dimension 24}{67}
+\contentsline {chapter}{\numberline {5}Anhang}{69}
+\contentsline {section}{\numberline {5.1}Ergebnisse der Ideal-Gitter-Klassifikation}{69}
+\contentsline {section}{\numberline {5.2}\texttt {MAGMA}-Implementierungen von Hilfsfunktionen}{76}
+\contentsline {section}{\numberline {5.3}\texttt {MAGMA}-Implementierungen der Ideal-Gitter-Algorithmen}{84}
+\contentsline {section}{\numberline {5.4}\texttt {MAGMA}-Implementierungen der Subideal-Gitter-Algorithmen}{93}
+\contentsline {section}{\numberline {5.5}Eidesstattliche Versicherung}{111}
+\contentsline {chapter}{\numberline {6}Literaturverzeichnis}{112}

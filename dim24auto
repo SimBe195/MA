@@ -16,11 +16,18 @@ for type in Types do
 	det1 := p^s*3^k1;
 	detp := p^s*3^kp;
 
+	if type in [<2, 12, 12, 6, 3, 6, 6>, <2, 12, 12, 8, 3, 8, 4>, <2, 12, 12, 8, 3, 4, 8>, <2, 12, 12, 10, 3, 8, 4>, <2, 12, 12, 10, 3, 4, 8>, <2, 12, 12, 12, 3, 10, 2>, <2, 12, 12, 12, 3, 8, 4>, <2, 12, 12, 12, 3, 4, 8>, <2, 12, 12, 12, 3, 2, 10>] then
+		"!!!!!!POSSIBLE!!!!!!";
+		continue;
+	end if;
+
+
 	if p eq 2 then
 
 		if n1 le 12 then
-			UList := EnumerateGenusDeterminant(3^k1, n1, false);
 
+			UList := EnumerateGenusDeterminant(3^k1, n1, false);
+			
 			List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((n1 - s)/2)) : U in UList | Dimension(U) eq 0 or Minimum(U) ge 3];
 
 			List := [L : L in List | IsEven(L) and Minimum(L) ge 6];
@@ -31,6 +38,7 @@ for type in Types do
 
 		if np le 12 then
 			UList := EnumerateGenusDeterminant(3^kp, np, false);
+			
 			List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((np - s)/2)) : U in UList | Dimension(U) eq 0 or Minimum(U) ge 3];
 
 			List := [L : L in List | IsEven(L) and Minimum(L) ge 6];

@@ -119,10 +119,10 @@ function EnumerateGenusOfRepresentative(L)
 // Input: Lattice L, t in N
 
 // Output: List of all representatives of isometry-classes in the genus of L
-	
+
 	try return eval Read(Sprintf("GenusSymbols/Gen_%o", GenSymbol(L))); catch e; end try;
 
-	if Dimension(L) le 2 then
+	if Dimension(L) le 4 then
 		Gen := GenusRepresentatives(L);
 		ZGen := [];
 		for M in Gen do
@@ -132,26 +132,35 @@ function EnumerateGenusOfRepresentative(L)
 				Append(~ZGen, LatticeWithGram(LLLGram(Matrix(Rationals(), GramMatrix(SimpleLattice(M))))));
 			end if;
 		end for;
+    	PrintFileMagma(Sprintf("GenusSymbols/Gen_%o",GenSymbol(L)), ZGen : Overwrite := true);
 		return ZGen;
 	end if;
 
 	M := Mass(L);
-	m := 1 / #AutomorphismGroup(L);
 	Gen := [L];
 	Explored := [false];
 	NumFound := [1];
-	Minima := [* *];
-    NumShortest := AssociativeArray();
-    SizeAuto := AssociativeArray();
+	Minima := [Minimum(L)];
+    NumShortest := [#ShortestVectors(L)];
+    SizeAuto := [#AutomorphismGroup(L)];
+	m := 1 / SizeAuto[1];
 
 	if m lt M then
 		"Entering Kneser neighboring-method";
 	end if;
 
+	p := 2;	
+
 	while m lt M do
-		printf "Difference to actual mass is %o\n", M-m;
+		printf "So far %o classes found. Difference to actual mass is %o. \n", #Gen, M-m;
 		RareFound := [];
 		MinCount := Infinity();
+
+		if &and(Explored) then
+			"All explored. Going to next prime.";
+			Explored := [false : x in Explored];
+			p := NextPrime(p);
+		end if;
 
 		for i in [1..#Gen] do
 			if not Explored[i] then
@@ -166,99 +175,51 @@ function EnumerateGenusOfRepresentative(L)
 
 		i := RareFound[Random(1, #RareFound)];
 
-		Neigh := Neighbours(Gen[i], 2);
+		Neigh := [CoordinateLattice(N) : N in Neighbours(Gen[i], p)];
 		Explored[i] := true;
+
 		for N in Neigh do
-			MinAuto := 1 / (M - m);
 
-			// Efficient isometry test follows
-			min_computed := false;
-	        minimum := 0;
+	        auto := #AutomorphismGroup(N);
+	        if auto lt 1/(M-m) then continue; end if;
 
-	        shortest_computed := false;
-	        shortest := 0;
-
-	        auto_computed := false;
-	        auto := 0;
+	        minimum := Minimum(N);
+	        shortest := #ShortestVectors(N);
 
 	        for j in [1..#Gen] do
-	            K := Gen[j];
-
-	            if not min_computed then
-	                min_computed := true;
-	                minimum := Min(N);
-	            end if;
-
-	            if not IsDefined(Minima, j) then
-	                Minima[j] := Min(K);
-	            end if;
 
 	            if minimum ne Minima[j] then
-	                continue;
-	            end if;
-
-
-	            if not shortest_computed then
-	                shortest_computed := true;
-	                shortest := #ShortestVectors(N);
-	            end if;
-
-	            if not IsDefined(NumShortest, j) then
-	                NumShortest[j] := #ShortestVectors(K);
+	                continue j;
 	            end if;
 
 	            if shortest ne NumShortest[j] then
-	                continue;
-	            end if;
-
-
-	            if not auto_computed then
-	                auto_computed := true;
-	                auto := #AutomorphismGroup(N);
-
-					if auto lt MinAuto then continue N; end if;
-
-	            end if;
-
-	            if not IsDefined(SizeAuto, j) then
-	                SizeAuto[j] := #AutomorphismGroup(K);
+	                continue j;
 	            end if;
 
 	            if auto ne SizeAuto[j] then
-	                continue;
+	                continue j;
 	            end if;
 
-
-	            if IsIsometric(N, K) then
+	            if IsIsometric(N, Gen[j]) then
 	            	NumFound[j] +:= 1;
-	                continue N;
+	            	continue N;
 	            end if;
 	        end for;
 
-	        Append(~Gen, N);
-	        Append(~Explored, false);
-	        Append(~NumFound,1);
-
-	        NewIndex := #Gen;
-	        if min_computed then
-	            Minima[NewIndex] := minimum;
-	        end if;
-
-	        if shortest_computed then
-	            NumShortest[NewIndex] := shortest;
-	        end if;
-
-	        if not auto_computed then
-	        	auto := #AutomorphismGroup(N);
-	        end if;
-            SizeAuto[NewIndex] := auto;
+        	Append(~Gen,N);
+        	Append(~Explored, false);
+        	Append(~NumFound, 1);
+        	Append(~Minima, minimum);
+        	Append(~NumShortest, shortest);
+        	Append(~SizeAuto, auto);
         	m +:= 1/auto;
-
         	if m eq M then
         		break N;
         	end if;
         end for;
     end while;
+
+    PrintFileMagma(Sprintf("GenusSymbols/Gen_%o",GenSymbol(L)), Gen : Overwrite := true);
 
     return Gen;
 
@@ -362,7 +323,6 @@ function EnumerateGenusDeterminant(det, n, even)
 			end if;
 			
 			Gen := EnumerateGenusOfRepresentative(LZ);
-			PrintFileMagma(Sprintf("GenusSymbols/Gen_%o",Symbol), Gen : Overwrite := true);
 			Results cat:= Gen;
 		end if;
 	end for;
@@ -456,7 +416,6 @@ function EnumerateGenusSymbol(Symbol)
 		LZ := ToZLattice(L);
 		if GenSymbol(LZ) eq Symbol then
 			Gen := EnumerateGenusOfRepresentative(LZ);
-			PrintFileMagma(Sprintf("GenusSymbols/Gen_%o",Symbol), Gen : Overwrite := true);
 			return Gen;
 		end if;
 	end for;
@@ -687,7 +646,7 @@ function ConstructLattices(l, n)
 					    if #sigmapList eq 0 then
 					    	continue Lp;
 					    end if;
-			    		// Enumerate genus
+			    		"Enumerate candidates for L_1";
 
 					    if p eq 2 then
 
@@ -768,21 +727,23 @@ function ConstructLattices(l, n)
 					    		continue L1;
 					    	end if;
 
-					    	if <l,n> in [<6,24>] then
+					    	"Constructing superlattices";
+
+					    	if <l,n> in [] then
 						    	for sigma1 in sigma1List do
 						    		for sigmap in sigmapList do
 						    			LList cat:= SuperLatticesMagma(CoordinateLattice(OrthogonalSum(L1,Lp)), p, s, DiagonalJoin(sigma1, sigmap));
 						    		end for;
 						    	end for;
-						    elif n in [2..22] then
-					    		LList := SuperLatticesJuergens(CoordinateLattice(OrthogonalSum(L1,Lp)),p,s);
-						    else
+						    elif n ge 22 then
 						    	LList := [];
 						    	for sigma1 in sigma1List do
 						    		for sigmap in sigmapList do
 						    			LList cat:= SuperLattices(CoordinateLattice(L1), CoordinateLattice(Lp), p, sigma1, sigmap);
 						    		end for;
 						    	end for;
+						    else
+					    		LList := SuperLatticesJuergens(CoordinateLattice(OrthogonalSum(L1,Lp)),p,s);
 						    end if;
 
 							Results cat:= [L : L in LList | Minimum(L) ge min];
@@ -798,12 +759,13 @@ function ConstructLattices(l, n)
 end function;
 
 
-for n := 2 to 36 by 2 do                                                   
+for n := 24 to 36 by 2 do                                                   
 	for l in [1,2,3,5,6,7,11,14,15,23] do
 		if l eq 1 and n in [2,4,6] then continue; end if;
 		if l eq 2 and n eq 2 then continue; end if;
 		if l eq 11 and n in [20,24,28,30,32,34,36] then continue; end if;
-		if l eq 23 and n ge 6 then continue; end if; 
+		if l eq 23 and n ge 6 then continue; end if;
+		if l le 5 then continue; end if;
 		printf "dim = %o, l = %o\n", n, l;
 		Results := ConstructLattices(l, n);
 		ModList := [L : L in Results | IsModular(L, l)];
@@ -813,7 +775,7 @@ for n := 2 to 36 by 2 do
 		PrintFileMagma(Sprintf("SubidealLattices/%o-Modular/%o-DimensionalStronglyModular", l, n), StrongModList : Overwrite := true);
 
 		if #Results gt 0 then
-			printf "\nn = %o, l = %o: %o lattices found! %o of them are modular and %o are strongly modular.\n\n", n, l, #Results, #ModList, #StrongModList;
+			printf "\n\n----------n = %o, l = %o: %o lattices found! %o of them are modular and %o are strongly modular----------\n\n", n, l, #Results, #ModList, #StrongModList;
 		end if;		
 	end for;
 end for;

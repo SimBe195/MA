@@ -1,10 +1,12 @@
 
-procedure Isometries(num, dim, l)
+procedure Isometries(l, dim, JuergensList)
 	
 	DB := LatticeDatabase();
 
-	for i in [1..num] do
-		L := eval Read(Sprintf("Lattices/%o-dimensional/%o-modular/Lattice_%o", dim, l, i));
+	List := eval Read(Sprintf("SubidealLattices/%o-Modular/%o-DimensionalStronglyModular", l, dim));
+	new := true;
+	for i in [1..#List] do
+		L := List[i];
 		det := Determinant(L);
 		min := Minimum(L);
 		aut := #AutomorphismGroup(L);
@@ -16,11 +18,32 @@ procedure Isometries(num, dim, l)
 					if #AutomorphismGroup(M) eq aut then
 						if IsIsometric(L,M) then
 							printf "Lattice %o is isometric to %o.\n", i, LatticeData(DB,dim,j)`name;
+							new := false;
 						end if;
 					end if;
 				end if;
 			end if;
 		end for;
+
+		for j in [1..#JuergensList] do
+			M := JuergensList[j];
+
+			if Determinant(M) eq det then
+				if Minimum(M) eq min then
+					if #AutomorphismGroup(M) eq aut then
+						if IsIsometric(L,M) then
+							printf "Lattice %o is isometric to Juergens #%o.\n", i, j;
+							new := false;
+							continue j;
+						end if;
+					end if;
+				end if;
+			end if;
+		end for;
+	
+		if new then
+			printf "Lattice %o is not known!\n", i;
+		end if;
 	end for;
 
 end procedure;

@@ -1,62 +1,50 @@
 
 
-function PossibleMiPos(n, m, ListOfTypes)
+function PossibleCharPos(n, m, ListOfTypes)
+// Input: n in N; m in N; List of types in format [<p_1, [a_1, a_2, ...]>, <p_2, [b_1, b_2, \dots]>, \dots] with prime divisors p_1, p_2,... of m and a_1, a_2,... denoting the dimensions of the fixed lattices of sigma^(m/p_1), b_1, b_2,... for the fixed lattices of sigma^(m/p2) and so on
+
+// Output: List of all characteristic polynomials matching the given types. Format: [<[<p_1,a_i>, <p_2,b_j>,...], [<d_1,c_1>,...,<d_k,c_k>]>, ...] for the chosen a_i, b_j and the exponents c_l > 0 of the Phi_(d_l) for the divisors d_l
+
 	Div := Divisors(m);
 	Phi := [EulerPhi(d) : d in Div];
+	t := #ListOfTypes;
+	k := #Div;
 
-	M := RMatrixSpace(Integers(), #Div, 2*#ListOfTypes) ! 0;
-	W := RMatrixSpace(Integers(), 1, 2*#ListOfTypes) ! 0;
-	MaxDim := [n : i in [1..#Div]];
+	M := ZeroMatrix(Integers(), k, t+1);
+	for i in [1..k] do
+		for j in [1..t] do
+			if IsDivisibleBy(Integers() ! (m/ListOfTypes[j][1]), Div[i]) then
+				M[i,j] := EulerPhi(Div[i]);
+			end if;
+		end for;
+		M[i, t+1] := EulerPhi(Div[i]);
+	end for;
 
-	for i in [1..#ListOfTypes] do
-		p := ListOfTypes[i][1];
-		fix := ListOfTypes[i][2];
-		W[1][2*i-1] := fix;
-		W[1][2*i] := n - fix;
+	TypeChoice := CartesianProduct([[1..#pList[2]] : pList in ListOfTypes]);
 
-		for j in [1..NumberOfRows(M)] do
-			if Integers() ! (m/p) mod Div[j] eq 0 then
-				MaxDim[j] := Minimum(MaxDim[j], Floor(W[1][2*i-1] / Phi[j]));
-				M[j][2*i-1] := Phi[j];
-			else
-				MaxDim[j] := Minimum(MaxDim[j], Floor(W[1][2*i] / Phi[j]));
-				M[j][2*i] := Phi[j];
+	Results := [];
+
+	for IndexList in TypeChoice do
+		N := ZeroMatrix(Integers(), 1, t+1);
+		for i in [1..t] do
+			N[1][i] := ListOfTypes[i][2][IndexList[i]];
+		end for;
+		N[1][t+1] := n;
+
+		C := CartesianProduct([[0..Floor(n/EulerPhi(d))] : d in Div]);
+
+		for c in C do
+			if &or[c[i] ne 0 : i in [1..k]] and Lcm([Div[i] : i in [1..k] | c[i] gt 0]) eq m then
+				v := Matrix(Integers(), 1, k, [x : x in c]);
+				if v*M eq N then
+					ChoiceList := [<ListOfTypes[i][1], IndexList[i]> : i in [1..t]];
+					ExpList := [<Div[i], c[i]> : i in [1..k] | c[i] gt 0];
+					Append(~Results, <ChoiceList, ExpList>);
+				end if;
 			end if;
 		end for;
 	end for;
 
-	M;
-	"";
-	W;
-	"";
-	MaxDim;
-	"";
+	return Results;
 
-	C := CartesianProduct([[0..m] : m in MaxDim]);
-	
-	Solutions := [];
-
-	for x in C do
-		v := Matrix(Integers(), 1, NumberOfRows(M), [a : a in x]);
-
-		if v*M eq W then 
-			Append(~Solutions, v); 
-		end if;
-	end for;
-
-	Solutions;
-	"";
-	
-	MiPos := [];
-	for s in Solutions do
-		mu := [];
-		for i in [1..NumberOfRows(M)] do
-			if s[1][i] gt 0 then
-				Append(~mu, Div[i]);
-			end if;
-		end for;
-		if not mu in MiPos and LCM(mu) eq m then Append(~MiPos, mu); end if;
-	end for;
-
-	return MiPos;
 end function;

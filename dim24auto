@@ -17,31 +17,50 @@ for type in Types do
 	detp := p^s*3^kp;
 
 	if type in [<2, 12, 12, 6, 3, 6, 6>, <2, 12, 12, 8, 3, 8, 4>, <2, 12, 12, 8, 3, 4, 8>, <2, 12, 12, 10, 3, 8, 4>, <2, 12, 12, 10, 3, 4, 8>, <2, 12, 12, 12, 3, 10, 2>, <2, 12, 12, 12, 3, 8, 4>, <2, 12, 12, 12, 3, 4, 8>, <2, 12, 12, 12, 3, 2, 10>] then
+		if det1 lt detp then
+			det := det1;
+			det2 := detp;
+		else
+			det := detp;
+			det2 := det1;
+		end if;
+
+		List := [L : L in EnumerateGenusDeterminant(det, 12, true) | Minimum(L) ge 6];
+		if #List eq 0 then
+			printf "%o not possible.\n", type;
+			continue;
+		end if;
+		
+		"Smaller determinant possible. Checking large one.";
+
+		List := [L : L in EnumerateGenusDeterminant(det2, 12, true) | Minimum(L) ge 6];
+		if #List eq 0 then
+			printf "%o not possible.\n", type;
+			continue;
+		end if;
+
 		"!!!!!!POSSIBLE!!!!!!";
-		continue;
-	end if;
 
+	elif p eq 2 then
 
-	if p eq 2 then
-
-		if n1 le 12 then
+		if n1 le 12 and n1 gt 0 then
 
 			UList := EnumerateGenusDeterminant(3^k1, n1, false);
 			
-			List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((n1 - s)/2)) : U in UList | Dimension(U) eq 0 or Minimum(U) ge 3];
+			List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((n1 - s)/2)) : U in UList | Minimum(U) ge 3];
 
-			List := [L : L in List | IsEven(L) and Minimum(L) ge 6];
+			List := [L : L in List | IsSquarefree(Level(L)) and IsEven(L) and Minimum(L) ge 6];
 			if #List eq 0 then
 				continue;
 			end if;
 		end if;
 
-		if np le 12 then
+		if np le 12 and np gt 0 then
 			UList := EnumerateGenusDeterminant(3^kp, np, false);
 			
-			List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((np - s)/2)) : U in UList | Dimension(U) eq 0 or Minimum(U) ge 3];
+			List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((np - s)/2)) : U in UList | Minimum(U) ge 3];
 
-			List := [L : L in List | IsEven(L) and Minimum(L) ge 6];
+			List := [L : L in List | IsSquarefree(Level(L)) and IsEven(L) and Minimum(L) ge 6];
 			if #List eq 0 then
 				continue;
 			end if;
@@ -60,7 +79,7 @@ for type in Types do
 
 		epsilon1 := epsilonp;
 
-		if n1 le 12 then
+		if n1 le 12 and n1 gt 0then
 			Sym := [* 2, n1 *];
 			if 3 lt p then
 				Append(~Sym, <3, k1, epsilon1>);
@@ -76,7 +95,7 @@ for type in Types do
 			end if;
 		end if;
 
-		if np le 12 then
+		if np le 12 and np gt 0 then
 			Sym := [* 2, np *];
 			if 3 lt p then
 				Append(~Sym, <3, kp, epsilonp>);

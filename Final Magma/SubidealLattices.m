@@ -1,3 +1,5 @@
+load "Utility.m";
+load "IdealLattices.m";
 
 function AutomorphismTypes(l, k, n, t)
 // Input: Square-free l in N, k in N, n in N, t in N
@@ -120,9 +122,10 @@ function EnumerateGenusOfRepresentative(L)
 
 // Output: List of all representatives of isometry-classes in the genus of L
 
+	"Enumerate genus of representative";
 	try return eval Read(Sprintf("GenusSymbols/Gen_%o", GenSymbol(L))); catch e; end try;
 
-	if Dimension(L) le 4 then
+	if Dimension(L) le 6 then
 		Gen := GenusRepresentatives(L);
 		ZGen := [];
 		for M in Gen do
@@ -145,14 +148,17 @@ function EnumerateGenusOfRepresentative(L)
     SizeAuto := [#AutomorphismGroup(L)];
 	m := 1 / SizeAuto[1];
 
-	if m lt M then
-		"Entering Kneser neighboring-method";
-	end if;
+	p := 2;
 
-	p := 2;	
+	t0 := Realtime();
 
 	while m lt M do
-		printf "So far %o classes found. Difference to actual mass is %o. \n", #Gen, M-m;
+		//printf "So far %o classes found. Difference to actual mass is %o. \n", #Gen, M-m;
+		if Realtime(t0) ge 120*60 then
+			printf "2 hours have elapsed and not the whole genus was explored. Remaining difference to actual mass is %o. %o classes were found so far.\n", M-m, #Gen;
+			return Gen;
+		end if;
+
 		RareFound := [];
 		MinCount := Infinity();
 
@@ -160,6 +166,10 @@ function EnumerateGenusOfRepresentative(L)
 			"All explored. Going to next prime.";
 			Explored := [false : x in Explored];
 			p := NextPrime(p);
+			if p ge 5 and Dimension(L) ge 8 then
+				printf "Prime too large, cannot continue constructing neighbours. Remaining difference to actual mass is %o. %o classes were found so far.\n", M-m, #Gen;
+				return Gen;
+			end if;
 		end if;
 
 		for i in [1..#Gen] do
@@ -302,6 +312,7 @@ function EnumerateGenusDeterminant(det, n, even)
 		end if;
 	end for;
 
+	"Constructing representatives";
 	try
 		Rep := LatticesWithGivenElementaryDivisors(Rat, n, IdealList);
 	catch e
@@ -404,6 +415,7 @@ function EnumerateGenusSymbol(Symbol)
 		end if;
 	end for;
 
+	"Constructing representatives";
 	try
 		Rep := LatticesWithGivenElementaryDivisors(Rat, n, IdealList);
 	catch e
@@ -610,7 +622,7 @@ function ConstructLattices(l, n)
 		n1 := n - phim;
 		np := phim;
 
-		for m in [m : m in EulerPhiInverse(phim) | IsDivisibleBy(m,4)] do
+		for m in [m : m in EulerPhiInverse(phim)] do
 
 			printf "m = %o\n", m;
 		
@@ -648,6 +660,9 @@ function ConstructLattices(l, n)
 					    end if;
 			    		"Enumerate candidates for L_1";
 
+			    		K<z> := CyclotomicField(p);
+			    		Kpos := sub<K|z+1/z>;
+
 					    if p eq 2 then
 
 					    	// In this case use the sublattice U of L_1 with U^{#,2} = U
@@ -666,7 +681,11 @@ function ConstructLattices(l, n)
 							k1 := type[6];
 							kp := type[7];
 
-			    			f := InertiaDegree(Factorization(ideal<Integers(Kpos) | l>)[1][1]);
+							if p le 3 then
+								f := 1;
+							else
+			    				f := InertiaDegree(Factorization(ideal<Integers(Kpos) | l>)[1][1]);
+			    			end if;
 							deltap := (-1)^(Integers() ! (kp/f + (p-1)/2 * (Binomial(Integers() ! (np / (p-1) + 1), 2) + Binomial(s, 2))));
 							delta1 := deltap * (-1)^(Integers() ! (s*(p-1)/2));
 
@@ -735,7 +754,7 @@ function ConstructLattices(l, n)
 						    			LList cat:= SuperLatticesMagma(CoordinateLattice(OrthogonalSum(L1,Lp)), p, s, DiagonalJoin(sigma1, sigmap));
 						    		end for;
 						    	end for;
-						    elif n ge 22 then
+						    elif <l,n> in [<7,18>,<7,20>,<1,24>] then
 						    	LList := [];
 						    	for sigma1 in sigma1List do
 						    		for sigmap in sigmapList do
@@ -759,23 +778,24 @@ function ConstructLattices(l, n)
 end function;
 
 
-for n := 24 to 36 by 2 do                                                   
-	for l in [1,2,3,5,6,7,11,14,15,23] do
-		if l eq 1 and n in [2,4,6] then continue; end if;
-		if l eq 2 and n eq 2 then continue; end if;
-		if l eq 11 and n in [20,24,28,30,32,34,36] then continue; end if;
-		if l eq 23 and n ge 6 then continue; end if;
-		if l le 5 then continue; end if;
-		printf "dim = %o, l = %o\n", n, l;
-		Results := ConstructLattices(l, n);
-		ModList := [L : L in Results | IsModular(L, l)];
-		StrongModList := [L : L in Results | IsStronglyModular(L,l)];
-		PrintFileMagma(Sprintf("SubidealLattices/%o-Modular/%o-Dimensional", l, n), Results : Overwrite := true);
-		PrintFileMagma(Sprintf("SubidealLattices/%o-Modular/%o-DimensionalModular", l, n), ModList : Overwrite := true);
-		PrintFileMagma(Sprintf("SubidealLattices/%o-Modular/%o-DimensionalStronglyModular", l, n), StrongModList : Overwrite := true);
+procedure MainLoop()
+	for n := 2 to 36 by 2 do                                                   
+		for l in [1,2,3,5,6,7,11,14,15,23] do
+			if l eq 1 and n in [2,4,6] then continue; end if;
+			if l eq 2 and n eq 2 then continue; end if;
+			if l eq 11 and n in [20,24,28,30,32,34,36] then continue; end if;
+			if l eq 23 and n ge 6 then continue; end if;
+			printf "dim = %o, l = %o\n", n, l;
+			Results := ConstructLattices(l, n);
+			ModList := [L : L in Results | IsModular(L, l)];
+			StrongModList := [L : L in Results | IsStronglyModular(L,l)];
+			PrintFileMagma(Sprintf("SubidealLattices/%o-Modular/%o-Dimensional", l, n), Results : Overwrite := true);
+			PrintFileMagma(Sprintf("SubidealLattices/%o-Modular/%o-DimensionalModular", l, n), ModList : Overwrite := true);
+			PrintFileMagma(Sprintf("SubidealLattices/%o-Modular/%o-DimensionalStronglyModular", l, n), StrongModList : Overwrite := true);
 
-		if #Results gt 0 then
-			printf "\n\n----------n = %o, l = %o: %o lattices found! %o of them are modular and %o are strongly modular----------\n\n", n, l, #Results, #ModList, #StrongModList;
-		end if;		
+			if #Results gt 0 then
+				printf "\n\n----------n = %o, l = %o: %o lattices found! %o of them are modular and %o are strongly modular----------\n\n", n, l, #Results, #ModList, #StrongModList;
+			end if;		
+		end for;
 	end for;
-end for;
+end procedure;

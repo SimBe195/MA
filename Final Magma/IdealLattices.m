@@ -1,3 +1,4 @@
+load "Utility.m";
 
 function DivisorsWithNorm(I, n)
 // Input: Z_K-Ideal I; norm n in Z
@@ -246,7 +247,7 @@ function IdealLattices(d, K, Kpos, A, M, U, FundUnits, Reduce)
     ZK := Integers(K);
     InvDiff := Different(ZK)^(-1);
 
-    l := &*(PrimeDivisors(d))
+    l := &*(PrimeDivisors(d));
 
     B := DivisorsWithNorm(ideal<ZK|l>, d);
 
@@ -279,8 +280,8 @@ function IdealLattices(d, K, Kpos, A, M, U, FundUnits, Reduce)
 end function;
 
 
-function ModIdLat(l, n , PrintFile)
-// Input: square-free l in N; n in N; Boolean PrintFile that indicates whether resulting lattices should be saved as files
+function ModIdLat(l, n)
+// Input: square-free l in N; n in N
 
 // Output: List of all l-modular lattices of dimension n that are ideal lattices over some cyclotomic field reduced by isometry
 
@@ -299,10 +300,8 @@ function ModIdLat(l, n , PrintFile)
 
     Lattices := ReduceByIsometry(Lattices);
 
-    if PrintFile then
-        PrintFileMagma(Sprintf("IdealLattices/%o-Modular/%o-Dimensional", l, n), Lattices : Overwrite := true);
-    end if;
-
+    PrintFileMagma(Sprintf("IdealLattices/%o-Modular/%o-Dimensional", l, n), Lattices : Overwrite := true);
+   
     return Lattices;
     
 end function;

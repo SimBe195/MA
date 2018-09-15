@@ -192,9 +192,10 @@
 % Kapitel 1: Einleitung
 %===================================================================
 \chapter{Einleitung}
-Die Gittertheorie ist seit vielen Jahren ein wesentlicher Bestandteil der theoretischen Mathematik in Themengebieten wie beispielsweise der algebraischen Zahlentheorie und der Gruppentheorie. In der Anwendung sind oftmals besonders \textit{dichte} Gitter von Interesse, also Gitter, die im Vergleich zu ihrer Determinante ein möglichst großes Minimum besitzen, die Klassifikation möglichst dichter Gitter stellt jedoch eine große Herausforderung dar. H.-G. Quebbemann definiert in seiner Arbeit \cite{quebbemann} den Begriff eines \textit{modularen} Gitters und zeigt, dass die Thetareihen solcher modularen Gitter Modulformen einer bestimmten Gruppe sind. Diese Struktur erlaubt die Beschreibung sogenannter \textit{extremaler} modularer Gitter, welche innerhalb der Klasse der modularen Gitter eine maximale Dichte haben. Die Klassifikation extremaler Gitter ist eines der großen Forschungsgebiete aus der Gittertheorie. In dieser Arbeit versuchen wir, extremale Gitter mithilfe ihrer Automorphismengruppen zu untersuchen und zu konstruieren.\par
-Zunächst definieren wir dazu unsere grundlegenden Begriffe und werfen einen genaueren Blick auf die Dichte extremaler Gitter. Anschließend beschreiben wir modulare Gitter $L$ mit einer Struktur als gebrochene Ideale eines zyklotomischen Zahlkörpers $\Q(\zeta_m)$, sogenannte \textit{Ideal-Gitter}. Diese Struktur ist gegeben, falls $L$ einen Automorphismus $\sigma$ mit $\mu_\sigma = \Phi_m$ besitzt, sodass $\varphi(m) = \text{Dim}(L)$ gilt. Mithilfe dieser zusätzlichen Struktur lässt sich ein Algorithmus entwickeln, welcher zu gegebener Stufe, Determinante und Dimension eine vollständige Liste der Ideal-Gitter mit den festgelegten Parametern konstruiert. Die einzelnen Schritte dieses Algorithmus wurden im Zuge dieser Arbeit genau beschrieben und im Computer-Algebra-System \texttt{MAGMA} implementiert.\par
-Anschließend folgt der Hauptteil der Arbeit: die Beschreibung extremaler Gitter mit \textit{großem} Automorphismus. Hier gehen wir lediglich von den Voraussetzungen $\vert \sigma \vert = m$ und $\Phi_m \vert \mu_\sigma$ mit $\varphi(m) > \frac{\text{Dim}(L)}{2}$ aus. In diesem Falle induziert $\sigma$ ein Teilgitter $M := L \cap \Kern(\Phi_m(\sigma)) \perp L \cap \Kern(\frac{\mu_\sigma}{\Phi_m}(\sigma))$. Der erste Summand hat dabei eine Struktur als Ideal-Gitter und ist damit nach dem vorherigen Kapitel gut verstanden, für den anderen Summanden benötigen wir weitere Theorie. Mithilfe der Primteiler von $m$ von Automorphismen von Primzahlordnung können wir die Struktur dieses induzierten Teilgitters genauer beschreiben, insbesondere lassen sich weitreichende Einschränkungen an die Determinanten der Summanden zeigen. Zu den verbleibenden Optionen können wir mittels Aufzählung der wichtigen Geschlechter über das \textit{Kneser'sche Nachbarverfahren} eine Liste von Kandidaten für $M$ bestimmen und $L$ schließlich als Obergitter konstruieren. Alle dazugehörigen Algorithmen wurden ebenfalls in \texttt{MAGMA} implementiert und es konnten so einige neue extremale Gitter konstruiert werden.
+Die Gittertheorie ist seit vielen Jahren ein wesentlicher Bestandteil der theoretischen Mathematik in Themengebieten wie beispielsweise der algebraischen Zahlentheorie und der Gruppentheorie. In der Anwendung sind oftmals Gitter von Interesse, welche besonders dichte Kugelpackungen liefern. Also solche, die im Vergleich zu ihrer Determinante ein möglichst großes Minimum besitzen. Die Klassifikation möglichst dichter Gitter stellt jedoch eine große Herausforderung dar.\par
+H.-G. Quebbemann definiert in seiner Arbeit \cite{quebbemann} den Begriff eines \textit{modularen} Gitters und zeigt, dass die Thetareihen solcher modularen Gitter Modulformen einer bestimmten Gruppe sind. Diese Struktur erlaubt die Beschreibung sogenannter \textit{extremaler} modularer Gitter, welche innerhalb der Klasse der modularen Gitter eine maximale Dichte haben. Die Klassifikation extremaler Gitter ist eines der großen Forschungsgebiete aus der Gittertheorie. In dieser Arbeit versuchen wir, extremale Gitter mithilfe ihrer Automorphismengruppen zu untersuchen und zu konstruieren.\par
+Zunächst definieren wir dazu unsere grundlegenden Begriffe und werfen einen genaueren Blick auf die Dichte extremaler Gitter. Anschließend beschreiben wir modulare Gitter $L$ mit einer Struktur als gebrochene Ideale eines zyklotomischen Zahlkörpers $\Q(\zeta_m)$, sogenannte \textit{Ideal-Gitter}. Diese Struktur ist gegeben, falls $L$ einen Automorphismus $\sigma$ mit $\mu_\sigma = \Phi_m$ besitzt, sodass $\varphi(m) = \text{Dim}(L)$ gilt. Mithilfe dieser zusätzlichen Struktur lässt sich ein Algorithmus entwickeln, welcher zu gegebener Stufe, Determinante und Dimension eine vollständige Liste der Ideal-Gitter mit den festgelegten Parametern konstruiert. Dieser Algorithmus wurde Michael Jürgens in \cite{juergens} beschrieben. Die einzelnen Schritte wurden im Zuge dieser Arbeit genau untersucht und im Computer-Algebra-System \texttt{MAGMA} implementiert.\par
+Anschließend folgt der Hauptteil der Arbeit: die Beschreibung extremaler modularer Gitter mit \textit{großem} Automorphismus. Hier gehen wir lediglich von den Voraussetzungen $\vert \sigma \vert = m$ und $\Phi_m \vert \mu_\sigma$ mit $\varphi(m) > \frac{\text{Dim}(L)}{2}$ aus. In diesem Falle induziert $\sigma$ ein Teilgitter $M := L \cap \Kern(\Phi_m(\sigma)) \perp L \cap \Kern(\frac{\mu_\sigma}{\Phi_m}(\sigma))$. Der erste Summand hat dabei eine Struktur als Ideal-Gitter und ist damit nach dem vorherigen Kapitel gut verstanden, für den anderen Summanden benötigen wir weitere Theorie. M. Jürgens und G. Nebe untersuchen in \cite{juergens} und \cite{nebe} Gitterautomorphismen $\sigma$ mit Primzahlordnung $p$. Wie vorher induziert solch ein $\sigma$ ein Teilgitter $M := L \cap \Kern(\Phi_p(\sigma)) \perp L \cap \Kern(\Phi_1(\sigma))$, in diesem Falle lassen sich allerdings wichtige Einschränkungen an die Determinanten der Komponenten, sowie an den Index von $M$ in $L$ zeigen. Die Informationen über Automorphismen von Primzahlordnung können anschließend verwendet werden um mittels der Primteiler von $m$ auch Automorphismen allgemeinerer Ordnung zu untersuchen. Nebe wendet in \cite{nebe} diese Erkenntnisse an, um extremale unimodulare Gitter der Dimension $48$ mit großem Automorphismus zu klassifizieren. In dieser Arbeit wird die dortige Vorgehensweise auf $\ell$-modulare Gitter verallgemeinert und als Algorithmus zusammengefasst. Alle Voraussetzungen und Teilschritte werden dabei genau erläutert und in \texttt{MAGMA} implementiert. Auf diese Weise konnten insgesamt $33$ bisher unbekannte extremale modulare Gitter konstruiert werden. Abschließend wird die Vollständigkeit der Ergebnisse diskutiert, indem wir alle Möglichkeiten für die charakteristischen Polynome von Gittern aufzählen, die nicht die Voraussetzungen des Algorithmus erfüllen und somit gegebenenfalls nicht gefunden werden konnten.
 
 
 %===================================================================
@@ -354,7 +355,7 @@ Da die Determinante für $\ell$-modulare Gitter in fester Dimension nach Lemma \
 
 Ein höherer Wert bezüglich der Funktion $\gamma$ bedeutet dabei ein dichteres Gitter im Hinblick auf die dazugehörige Kugelpackung. In der Literatur wird häufig alternativ mit der sogenannten \textit{Zentrumsdichte} $\delta(L) = \frac{\Min(L)^{\frac{n}{2}}}{2^n \sqrt{\Det(L)}}$ gearbeitet (vgl. \cite[(1.5)]{conway}). Cohn und Elkies haben in \cite{cohn} obere Schranken für die Zentrumsdichte ermittelt. Mithilfe der Identität $\gamma(L) = 4 \delta(L)^\frac{2}{n}$ lassen sich daraus obere Schranken für die Hermite-Konstante herleiten. Zusätzlich sind für die Dimensionen $1$ bis $8$ und $24$ die Werte von $\gamma_n$ explizit bekannt. Hierfür können wir also die Hermite-Funktionen der dichtesten bekannten Gitter als Schranken festhalten (vgl. \cite{database}). Die sich ergebenden oberen Schranken in Dimensionen $1$ bis $36$ sind in Tabelle \eqref{tab:hermites} festgehalten.
 
-\begin{table}\label{tab:hermites}
+\begin{table}[H]\label{tab:hermites}
 \centering
 	\begin{tabular}{|c|c||c|c||c|c||c|c|}
 		\hline
@@ -1510,7 +1511,7 @@ Haben wir einen Kandidaten für das Teilgitter $M := L_1 \perp L_p$ und für den
 \end{equation*}
 die reduzierte Bilinearform auf den Faktorgruppen darstellt, sämtliche ganzen Obergitter von Index $p^s$ zu bestimmen - unabhängig von $\sigma$. Da diese Methode wegen Nichtbeachtung der $\sigma$-invarianz potentiell noch mehr Gitter liefert als solche mit den geforderten Eigenschaften, ist sie unsere erste Wahl. Leider scheitert sie in einigen Fällen zum Teil an der steigenden Ressourcenintensivität.\par
 
-Um die tatsächlich $\sigma$-invarianten Obergitter zu bestimmen, bemerken wir zunächst die Tatsache, dass jedes ganze Obergitter $L \geq M$, sodass $[L : M]$ eine $p$-Potenz ist, ein Teilgitter von $M^{\#,p} = L_1^{\#,p} \perp L_p^{\#,p}$ sein muss. Definiere nun $b_1 := b \vert_{V_1 \times V_1}$ und $b_p := b \vert_{V_p \times V_p}$, sowie $\overline{b_1} := \overline{b}\vert_{(L_1^{\#,p} / L_1) \times (L_1^{\#,p} / L_1)}$ und $\overline{b_p} := \overline{b}\vert_{(L_p^{\#,p} / L_p) \times (L_p^{\#,p} / L_p)}$. Damit $L$ ein ganzes Gitter wird, muss für beliebige Elemente $(x_1, x_p), (y_1, y_p) \in L$ gelten:
+Nebe verwendet im Beweis von \cite[Theorem (5.9)]{nebe} eine Vorgehensweise, welche die Struktur von $M$ als orthogonale Summe benutzt, um die tatsächlich $\sigma$-invarianten Obergitter zu bestimmen. Diese Vorgehensweise passen wir nun auf unsere Situation an. Dazu bemerken wir zunächst die Tatsache, dass jedes ganze Obergitter $L \geq M$, sodass $[L : M]$ eine $p$-Potenz ist, ein Teilgitter von $M^{\#,p} = L_1^{\#,p} \perp L_p^{\#,p}$ sein muss. Definiere nun $b_1 := b \vert_{V_1 \times V_1}$ und $b_p := b \vert_{V_p \times V_p}$, sowie $\overline{b_1} := \overline{b}\vert_{(L_1^{\#,p} / L_1) \times (L_1^{\#,p} / L_1)}$ und $\overline{b_p} := \overline{b}\vert_{(L_p^{\#,p} / L_p) \times (L_p^{\#,p} / L_p)}$. Damit $L$ ein ganzes Gitter wird, muss für beliebige Elemente $(x_1, x_p), (y_1, y_p) \in L$ gelten:
 \begin{align*}
 	0 + p\Z &\stackrel{!}{=} \overline{b}((x_1,x_p) + M, (y_1, y_p) + M)\\
 	&= pb_1(x_1,y_1) + pb(x_1, y_p) + pb(x_p, y_1) + pb_p(x_p, y_p) + p\Z\\
@@ -1609,7 +1610,9 @@ Nun ein paar Worte zum Minimalpolynom von $\sigma$ auf den Faktorgruppen $L_1^{\
 	L_1^\#/L_1^{\#,\ell} \rightarrow L_p^\# / L_p^{\#,\ell}&, y + L_1^{\#, \ell} \mapsto (\hat{y} - y) + L_p^{\#, \ell}\\
 	L_p^\# / L_p^{\#, \ell} \rightarrow L_p^{\#,p} / L_p&, x + L_p^{\#, \ell} \mapsto x + L_p,
 \end{align*}
-wobei $\hat{y} \in L^\#$ mit $b(x,y) = b(x,\hat{y})$ für alle $x \in L_1$. Man sieht leicht ein, dass $\sigma(\hat{y})$ eine mögliche Wahl für $\widehat{\sigma(y)}$ darstellt, da alle beteiligten Gitter und die Bilinearform invariant unter $\sigma$ sind. Alle drei Isomorphismen vertauschen also mit $\sigma$. Daraus folgt, dass die Faktorgruppen auch als $\Z[\sigma]$-Moduln, bzw. wegen $p L_p^{\#,p} \subseteq L_p$ und $p L_1^{\#,p} \subseteq L_1$ sogar als $\F_p[\sigma]$-Moduln isomorph sind. Insbesondere hat $\sigma$ auf $L_1^{\#,p}/L_1$ und $L_p^{\#,p}/L_p$ dasselbe Minimalpolynom. Wegen $(1-\sigma^d) L_p^{\#,p} \subseteq L_p$ wird $L_p^{\#,p}/L_p$ zu einem $\F_p[\sigma] / (1-\sigma^d) \cong \F_p[\zeta_d]$-Modul. Das Minimalpolynom der Operation von $\sigma$ ist somit $\Phi_d$. Das Minimalpolynom von $\sigma \vert_{\Kern(\sigma^d-1)}$ muss daher $\text{Grad}(\mu_{\sigma \vert_{\Kern(\sigma^d-1)}}) \geq \text{Grad}(\Phi_d) = \varphi(d)$ erfüllen. Außerdem gilt $\varphi(d) \leq \text{Dim}_{\F_p}(L_p^{\#,p} / L_p) = s$.\par
+wobei $\hat{y} \in L^\#$ mit $b(x,y) = b(x,\hat{y})$ für alle $x \in L_1$. Man sieht leicht ein, dass $\sigma(\hat{y})$ eine mögliche Wahl für $\widehat{\sigma(y)}$ darstellt, da alle beteiligten Gitter und die Bilinearform invariant unter $\sigma$ sind. Alle drei Isomorphismen vertauschen also mit $\sigma$. Daraus folgt, dass die Faktorgruppen auch als $\Z[\sigma]$-Moduln, bzw. wegen $p L_p^{\#,p} \subseteq L_p$ und $p L_1^{\#,p} \subseteq L_1$ sogar als $\F_p[\sigma]$-Moduln isomorph sind. Insbesondere hat $\sigma$ auf $L_1^{\#,p}/L_1$ und $L_p^{\#,p}/L_p$ dasselbe Minimalpolynom. Wegen $(1-\sigma^d) L_p^{\#,p} \subseteq L_p$ wird $L_p^{\#,p}/L_p$ zu einem $\F_p[\sigma] / (1-\sigma^d) \cong \F_p[\zeta_d]$-Modul. Das Minimalpolynom der Operationen von $\sigma$ auf den Faktorgruppen ist somit ein Teiler von $\Phi_d$, also (falls $\Dim_{\F_p}(L_p^{\#,p}/L_p) = \Dim(L_1^{\#,p}/L_1) > 0$) gleich $\Phi_d$. In diesem Falle muss daher
+\[\text{Grad}(\mu_{\sigma\vert_{\Bild(\sigma^d-1)}}), \text{Grad}(\mu_{\sigma \vert_{\Kern(\sigma^d-1)}}) \geq \text{Grad}(\Phi_d) = \varphi(d)\]
+erfüllt sein. Außerdem gilt $\varphi(d) \leq \text{Dim}_{\F_p}(L_p^{\#,p} / L_p) = s$.\\
 Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
 
 \begin{algorithm}[H]
@@ -1622,9 +1625,12 @@ Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
 		\State $AutoTypes \gets \text{ Liste von Aut.-Typen von Primzahlordnung nach Algorithmus \eqref{alg:autotypes}}$
 		\For {$p \in \lbrace q \in \P \mid q \vert m, \ggT(q, \ell) > 1 \rbrace$}
 			\State $d \gets \frac{m}{p}$
-			\State $PossibleTypes \gets \lbrace p - (n - \varphi(m), \varphi(m)) - s - \dots \in AutoTypes \mid \varphi(d) \leq s \rbrace$
+			\State $PossibleTypes \gets \lbrace p - (n - \varphi(m), \varphi(m)) - s - \dots \in AutoTypes \mid s = 0$ oder $\varphi(d) \leq s \rbrace$
 			\For {$t \in PossibleTypes$}
 				\State $L_p\_List \gets$ Liste von Ideal-Gittern über $\Q(\zeta_m)$ mit durch $t$ für $L_p$ vorgegebene Dimension und Determinante nach Algorithmus \eqref{alg:idlat}
+				\If {$s = 0$}
+					\Return $L_p\_List$
+				\EndIf
 				\For {$L_p \in L_p\_List$}
 					\State $L_1\_List \gets$ Liste von allen Gittern mit durch $t$ für $L_1$ vorgebenene Dimension und Determinante und mit quadratfreier Stufe nach Algorithmus \eqref{alg:knesneigh}
 					\For{$L_1 \in L_1\_List$}
@@ -1649,23 +1655,28 @@ Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
 \end{algorithm}
 
 Für $p = 2$ kann bei Zeile $12$ des Algorithmus alternativ auch mit Lemma \eqref{lem:2sub} vorgegangen werden: man zählt stattdessen die möglichen $U$ auf und erhält die Kandidaten für $L_1$ als die Obergitter von $\sqrt{2} U$ vom Index $p^\frac{\varphi(n)-m - s}{2}$ mit quadratfreier Stufe und ausreichend großem Minimum.\par
-Für diesen Algorithmus wurden Einschränkungen an die Minimalpolynome der Automorphismen von Gittern gemacht, es ist also a priori nicht klar, welcher Grad von Vollständigkeit durch die Klassifikation mit unserem Algorithmus gegeben ist. Dennoch ist es gelungen, einige neue extremale Gitter zu konstruieren. Die Anzahlen gefundener Gitter sind in Tabelle \eqref{tab:numsublat} festgehalten. Für $(\ell, n) \in \lbrace (7,18), (7,20), (1,24) \rbrace$ wurden die Obergitter $\sigma$-invariant konstruiert, anstatt mit Jürgens Methode. Bei $\ell = 7$, $n = 20$ konnte in einem Falle nicht das gesamte Geschlecht für $L_1$ aufgezählt werden. Zur tatsächlichen Masse fehlte $\frac{167}{4644864}$.
+Für diesen Algorithmus wurden Einschränkungen an die Minimalpolynome der Automorphismen von Gittern gemacht, es ist also a priori nicht klar, welcher Grad von Vollständigkeit durch die Klassifikation mit unserem Algorithmus gegeben ist. Dennoch ist es gelungen, einige neue extremale Gitter zu konstruieren. Die Anzahlen gefundener Gitter sind in Tabelle \eqref{tab:numsublat} festgehalten. Für $(\ell, n) \in \lbrace (7,18), (7,20), (1,24), (2,24), (5,24) \rbrace$ wurden die Obergitter $\sigma$-invariant konstruiert, anstatt mit Jürgens Methode. Bei $\ell = 7$, $n = 20$ konnte in einem Falle nicht das gesamte Geschlecht für $L_1$ aufgezählt werden. Zur tatsächlichen Masse fehlte $\frac{167}{4644864}$. Das gleiche Problem trat bei $\ell = 7$, $n = 22$ auf. Hier fehlte bei einem Geschlecht $\frac{167}{4644864}$.
 
-\begin{table}\label{tab:numsublat}
+\begin{table}[H]\label{tab:numsublat}
 	\centering
 	\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
 		\hline
 		\backslashbox{$n$}{$\ell$}	&$1$	&$2$	&$3$	&$5$	&$6$	&$7$	&$11$	&$14$	&$15$\\ \hline \hline
-		$6$		&$-$		&$-$		&$-$		&$-$		&$-$		&$1$		&$1$		&$-$		&$-$\\ \hline
-		$8$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$12$	&$-$		&$2$		&$1$		&$-$		&$-$		&$-$		&$-$		&$1$		&$1$\\ \hline
+		$4$		&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$1$		&$-$		&$-$\\ \hline
+		$6$		&$-$		&$-$		&$1$		&$-$		&$-$		&$1$		&$2$		&$-$		&$-$\\ \hline
+		$8$		&$1$		&$1$		&$1$		&$1$		&$-$		&$1$		&$1$		&$1$		&$1$\\ \hline
+		$10$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
+		$12$	&$-$		&$1$		&$1$		&$1$		&$1$		&$-$		&$-$		&$1$		&$1$\\ \hline
 		$14$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$16$	&$2$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
+		$16$	&$2$		&$1$		&$2$		&$-$		&$1$		&$3$		&$-$		&$-$		&$1$\\ \hline
 		$18$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$20$	&$-$		&$1$		&$3$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$22$	&$-$		&$-$		&$2(1^\ast)$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
+		$20$	&$-$		&$1$		&$3$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$\\ \hline
+		$22$	&$-$		&$-$		&$3(1^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
+		$24$	&$1$		&$5(2^\ast)$&$1$		&$1$		&$5(3^\ast)$&$-$		&$-$		&$-$		&$-$\\ \hline
+		$26$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
+		$28$	&$-$		&$27(25^\ast)$&$3(2^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
 	\end{tabular}
-	\caption{Anzahl der durch Algorithmus \eqref{alg:largeauto} konstruierten extremalen $\ell$-modularen Gitter in Dimension $n \leq 36$, sowie ggf. der Anzahl der bisher unbekannten Gitter darunter}
+	\caption{Anzahl der durch Algorithmus \eqref{alg:largeauto} konstruierten extremalen stark $\ell$-modularen Gitter in Dimension $n \leq 28$, sowie ggf. der Anzahl der bisher unbekannten Gitter darunter}
 \end{table}
 
 
@@ -1688,11 +1699,20 @@ der Automorphismen $\sigma^\frac{m}{p_1}, \sigma^\frac{m}{p_2}, \dots, \sigma^\f
 sein. Außerdem gilt natürlich $\kgV\lbrace d_i \vert c_i > 0 \rbrace = m$.\par
 Von den verbleibenden Kandidaten für das charakteristische Polynom werden nun alle diejenigen potentiell \textit{nicht} von Algorithmus \eqref{alg:largeauto} gefunden, für die gilt, dass
 	\[\kgV \lbrace d_i \mid d_i \neq m \text{ und } c_i > 0 \rbrace = m.\]
-Diese Charakterisierung der möglichen charakteristischen Polynome allein anhand einer Menge von Typen schließt im Beweis des nächsten Satzes viele Fälle aus und erspart uns eine große Menge Arbeit. Kommen wir nun zur Klassifikation der charakteristischen Polynome eines Automorphismus von einem $3$-modularen Gitter der Dimension $24$.
+Diese Charakterisierung der möglichen charakteristischen Polynome allein anhand einer Menge von Typen wenden wir nun einmal beispielhaft auf $3$-modulare Gitter der Dimension $24$ an.
 
 \begin{framed}
 	\begin{satz}
-		Sei $L$ ein extremales $3$-modulares Gitter in einem bilinearen Vektorraum $(V,b)$ der Dimension $24$. Dann hat $L$ keine Automorphismen der Ordnung $7$, sowie der Ordnung $p \in P_{\ge 13}$. Ist $\sigma \in \Aut(L)$ von Ordnung $m$ mit $12 < \varphi(m) < 24$, so ist $\mu_\sigma \in \lbrace \Phi_{16}\Phi_{48}, \Phi_{12} \Phi_{20},\ \Phi_4 \Phi_{12} \Phi_{20},\ \Phi_3 \Phi_{11},\ \Phi_1 \Phi_3 \Phi_{11} \rbrace$, oder $\vert \sigma \vert \in \lbrace 27, 54 \rbrace$. 
+		Sei $L$ ein extremales $3$-modulares Gitter in einem bilinearen Vektorraum $(V,b)$ der Dimension $24$. Dann hat $L$ keine Automorphismen der Ordnung $7$, sowie der Ordnung $p \in P_{\ge 13}$. Ist $\sigma \in \Aut(L)$ von Ordnung $m$ mit $12 < \varphi(m) \leq 24$, so ist $m \in \lbrace 60, 27, 33, 66, 45, 72, 90 \rbrace$. Außerdem gelten folgende Einschränkungen:
+		\begin{itemize}
+			\item $m = 60 \Rightarrow \Phi_{20} \vert \mu_\sigma$
+			\item $m = 27 \Rightarrow \Phi_{27} \vert \mu_\sigma$
+			\item $m = 33 \Rightarrow \Phi_{3} \Phi_{11} \vert \mu_\sigma$
+			\item $m = 66 \Rightarrow \Phi_{11} \Phi_{22} \vert \mu_\sigma$
+			\item $m = 45 \Rightarrow \Phi_{5} \Phi_{9} \vert \mu_\sigma$
+			\item $m = 72 \Rightarrow \Phi_8 \vert \mu_\sigma$
+			\item $m = 90 \Rightarrow \Phi_{10} \Phi_{15} \vert \mu_\sigma$
+		\end{itemize}
 	\end{satz}
 \end{framed}
 
@@ -1713,21 +1733,14 @@ Diese Charakterisierung der möglichen charakteristischen Polynome allein anhand
 	\begin{equation*}
 		\lbrace 32, 40, 48, 60, 27, 54, 25, 33, 44, 50, 66, 45, 72, 90\rbrace
 	\end{equation*}
-	liegen. Diese Fälle gehen wir nun einzeln durch.
-	\begin{itemize}[align=left, leftmargin = *]
-		\item[$m = 32 = 2^5$:] Bemerkung \eqref{bem:charpol} mit den aufgezählten Automorphismentypen schließt diesen Fall aus.
-		\item[$m = 40 = 2^3 \cdot 5$:] Mit Bemerkung \eqref{bem:charpol} ist die einzige Möglichkeit in diesem Fall $\mu_\sigma = \Phi_8 \Phi_{40} \vert \Phi_{40}(X^8-1)$. Somit müsste ein solches Gitter von Algorithmus \eqref{alg:largeauto} gefunden worden sein. Da der Algorithmus jedoch keine $3$-modularen Gitter der Dimension $24$ konstruieren konnte, kann auch dieser Fall nicht auftreten.
-		\item[$m = 48 = 2^4 \cdot 3$:] Mit Bemerkung \eqref{bem:charpol} ist die einzige Möglichkeit für das Minimalpolynom $\mu_\sigma = \Phi_{16}\Phi_{48}$.
-		\item[$m = 60 = 2^2 \cdot 3 \cdot 5$:] Mit Bemerkung \eqref{bem:charpol} kann der Typ von $\sigma^{12}$ nicht $ $
-		\item[$m = 27 = 3^3$:] Da wir keinerlei Aussagen über Automorphismen der Ordnung $3$ treffen konnten, können wir außer $\Phi_{27} \vert \mu_\sigma$ nichts weiter aussagen.
-		\item[$m = 54 = 2 \cdot 3^3$:] Die nach \eqref{bem:charpol} möglichen charakteristischen Polynome sind $\chi_\sigma \in \lbrace \Phi_{18} \Phi_{54}, \Phi_6^3 \Phi_{54}, \Phi_2^2 \Phi_6^2 \Phi_{54}, \Phi_2^4 \Phi_6 \Phi_{54}, \Phi_2^6 \Phi_{54} \rbrace$.
-		\item[$m = 25 = 5^2$:] Bemerkung \eqref{bem:charpol} schließt diesen Fall aus.
-		\item[$m = 33 = 3 \cdot 11$:] Es ist $\varphi(33) = 20$. Unter der Annahme, dass $\Phi_{33} \mid \mu_\sigma$ folgt $\Phi_{11} \nmid \mu_\sigma$, da $\Dim(\Kern(\Phi_{11}(\sigma)))$ ein Vielfaches von $10$ ist. Also gilt $\frac{\mu_\sigma}{\Phi_{33}} \vert (X^3-1)$ und $L$ würde von Algorithmus \eqref{alg:largeauto} gefunden. Daher muss mit \eqref{bem:charpol} $\chi_\sigma$ eines der Polynome $\Phi_3^2 \Phi_{11}^2$ oder $\Phi_1^2 \Phi_3 \Phi_{11}^2$ sein.
-		\item[$m = 44 = 2^2 \cdot 11$:] Das einzig von den Dimensionen her mögliche Minimalpolynom ist $\mu_\sigma = \Phi_4 \Phi_{44} \vert \Phi_{44} (X^4-1)$, also müsste ein solches Gitter von Algorithmus \eqref{alg:largeauto} gefunden worden sein und existiert daher nicht.
-		\item[$m = 50 = 2 \cdot 5^2$:]
-	\end{itemize}
-	
+	liegen. Für diese Fälle zählen wir mithilfe der Automorphismentypen mit dem in diesem Abschnitt beschriebenen Verfahren die möglichen charakteristischen Polynome auf. Genaue Betrachtung der Möglichkeiten für die Polynome zeigt alle verbleibenden Aussagen. 
 \end{beweis}
+
+\section{Zusammenfassung und Ausblick}
+
+Nach einem einführenden Kapitel zum Begriff eines modularen Gitters und zur Dichte eines Gitters haben wir die Theorie der Ideal-Gitter wiederholt, welche in einem Algorithmus von M. Jürgens in \cite{juergens} bereits klassifiziert werden konnten. Wir haben die Schritte des Algorithmus von Jürgens genau beschrieben und erfolgreich in \texttt{MAGMA} implementiert. So konnten die Ergebnisse von Jürgens rekonstruiert und auf einige - nicht von Jürgens aufgezählte - Dimensionen erweitert werden.\par
+In Kapitel $4$ haben wir zunächst die von Jürgens und Nebe beschriebene Theorie zu den Typen von Gitterautomorphismen mit Primzahlordnung wiederholt, sowie in gewissen Fällen verallgemeinert. Anschließend wurde der Begriff eines Gittergeschlechtes nach \cite{conway} eingeführt und das Kneser'sche Nachbarschaftsverfahren erläutert, mit dessen Hilfe wir relevante Geschlechter aufzählen können. Des Weiteren haben wir Methoden von Jürgens und Nebe auf unsere Situation angepasst, mit deren Hilfe wir ganzzahlige ($\sigma$-invariante) Obergitter konstruieren können. Alle beschriebenen Aussagen und Methoden führten wir nun zu einem finalen Algorithmus zusammen, der gewisse extremale modulare Gitter mit großen Automorphismen konstruieren kann. In der aktuellen Fassung unterliegt der Algorithmus leider noch einigen Einschränkungen. Besonders die Tatsache, dass wir im Zuge dieser Arbeit noch nichts über Automorphismen von Primzahlordnung $p$ aussagen konnten, sodass $p$ ein Teiler der Stufe des Gitters ist, stellt eine große Erschwerung dar und verhindert in vielen Fällen eine vollständigere Klassifikation. Im letzten Abschnitt der Arbeit haben wir schließlich die charakteristischen Polynome all solcher Gitter klassifiziert, die durch den bestehenden Algorithmus gegebenenfalls \textit{nicht} gefunden werden können.\par
+Ein Ansatzpunkt für weitere Forschung zu diesem Thema ist besonders wie bereits beschrieben die Untersuchung von Automorphismen mit nicht zur Stufe teilerfremder Ordnung.  Eine Charakterisierung solcher Automorphismen könnte den Algorithmus potentiell deutlich verbessern. Des Weiteren ist eine Optimierung der Teilschritte von Interesse. Besonders die Konstruktion eines Repräsentanten, sowie die vollständige Aufzählung von Geschlechtern versagt in hohen Dimensionen schnell an Hardware-Limitierungen. Zumindest in Spezialfällen ist eventuell eine effizientere Berechnung möglich. Zuletzt könnte möglicherweise die Klassifikation der nicht-gefundenen Gitter allgemein oder in Spezialfällen verfeinert werden. 
 
 
 \chapter{Anhang}
@@ -1940,31 +1953,57 @@ Diese Charakterisierung der möglichen charakteristischen Polynome allein anhand
 \end{table}
 
 \section{\texttt{MAGMA}-Implementierungen von Hilfsfunktionen}
-Es folgt der Quellcode zu folgenden Hilfsfunktionen:
+Es folgt der Quellcode zu folgenden Hilfsfunktionen in der Reihenfolge des Quellcodes:
 \begin{itemize}
-	\item Das komplex-konjugierte eines $Z_K$-Ideals berechnen.
+	\item Das komplex-konjugierte eines $\Z_K$-Ideals berechnen.
 	\item Eine Liste von Gittern nach Isometrie reduzieren.
-	\item Das Minimum ausgeben, was ein $\ell$-modulares Gitter der Dimension $n$ mindestens haben. muss
+	\item Das Minimum ausgeben, was ein $\ell$-modulares Gitter der Dimension $n$ mindestens haben muss.
+	\item Das Geschlechtssymbol eines positiv definiten Gitters quadratfreier Stufe bestimmen.
+	\item Ein Gitter des \texttt{MAGMA}-Typs \texttt{LatNF} zum Typen \texttt{Lat} konvertieren.
+	\item Testen ob ein Gitter $L$ $\ell$-modular ist.
+	\item Testen ob ein Gitter $L$ stark $\ell$-modular ist.
 \end{itemize}
 \includepdf[pages=-, pagecommand={}]{Utility.pdf}
 
 \section{\texttt{MAGMA}-Implementierungen der Ideal-Gitter-Algorithmen}
-Es folgt der Quellcode zu den Algorithmen aus Kapitel 3. Die implementierten Funktionen sind
+Es folgt der Quellcode zu den Algorithmen aus Kapitel 3. Die implementierten Funktionen sind in der Reihenfolge des Quellcodes:
 \begin{itemize}
 	\item Alle Teiler eines $\Z_K$-Ideals $\I$ von festgelegter Norm berechnen. Siehe Algorithmus \eqref{alg:divnorm}.
 	\item Einen total-reellen Erzeuger eines $\Z_K$-Ideals $\I$ bestimmen. Siehe Algorithmus \eqref{alg:relgen}.
-	\item Matrix, deren Einträge die Vorzeichen der reellen Einbettung der Grundeinheiten kodieren, sowie eine Liste aller total-positiven Elemente in $\Z_{K^+}^\ast$ reduziert nach $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$ und eine Liste von Erzeugern einer Untergruppe von $\Z_{K^+}^\ast$ mit ungeradem Index bestimmen. Siehe Algorithmus \eqref{alg:posgen}.
+	\item Matrix, deren Einträge die Vorzeichen der reellen Einbettung der Grundeinheiten kodieren, sowie eine Liste aller total-positiven Elemente in $\Z_{K^+}^\ast$ reduziert nach $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$ und eine Liste von Erzeugern einer Untergruppe von $\Z_{K^+}^\ast$ mit ungeradem Index bestimmen. Siehe Algorithmus \eqref{alg:posgen}
+	\item Das Minimalpolynom der Operation eines Automorphismus $\sigma$ von einem Gitter $L$ auf dem $\F_p$-Vektorraum $L^{\#,p}/L$ berechnen
 	\item Liste aller total-positiven Erzeuger eines $\Z_K$-Ideals $\I$ reduziert nach $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$ bestimmen. Siehe ebenfalls Algorithmus \eqref{alg:posgen}.
 	\item Liste von Vertretern der Klassengruppe von $K$ modulo der Operation der Galoisgruppe $\text{Gal}(K/\Q)$ bestimmen. Siehe Abschnitt (3.3).
 	\item Aus einem $\Z_K$-Ideal $\I$ und einem total-positiven Element $\alpha$ das Gitter, welches durch Auffassung von $\I$ als $\Z$-Gitter mit Bilinearform $b(x,y) := \text{Spur}(\alpha x \overline{y})$ entsteht.
 	\item Alle Ideal-Gittern über gegebenem CM-Körper mit vorgegebener Determinante und quadratfreier Stufe aufzählen. Siehe Algorithmus \eqref{alg:idlat}.
 	\item Liste von allen $\ell$-modularen Gittern in Dimension $n$ erstellen, welche einen Automorphismus $\sigma$ besitzen mit $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$. Siehe Abschnitt (3.5).
+	\item Schleife, welche die letzte Funktion für verschiedene $n$ und $\ell$ auswertet und die Ergebnisse speichert.
 \end{itemize}
 \includepdf[pages=-, pagecommand={}]{IdealLattices.pdf}
 
 \section{\texttt{MAGMA}-Implementierungen der Subideal-Gitter-Algorithmen}
-Beschreibung
+Es folgt der Quellcode zu den Algorithmen aus Kapitel 4 bis einschließlich Abschnitt (4.6). Die implementierten Funktionen sind in der Reihenfolge des Quellcodes:
+\begin{itemize}
+	\item Mithilfe von Hermite-Schranken die möglichen Typen von Automorphismen von Primzahlordnung gerader Gitter mit quadratfreier Stufe $\ell$, Determinante $\ell^k$ und Minimum $\geq t$ aufzählen. Siehe Algorithmus \eqref{alg:autotypes}.
+	\item Mit dem Kneser'schen Nachbarverfahren die Vertreter der Isometrieklassen aller Gitter in dem Geschlecht eines Vertreters bestimmen. Siehe Algorithmus \eqref{alg:knesneigh}.
+	\item Anhand von vorgegebener Dimension und Determinante Vertreter aller Isometrieklassen von (wenn gewünscht geraden) Gittern mit dieser Dimension und Determinante und mit quadratfreier Stufe aufzählen.
+	\item Zu einem vorgegebenen Geschlechtssymbol Vertreter aller Isometrieklassen von Gittern mit diesem Geschlechtssymbol und quadratfreier Stufe aufzählen.
+	\item Mit der \texttt{MAGMA}-Methode \texttt{Sublattices} $\sigma$-invariante Obergitter von Index $p^s$ für einen Gitterautomorphismus $\sigma$ bestimmen.
+	\item Mit der in Abschnitt (4.5) beschriebenen Methode Obergitter von $L_1 \perp L_p$ invariant unter $\text{diag}(\sigma_1, \sigma_p)$ bestimmen. Siehe Algorithmus \eqref{alg:superlat}.
+	\item Mit der Methode von Michael Jürgens alle Obergitter von $L$ mit Index $p^s$ bestimmen.
+	\item Minimalpolynom der Operation eines Automorphismus $\sigma$ von einem Gitter $L$ auf dem $\F_p$-Vektorraum $L^{\#,p} / L$ bestimmen. Siehe Abschnitt (4.6).
+	\item Liste aller extremalen $\ell$-modularen Gitter in Dimension $n$ bestimmen, die einen großen Automorphismus der Ordnung $m$ haben, sodass $m$ einen Primteiler $p$ mit $\ggT(p, \ell) = 1$ und $\frac{\mu_\sigma}{\Phi_m} \vert (X^\frac{m}{p} - 1)$ besitzt. Siehe Algorithmus \eqref{alg:largeauto}.
+	\item Schleife, welche die letzte Funktion für verschiedene $n$ und $\ell$ auswertet und die Ergebnisse speichert.
+\end{itemize}
 \includepdf[pages=-, pagecommand={}]{SubidealLattices.pdf}
+
+\section{\texttt{MAGMA}-Implementierungen zur Aufzählung der charakteristischen Polynome}
+Es folgt der Quellcode zu der Methode aus Abschnitt (4.7). Die implementierten Funktionen sind in der Reihenfolge des Quellcodes:
+\begin{itemize}
+	\item Einschränken der Möglichkeiten für Automorphismentypen extremaler modularer Gitter, indem versucht wird, Geschlechter von Bild- und Fixgitter mit Dimension $\leq 12$ aufzuzählen.
+	\item Liste aller möglichen charakteristischen Polynome, die zu möglichen Automorphismentypen passende Partitionen des Raumes ergeben. Siehe Abschnitt (4.7).
+\end{itemize}
+\includepdf[pages=-, pagecommand={}]{CharPols.pdf}
 
 \newpage
 \section{Eidesstattliche Versicherung}

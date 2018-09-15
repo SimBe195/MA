@@ -1,6 +1,7 @@
 load "Utility.m";
 load "IdealLattices.m";
 
+
 function AutomorphismTypes(l, k, n, t)
 // Input: Square-free l in N, k in N, n in N, t in N
 
@@ -155,7 +156,7 @@ function EnumerateGenusOfRepresentative(L)
 	while m lt M do
 		//printf "So far %o classes found. Difference to actual mass is %o. \n", #Gen, M-m;
 		if Realtime(t0) ge 120*60 then
-			printf "2 hours have elapsed and not the whole genus was explored. Remaining difference to actual mass is %o. %o classes were found so far.\n", M-m, #Gen;
+			printf "2 hours have elapsed and not the whole genus was explored. Remaining difference to actual mass is %o. %o classes were found so far. The symbol is %o.\n", M-m, #Gen, GenSymbol(L);
 			return Gen;
 		end if;
 
@@ -167,7 +168,11 @@ function EnumerateGenusOfRepresentative(L)
 			Explored := [false : x in Explored];
 			p := NextPrime(p);
 			if p ge 5 and Dimension(L) ge 8 then
-				printf "Prime too large, cannot continue constructing neighbours. Remaining difference to actual mass is %o. %o classes were found so far.\n", M-m, #Gen;
+				printf "Prime too large, cannot continue constructing neighbours. Remaining difference to actual mass is %o. %o classes were found so far. The symbol is %o.\n", M-m, #Gen, GenSymbol(L);
+				return Gen;
+			end if;
+			if p ge 3 and Dimension(L) ge 12 then
+				printf "Prime too large, cannot continue constructing neighbours. Remaining difference to actual mass is %o. %o classes were found so far. The symbol is %o.\n", M-m, #Gen, GenSymbol(L);
 				return Gen;
 			end if;
 		end if;
@@ -474,7 +479,7 @@ end function;
 function SuperLattices(L1, Lp, p, sigma1, sigmap)
 // Input: Lattice L1; Lattice Lp; Prime p; Automorphism sigma of L
 
-// Output: All even sigma-invariant superlattices of L with index p^s and minimum at least t using magmas method
+// Output: All even superlattices of L1 + Lp invariant under diag(sigma1, sigmap) with index p^s using isometry-method
 
 	M := OrthogonalSum(L1, Lp);
 
@@ -606,23 +611,66 @@ function SuperLatticesJuergens(L, p, s)
 end function;
 
 
+function MiPoQuotient(sigma, L, p);
+// Input : Automorphism sigma of L; Lattice L
+
+// Output: Minimal polynomial of the operation of sigma on the partial dual quotient L^(#, p) / L
+
+    sigma := Matrix(Rationals(), sigma);
+    L := CoordinateLattice(L);
+    LD := PartialDual(L, p : Rescale := false);
+    _,phi := LD / L;
+    MiPo := PolynomialRing(GF(p)) ! 1;
+
+    B := [];
+
+    for i in [1..Rank(LD)] do
+
+        b := LD.i;
+        if b in sub<LD|L,B> then
+            continue;
+        end if;
+        Append(~B,b);
+        
+        dep := false;
+        C := [Eltseq(phi(b))];
+        while not dep do
+            b := b*sigma;
+            Append(~C, Eltseq(phi(b)));
+            Mat := Matrix(GF(p),C);
+            if Dimension(Kernel(Mat)) gt 0 then
+                dep := true;
+                coeff := Basis(Kernel(Mat))[1];
+                coeff /:= coeff[#C];
+                coeff := Eltseq(coeff);
+                MiPo := LCM(MiPo, Polynomial(GF(p), coeff));
+            else
+                Append(~B, b);
+            end if;
+        end while;
+    end for;
+
+    return MiPo;
+
+end function;
+
+
 function ConstructLattices(l, n)
 // Input: Square-free l; n in N
 
-// Output: List of all extremal l-modular lattices that have a large automorphism sigma of order m with n/2 < phi(m) < n, such that there is a prime divisor p of m with ggT(p,l) = 1 and mu_sigma / Phi_m | (x^(m/p) - 1)
+// Output: List of all extremal l-modular lattices that have a large automorphism sigma of order m, such that there is a prime divisor p of m with ggT(p,l) = 1 and mu_sigma / Phi_m | (x^(m/p) - 1)
 	Results := [];
 
 	min := ExtremalMinimum(l,n);
 
 	AutoTypes := AutomorphismTypes(l, Integers() ! (n/2), n, min);
-	counter := 0;
 	
 	for phim in [Integers() ! (n/2)+1 .. n] do
 
 		n1 := n - phim;
 		np := phim;
 
-		for m in [m : m in EulerPhiInverse(phim)] do
+		for m in EulerPhiInverse(phim) do
 
 			printf "m = %o\n", m;
 		
@@ -630,7 +678,7 @@ function ConstructLattices(l, n)
 				//printf "Testing p = %o\n", p;
 				if Gcd(p,l) ne 1 then continue; end if;
 				d := Integers() ! (m/p);
-				PossibleTypes := [type : type in AutoTypes | type[1] eq p and type[2] eq n1 and type[3] eq np and EulerPhi(d) le type[4]];
+				PossibleTypes := [type : type in AutoTypes | type[1] eq p and type[2] eq n1 and type[3] eq np and (type[4] eq 0 or EulerPhi(d) le type[4])];
 
 				//printf "Have to check %o possible automorphism-types\n", #PossibleTypes;
 
@@ -652,6 +700,11 @@ function ConstructLattices(l, n)
 
 			        LpList := [L : L in LpList | Minimum(L) ge min];
 				    LpList := ReduceByIsometry(LpList);
+
+				    if s eq 0 then
+				    	Results cat:= [L : L in LpList | Minimum(L) ge min];
+				    	continue m;
+				    end if;
 
 				    for Lp in LpList do
 				    	sigmapList := [c[3] : c in ConjugacyClasses(AutomorphismGroup(Lp)) | MiPoQuotient(c[3], Lp, p) eq Polynomial(GF(p), CyclotomicPolynomial(d))];
@@ -754,7 +807,7 @@ function ConstructLattices(l, n)
 						    			LList cat:= SuperLatticesMagma(CoordinateLattice(OrthogonalSum(L1,Lp)), p, s, DiagonalJoin(sigma1, sigmap));
 						    		end for;
 						    	end for;
-						    elif <l,n> in [<7,18>,<7,20>,<1,24>] then
+						    elif <l,n> in [<7,18>,<7,20>,<1,24>,<2,24>,<5,24>] then
 						    	LList := [];
 						    	for sigma1 in sigma1List do
 						    		for sigmap in sigmapList do
@@ -779,12 +832,13 @@ end function;
 
 
 procedure MainLoop()
-	for n := 2 to 36 by 2 do                                                   
+	for n := 24 to 36 by 2 do                                                   
 		for l in [1,2,3,5,6,7,11,14,15,23] do
 			if l eq 1 and n in [2,4,6] then continue; end if;
 			if l eq 2 and n eq 2 then continue; end if;
 			if l eq 11 and n in [20,24,28,30,32,34,36] then continue; end if;
 			if l eq 23 and n ge 6 then continue; end if;
+			if n eq 24 and l lt 5 then continue; end if;
 			printf "dim = %o, l = %o\n", n, l;
 			Results := ConstructLattices(l, n);
 			ModList := [L : L in Results | IsModular(L, l)];

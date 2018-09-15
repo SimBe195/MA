@@ -76,14 +76,14 @@ function RestrictAutomorphismTypes(l,n)
                 end if;
             end if;
 
-            if n1 lt 12 and n1 gt 0 then
+            if n1 le 12 and n1 gt 0 then
                 List := [L : L in EnumerateGenusSymbol(Sym1) | Minimum(L) ge min];
                 if #List eq 0 then
                     continue type;
                 end if;
             end if;
 
-            if np lt 12 and np gt 0 then
+            if np le 12 and np gt 0 then
                 List := [L : L in EnumerateGenusSymbol(Symp) | Minimum(L) ge min];
                 if #List eq 0 then
                     continue type;
@@ -92,7 +92,7 @@ function RestrictAutomorphismTypes(l,n)
 
         else
 
-            if n1 lt 12 and n1 gt 0 then
+            if n1 le 12 and n1 gt 0 then
                 det1 := p^s;
                 for i := 5 to #type by 3 do
                     det1 *:= type[i]^type[i+1];
@@ -104,7 +104,7 @@ function RestrictAutomorphismTypes(l,n)
                 end if;
             end if;
 
-            if np lt 12 and np gt 0 then
+            if np le 12 and np gt 0 then
                 detp := p^s;
                 for i := 5 to #type by 3 do
                     detp *:= type[i]^type[i+2];
@@ -137,29 +137,26 @@ function PossibleCharPos(l, n)
 
     for phim in [Integers() ! (n/2)+1..n] do
         for m in EulerPhiInverse(phim) do
-            Div := Divisors(m);
+            Div := Sort(Divisors(m));
             Phi := [EulerPhi(d) : d in Div];
             k := #Div;
 
-            RelevantListOfTypes := [type : type in Types | IsDivisibleBy(m, type[1])];
-            pList := [];
+            pList := [p : p in PrimeDivisors(m) | Gcd(p,l) eq 1];
             FixDimLists := [];
-            for type in RelevantListOfTypes do
-                p := type[1];
-                FixDim := type[2];
-                if not p in pList then
-                    Append(~pList, p);
-                    Append(~FixDimLists, [FixDim]);
-                else
-                    for i in [1..#pList] do
-                        if pList[i] eq p then
-                            if not FixDim in FixDimLists[i] then
-                                Append(~FixDimLists[i], FixDim);
-                            end if;
-                            break;
+            for p in pList do
+                FixDims := [];
+                for type in Types do
+                    if type[1] eq p then
+                        FixDim := type[2];
+                        if not FixDim in FixDims then
+                            Append(~FixDims, FixDim);
                         end if;
-                    end for;
+                    end if;
+                end for;
+                if #FixDims eq 0 then
+                    continue m;
                 end if;
+                Append(~FixDimLists, FixDims);
             end for;
 
             t := #pList;
@@ -175,7 +172,7 @@ function PossibleCharPos(l, n)
             end for;
 
             if t gt 0 then
-                TypeChoice := CartesianProduct([[1..#List] : List in FixDimLists]);
+                TypeChoice := CartesianProduct([[1..#List]: List in FixDimLists]);
 
                 for IndexList in TypeChoice do
                     N := ZeroMatrix(Integers(), 1, t+1);
@@ -201,7 +198,7 @@ function PossibleCharPos(l, n)
                     for c in C do
                         v := Matrix(Integers(), 1, k, [x : x in c]);
                         if v*M eq N then
-                            if Lcm([Div[i] : i in [1..k] | c[i] gt 0]) eq m then
+                            if Lcm([Div[i] : i in [1..k-1] | c[i] gt 0]) eq m then
                                 ExpList := [<Div[i], c[i]> : i in [1..k] | c[i] gt 0];
                                 Append(~Results, ExpList);
                             end if;
@@ -209,7 +206,7 @@ function PossibleCharPos(l, n)
                     end for;
                 end for;
             else
-                C := CartesianProduct([[0..Floor(n/d)] : d in Div]);
+                C := CartesianProduct([[0..Floor(n/EulerPhi(d))] : d in Div]);
                 N := Matrix(Integers(), 1, 1, [n]);
                 for c in C do
                     v := Matrix(Integers(), 1, k, [x : x in c]);

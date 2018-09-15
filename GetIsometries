@@ -4,8 +4,8 @@ procedure Isometries(l, dim, JuergensList)
 	DB := LatticeDatabase();
 
 	List := eval Read(Sprintf("SubidealLattices/%o-Modular/%o-DimensionalStronglyModular", l, dim));
-	new := true;
 	for i in [1..#List] do
+		new := true;
 		L := List[i];
 		det := Determinant(L);
 		min := Minimum(L);

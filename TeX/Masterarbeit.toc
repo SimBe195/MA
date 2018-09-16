@@ -5,8 +5,8 @@
 \contentsline {section}{\numberline {2.2}Modulare Gitter}{9}
 \contentsline {chapter}{\numberline {3}Ideal-Gitter}{15}
 \contentsline {section}{\numberline {3.1}Definitionen}{15}
-\contentsline {section}{\numberline {3.2}Strategie zur Klassifikation}{18}
-\contentsline {section}{\numberline {3.3}Die Klassengruppe}{22}
+\contentsline {section}{\numberline {3.2}Strategie zur Klassifikation}{19}
+\contentsline {section}{\numberline {3.3}Klassengruppe}{22}
 \contentsline {section}{\numberline {3.4}Total-positive Erzeuger}{23}
 \contentsline {section}{\numberline {3.5}Finaler Algorithmus und Ergebnisse}{30}
 \contentsline {chapter}{\numberline {4}Sub-Ideal-Gitter}{33}
@@ -14,15 +14,15 @@
 \contentsline {section}{\numberline {4.2}Automorphismen von Primzahlordnung}{35}
 \contentsline {section}{\numberline {4.3}Geschlechter}{47}
 \contentsline {section}{\numberline {4.4}Kneser-Nachbarschaftsmethode}{54}
-\contentsline {section}{\numberline {4.5}Konstruktion von Obergittern}{60}
-\contentsline {section}{\numberline {4.6}Konstruktion von Gittern mit gro\IeC {\ss }em Automorphismus}{64}
-\contentsline {section}{\numberline {4.7}Vollst\IeC {\"a}ndigkeit der Ergebnisse}{69}
-\contentsline {section}{\numberline {4.8}Zusammenfassung und Ausblick}{72}
-\contentsline {chapter}{\numberline {5}Anhang}{74}
-\contentsline {section}{\numberline {5.1}Ergebnisse der Ideal-Gitter-Klassifikation}{74}
-\contentsline {section}{\numberline {5.2}\texttt {MAGMA}-Implementierungen von Hilfsfunktionen}{81}
-\contentsline {section}{\numberline {5.3}\texttt {MAGMA}-Implementierungen der Ideal-Gitter-Algorithmen}{88}
-\contentsline {section}{\numberline {5.4}\texttt {MAGMA}-Implementierungen der Subideal-Gitter-Algorithmen}{97}
-\contentsline {section}{\numberline {5.5}\texttt {MAGMA}-Implementierungen zur Aufz\IeC {\"a}hlung der charakteristischen Polynome}{117}
-\contentsline {section}{\numberline {5.6}Eidesstattliche Versicherung}{123}
-\contentsline {chapter}{\numberline {6}Literaturverzeichnis}{124}
+\contentsline {section}{\numberline {4.5}Konstruktion von Obergittern}{59}
+\contentsline {section}{\numberline {4.6}Konstruktion von Gittern mit gro\IeC {\ss }em Automorphismus}{63}
+\contentsline {section}{\numberline {4.7}Vollst\IeC {\"a}ndigkeit der Ergebnisse}{68}
+\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{72}
+\contentsline {chapter}{\numberline {6}Anhang}{74}
+\contentsline {section}{\numberline {6.1}Ergebnisse der Ideal-Gitter-Klassifikation}{74}
+\contentsline {section}{\numberline {6.2}\texttt {MAGMA}-Implementierungen von Hilfsfunktionen}{81}
+\contentsline {section}{\numberline {6.3}\texttt {MAGMA}-Implementierungen der Ideal-Gitter-Algorithmen}{88}
+\contentsline {section}{\numberline {6.4}\texttt {MAGMA}-Implementierungen der Subideal-Gitter-Algorithmen}{97}
+\contentsline {section}{\numberline {6.5}\texttt {MAGMA}-Implementierungen zur Aufz\IeC {\"a}hlung der charakteristischen Polynome}{117}
+\contentsline {section}{\numberline {6.6}Eidesstattliche Versicherung}{123}
+\contentsline {chapter}{\numberline {7}Literaturverzeichnis}{124}

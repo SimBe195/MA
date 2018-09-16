@@ -174,8 +174,8 @@
 	{\Large\itshape von Simon Berger\par}
 	\vfill
 	Vorgelegt am Lehrstuhl D für Mathematik der RWTH-Aachen University\par 
-	bei Prof. Dr. Gabriele Nebe (1. Prüferin)\\ 
-	und Prof. Dr. Markus Kirschmer (2. Prüfer)\par
+	bei Prof. Dr. Gabriele Nebe (Erstgutachterin)\\ 
+	und Prof. Dr. Markus Kirschmer (Zweitgutachter)\par
 	\vfill
 
 % Bottom of the page
@@ -192,10 +192,10 @@
 % Kapitel 1: Einleitung
 %===================================================================
 \chapter{Einleitung}
-Die Gittertheorie ist seit vielen Jahren ein wesentlicher Bestandteil der theoretischen Mathematik in Themengebieten wie beispielsweise der algebraischen Zahlentheorie und der Gruppentheorie. In der Anwendung sind oftmals Gitter von Interesse, welche besonders dichte Kugelpackungen liefern. Also solche, die im Vergleich zu ihrer Determinante ein möglichst großes Minimum besitzen. Die Klassifikation möglichst dichter Gitter stellt jedoch eine große Herausforderung dar.\par
-H.-G. Quebbemann definiert in seiner Arbeit \cite{quebbemann} den Begriff eines \textit{modularen} Gitters und zeigt, dass die Thetareihen solcher modularen Gitter Modulformen einer bestimmten Gruppe sind. Diese Struktur erlaubt die Beschreibung sogenannter \textit{extremaler} modularer Gitter, welche innerhalb der Klasse der modularen Gitter eine maximale Dichte haben. Die Klassifikation extremaler Gitter ist eines der großen Forschungsgebiete aus der Gittertheorie. In dieser Arbeit versuchen wir, extremale Gitter mithilfe ihrer Automorphismengruppen zu untersuchen und zu konstruieren.\par
-Zunächst definieren wir dazu unsere grundlegenden Begriffe und werfen einen genaueren Blick auf die Dichte extremaler Gitter. Anschließend beschreiben wir modulare Gitter $L$ mit einer Struktur als gebrochene Ideale eines zyklotomischen Zahlkörpers $\Q(\zeta_m)$, sogenannte \textit{Ideal-Gitter}. Diese Struktur ist gegeben, falls $L$ einen Automorphismus $\sigma$ mit $\mu_\sigma = \Phi_m$ besitzt, sodass $\varphi(m) = \text{Dim}(L)$ gilt. Mithilfe dieser zusätzlichen Struktur lässt sich ein Algorithmus entwickeln, welcher zu gegebener Stufe, Determinante und Dimension eine vollständige Liste der Ideal-Gitter mit den festgelegten Parametern konstruiert. Dieser Algorithmus wurde Michael Jürgens in \cite{juergens} beschrieben. Die einzelnen Schritte wurden im Zuge dieser Arbeit genau untersucht und im Computer-Algebra-System \texttt{MAGMA} implementiert.\par
-Anschließend folgt der Hauptteil der Arbeit: die Beschreibung extremaler modularer Gitter mit \textit{großem} Automorphismus. Hier gehen wir lediglich von den Voraussetzungen $\vert \sigma \vert = m$ und $\Phi_m \vert \mu_\sigma$ mit $\varphi(m) > \frac{\text{Dim}(L)}{2}$ aus. In diesem Falle induziert $\sigma$ ein Teilgitter $M := L \cap \Kern(\Phi_m(\sigma)) \perp L \cap \Kern(\frac{\mu_\sigma}{\Phi_m}(\sigma))$. Der erste Summand hat dabei eine Struktur als Ideal-Gitter und ist damit nach dem vorherigen Kapitel gut verstanden, für den anderen Summanden benötigen wir weitere Theorie. M. Jürgens und G. Nebe untersuchen in \cite{juergens} und \cite{nebe} Gitterautomorphismen $\sigma$ mit Primzahlordnung $p$. Wie vorher induziert solch ein $\sigma$ ein Teilgitter $M := L \cap \Kern(\Phi_p(\sigma)) \perp L \cap \Kern(\Phi_1(\sigma))$, in diesem Falle lassen sich allerdings wichtige Einschränkungen an die Determinanten der Komponenten, sowie an den Index von $M$ in $L$ zeigen. Die Informationen über Automorphismen von Primzahlordnung können anschließend verwendet werden um mittels der Primteiler von $m$ auch Automorphismen allgemeinerer Ordnung zu untersuchen. Nebe wendet in \cite{nebe} diese Erkenntnisse an, um extremale unimodulare Gitter der Dimension $48$ mit großem Automorphismus zu klassifizieren. In dieser Arbeit wird die dortige Vorgehensweise auf $\ell$-modulare Gitter verallgemeinert und als Algorithmus zusammengefasst. Alle Voraussetzungen und Teilschritte werden dabei genau erläutert und in \texttt{MAGMA} implementiert. Auf diese Weise konnten insgesamt $33$ bisher unbekannte extremale modulare Gitter konstruiert werden. Abschließend wird die Vollständigkeit der Ergebnisse diskutiert, indem wir alle Möglichkeiten für die charakteristischen Polynome von Gittern aufzählen, die nicht die Voraussetzungen des Algorithmus erfüllen und somit gegebenenfalls nicht gefunden werden konnten.
+Die Gittertheorie ist seit vielen Jahren ein wesentlicher Bestandteil der theoretischen Mathematik in Themengebieten wie der algebraischen Zahlentheorie und der Gruppentheorie. In der Anwendung sind oftmals Gitter von Interesse, welche besonders dichte Kugelpackungen liefern. Also Gitter, die im Vergleich zu ihrer Determinante ein möglichst großes Minimum besitzen. Die Klassifikation möglichst dichter Gitter stellt jedoch eine große Herausforderung dar.\par
+H.-G. Quebbemann definiert in seiner Arbeit \cite{quebbemann} den Begriff eines \textit{modularen} Gitters und zeigt, dass die Thetareihen solcher modularen Gitter Modulformen einer bestimmten Gruppe sind. Diese Struktur erlaubt die Beschreibung sogenannter \textit{extremaler} modularer Gitter, welche innerhalb der Klasse der modularen Gitter eine maximale Dichte haben. Die Klassifikation extremaler Gitter ist eines der großen Forschungsgebiete aus der Gittertheorie. In dieser Arbeit wird versucht, extremale Gitter mithilfe ihrer Automorphismengruppen zu untersuchen und zu konstruieren.\par
+Zunächst definieren wir dazu unsere grundlegenden Begriffe und werfen einen genaueren Blick auf die Dichte extremaler Gitter. Anschließend beschreiben wir modulare Gitter $L$ mit einer Struktur als gebrochene Ideale eines zyklotomischen Zahlkörpers $\Q(\zeta_m)$, sogenannte \textit{Ideal-Gitter}. Diese Struktur ist gegeben, falls $L$ einen Automorphismus $\sigma$ mit $\mu_\sigma = \Phi_m$ besitzt, sodass $\varphi(m) = \text{Dim}(L)$ gilt. Mithilfe dieser zusätzlichen Struktur lässt sich ein Algorithmus entwickeln, welcher zu gegebener Stufe, Determinante und Dimension eine vollständige Liste der Ideal-Gitter mit den festgelegten Parametern konstruiert. Dieser Algorithmus wurde von Michael Jürgens in \cite{juergens} beschrieben. Die einzelnen Schritte werden im Zuge dieser Arbeit genau untersucht und im Computer-Algebra-System \texttt{MAGMA} implementiert.\par
+Im sich daran anschließenden Hauptteil der Arbeit erfolgt die Beschreibung extremaler modularer Gitter mit \textit{großem} Automorphismus. Hier gehen wir lediglich von den Voraussetzungen $\vert \sigma \vert = m$ und $\Phi_m \vert \mu_\sigma$ mit $\varphi(m) > \frac{\text{Dim}(L)}{2}$ aus. In diesem Falle induziert $\sigma$ ein Teilgitter $M := L \cap \Kern(\Phi_m(\sigma)) \perp L \cap \Kern(\frac{\mu_\sigma}{\Phi_m}(\sigma))$. DIe erste Komponente hat dabei eine Struktur als Ideal-Gitter und kann deshalb mit dem Algorithmus des vorherigen Kapitels leicht konstruiert werden; für die zweite Komponente benötigen wir weitere Theorie. Jürgens und Nebe untersuchen in \cite{juergens} und \cite{nebe} Gitterautomorphismen $\sigma$ mit Primzahlordnung $p$. Wie vorher induziert solch ein $\sigma$ ein Teilgitter $M := L \cap \Kern(\Phi_p(\sigma)) \perp L \cap \Kern(\Phi_1(\sigma))$, in diesem Falle lassen sich allerdings wichtige Einschränkungen an die Determinanten der Komponenten sowie an den Index von $M$ in $L$ zeigen. Die Informationen über Automorphismen von Primzahlordnung können anschließend verwendet werden, um mittels der Primteiler von $m$ auch Automorphismen allgemeinerer Ordnung zu untersuchen. Nebe wendet in \cite{nebe} diese Erkenntnisse an, um extremale unimodulare Gitter der Dimension $48$ mit großem Automorphismus zu klassifizieren. In dieser Arbeit wird die dortige Vorgehensweise auf $\ell$-modulare Gitter verallgemeinert und als Algorithmus zusammengefasst. Alle Voraussetzungen und Teilschritte werden dabei genau erläutert und in \texttt{MAGMA} implementiert. Auf diese Weise konnten insgesamt $33$ bisher unbekannte extremale modulare Gitter konstruiert werden. Abschließend wird die Vollständigkeit der Ergebnisse genauer erzläutert. Dazu zählen wir alle Möglichkeiten für die charakteristischen Polynome von Gittern auf, die nicht die Voraussetzungen des Algorithmus erfüllen und somit gegebenenfalls nicht gefunden werden konnten.
 
 
 %===================================================================
@@ -212,7 +212,7 @@ Wir wiederholen zunächst einige wichtige Begriffe aus der Gittertheorie, welche
 	\begin{definition}
 		\begin{enumerate}[label=(\roman*)]
 			\item Sei $A$ ein Ring und $E$ ein $A$-Modul. Für eine symmetrische Bilinearform\linebreak
-				$b : E \times E \rightarrow A$ heißt das Paar $(E,b)$ ein \textit{bilinearer $A$-Modul} (bzw. falls $A$ Körper ein \textit{bilinearer $A$-Vektorraum}).
+				$b : E \times E \rightarrow A$ heißt das Paar $(E,b)$ ein \textit{bilinearer $A$-Modul} (bzw. falls $A$ ein Körper ist ein \textit{bilinearer $A$-Vektorraum}).
 			\item Eine \textit{isometrische Abbildung} (oder kurz \textit{Isometrie}) zwischen zwei bilinearen Moduln $(E,b)$ und $(E', b')$ ist ein Modulisomorphismus $f : E \rightarrow E'$ mit $b(x,y) = b'(f(x), f(y))$.
 			\item Die Gruppe $O(E,b) := \lbrace f : E \rightarrow E \mid \text{ f ist Isometrie}\rbrace$ aller Isometrien eines bilinearen Vektorraums $(E,b)$ in sich selbst heißt die \textit{Isometriegruppe} von $(E,b)$.
 		\end{enumerate}
@@ -220,6 +220,7 @@ Wir wiederholen zunächst einige wichtige Begriffe aus der Gittertheorie, welche
 \end{framed}
 
 Nun folgen Definitionen zum Gitterbegriff, zu finden in \cite[Def. (14.1), (14.2)]{kneser}.
+
 \begin{framed}
 	\begin{definition}
 		\begin{enumerate}[label=(\roman*)]
@@ -235,7 +236,7 @@ Nun folgen Definitionen zum Gitterbegriff, zu finden in \cite[Def. (14.1), (14.2
 	Falls $R$ ein Hauptidealbereich ist, vereinfacht sich die Definition erheblich, da Teilmoduln von endlich erzeugten freien Moduln über Hauptidealbereichen wieder frei sind. Ein $R$-Gitter ist per Definition zwischen zwei freien Moduln eingespannt, also sind die $R$-Gitter in diesem Fall genau die freien $R$-Moduln von Rang $n$.
 \end{bemerkung}
 
-Insbesondere interessieren uns $\Z$-Gitter in $\R^n$. Für eben solche folgen nun ein paar weitere Definitionen, abgeleitet aus \cite[Def. (1.7), (1.13), (14.7), (26.1)]{kneser}.
+Insbesondere interessieren uns $\Z$-Gitter in $\R^n$. Für diese folgen nun ein paar weitere aus \cite[Def. (1.7), (1.13), (14.7), (26.1)]{kneser} abgeleitete Definitionen.
 
 \begin{framed}
 	\begin{definition}
@@ -250,17 +251,16 @@ Insbesondere interessieren uns $\Z$-Gitter in $\R^n$. Für eben solche folgen nu
 	\end{definition}
 \end{framed}
 
-
 \begin{bemerkung}\label{bem:dual}
 	\begin{enumerate}[label=(\roman*)]
 	\item Nach \cite[Satz (14.7)]{kneser} gilt $\Det(L) = \vert L^\# / L \vert$. 
 		Insbesondere ist die Determinante für $\Z$-Gitter unabhängig von der Wahl der Basis. Allgemeiner ist die Determinante von $R$-Gittern modulo $\left( R^\ast \right) ^2$ eindeutig bestimmt \cite[(1.13)]{kneser}.
-	\item Direkt aus der Definition des dualen Gitters folgt: $L$ ist ganz genau dann, wenn $L \subseteq L^\#$.
-	\item Ein gerades Gitter $L$ ist notwendigerweise ganz, denn seien $x,y \in L$, dann ist
+	\item Direkt aus der Definition des dualen Gitters folgt: $L$ ist genau dann ganz, wenn $L \subseteq L^\#$.
+	\item Ein gerades Gitter $L$ ist notwendigerweise ganz; denn seien $x,y \in L$, dann ist
 		\begin{equation*}
 			b(x,y) = \frac{b(x+y,x+y) - b(x,x) - b(y,y)}{2} \in \Z.
 		\end{equation*}
-	\item Ist $B = (e_1,\dots,e_n)$ eine Basis von $L$, dann ist $B^\ast := (e_1^\ast, \dots, e_n^\ast)$, wobei $b(e_i, e_j^\ast) = \delta_{ij}$, eine Basis von $L^\#$. Es gilt $\text{Gram}(B^\ast) = \text{Gram}(B)^{-1}$ \cite[(1.14)]{kneser}.
+	\item Ist $B = (e_1,\dots,e_n)$ eine Basis von $L$, dann ist $B^\ast := (e_1^\ast, \dots, e_n^\ast)$ mit der Eigenschaft $b(e_i, e_j^\ast) = \delta_{ij}$ eine Basis von $L^\#$. Es gilt $\text{Gram}(B^\ast) = \text{Gram}(B)^{-1}$ \cite[(1.14)]{kneser}.
 	\end{enumerate}
 \end{bemerkung}
 
@@ -268,7 +268,7 @@ Da wir uns im Zuge dieser Arbeit in der Regel mit geraden Gittern quadratfreier 
 
 \begin{framed}
 	\begin{lemma}\label{lem:level}
-		Sei $L$ ein gerades Gitter der Stufe $\ell$, wobei $\ell$ quadratfrei. Dann ist $\ell$ gleichzeitig die kleinste natürliche Zahl $a$, sodass $a L^\# \subseteq L$ (also der Exponent der Diskriminantengruppe $L^\# / L$).
+		Sei $L$ ein gerades Gitter der Stufe $\ell$, wobei $\ell$ quadratfrei. Dann ist $\ell$ gleichzeitig die kleinste natürliche Zahl $a$, sodass $a L^\# \subseteq L$ gilt (also der Exponent der Diskriminantengruppe $L^\# / L$).
 	\end{lemma}
 \end{framed}
 
@@ -296,7 +296,6 @@ Wir kommen nun zum ursprünglich von Quebbemann eingeführten Konzept \textit{mo
 		\end{enumerate}
 	\end{lemma}
 \end{framed}
-
 \begin{beweis}
 	\begin{enumerate}[label=(\roman*)]
 		\item Nach Bem. \eqref{bem:dual} ist $\Det(L^\#) = \Det(L)^{-1}$. Somit
@@ -304,15 +303,15 @@ Wir kommen nun zum ursprünglich von Quebbemann eingeführten Konzept \textit{mo
 				\Det(L) = \Det(\sqrt{\ell} L^\#) = \ell^n \Det(L^\#) = \frac{\ell^n}{\Det(L)}.
 			\end{equation*}
 			Also folgt die Behauptung.
-		\item Sei $a$ die Stufe von $L$, dann ist $\sqrt{a}L^\#$ gerade und hat insbesondere eine ganzzahlige Determinante. Nach (i) erhalten wir $\Det(\sqrt{a}L^\#) = \left( \frac{a^2}{\ell} \right) ^\frac{n}{2} \stackrel{!}{\in} \Z$. Da $\ell$ quadratfrei sieht man also $\ell \vert a$. Andersherum ist $L \cong \sqrt{\ell}L^\#$, also selbstverständlich auch $\sqrt{\ell} L^\#$ gerade, somit $a \vert \ell$.
-		\item $L$ hat quadratfreie Stufe $\ell$, also ist $\ell L^\# \subseteq L$ nach Lemma \eqref{lem:level}. Wir erhalten
+		\item Sei $a$ die Stufe von $L$, dann ist $\sqrt{a}L^\#$ gerade und hat insbesondere eine ganzzahlige Determinante. Nach (i) erhalten wir $\Det(\sqrt{a}L^\#) = \left( \frac{a^2}{\ell} \right) ^\frac{n}{2} \stackrel{!}{\in} \Z$. Da $\ell$ quadratfrei ist, sieht man also $\ell \vert a$. Andersherum ist $L \cong \sqrt{\ell}L^\#$, also selbstverständlich auch $\sqrt{\ell} L^\#$ gerade, somit $a \vert \ell$.
+		\item $L$ hat die quadratfreie Stufe $\ell$, also ist $\ell L^\# \subseteq L$ nach Lemma \eqref{lem:level}. Wir erhalten
 			\begin{equation*}
 				L \cong \sqrt{l} L^{\#,\ell} = \sqrt{\ell} \left( \frac{1}{\ell} L \cap L^\# \right) = \sqrt{\ell} L^\#.
 			\end{equation*}
 	\end{enumerate}
 \end{beweis}
 
-Quebbemann zeigte in \cite{quebbemann}, dass die Theta-Reihen eines modularen Gitters Modulform einer bestimmten Gruppe ist. Außerdem hat die Algebra der Modulformen eine besonders einfache Gestalt, wenn die Summe der Teiler von $\ell$ selbst ein Teiler von $24$ ist. Konkret ist diese Eigenschaft für $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$ erfüllt. In der Literatur sind diese Stufen also besonders interessant. Es lässt sich zeigen (vgl. z.B. \cite[1.2.2]{juergens}), dass der Raum der Modulformen der erwähnten Gruppe in diesem Fällen ein eindeutiges Element $\theta$ der Form $1 + O(q^d)$ mit möglichst großem $d$ und ganzzahligen Koeffizienten hat. Wir wollen den Begriff eines \textit{extremalen Gitters} definieren als ein Gitter, welches ein möglichst großes Minimum besitzt, also ein Gitter mit Thetareihe $\theta$. In unseren Spezialfällen gilt $d = 1 + \lfloor \frac{n}{k_1} \rfloor$, wobei $k_1$ Tabelle \eqref{tab:k1} zu entnehmen ist.
+Quebbemann zeigte in \cite{quebbemann}, dass die Theta-Reihen modularer Gitters Modulformen einer bestimmten Gruppe sind. Außerdem hat die Algebra der Modulformen eine besonders einfache Gestalt, wenn die Summe der Teiler von $\ell$ selbst ein Teiler von $24$ ist. Konkret ist diese Eigenschaft für $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$ erfüllt. In der Literatur sind diese Stufen also besonders interessant. Es lässt sich zeigen (vgl. z.B. \cite[1.2.2]{juergens}), dass der Raum der Modulformen der erwähnten Gruppe in diesem Fällen ein eindeutiges Element $\theta$ der Form $1 + O(q^d)$ mit möglichst großem $d$ und ganzzahligen Koeffizienten hat. Wir wollen den Begriff eines \textit{extremalen Gitters} definieren als ein Gitter, welches ein möglichst großes Minimum besitzt, also ein Gitter mit Thetareihe $\theta$. In unseren Spezialfällen gilt $d = 1 + \lfloor \frac{n}{k_1} \rfloor$, wobei $k_1$ Tabelle \eqref{tab:k1} zu entnehmen ist.
 
 \begin{table}
 	\centering
@@ -330,7 +329,7 @@ Wir können also definieren:
 	\begin{definition}
 		Sei $L$ ein $\ell$-modulares Gitter der Dimension $n$ und $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$. Erfüllt $L$ die Schranke
 		\begin{equation*}
-			\Min(L) \geq 2 \left( 1 + \lfloor \frac{n}{k_1} \rfloor \right)
+			\Min(L) \geq 2 \left( 1 + \lfloor \frac{n}{k_1} \rfloor \right),
 		\end{equation*}
 		wobei $k_1$ gewählt ist wie in Tabelle \eqref{tab:k1}, so nennen wir $L$ ein \textit{extremales Gitter}.
 	\end{definition}
@@ -374,15 +373,15 @@ Ein höherer Wert bezüglich der Funktion $\gamma$ bedeutet dabei ein dichteres 
 	\caption{Obere Schranken für $\gamma_n$ bei $1 \leq n \leq 36$.}
 \end{table}
 
-Diese Schranken sind sehr nütlich, da sie in vielen Fällen die Existenz von bestimmten Gittern von vorneherein ausschließt. Beispielsweise hätte ein hypothetisches extremales $23$-modulares Gitter $L$ in Dimension $6$ bereits Minimum $\geq 8$ und Determinante $23^3$, also $\gamma(L) \geq \frac{8}{\sqrt{23}} \approx 1.6681 > 1.6654$ und kann somit nicht existieren. Genauer schließen die Schranken die folgenden extremalen Gitter aus:
+Diese Schranken sind sehr nützlich, da sie in vielen Fällen die Existenz von bestimmten Gittern von vorneherein ausschließt. Beispielsweise hätte ein hypothetisches extremales $23$-modulares Gitter $L$ in Dimension $6$ bereits ein Minimum $\geq 8$ und Determinante $23^3$, also $\gamma(L) \geq \frac{8}{\sqrt{23}} \approx 1.6681 > 1.6654$ und kann somit nicht existieren. Genauer schließen die Schranken die folgenden extremalen Gitter aus:
 
 \begin{framed}
 	\begin{lemma}
-		Erfüllen $\ell \in \N$ und $n \in \underline{36}$ eine der Bedingungen
+		Erfüllen $\ell \in \N$ und $1 \leq n \leq 36$ eine der Bedingungen
 		\begin{itemize}
-			\item $\ell = 1$ und $n \in \lbrace 2,4,6 \rbrace$.
-			\item $\ell = 2$ und $n = 2$.
-			\item $\ell = 11$ und $n \in \lbrace 20, 24, 28, 30, 32, 34, 36 \rbrace$.
+			\item $\ell = 1$ und $n \in \lbrace 2,4,6 \rbrace$,
+			\item $\ell = 2$ und $n = 2$,
+			\item $\ell = 11$ und $n \in \lbrace 20, 24, 28, 30, 32, 34, 36 \rbrace$,
 			\item $\ell = 23$ und $n \in \lbrace 6, 8, 10, \dots, 34, 36 \rbrace$,
 		\end{itemize}
 		so existiert kein extremales $\ell$-modulares Gitter in Dimension $n$.
@@ -392,7 +391,7 @@ Diese Schranken sind sehr nütlich, da sie in vielen Fällen die Existenz von be
 	Tabelle \eqref{tab:hermites}.
 \end{beweis}
 
-Vergleicht man die hypothetischen Zentrumsdichten extremaler Gitter (deren Existenz bisher nach \cite{juergens} noch offen ist) mit denen der dichtesten bisher bekannten Gitter (zu finden in \cite{database}), so fällt auf, dass die Entdeckung extremaler Gitter in den folgenden Stufen $\ell$ und Dimensionen $1 \leq n\leq 48$ jeweils neue dichteste Kugelpackungen liefern würden:
+Vergleicht man die hypothetischen Zentrumsdichten extremaler Gitter - für die die Frage nach der Existenz bisher nach \cite{juergens} noch offen ist - mit denen der dichtesten bisher bekannten Gitter (zu finden in \cite{database}), so fällt auf, dass die Entdeckung extremaler Gitter in den folgenden Stufen $\ell$ und Dimensionen $1 \leq n\leq 48$ jeweils neue dichteste Kugelpackungen liefern würden:
 \begin{itemize}
 	\item $\ell = 3$ und $n \in \lbrace 36,38 \rbrace$.
 	\item $\ell = 5$ und $n \in \lbrace 32, 36, 40, 44, 48 \rbrace$.
@@ -402,7 +401,7 @@ Vergleicht man die hypothetischen Zentrumsdichten extremaler Gitter (deren Exist
 	\item $\ell = 14$ und $n = 28$.
 	\item $\ell = 15$ und $n = 28$.
 \end{itemize}
-Wie man sieht, ist die Erforschung extremaler modularer Gitter also von großem Interesse für die Gittertheorie. Im nächsten Kapitel beschreiben wir nun eine Vorgehensweise, modulare Gitter zu klassifizieren, welche zusätzlich eine Struktur als gebrochenes Ideal eines Zahlkörpers aufweisen, sogenannte \textit{Ideal-Gitter}.
+Aufgrund der dargelegten Beispiele wird deutlich, dass die Erforschung extremaler modularer Gitter von großem Interesse für die Gittertheorie ist. Im nächsten Kapitel beschreiben wir nun eine Vorgehensweise, modulare Gitter zu klassifizieren, welche zusätzlich eine Struktur als gebrochenes Ideal eines Zahlkörpers aufweisen - sogenannte \textit{Ideal-Gitter}.
 
 %===================================================================
 % Kapitel 3: Idealgitter
@@ -425,10 +424,12 @@ Wir geben nun die Definition eines Ideal-Gitter abgeleitet aus \cite{fluckiger} 
 				\begin{equation*}
 					\No(\I) := \vert \Z_K / \I \vert.
 				\end{equation*}
+			\item Ein Zahlkörper $K$ heißt \textit{total-reell}, wenn für alle Einbettungen $\iota : K \rightarrow \C$ gilt, dass $\iota(K) \subseteq \R$ ist. Analog heißt ein Element $\alpha$ eines Zahlkörpers $K$ total-reell, wenn für alle Einbettungen $\iota : K \rightarrow \C$ gilt, dass $\iota(\alpha) \in \R$ ist.
+			\item Ein Zahlkörper $K$ heißt \textit{total-imaginär}, wenn für alle Einbettungen $\iota : K \rightarrow \C$ gilt, dass $\iota(K) \not\subseteq \R$ ist. Analog heißt ein Element $\alpha$ eines Zahlkörpers $K$ total-imaginär, wenn für alle Einbettungen $\iota : K \rightarrow \C$ gilt, dass $\iota(\alpha) \not\in \R$ ist.
 			\item Ein Zahlkörper $K$ heißt \textit{CM-Körper}, falls $K$ total-imaginär ist und ein total-reeller Teilkörper $K^+ \leq K$ existiert mit $\left[ K : K^+ \right] = 2$. 
 			\item Sei $K$ ein CM-Körper und $\Z_K$ der Ring der ganzen Zahlen in $K$. Ein \textit{Ideal-Gitter} ist ein Gitter $(\I,b)$, sodass $\I$ ein gebrochenes $\Z_K$-Ideal ist und\linebreak
-				$b:\I \times \I \rightarrow \R$ eine symmetrische positiv-definite Bilinearform mit $b(\lambda x, y) = b(x, \overline{\lambda} y)$ für $x,y \in \I$ und $\lambda \in \Z_K$. Die Abbildung $\bar{\ }$ bezeichnet dabei die herkömmliche komplexe Konjugation.
-			\item Ein Element $\alpha \in K^+$ heißt \textit{total-positiv}, wenn $\iota(\alpha) > 0$ für alle Einbettungen $\iota : K^+ \hookrightarrow \R$. Wir schreiben dann auch $\alpha \gg 0$. Die Menge aller total-positiven Elemente in $K^+$ wird mit $K^+_{\gg 0}$ bezeichnet.
+				$b:\I \times \I \rightarrow \R$ eine symmetrische positiv-definite Bilinearform mit $b(\lambda x, y) = b(x, \overline{\lambda} y)$ für $x,y \in \I$ und $\lambda \in \Z_K$. Die Abbildung $\lambda \mapsto \overline{\lambda}$ bezeichnet dabei die herkömmliche komplexe Konjugation.
+			\item Ein Element $\alpha \in K^+$ heißt \textit{total-positiv}, für alle Einbettungen $\iota : K^+ \hookrightarrow \R$ gilt, dass $\iota(\alpha) > 0$ ist. Wir schreiben dann auch $\alpha \gg 0$. Die Menge aller total-positiven Elemente in $K^+$ wird mit $K^+_{\gg 0}$ bezeichnet.
 		\end{enumerate}
 	\end{definition}
 \end{framed}
@@ -436,11 +437,11 @@ Wir geben nun die Definition eines Ideal-Gitter abgeleitet aus \cite{fluckiger} 
 Bis auf weiteres sei im Folgenden stets $K$ ein CM-Körper, $\Z_K$ der Ring der ganzen Zahlen in $K$ und $K^+$ der maximale total-reelle Teilkörper von $K$.
 
 \begin{bemerkung}
-	Die Eigenschaften der Bilinearform in der obrigen Definition sind nach \cite{fluckiger} äquivalent dazu, dass ein total-positives Element $\alpha \in K^+$ existiert mit $b(x,y) = \text{Spur}_{K/\Q}(\alpha x \overline{y})$. Wir können Ideal-Gitter daher auch durch die Notation $(\I, \alpha)$ beschreiben.\\
-	Ein Ideal-Gitter $\I$ kann immer auch als $\Z$-Gitter betrachtet werden, indem man $\Z_K$-Erzeuger von $\I$ und eine $\Z$-Basis von $\Z_K$ zu $\Z$-Erzeugern von $\I$ kombiniert. Im Folgenden bezeichnen wir daher $\I$ als gerade, ganz, modular, etc., falls $\I$ als $\Z$-Gitter diese Eigenschaften erfüllt und $\I^\#$ als das Dualgitter von $\I$ als $\Z$-Gitter.
+	Die Eigenschaften der Bilinearform in der obrigen Definition sind nach \cite{fluckiger} äquivalent dazu, dass ein total-positives Element $\alpha \in K^+$ existiert, sodass die Bilinearform $b$ die Gestalt $b(x,y) = \text{Spur}_{K/\Q}(\alpha x \overline{y})$ annimmt. Wir können Ideal-Gitter daher auch durch die Notation $(\I, \alpha)$ beschreiben.\\
+	Ein Ideal-Gitter $\I$ kann immer auch als $\Z$-Gitter betrachtet werden, indem man $\Z_K$-Erzeuger von $\I$ und eine $\Z$-Basis von $\Z_K$ zu $\Z$-Erzeugern von $\I$ kombiniert. Im Folgenden bezeichnen wir daher $\I$ als gerade, ganz, modular, etc., falls $\I$ als $\Z$-Gitter diese Eigenschaften erfüllt und nennen $\I^\#$ das Dualgitter von $\I$ als $\Z$-Gitter.
 \end{bemerkung}
 
-Wir beschäftigen uns in dieser Arbeit mit Ideal-Gittern über zyklotomischen Zahlkörpern, also Körpern der Form $\Q(\zeta_m)$ für primitive $m$-te Einheitswurzeln $\zeta_m$. Solche Körper sind CM-Körper mit maximalem total-reellem Teilkörper $K^+ = \Q(\zeta_m + \overline{\zeta_m})$. Wir erhalten Körper dieser Form, indem wir Automorphismen von $\Z$-Gittern betrachten, die wie primitive Einheitswurzeln operieren. Diese Aussagen wollen wir nun ein wenig präzisieren. Dazu eine kurze Definition:
+Wir beschäftigen uns in dieser Arbeit mit Ideal-Gittern über zyklotomischen Zahlkörpern, also Körpern der Form $\Q(\zeta_m)$ für primitive $m$-te Einheitswurzeln $\zeta_m$. Solche Körper sind CM-Körper mit maximalem total-reellem Teilkörper $K^+ = \Q(\zeta_m + \overline{\zeta_m})$. Wir erhalten Körper dieser Form, indem wir Automorphismen von $\Z$-Gittern betrachten, die wie primitive Einheitswurzeln operieren. Diese Aussagen wollen wir nun präzisieren. Dazu eine kurze Definition:
 
 \begin{framed}
 	\begin{definition}
@@ -461,9 +462,9 @@ Einige wichtige bekannte Fakten zu Kreisteilungspolynomen (z.B. zu finden in \ci
 \begin{framed}
 	\begin{satz}\label{th:cycpol}
 		\begin{enumerate}[label=(\roman*)]
-			\item Gilt $\text{char}(K) \nmid m$, so enthält der Zerfällungskörper von $X^m-1$ genau $\varphi(m)$ primitive $m$-te Einheitswurzeln. Dabei ist $\varphi(m) = \vert \left( \Z / m \Z \right)^\ast \vert$ die \textit{Eulersche $\varphi$-Funktion}.
+			\item Gilt $\text{char}(K) \nmid m$, so enthält der Zerfällungskörper von $X^m-1$ genau $\varphi(m)$ primitive $m$-te Einheitswurzeln. Dabei ist $\varphi(m) := \vert \left( \Z / m \Z \right)^\ast \vert$ die \textit{Eulersche $\varphi$-Funktion}.
 			\item Ist $\text{char}(K) = 0$, dann ist $\Phi_m \in \Z \left[ X \right]$ und $X^m-1 = \prod_{d \vert m} \Phi_d$.
-			\item Speziell für $K = \Q$ gilt $\left[ \Q \left( \zeta_m \right) : \Q \right] = \varphi (m)$ und $\Phi (m) \in \Q \left[ X \right]$ ist irreduzibel.
+			\item Speziell für $K = \Q$ gilt $\left[ \Q \left( \zeta_m \right) : \Q \right] = \varphi (m)$ und $\Phi_m \in \Q \left[ X \right]$ ist irreduzibel.
 			\item Gilt $\text{char}(K) \nmid m$, so ist $K(\zeta_m) / K$ ist eine Galoiserweiterung.
 		\end{enumerate}
 	\end{satz}
@@ -473,12 +474,14 @@ Wir sehen also, dass $\zeta_m$ genau dann eine primitive $m$-te Einheitswurzel i
 
 \begin{framed}
 	\begin{lemma}\label{lem:ztoid}
-		Sei $L$ ein $\Z$-Gitter in einem $n$-dimensionalen bilinearen Vektorraum $(V,b)$ und $\sigma \in \Aut(L)$ mit $\mu_\sigma = \Phi_m$ für ein $m \in \N$ mit $\varphi(m) = n$. Dann ist $L$ isomorph zu einem Ideal-Gitter in $\Q \left( \zeta_m \right)$.
+		Sei $L$ ein $\Z$-Gitter in einem $n$-dimensionalen bilinearen Vektorraum $(V,b)$ und\linebreak
+		$\sigma \in \Aut(L)$ mit $\mu_\sigma = \Phi_m$ für ein $m \in \N$ mit $\varphi(m) = n$. Dann ist $L$ isomorph zu einem Ideal-Gitter in $\Q \left( \zeta_m \right)$.
 	\end{lemma}
 \end{framed}
 
 \begin{beweis}
-	Durch die Operation von $\sigma$ wird $\Q L$ mittels $\zeta_m \cdot x := \sigma(x)$ für $x \in \Q L$ zu einem eindimensionalen $\Q \left( \zeta_m \right)$-Vektorraum und $L$ zu einem ein $\Z \left[ \zeta_m \right]$-Modul. Wegen $\Z \left[ \zeta_m \right] = \Z_{\Q\left[\zeta_m \right]}$ ist $L$ also ein gebrochenes Ideal in $\Q \left( \zeta_m \right)$.\\
+	Durch die Operation von $\sigma$ wird $\Q L$ mittels $\zeta_m \cdot x := \sigma(x)$ für $x \in \Q L$ zu einem eindimensionalen $\Q \left( \zeta_m \right)$-Vektorraum und $L$ zu einem ein $\Z \left[ \zeta_m \right]$-Modul. Wegen\linebreak
+	$\Z \left[ \zeta_m \right] = \Z_{\Q\left[\zeta_m \right]}$ ist $L$ also ein gebrochenes Ideal in $\Q \left( \zeta_m \right)$.\\
 	Da $\sigma$ ein Automorphismus ist, ist die Bilinearform $b:L \times L \rightarrow \Q$ des Vektorraums $\zeta_m$-invariant. Sei nun $\lambda \in \Z \left[ \zeta_m \right]$ beliebig. Wir können $\lambda = \sum_{i=0}^{m-1} a_i \zeta_m^i $ für Koeffizienten $a_i \in \Z$ schreiben und sehen
 	\begin{equation*}
 		b(\lambda x, y) = \sum_{i=0}^{m-1} a_i b(\zeta_m^i x, y) = \sum_{i=0}^{m-1} a_i b(x, \zeta_m^{-i} y) = \sum_{i=0}^{m-1} a_i b(x, \overline{\zeta_m^i} y) = b(x, \overline{\lambda} y),
@@ -541,7 +544,7 @@ Mit Blick auf modulare Gitter kann man damit die nächste Folgerung ziehen:
 	\end{equation*}
 \end{beweis}
 
-Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existieren bei der Konstruktion von Idealgittern mit fester Determinante nur endlich viele Möglichkeiten für $\B$. Mithilfe der Primidealzerlegung lässt sich ein rekursiver Algorithmus (Algorithmus \eqref{alg:divnorm}) konstruieren, welcher alle Teiler eines Ideals $\J$ mit bestimmter Norm $n$ berechnen kann.
+Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existieren bei der Konstruktion von Idealgittern mit fester Determinante nur endlich viele Möglichkeiten für $\B$. Mithilfe der Primidealzerlegung lässt sich der rekursive Algorithmus \eqref{alg:divnorm} konstruieren, welcher alle Teiler eines Ideals $\J$ mit bestimmter Norm $n$ berechnen kann.
 
 \begin{algorithm}
 	\caption{Berechnung aller Teiler mit fester Norm}\label{alg:divnorm}
@@ -554,13 +557,6 @@ Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existier
 		\If {$\No(\I) = n$} \Return {$\left[ \I \right]$} \EndIf
 		\State Zerlege $\I$ in Primideale $\I = \p_1^{s_1} \dots \p_k^{s_k}$
 		\State $n_\p \gets \No(\p_1)$
-		%\If {$k = 1$}
-		%	\If {$n_\p^s = n$ \text{ für ein } $s \in \lbrace 1, \dots, s_1 \rbrace$}
-		%		\State \Return {$\left[ \p_1^s \right]$}
-		%	\Else
-		%		\State \Return {$\left[ \ \right]$}
-		%	\EndIf
-		%\EndIf
 		\State $Results \gets \left[ \ \right]$
 		\For {$j \in \lbrace 0, \dots s_1 \rbrace$}
 			\If {$n_\p^j \mid n$}
@@ -574,9 +570,9 @@ Da es jeweils nur endlich viele $\Z_K$-Ideale mit bestimmter Norm gibt, existier
 	\end{algorithmic}
 \end{algorithm}
 
-Konkret wird unsere Strategie im groben daraus bestehen, alle (relevanten) Möglichkeiten für $\I$ und $\B$ durchzugehen und zu testen, für welche davon das Ideal $\left( \I \overline{\I} \right)^{-1} \Delta \B$ ein Hauptideal mit total-positivem Erzeuger $\alpha \in K^+$ ist. Dazu machen wir zunächst einige Einschränkungen, um den Suchraum zu verkleinern.
+Konkret wird unsere Strategie daraus bestehen, alle (relevanten) Möglichkeiten für $\I$ und $\B$ durchzugehen und zu testen, für welche davon das Ideal $\left( \I \overline{\I} \right)^{-1} \Delta \B$ ein Hauptideal mit total-positivem Erzeuger $\alpha \in K^+$ ist. In diesem Fall ist $(\I, \alpha)$ ein Ideal-Gitter. Um den Suchraum zu verkleinern, machen wir zunächst einige Einschränkungen.
 
-\section{Die Klassengruppe}
+\section{Klassengruppe}
 
 \begin{framed}
 	\begin{definition}
@@ -602,8 +598,7 @@ Konkret wird unsere Strategie im groben daraus bestehen, alle (relevanten) Mögl
 	Folglich ist $\psi : (K, b_{\lambda \overline{\lambda }\alpha}) \rightarrow (K, b_\alpha), x \mapsto \lambda x$ eine Isometrie mit $\psi(\I) = (\lambda \I)$.
 \end{beweis}
 
-Mit dieser Aussage genügt es also, aus jeder Klasse der 
-jeweils nur einen Vertreter zu betrachten. Wählt man $\lambda \in \Z_K^\ast$, so zeigt das Lemma, dass $(\I, \alpha) \cong (\I, \lambda \overline{\lambda} \alpha)$. Für $\alpha$ reichen also Vertreter modulo $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$.\\
+Mit dieser Aussage genügt es also, aus jeder Klasse jeweils nur einen Vertreter zu betrachten. Wählt man $\lambda \in \Z_K^\ast$, so zeigt das Lemma, dass $(\I, \alpha) \cong (\I, \lambda \overline{\lambda} \alpha)$. Für $\alpha$ reichen also Vertreter modulo $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$.\\
 Wir wollen nun die zu untersuchenden Möglichkeiten für $\I$ noch weiter einschränken: Ist $K / \Q$ galoissch (wie es für zyklotomische Zahlkörper der Fall ist), so genügt ein Repräsentant modulo der Operation der Galosgruppe.
 
 \begin{framed}
@@ -622,7 +617,7 @@ Wir wollen nun die zu untersuchenden Möglichkeiten für $\I$ noch weiter einsch
 \end{beweis}
 
 \begin{bemerkung}
-	Mit \texttt{MAGMA} kann die Klassengruppe berechnet werden, in gewissen Fällen ist der zugehörige Algorithmus jedoch sehr kostspielig. Unter Annahme der unbewiesenen \textit{verallgemeinerten Riemann-Hypothese} erlauben gewisse Schranken eine leichtere Berechnung. Für die Implementierung gehen wir daher von der Korrektheit der Riemann-Hypothese aus. Sollte diese falsch sein, so sind die später angeführten Listen der gefundenen modularen Gitter möglicherweise unvollständig.
+	Mit \texttt{MAGMA} kann die Klassengruppe berechnet werden, in gewissen Fällen ist der zugehörige Algorithmus jedoch sehr ressourcenintensiv. Unter Annahme der unbewiesenen \textit{verallgemeinerten Riemann-Hypothese} erlauben gewisse Schranken eine leichtere Berechnung. Für die Implementierung gehen wir daher von der Korrektheit dieser Hypothese aus. Sollte diese falsch sein, so sind die später angeführten Listen der gefundenen modularen Gitter möglicherweise unvollständig.
 \end{bemerkung}
 
 \section{Total-positive Erzeuger}
@@ -722,11 +717,10 @@ Mithilfe dieses Satzes können wir nun Algorithmus \eqref{alg:relgen} formuliere
 	Also müssen die Vorzeichen jeweils identisch sein.
 \end{beweis}
 
-Elemente aus $\left(\Z_{K^+}^\ast\right)^2$ haben immerzu positives Signum bezüglich allen Einbettungen. Außerdem liefern total-positive Elemente, die in der gleichen Klasse modulo Quadraten liegen nach Lemma \eqref{lem:squares} isomorphe Idealgitter. Es genügt also, sich bei der Suche nach einer Einheit wie im vorherigen Lemma auf Vertreter modulo Quadraten zu beschränken. Nach dem Dirichletschen Einheitensatz \cite[Theorem (7.4)]{neukirch} hat die Einheitengruppe die Struktur
+Elemente aus $\left(\Z_{K^+}^\ast\right)^2$ haben immerzu ein positives Signum bezüglich aller Einbettungen. Außerdem liefern total-positive Elemente, die in der gleichen Klasse modulo Quadraten liegen, nach Lemma \eqref{lem:squares} isomorphe Idealgitter. Es genügt also, sich bei der Suche nach einer Einheit wie im vorherigen Lemma auf Vertreter modulo Quadraten zu beschränken. Nach dem Dirichletschen Einheitensatz \cite[Theorem (7.4)]{neukirch} hat die Einheitengruppe die Struktur
 \begin{equation*}
-	\Z_{K^+}^\ast = \lbrace \pm 1 \rbrace \times \Z^{t-1}.
+	\Z_{K^+}^\ast = \lbrace \pm 1 \rbrace \times \Z^{t-1}
 \end{equation*}
-
 mit $t := \left[K^+ : \Q \right]$. Die Erzeuger $(\epsilon_1, \dots \epsilon_t)$ der Gruppe heißen  \textit{Grundeinheiten}. Jede Einheit $\epsilon$ lässt sich also darstellen in der Form $\epsilon = \epsilon_1^{\nu_1} \dots \epsilon_t^{\nu_t}$. Das folgende Korollar liefert uns nun die Lösung auf unsere Frage nach den total-positiven Erzeugern.
 
 
@@ -740,14 +734,14 @@ Dann lässt sich folgendes Korollar ziehen:
 		\end{equation*}
 		und den Vektor
 		\begin{equation*}
-			V \in \F_2^{1 \times t}, \quad V_i = \begin{cases} 1 &, \text{sign}(\iota_i(\alpha')) = -1\\ 0 &, \text{sign}(\iota_i(\alpha')) = 1\end{cases}.
+			V \in \F_2^{1 \times t}, \quad V_i = \begin{cases} 1 &, \text{sign}(\iota_i(\alpha')) = -1\\ 0 &, \text{sign}(\iota_i(\alpha')) = 1.\end{cases}
 		\end{equation*}
 		Dann sind die total-positiven Erzeuger des Ideals $\alpha' \Z_K$ genau die Elemente der Menge $\lbrace \alpha' \epsilon_1^{x_1} \dots \epsilon_t^{x_t} \epsilon^2 \mid x \in \F_2^{1 \times t}, x M = V, \epsilon \in (\Z_{K^+}^\ast) \rbrace$.
 	\end{korollar}
 \end{framed}
 
 \begin{beweis}
-	Nach Lemma \eqref{lem:sig} und da Quadrate immerzu positives Signum haben, sind die total-positiven Erzeuger gegeben durch die Elemente $u = \alpha' \epsilon_1^{x_1} \dots \epsilon_t^{x_t} \epsilon^2$, wobei $x \in \F_2^{1 \times t}$, $\epsilon \in \Z_{K^+}^\ast$ und $\epsilon_1^{x_1} \dots \epsilon_t^{x_t}$ bezüglich allen Einbettungen dasselbe Signum wie $\alpha'$ hat. Das Signum bezüglich einem $\iota_i$ ist genau dann gleich, wenn
+	Nach Lemma \eqref{lem:sig} und da Quadrate immerzu ein positives Signum haben, sind die total-positiven Erzeuger gegeben durch die Elemente $u = \alpha' \epsilon_1^{x_1} \dots \epsilon_t^{x_t} \epsilon^2$, wobei $x \in \F_2^{1 \times t}$, $\epsilon \in \Z_{K^+}^\ast$ und $\epsilon_1^{x_1} \dots \epsilon_t^{x_t}$ bezüglich aller Einbettungen dasselbe Signum wie $\alpha'$ hat. Das Signum bezüglich einem $\iota_i$ ist genau dann gleich, wenn
 	\begin{equation*}
 		\vert \lbrace j \mid \text{sign}(\iota_j(\epsilon_i)) = -1 \text{ und } x_i = 1 \rbrace \vert \equiv \begin{cases} 1 \ (\text{mod } 2) &,\text{sign}(\iota_j(\alpha')) = -1 \\ 0 \ (\text{mod } 2) &,\text{sign}(\iota_j(\alpha')) = 1 \end{cases}.
 	\end{equation*}
@@ -755,7 +749,7 @@ Dann lässt sich folgendes Korollar ziehen:
 \end{beweis}
 
 \begin{bemerkung}
-	Um später in der Implementierung Zeit zu sparen, kann man bemerken, dass sich verschiedene total-positive Erzeuger des gleichen Ideals jeweils lediglich um eine total-positive Einheit unterscheiden. Es lohnt sich also, zu Beginn des Algorithmus die Menge aller total-positiven Einheiten (diese korrespondieren zum Kern von $M$) zu berechnen, sodass man später pro Ideal jeweils nur eine spezielle Lösung des Gleichungssystems finden muss und die Menge aller total-positiven Erzeuger durch Multiplikation mit den vorher berechneten total-positiven Einheiten erstellt.\\
+	Um später in der Implementierung Zeit zu sparen, kann man bemerken, dass sich verschiedene total-positive Erzeuger des gleichen Ideals jeweils lediglich um eine total-positive Einheit unterscheiden. Um die Effizienz zu erhöhen, kann man also zu Beginn des Algorithmus die Menge aller total-positiven Einheiten (diese korrespondieren zum Kern von $M$) berechnen. Auf diese Weise muss später pro Ideal jeweils nur eine spezielle Lösung des Gleichungssystems gefunden werden und die Menge aller total-positiven Erzeuger lässt sich durch Multiplikation mit den vorher berechneten total-positiven Einheiten erstellen.\\
 	Eine weitere Anmerkung zur Implementierung: \texttt{MAGMA} kann mit der Funktion\linebreak
 	 \texttt{pFundamentalUnits} eine Untergruppe von $\Z_{K^+}^\ast$ mit ungeradem Index berechnen. Wie das folgende Lemma zeigt, reicht dies für unser Vorhaben bereits aus, da wir nur ein Vertretersystem der Einheiten modulo Quadraten benötigen.
 \end{bemerkung}
@@ -770,12 +764,10 @@ Dann lässt sich folgendes Korollar ziehen:
 \end{framed}
 
 \begin{beweis}
-	Betrachte den Epimorphismus $\pi : G \rightarrow G / G^2$. Es ist bereits $\pi\vert_U$ surjektiv, denn sei $gG^2 \in G / G^2$, dann ist $g^{\left[ G : U \right]} \in U$, da $(gU)^{\left[ G : U \right]} = U$ und weil der Index ungerade ist auch $\pi\left(g^{\left[ G : U \right]}\right) = gG^2$. Zudem ist $\Kern(\pi\vert_U) = U \cap G^2 = U^2$, denn für $g^2 \in U\cap G^2$ muss $\vert gU \vert \leq 2$ gelten, die Ordnung kann aber wegen des ungeraden Index nicht $2$ sein, also folgt bereits $g \in U$ und somit $g^2 \in U^2$. Mit dem Homomorphiesatz folgt die Behauptung.
+	Betrachte den Epimorphismus $\pi : G \rightarrow G / G^2$. Es ist bereits $\pi\vert_U$ surjektiv, denn sei $gG^2 \in G / G^2$, dann ist $g^{\left[ G : U \right]} \in U$, da $(gU)^{\left[ G : U \right]} = U$ und - weil der Index ungerade ist - auch $\pi\left(g^{\left[ G : U \right]}\right) = gG^2$. Zudem ist $\Kern(\pi\vert_U) = U \cap G^2 = U^2$, denn für $g^2 \in U\cap G^2$ muss $\vert gU \vert \leq 2$ gelten. Die Ordnung kann aber wegen des ungeraden Index nicht $2$ sein, also folgt bereits $g \in U$ und somit $g^2 \in U^2$. Mit dem Homomorphiesatz ergibt sich nun die Behauptung.
 \end{beweis}
 
-
-Anhand der gewonnenen Erkenntnisse erstellen wir nun einen Algorithmus \eqref{alg:posgen}, der zu einem Ideal $\I = \alpha' \Z_K$ für $\alpha' \in K^+$ ein Vertretersystem aller total-positiven Erzeuger $\alpha \in K_{\gg 0}^+$ modulo $\lambda \overline{\lambda}$ für $\lambda \in \Z_K^\ast$ zurückgibt. Die Ergebnisse der Zeilen $6 - 14$ können in der Implementierung nach einmaliger Durchführung abgespeichert werden, sodass die Resultate anschließend für jedes zu prüfende $\alpha'$ wiederverwertet werden können. 
-
+Anhand der gewonnenen Erkenntnisse erstellen wir nun einen Algorithmus \eqref{alg:posgen}, der zu einem Ideal $\I = \alpha' \Z_K$ für $\alpha' \in K^+$ ein Vertretersystem aller total-positiven Erzeuger $\alpha \in K_{\gg 0}^+$ modulo $\lambda \overline{\lambda}$ für $\lambda \in \Z_K^\ast$ liefert. Die Ergebnisse der Zeilen $6 - 14$ können in der Implementierung nach einmaliger Durchführung abgespeichert werden, sodass die Resultate anschließend für jedes zu prüfende $\alpha'$ wiederverwertet werden können. 
 
 \begin{algorithm}[H]
 	\caption{Berechnung total-positiver Erzeuger}\label{alg:posgen}
@@ -838,7 +830,7 @@ Alle bisherigen Bestandteile können nun zu einem Algorithmus zusammengesetzt we
 	\end{algorithmic}
 \end{algorithm}
 
-Mit diesem Algorithmus kann man nun alle $\ell$-modularen Gitter in Dimension $n$ klassifizieren, welche einen Automorphismus $\sigma$ besitzen mit $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$. Dazu wendet man Algorithmus \eqref{alg:idlat} wie in Lemma \eqref{lem:mod} und Lemma \eqref{lem:ztoid} besprochen mit $d = l^\frac{n}{2}$ und $K = \Q(\zeta_m)$ an. Eine weitere kleine Erleichterung bringt in diesem Spezialfall die Tatsache, dass $\Q(\zeta_m) \cong \Q(\zeta_{2m})$, falls $m \equiv 1\  (\text{mod } 2)$. Insbesondere sind die Ideal-Gitter über $\Q(\zeta_m)$ und $\Q(\zeta_{2m})$ dieselben. Man kann also für eine vollständige Aufzählung alle $m$ mit $m \equiv 2\  (\text{mod } 4)$ weglassen. Eine Implementierung in \texttt{MAGMA} liefert nun alle $\ell$-modularen Ideal-Gitter mit Dimension $n \leq 36$ (eine Steigerung der Dimension beansprucht exponentiell höheren Zeitaufwand) und $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$. In Tabelle \eqref{tab:numidlat} sind die Gesamtzahlen der Ideal-Gitter zu finden, außerdem befindet sich in Anhang (5.1) eine ausführlichere Zusammenfassung der Klassifikationsergebnisse mit zusätzlicher Angabe der zugrundeliegenden zyklotomischen Zahlkörpern und Anzahl der Gitter aufgeteilt nach Minimum. Beachte dabei: der Zahlkörper ist im allgemeinen nicht eindeutig, ein Gitter kann möglicherweise Ideal-Gitter-Struktur über mehreren Kreisteilungskörpern gleichzeitig aufweisen; in der Tabelle im Anhang ist jeweils nur einer davon genannt.
+Mit diesem Algorithmus kann man nun alle $\ell$-modularen Gitter in Dimension $n$ klassifizieren, welche einen Automorphismus $\sigma$ besitzen mit $\mu_\sigma = \Phi_m$ und $\varphi(m) = n$. Dazu wendet man Algorithmus \eqref{alg:idlat} wie in Lemma \eqref{lem:mod} und Lemma \eqref{lem:ztoid} besprochen mit $d = l^\frac{n}{2}$ und $K = \Q(\zeta_m)$ an. Eine weitere kleine Erleichterung bringt in diesem Spezialfall die Tatsache, dass $\Q(\zeta_m) \cong \Q(\zeta_{2m})$, falls $m \equiv 1\  (\text{mod } 2)$. Insbesondere sind die Ideal-Gitter über $\Q(\zeta_m)$ und $\Q(\zeta_{2m})$ dieselben. Man kann also für eine vollständige Aufzählung alle $m$ mit $m \equiv 2\  (\text{mod } 4)$ weglassen. Eine Implementierung in \texttt{MAGMA} liefert nun alle $\ell$-modularen Ideal-Gitter mit Dimension $n \leq 36$ (eine Steigerung der Dimension beansprucht exponentiell höheren Zeitaufwand) und $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$. In Tabelle \eqref{tab:numidlat} sind die Gesamtzahlen der Ideal-Gitter zu finden; außerdem befindet sich in Anhang (6.1) eine ausführlichere Zusammenfassung der Klassifikationsergebnisse mit zusätzlicher Angabe der zugrundeliegenden zyklotomischen Zahlkörpern und der Anzahl der Gitter, aufgeschlüsselt nach Minimum. Beachte dabei: Der Zahlkörper ist im Allgemeinen nicht eindeutig, ein Gitter kann möglicherweise Ideal-Gitter-Struktur über mehreren Kreisteilungskörpern gleichzeitig aufweisen; in der Tabelle im Anhang ist jeweils nur einer davon genannt.
 
 \begin{table}\label{tab:numidlat}
 	\centering
@@ -858,7 +850,7 @@ Mit diesem Algorithmus kann man nun alle $\ell$-modularen Gitter in Dimension $n
 		$32$	&$7(5)$		&$13(4)$	&$13(7)$	&$10(-)$	&$12(-)$	&$19(-)$	&$42(-)$	&$21(-)$	&$23(-)$	&$-$ \\ \hline
 		$36$	&$-$		&$6(3)$		&$8(-)$		&$8(-)$		&$-$		&$-$		&$2(-)$		&$36(-)$	&$4(-)$		&$-$ \\ \hline
 	\end{tabular}
-	\caption{Anzahl der $\ell$-modularen Ideal-Gitter in Dimension $n \leq 36$, sowie der Anzahl der extremalen Gitter darunter}
+	\caption{Anzahl der $\ell$-modularen Ideal-Gitter in Dimension $n \leq 36$ sowie der Anzahl der extremalen Gitter darunter}
 \end{table}
 
 \chapter{Sub-Ideal-Gitter}
@@ -882,7 +874,7 @@ Wie das folgende Lemma zeigt, ist diese Zerlegung sogar orthogonal:
 \end{framed}
 
 \begin{beweis}
-	Seien $\pi_i : V \twoheadrightarrow \Kern(\Phi_{m_i}(\sigma))$ für $i=1,\dots,k$ die Projektionen auf die Komponenten. Da $\sigma$ eine Isometrie ist, gilt $\sigma^{ad} = \sigma^{-1}$, also ist $\sigma$ insbesondere normal und damit auch die $\pi_i$, welche sich als Polynome in $\sigma$ mit rationalen Koeffizienten ausdrücken lassen. Normale Projektionen sind allerdings selbstadjungiert, also gilt für alle $x,y \in V$, sowie $i \neq j$:
+	Seien $\pi_i : V \twoheadrightarrow \Kern(\Phi_{m_i}(\sigma))$ für $i=1,\dots,k$ die Projektionen auf die Komponenten. Da $\sigma$ eine Isometrie ist, gilt $\sigma^{ad} = \sigma^{-1}$, also ist $\sigma$ insbesondere normal und damit auch die $\pi_i$, welche sich als Polynome in $\sigma$ mit rationalen Koeffizienten ausdrücken lassen. Normale Projektionen sind allerdings selbstadjungiert, also gilt für alle $x,y \in V$ sowie $i \neq j$:
 		\begin{equation*}
 			b(\pi_i(x), \pi_j(y)) = b(x, \pi_i^{ad} (\pi_j(y))) = b(x, \pi_i(\pi_j(y))) = b(x,0) = 0
 		\end{equation*}
@@ -891,7 +883,7 @@ Wie das folgende Lemma zeigt, ist diese Zerlegung sogar orthogonal:
 
 Besitzt $\mu_\sigma$ einen Teiler $\Phi_m$, wobei $\frac{n}{2} < \varphi(m) \leq n$, so muss $\Kern(\Phi_m(\sigma))$ die Dimension $\varphi(m)$ haben, wird also zu einem eindimensionalen $\Q(\zeta_m)$-Vektorraum. Die orthogonale Zerlegung des Vektorraums induziert also ein volles Teilgitter
 \begin{equation*}
-	M := \left(L \cap \Kern(\Phi_m(\sigma))\right) \perp \left(L \cap \Kern\left( \frac{\mu_\sigma}{\Phi_m} (\sigma) \right)\right) \leq L,
+	M := \left(L \cap \Kern(\Phi_m(\sigma))\right) \perp \left(L \cap \Kern\left( \frac{\mu_\sigma}{\Phi_m} (\sigma) \right)\right) \leq L
 \end{equation*}
 und $L \cap \Kern(\Phi_m(\sigma))$ hat eine Struktur als Ideal-Gitter über dem zyklotomischen Zahlkörper $\Q(\zeta_m)$. Vergleiche dazu \cite[Abs. (5.3)]{nebe}. Dies halten wir in der folgenden Definition fest.
 
@@ -899,29 +891,29 @@ und $L \cap \Kern(\Phi_m(\sigma))$ hat eine Struktur als Ideal-Gitter über dem 
 	\begin{definition}
 		Sei $L$ ein $\Z$-Gitter der Dimension $n$.
 		\begin{enumerate}[label=(\roman*)]
-			\item Ein \textit{großer Automorphismus} von $L$ ist ein $\sigma \in \Aut(L)$ mit $\Phi_m \vert \mu_\sigma$ für ein $m \in \N$, sodass $\frac{n}{2} < \varphi(m) \leq n$.
+			\item Ein \textit{großer Automorphismus} von $L$ ist ein $\sigma \in \Aut(L)$ von Ordnung $m \in \N$, sodass $\Phi_m \vert \mu_\sigma$ und $\frac{n}{2} < \varphi(m) \leq n$.
 			\item Ist $\sigma \in \Aut(L)$ ein großer Automorphismus, so bezeichnet man das Ideal-Gitter $L \cap  \Kern(\Phi_m(\sigma))$ über $\Q(\zeta_m)$ als \textit{Sub-Ideal-Gitter} von $L$.
 		\end{enumerate}
 	\end{definition}
 \end{framed}
 
-Unsere Strategie zur Klassifikation der Gitter $L$ besteht darin, Eigenschaften des induzierten Teilgitters $M$ zu zeigen, sowie die Operation von $\sigma$ genauer zu untersuchen, um eine Liste möglicher Kandidaten für $M$ und $\sigma$ zu finden. Anschließend konstruieren wir $L$ als $\sigma$-invariantes Obergitter von $M$.\par
+Unsere Strategie zur Klassifikation der Gitter $L$ besteht darin, Eigenschaften des induzierten Teilgitters $M$ zu zeigen sowie die Operation von $\sigma$ genauer zu untersuchen, um eine Liste möglicher Kandidaten für $M$ und $\sigma$ zu finden. Anschließend konstruieren wir $L$ als $\sigma$-invariantes Obergitter von $M$.\par
 Für Gitter mit großen Automorphismen können wir die Ideal-Gitter-Komponente mithilfe der Algorithmen aus dem letzten Kapitels effizient konstruieren. Probleme bereitet uns allerdings der andere Teil $\Kern\left(\frac{\mu_\sigma}{\Phi_m}(\sigma)\right)$ des Vektorraums, über welchen wir a priori nicht viel aussagen können. Abhilfe schaffen uns unter gewissen Umständen die Automorphismen von Primzahlordnung.
 
 \section{Automorphismen von Primzahlordnung}
 Der folgende Abschnitt ist an \cite[Kap. 4]{juergens} und \cite[Kap. 4]{nebe} angelehnt.\par
 Sei $L$ in diesem Abschnitt ein $\Z$-Gitter in einem $n$-dimensionalen bilinearen $\Q$-Vektorraum $(V,b)$ und $\sigma \in \Aut(L)$ von Primzahlordnung $p$. Dann ist $\mu_\sigma \in \lbrace \Phi_p, \Phi_1 \Phi_p \rbrace$. Wie vorher erhält man eine $\sigma$-invariante Zerlegung
 \begin{equation*}
-	V = \Kern(\Phi_1(\sigma)) \perp \Kern(\Phi_p(\sigma)) =: V_1 \oplus V_p
+	V = \Kern(\Phi_1(\sigma)) \perp \Kern(\Phi_p(\sigma)) =: V_1 \oplus V_p.
 \end{equation*}
 Es ist $\Phi_1(X) = X-1$, also $V_p = \Bild(\sigma - 1)$ und $V_1 = \Kern(\sigma - 1)$. Seien $n_p$ die Dimension von $V_p$ und $n_1$ die Dimension von $V_1$ über $\Q$. Da $V_p$ eine Struktur als $\Q(\zeta_p)$-Vektorraum hat und $\text{Dim}_\Q(\Q(\zeta_p)) = p-1$, muss $n_p$ von $p-1$ geteilt werden.\par
 
-Die durch die orthogonale Zerlegung von $V$ induzierten Gitter $L_p := L \cap V_p$ und das $L_1 := L \cap V_1$ nenen wir das \textit{Bild-Gitter} und das \textit{Fix-Gitter}. Außerdem sei\linebreak
+Die durch die orthogonale Zerlegung von $V$ induzierten Gitter $L_1 := L \cap V_1$ und $L_p := L \cap V_p$ nennen wir das von $\sigma$ induzierte \textit{Fix-Gitter} und das von $\sigma$ induzierte \textit{Bild-Gitter}. Außerdem sei
 $M := L_1 \perp L_p \leq L$. Im Folgenden wollen wir die Struktur von $M$ näher untersuchen.
 
 \begin{framed}
 	\begin{lemma}\label{lem:pL}
-		Seien $\sigma$, $L_1$ und $L_p$ wie oben.
+		Seien $\sigma$, $L_1$ und $L_p$ wie oben definiert.
 		\begin{enumerate}[label=(\roman*)]
 			\item Es existiert ein Polynom $v \in \Z\left[ X \right]$ mit $1 = \frac{1}{p}\Phi_p + \frac{1}{p} v \cdot \Phi_1$.
 			\item Es gilt $pL \subseteq L_1 \perp L_p \subseteq L$.
@@ -939,14 +931,14 @@ $M := L_1 \perp L_p \leq L$. Im Folgenden wollen wir die Struktur von $M$ näher
 		\item Zu zeigen ist $p x \in L_1 \perp L_p$ für alle $x \in L$. Wegen $(\Phi_1 \Phi_p)(\sigma) = 0$ und der $\sigma$-Invarianz von $L$ ist
 			\begin{align*}
 				px = \Phi_p(\sigma)(x) + (v \cdot \Phi_1)(\sigma)(x) \in & L \cap \Kern(\Phi_1(\sigma)) + L \cap\text{ Kern}(\Phi_p(\sigma))\\
-				=& (L \cap V_1) \perp (L \cap V_p) = L_1 \perp L_p
+				=& (L \cap V_1) \perp (L \cap V_p) = L_1 \perp L_p.
 			\end{align*}
 	\end{enumerate}
 \end{beweis}
 
 Mit diesem Lemma muss $M$ ein Gitter der Dimension $n$ sein, also gilt $\text{Dim}(L_p) = n_p$ und $\text{Dim}(L_1) = n_1$. Ist $L$ gerade und von quadratfreier Stufe $\ell$, so gilt $\ell L^\# \subseteq L$. Lemma \eqref{lem:pL}(ii) ist äquivalent zu $p M^\# \subseteq L^\#$. Zusammen erhält man folglich
 \begin{equation*}
-	\ell p M^\# \subseteq \ell L^\# \subseteq L
+	\ell p M^\# \subseteq \ell L^\# \subseteq L.
 \end{equation*}
 Schneidet man mit $V_p$, so folgt
 \begin{equation*}
@@ -991,11 +983,11 @@ Als nächstes wollen wir die Determinanten von $L_1$ und $L_p$ untersuchen. Dazu
 	\end{equation*}
 	Außerdem ist $(1 - \sigma) L_p^\# \subseteq V_p$, also zusammen
 	\begin{equation*}
-		(1 - \sigma) L_p^\# \subseteq \frac{1}{\ell} L \cap V_p = \frac{1}{\ell} L_p
+		(1 - \sigma) L_p^\# \subseteq \frac{1}{\ell} L \cap V_p = \frac{1}{\ell} L_p.
 	\end{equation*}
 	Für das partielle Dual ergibt sich hiermit
 	\begin{equation*}
-		(1-\sigma) L_p^{\#,p} = (1 - \sigma) \left(\frac{1}{p}L_p \cap L_p^\# \right) \subseteq \frac{1}{p} L_p \cap \frac{1}{\ell} L_p  = \frac{1}{\ggT(p, \ell)} L_p = L_p
+		(1-\sigma) L_p^{\#,p} = (1 - \sigma) \left(\frac{1}{p}L_p \cap L_p^\# \right) \subseteq \frac{1}{p} L_p \cap \frac{1}{\ell} L_p  = \frac{1}{\ggT(p, \ell)} L_p = L_p.
 	\end{equation*}
 \end{beweis}
 
@@ -1003,7 +995,7 @@ Wir benötigen noch ein weiteres Hilfslemma.
 
 \begin{framed}
 	\begin{lemma}\label{lem:quotiso}
-		Sei $\Lambda$ ein gerades Gitter, dessen Stufe $p \ell$ teilt, wobei $p$ prim und $\ell$ quadratfrei mit $\ggT(p, \ell) = 1$. Dann ist $\Lambda^{\#,p} / \Lambda \cong \Lambda^\# / \Lambda^{\#,\ell}$.
+		Sei $\Lambda$ ein gerades Gitter, dessen Stufe $p \ell$ teilt, wobei $p$ prim und $\ell$ quadratfrei mit $\ggT(p, \ell) = 1$ sind. Dann ist $\Lambda^{\#,p} / \Lambda \cong \Lambda^\# / \Lambda^{\#,\ell}$.
 	\end{lemma}
 \end{framed}
 
@@ -1021,11 +1013,11 @@ Wir benötigen noch ein weiteres Hilfslemma.
 	Die Behauptung folgt nun mit dem Homomorphiesatz.
 \end{beweis}
 
-Nun ein wichtiger Satz zur Bestimmung der Determinanten:
+Nun wird ein wichtiger Satz zur Bestimmung der Determinanten dargelegt:
 
 \begin{framed}
 	\begin{satz} \label{th:fps}
-		Sei $L$ wie vorher von Stufe quadratfreien Stufe $\ell$ und $\sigma \in \Aut(L)$ mit $\vert \sigma \vert = p$, $\ggT(p,\ell) = 1$. Seien außerdem $L_1$ und $L_p$ definiert wie zuvor mit Dimensionen $n_1$ und $n_p$. Dann gilt:
+		Sei $L$ wie vorher von quadratfreier Stufe $\ell$ und $\sigma \in \Aut(L)$ mit $\vert \sigma \vert = p$, $\ggT(p,\ell) = 1$. Seien außerdem $L_1$ und $L_p$ die von $\sigma$ induzierten Fix- und Bildgitter mit Dimensionen $n_1$ und $n_p$. Dann gilt:
 		\begin{equation*}
 			L_1^{\#,p} / L_1 \cong \F_p^s \cong L_p^{\#,p} / L_p
 		\end{equation*}
@@ -1034,8 +1026,8 @@ Nun ein wichtiger Satz zur Bestimmung der Determinanten:
 \end{framed}
 
 \begin{beweis}
-	Wir zeigen zunächst$ L_1^{\#,p} / L_1  \cong L_p^{\#,p} / L_p$. Dies ist nach Lemma \eqref{lem:quotiso} äquivalent zu $L_1^\# / L_1^{\#,\ell} \cong L_p^\# / L_p^{\#, \ell}$.\par
-	Sei $y \in L_1^\#$ beliebig. Die Abbildung $L_1 \rightarrow \Z, x \mapsto b(x,y)$ ist eine Linearform. Da $L_1$ der Schnitt von $L$ mit dem Untervektorraum $V_1$ ist, lässt sich diese Linearform sich eindeutig fortsetzen zu einer Linearform auf ganz $L$. Unter Ausnutzung der Isomorphie $\text{Hom}_\Z(L, \Z) \cong L^\#$ existiert ein Element $\hat{y} \in L^\#$, welches diese Linearform darstellt, insbesondere gilt also $b(x,y) = b(x, \hat{y})$ für alle $x \in L_1$. Zunächst zeigt sich für das Element $\hat{y} - y$:
+	Wir zeigen zunächst $L_1^{\#,p} / L_1  \cong L_p^{\#,p} / L_p$. Dies ist nach Lemma \eqref{lem:quotiso} äquivalent zu $L_1^\# / L_1^{\#,\ell} \cong L_p^\# / L_p^{\#, \ell}$.\par
+	Sei $y \in L_1^\#$ beliebig. Die Abbildung $L_1 \rightarrow \Z, x \mapsto b(x,y)$ ist eine Linearform. Da $L_1$ der Schnitt von $L$ mit dem Untervektorraum $V_1$ ist, ist $L_1$ ein primitiver Teilmodul von $L$ und diese Linearform lässt sich zu einer Linearform auf ganz $L$ fortsetzen. Unter Ausnutzung der Isomorphie $\text{Hom}_\Z(L, \Z) \cong L^\#$ existiert ein Element $\hat{y} \in L^\#$, welches diese Linearform darstellt; insbesondere gilt also $b(x,y) = b(x, \hat{y})$ für alle $x \in L_1$. Zunächst zeigt sich für das Element $\hat{y} - y$:
 	\begin{equation*}
 		b(x, \hat{y} - y) = 0 \quad \text{für alle } x \in L_1
 	\end{equation*}
@@ -1059,11 +1051,11 @@ Nun ein wichtiger Satz zur Bestimmung der Determinanten:
 		\item[Surjektivität:] Sei $y' \in L_p^\#$. Es korrespondiere $\hat{y} \in L^\#$ zu einer Fortsetzung von\linebreak
 		$x \mapsto b(x,y) \in \text{Hom}_\Z(L_p, \Z)$ auf $L$. Wie zuvor liegt dann das Element $y := \hat{y} - y'$ in $L_1^\#$. Durch $\hat{y}$ wird zudem eine Fortsetzung der Linearform $L_1 \rightarrow \Z, x \mapsto b(x,y)$ dargestellt, denn für alle $x \in L_1$ ist
 			\begin{equation*}
-				b(x,y) = b(x, \hat{y} - y') = b(x, \hat{y}) - b(x, y') = b(x, \hat{y})
+				b(x,y) = b(x, \hat{y} - y') = b(x, \hat{y}) - b(x, y') = b(x, \hat{y}).
 			\end{equation*}
 			Somit ist $\psi(y) = (\hat{y} - y) + L_1^{\#, \ell} = y' + L_1^{\#, \ell}$.
 		\item[Kern:] Es ist $\Kern(\psi) \subseteq L_1^{\#, \ell}$, denn sei $y \in \Kern(\psi)$, so gilt $\hat{y} - y \in \frac{1}{\ell}L_p^{\#, \ell} \subseteq \frac{1}{\ell} L_p \subseteq \frac{1}{\ell} L$. Da zudem $\hat{y} \in L^\# \subseteq \frac{1}{\ell} L$ ist, folgt $y = \hat{y} - (\hat{y} - y) \in \frac{1}{\ell}$. Insgesamt gilt daher\linebreak
-			$y \in \frac{1}{\ell}L \cap L_1^\# = \frac{1}{\ell} L_1 \cap L_1^\# = L_1^{\#, \ell}$\par
+			$y \in \frac{1}{\ell}L \cap L_1^\# = \frac{1}{\ell} L_1 \cap L_1^\# = L_1^{\#, \ell}$.\par
 			Andersherum ist $L_1^{\#, \ell} \subseteq \Kern(\psi)$, denn sei $y \in L_1^{\#, \ell}$, so ist $y \in \frac{1}{\ell} L_1 \subseteq \frac{1}{\ell}L$. Somit gilt $\hat{y} - y \in \frac{1}{\ell} L \cap L_p^\# = \frac{1}{\ell} L_p \cap L_p^\# = L_p^{\#, \ell}$ und damit $y \in \Kern(\psi)$.
 	\end{itemize}
 	Die erste Behauptung folgt nun aus dem Homomorphiesatz.\par
@@ -1079,13 +1071,12 @@ Nun ein wichtiger Satz zur Bestimmung der Determinanten:
 	diese enthält also genau $p$ Elemente und wir erhalten finalerweise, dass $L_p^{\#, p} / L_p$ ein Quotient von $(\F_p)^\frac{n_p}{p-1}$ ist. Damit folgt $s \leq \frac{n_p}{p-1}$.
 \end{beweis}
 
-
-Wir können damit die Faktorgruppen $L_1^{\#,p} / L_1$ und $L_p^{\#,p} / L_p$ als $\F_p$-Vektorräume der Dimension $s$ auffassen.\par
+Wir können entsprechend die Faktorgruppen $L_1^{\#,p} / L_1$ und $L_p^{\#,p} / L_p$ als $\F_p$-Vektorräume der Dimension $s$ auffassen.\par
 Nach Lemma \eqref{lem:quotiso} ist
 \begin{equation*}
 	\Det(L_p) = \left[ L_p^\# : L_p \right] = \left[ L_p^\# : L_p^{\#,\ell} \right] \cdot \left[ L_p^{\#, \ell} : L_p \right] = \left[ L_p^{\#,p} : L_p \right] \cdot \left[ L_p^{\#, \ell} : L_p \right].
 \end{equation*}
-Außerdem teilt $p$ den Index $\left[ L_p^{\#, \ell} : L_p \right]$ nicht, da der Exponent der Faktorgruppe $L_p^{\#, \ell} / L_p$ wegen $\ell L_p^{\#, \ell} \subseteq L_p$ ein Teiler von $\ell$ sein muss und $\ggT(\ell,p) = 1$. Ist also $s$ wie im vorigen Satz, so ist $s$ bereits die $p$-Bewertung der Determinante von $L_p$. Die Überlegungen funktionieren selbstverständlich analog für $L_1$. Der Satz sagt uns also, dass $\Det(L_1) = p^s c$ und $\Det(L_p) = p^s d$ für gewisse $c, d \in \N$ teilerfremd zu $p$. Nach Lemma \eqref{lem:pL} ist der Index $\left[ L : M \right]$ allerdings eine $p$-Potenz, während die Determinante von $L$ teilerfremd zu $p$ ist. Daher muss $c \cdot d = \Det(L)$ gelten und sich der in Abbildung \eqref{abb:inkverb} dargestellte Inklusionsverband ergeben.
+Außerdem teilt $p$ den Index $\left[ L_p^{\#, \ell} : L_p \right]$ nicht, da der Exponent der Faktorgruppe $L_p^{\#, \ell} / L_p$ wegen $\ell L_p^{\#, \ell} \subseteq L_p$ ein Teiler von $\ell$ sein muss und $\ggT(\ell,p) = 1$. Ist also $s$ wie im vorigen Satz, so ist $s$ bereits die $p$-Bewertung der Determinante von $L_p$. Die Überlegungen funktionieren selbstverständlich analog für $L_1$. Der Satz sagt uns also, dass $\Det(L_1) = p^s c$ und $\Det(L_p) = p^s d$ für gewisse, zu $p$ teilerfremde, $c, d \in \N$. Nach Lemma \eqref{lem:pL} ist der Index $\left[ L : M \right]$ allerdings eine $p$-Potenz, während die Determinante von $L$ teilerfremd zu $p$ ist. Daher muss $c \cdot d = \Det(L)$ gelten und sich der in Abbildung \eqref{abb:inkverb} dargestellte Inklusionsverband ergeben.
 
 \begin{figure}
 	\centering
@@ -1122,7 +1113,7 @@ Diese Überlegungen erlauben uns folgende Definition:
 \end{framed}
 
 Wir können nun einige Einschränkungen an den Typen eines solchen Automorphismus machen.
-Im Spezialfall $p=2$ hat die Gruppe $M^{\#, 2} / M$ Exponent $2$, wir zeigen nun eine veränderte Version von \cite[Lemma (4.9)]{nebe}.
+Im Spezialfall $p=2$ hat die Gruppe $M^{\#, 2} / M$ Exponent $2$, in diesem Fall gilt eine veränderte Version von \cite[Lemma (4.9)]{nebe}.
 
 \begin{framed}
 	\begin{lemma} \label{lem:2sub}
@@ -1159,10 +1150,10 @@ Im Spezialfall $p=2$ hat die Gruppe $M^{\#, 2} / M$ Exponent $2$, wir zeigen nun
 	\begin{equation*}
 		U' := \langle v \rangle \perp \langle w \rangle \perp E_2 \perp \dots \perp E_m \perp \sqrt{2}f_2
 	\end{equation*}
-	ein Teilgitter von $M$ vom Index $2$ und mit Jordanzerlegung $\left( E_2 \perp \dots \perp E_m \right) \perp \sqrt{2} \left( g \perp f_2 \right)$. Induktion liefert nun die Behauptung.
+	ein Teilgitter von $M$ vom Index $2$ und mit Jordanzerlegung $\left( E_2 \perp \dots \perp E_m \right) \perp \sqrt{2} \left( g \perp f_2 \right)$. Eine Induktion liefert nun die Behauptung.
 \end{beweis}
 
-Ist $M$ wie im obigen Lemma mit Determinante $2^s a$ für ein ungerades $a \in \N$, dann hat das Gitter $U$ somit Determinante $a$ und Minimum $\Min(U) \geq \frac{\Min(M)}{2}$.
+Ist $M$ wie im obigen Lemma mit Determinante $2^s a$ für ein ungerades $a \in \N$, dann hat das Gitter $U$ Determinante $a$ und Minimum $\Min(U) \geq \frac{\Min(M)}{2}$.
 Nun können wir einige Einschränkungen an die Typ-Parameter zeigen.
 
 \begin{framed}
@@ -1181,7 +1172,6 @@ Nun können wir einige Einschränkungen an die Typ-Parameter zeigen.
 		\end{enumerate}
 	\end{satz}
 \end{framed}
-
 \begin{beweis}
 	Eigenschaft (i) ist klar, (ii) ist Satz \eqref{th:fps}, Nummer (iv), (vi) und (ix) ergeben sich daraus, dass die Stufen von $L_p$ und $L_1$ Teiler von $p \ell$ sind und der Tatsache, dass $\frac{\Det(L_1) \Det(L_p)}{p^{2s}} = \Det(L)$.\par
 	Nach \cite[Satz (3.1.4)(d) und Lemma (3.1.1)]{juergens} existiert ein $\Z_{\Q(\zeta_p + \zeta_p^{-1})}$-Ideal $\a$ mit
@@ -1258,10 +1248,10 @@ Sei $L$ ein ganzes Gitter in einem bilinearen $\Q$-Vektorraum $(V,b)$. Das $(-1)
 und beschreibt die Signatur der Bilinearform $b$.\par
 Für die $p$-adischen Symbole, wobei $p \in \P$, betrachte die Jordanzerlegung
 \begin{equation*}
-	\Z_p \otimes L \cong f_1 \perp \sqrt{p} f_p \perp \dots \perp \sqrt{p}^k f_{p^k}
+	\Z_p \otimes L \cong f_1 \perp \sqrt{p} f_p \perp \dots \perp \sqrt{p}^k f_{p^k}.
 \end{equation*}
-Klar ist: haben zwei Gitter die gleiche Signatur und über allen Primzahlen die gleiche Jordanzerlegung, so liegen sie im gleichen Geschlecht. Leider ist die Jordanzerlegung im allgemeinen nicht eindeutig, es ist jedoch bekannt, inwiefern sich zwei unterschiedliche Jordanzerlegungen desselben Gitters unterscheiden.\\
-Für $p > 2$ ist die Zerlegung eindeutig bis auf die Determinanten der Teilgitter $f_1, \dots f_{p^k}$, welche sich um ein Quadrat unterscheiden können. Genauer: definiere die Invarianten
+Klar ist: Haben zwei Gitter die gleiche Signatur und über allen Primzahlen die gleiche Jordanzerlegung, so liegen sie im gleichen Geschlecht. Die Jordanzerlegung ist im allgemeinen nicht eindeutig, es ist jedoch bekannt, inwiefern sich zwei unterschiedliche Jordanzerlegungen desselben Gitters unterscheiden.\\
+Für $p > 2$ ist die Zerlegung bis auf die Determinanten der Teilgitter $f_1, \dots f_{p^k}$ eindeutig, welche sich um ein Quadrat unterscheiden können. Genauer: Definiere die Invarianten
 \begin{equation*}
 	n_q := \text{dim}(f_q), \quad \epsilon_q := \left( \frac{\Det(f_q)}{p} \right) := \begin{cases} +1 &,\ \Det(f_q) \in (\Z_p^\ast)^2 \\ -1 &,\ \Det(f_q) \not\in (\Z_p^\ast)^2 \end{cases}
 \end{equation*}
@@ -1269,7 +1259,7 @@ für $q \in \lbrace 1, p, \dots, p^k \rbrace$, dann sind zwei Gitter genau dann 
 \begin{equation*}
 	1^{\epsilon_1 n_1}\ p^{\epsilon_p n_p} \dots \left(p^k\right)^{\epsilon_{p^k} n_{p^k}}.
 \end{equation*}
-Beispielsweise bedeutet das Symbol $1^{-2} 3^{+5}$, dass jede Jordanzerlegung des Gitters die Form $\Z_3 \otimes L \cong f_1 \perp \sqrt{3} f_3$ besitzt mit $\text{dim}(f_1) = 2$, $\text{dim}(f_3) = 5$, außerdem $\Det(f_1)$ kein Quadrat, aber $\Det(f_3)$ ein Quadrat mod $3$.\par
+Beispielsweise bedeutet das Symbol $1^{-2} 3^{+5}$, dass jede Jordanzerlegung des Gitters über $\Z_3$ die Form $\Z_3 \otimes L \cong f_1 \perp \sqrt{3} f_3$ besitzt mit $\text{dim}(f_1) = 2$, $\text{dim}(f_3) = 5$. Außerdem ist $\Det(f_1)$ kein Quadrat, aber $\Det(f_3)$ ein Quadrat mod $3$.\par
 Der Fall $p=2$ ist aufwändiger. Da $b$ ursprünglich eine Bilinearform über $\Q$ ist, können wir sie nach \cite[Satz (1.20)]{kneser} diagonalisieren. Sei $G_q$ jeweils die diagonalisierte Matrix der Bilinearform auf dem zu $f_q$ gehörigen Teilraum. Wir definieren
 \begin{align*}
 	n_q &:= \text{dim}(f_i)\\
@@ -1279,9 +1269,9 @@ Der Fall $p=2$ ist aufwändiger. Da $b$ ursprünglich eine Bilinearform über $\
 \end{align*}
 für $q \in \lbrace 1, 2, 4, \dots, 2^k \rbrace$. Wir erhalten nun das vorläufige Symbol
 \begin{equation*}
-	1_{t_1 / \ii}^{\epsilon_1 n_1}\ 2_{t_2 / \ii}^{\epsilon_2 n_2} \dots \left( 2^k \right)_{t_{2^k} / \ii}^{\epsilon_{2^k} n_{2^k}}
+	1_{t_1 / \ii}^{\epsilon_1 n_1}\ 2_{t_2 / \ii}^{\epsilon_2 n_2} \dots \left( 2^k \right)_{t_{2^k} / \ii}^{\epsilon_{2^k} n_{2^k}},
 \end{equation*}
-Wobei der Index für Komponenten mit $S_q = \i$ den Wert $t_q$ darstellt und andernfalls $\ii$ ist. Dieses Symbol ist noch immer nicht eindeutig, wir benötigen zusätzliche Normierungsbedingungen. Wir fassen nun maximale Teilintervalle mit der Eigenschaft, dass alle Faktoren in den Intervallen den Typ $S_q = \i$ haben (mit eckigen Klammern) zu sogenannten \textit{Abteilen} zusammen. Außerdem trennen wir (mit Doppelpunkten) das Symbol in maximale Teilintervalle, genannt \textit{Züge}, sodass in jedem Zug mindestens einer von je zwei aufeinanderfolgenden Faktoren den Typ $S_q = \i$ hat. Beispielsweise wird so das Symbol
+Wwbei der Index für Komponenten mit $S_q = \i$ den Wert $t_q$ darstellt und andernfalls $\ii$ ist. Dieses Symbol ist noch immer nicht eindeutig, wir benötigen zusätzliche Normierungsbedingungen. Wir fassen nun maximale Teilintervalle mit der Eigenschaft, dass alle Faktoren in den Intervallen den Typ $S_q = \i$ haben (mit eckigen Klammern) zu sogenannten \textit{Abteilen} zusammen. Außerdem trennen wir (mit Doppelpunkten) das Symbol in maximale Teilintervalle, genannt \textit{Züge}, sodass in jedem Zug mindestens einer von je zwei aufeinanderfolgenden Faktoren den Typ $S_q = \i$ hat. Beispielsweise wird so das Symbol
 \begin{equation}\label{symbol}
 	1_{\ii}^{+2}\ 2_6^{-2}\ 4_5^{+3}\ 8_{\ii}^{+0}\ 16_{\ii}^{+1}\ 32_{\ii}^{+2}\ 64_{3}^{+1}
 \end{equation}
@@ -1289,14 +1279,13 @@ zu
 \begin{equation*}
 	1_{\ii}^{+2} \left[ 2_6^{-2}\ 4_5^{+3} \right] 8_{\ii}^{+0} : 16_{\ii}^{+1} : 32_{\ii}^{+2} \left[ 64_{3}^{+1} \right].
 \end{equation*}
-Es gibt nun genau zwei mögliche Transformationen des Symbols, sodass diese Jordanzerlegungen desselben Gitters entsprechen.\\
-Erstens stellen zwei solche Symbole das gleiche Gitter dar, wenn sie sich nur durch Änderungen der $t_q$ bei den Typ-$\i$-Faktoren unterscheidet, die Summen aller $t_q$ pro Abteil jedoch kongruent sind modulo $8$. Nach dieser Regel genügt es also, im $2$-adischen Symbol jeweils nur einen Index pro Abteil anzugeben, der die Summe der enthaltenen $t_q$ modulo $8$ darstellt.\\
-Zweitens sind zwei Symbole äquivalent, sie durch beliebig häufige Anwendung der folgenden Schritte auseinander hervorgehen:
+Es gibt nun zwei mögliche Transformationen des Symbols, sodass diese Jordanzerlegungen desselben Gitters entsprechen.\\
+Erstens stellen zwei solche Symbole das gleiche Gitter dar, wenn sie sich nur durch Änderungen der $t_q$ bei den Typ-$\i$-Faktoren unterscheiden, die Summen aller $t_q$ pro Abteil jedoch kongruent sind modulo $8$. Nach dieser Regel genügt es also, im $2$-adischen Symbol jeweils nur einen Index pro Abteil anzugeben, der die Summe der enthaltenen $t_q$ modulo $8$ darstellt.\\
+Zweitens sind zwei Symbole äquivalent, die durch beliebig häufige Anwendung der folgenden Schritte auseinander hervorgehen:
 \begin{itemize}
 	\item Wähle $2^{k_1} < 2^{k_2} \in \lbrace 1, 2, \dots, 2^k \rbrace$ so, dass die zugehörigen Komponenten im selben Zug liegen.
 	\item Setzte $\epsilon_{2^{k_1}} = - \epsilon_{2^{k_1}}$ und $\epsilon_{2^{k_2}} = - \epsilon_{2^{k_2}}$.
-	\item Definiere den Weg $W := \lbrace (a,2a) \mid a = k_1, 2 k_1, \dots, \frac{1}{2}k_2 \rbrace$.
-	\item In jedem Abteil, sodass $\vert \lbrace (a, 2a) \in W \mid a \text{ oder } 2a \text{ im Abteil} \rbrace \vert$ ungerade, ändere die Werte $t_q$ aller Komponenten so, dass die Summe dieser sich um genau $4$ modulo $8$ unterscheidet.
+	\item Definiere den Weg $W := \lbrace (a,2a) \mid a = k_1, 2 k_1, \dots, \frac{1}{2}k_2 \rbrace$. In jedem Abteil, sodass $\vert \lbrace (a, 2a) \in W \mid a \text{ oder } 2a \text{ im Abteil} \rbrace \vert$ ungerade, ändere die Werte $t_q$ aller Komponenten so, dass sich die Summe dieser um genau $4$ modulo $8$ unterscheidet.
 \end{itemize}
 Beispielsweise korrespondieren die Symbole
 \begin{equation*}
@@ -1307,7 +1296,7 @@ und
 	1_{\ii}^{+2} \left[ 2^{+2}\ 4^{+3} \right]_3 8_{\ii}^{+0} \left[ 16^{+1} \right]_1
 \end{equation*}
 zum gleichen Gitter. Es wurden die Vorzeichen bei $2$ und $16$ verändert. Dabei involvieren zwei Schritte das erste Abteil und ein Schritt das zweite Abteil, also muss der Index des zweiten Abteils um $4$ geändert werden, der Index des ersten Abteils jedoch nicht.\\
-Als Normierungsbedingung für diese Transformation können wir fordern, dass jeder Zug höchstens einmal das Vorzeichen $\epsilon_q = -1$ enthalten soll und dass dieses bei der ersten Komponente von Dimension $n_q > 0$ auftritt. Dies schließt die Beschreibung des $2$-adischen Symbols ab. Es können bloß noch kosmetische Änderungen vorgenommen werden, so wie das Auslassen der Komponenten von Dimension $0$. So hat beispielsweise das fertige $2$-adische Symbol von \eqref{symbol} die Form
+Als Normierungsbedingung für diese Transformation können wir fordern, dass jeder Zug höchstens einmal das Vorzeichen $\epsilon_q = -1$ enthalten soll und dass dieses bei der ersten Komponente von Dimension $n_q > 0$ auftritt. Dies schließt die Beschreibung des $2$-adischen Symbols ab. Es können nur noch Änderungen vorgenommen werden, die zur besseren Lesbarkeit beitragen, wie etwa das Auslassen der Komponenten von Dimension $0$ und der $\ii$-Indizes. So hat beispielsweise das fertige $2$-adische Symbol von \eqref{symbol} die Form
 \begin{equation*}
 	1^{-2} \left[2^{+2} 4^{+3} \right]_7 : 16^{+1} : 32^{+2} \left[ 64^{+1} \right]_3.
 \end{equation*}
@@ -1319,24 +1308,23 @@ Als nächstes stellt sich andersherum die Frage, zu welchen möglichen Symbolen 
 			r - s + \sum_{p > 2} \left( 4 k_p + \sum_{q \in \lbrace 1, p, p^2, \dots \rbrace} n_q (q-1) \right) \equiv 4 k_2 + \sum_{q \in \lbrace 1, 2, 4, \dots \rbrace} t_q \quad \text{(mod } 8 \text{).}
 		\end{equation*}
 	\item Für alle $q$ mit $n_q = 0$ gilt $\epsilon_q = +1$.
-	\item Sei $q$ eine Zweierpotenz. Dann:
+	\item Sei $q$ eine Zweierpotenz. Dann gilt:
 		\begin{itemize}
 			\item $n_q = 0 \Rightarrow S_q = \ii$ und $\epsilon_q = +1$.
-			\item $n_q = 1, \epsilon_q = +1 \Rightarrow t_q \equiv_8 \pm 1$
-			\item $n_q = 1, \epsilon_q = -1 \Rightarrow t_q \equiv_8 \pm 3$
-			\item $n_q = 2, S_q = \i, \epsilon_q = +1 \Rightarrow t_q \equiv_8 0$ oder $\pm 2$
-			\item $n_q = 2, S_q = \i, \epsilon_q = -1 \Rightarrow t_q \equiv_8 4$ oder $\pm 2$
-			\item $n_q \equiv_2 t_q$
+			\item $n_q = 1, \epsilon_q = +1 \Rightarrow t_q \equiv_8 \pm 1$.
+			\item $n_q = 1, \epsilon_q = -1 \Rightarrow t_q \equiv_8 \pm 3$.
+			\item $n_q = 2, S_q = \i, \epsilon_q = +1 \Rightarrow t_q \equiv_8 0$ oder $\pm 2$.
+			\item $n_q = 2, S_q = \i, \epsilon_q = -1 \Rightarrow t_q \equiv_8 4$ oder $\pm 2$.
+			\item $n_q \equiv_2 t_q$.
 			\item $n_q$ ungerade $\Rightarrow S_q = \i$.
 		\end{itemize}
 \end{enumerate}
-
-Erfüllt ein System von $p$-adischen Symbolen für $p \in \P \cup \lbrace -1 \rbrace$ all diese Bedingungen, dann exisitiert ein ganzes Gitter mit diesem Symbolen. Die Gleichung (ii) bezeichnen Conway und Sloane auch als \textit{Oddity-Formel}.\par
+Erfüllt ein System von $p$-adischen Symbolen für $p \in \P \cup \lbrace -1 \rbrace$ alle genannten Bedingungen, dann exisitiert ein ganzes Gitter mit diesen Symbolen. Die Gleichung (ii) bezeichnen Conway und Sloane auch als \textit{Oddity-Formel}.\par
 Wir können nun alle lokalen Symbole zum gesamten Geschlechtssymbol kombinieren. Dieses hat die Form
 \begin{equation*}
 	\i_{r-s}(...), \quad \text{bzw.}\quad \ii_{r-s}(...).
 \end{equation*}
-Wobei $\i/\ii$ dem Typen $S_1$ entspricht, $r,s$ der reellen Signatur und die Klammern die $p$-adischen Symbole für $p \in \P$ enthalten. Dabei werden die Komponenten zur Potenz $0$ jeweils ausgelassen, deren Invarianten lassen sich jedoch mithilfe der Dimension und Determinante von $L$, sowie den angegebenen Bedingungen an die $p$-adischen Symbole bei Bedarf herleiten.
+Wobei $\i/\ii$ dem Typen $S_1$ entspricht, $r,s$ der reellen Signatur und die Klammern die $p$-adischen Symbole für $p \in \P$ enthalten. Dabei werden die Komponenten zur Potenz $0$ jeweils ausgelassen. Deren Invarianten lassen sich jedoch mithilfe der Dimension und Determinante von $L$ sowie den angegebenen Bedingungen an die $p$-adischen Symbole bei Bedarf herleiten.
 
 \begin{beispiele}
 	\begin{enumerate}[label=(\roman*)]
@@ -1356,7 +1344,7 @@ Wobei $\i/\ii$ dem Typen $S_1$ entspricht, $r,s$ der reellen Signatur und die Kl
 			\begin{equation*}
 				\frac{n(\ell+1)}{2} \equiv_8 4 k_\ell.
 			\end{equation*}
-			Weiterhin muss $\epsilon_1 \epsilon_3 = \left( \frac{\Det(L) / \ell^\frac{n}{2}}{\ell}\right) = 1$ oder äquivalent $\epsilon_1 = \epsilon_\ell$ sein. Da genau dann $k_\ell = 1$ gilt, wenn $\epsilon_\ell = 1$ und sonst $k_\ell = 0$, ist das zu $L$ gehörige Geschlechtssymbol:
+			Weiterhin muss $\epsilon_1 \epsilon_3 = \left( \frac{\Det(L) / \ell^\frac{n}{2}}{\ell}\right) = 1$ oder äquivalent $\epsilon_1 = \epsilon_\ell$ sein. Da genau dann $k_\ell = 1$ gilt, wenn $\epsilon_\ell = 1$ und sonst $k_\ell = 0$ ist, ist das zu $L$ gehörige Geschlechtssymbol:
 			\begin{align*}
 				\ii_n\left(\ell^{+\frac{n}{2}}\right), \quad \text{falls } \frac{n(\ell+1)}{2} \equiv_8 0,\\
 				\ii_n\left(\ell^{-\frac{n}{2}}\right), \quad \text{falls } \frac{n(\ell+1)}{2} \equiv_8 4.\\
@@ -1380,13 +1368,13 @@ Wobei $\i/\ii$ dem Typen $S_1$ entspricht, $r,s$ der reellen Signatur und die Kl
 			Nun ist aber $\sqrt{2} L^\# \cong L$ und damit ein gerades Gitter, also muss auch $f_2$ gerade sein und $t_2 = 0$. Erneut ist allein anhand der Dimension das Geschlechtssymbol eindeutig festgelegt:
 			\begin{align*}
 				\ii_n \left( 2^{+\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 0,\\
-				\ii_n \left( 2^{-\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 4.\\
+				\ii_n \left( 2^{-\frac{n}{2}} \right), \quad \text{falls } n \equiv_8 4,\\
 			\end{align*}
 			genau wie bei $\ell$-modularen Gittern für $\ell \in \P_{>2}$.
 	\end{enumerate}
 \end{beispiele}
 
-Jürgens beschreibt in \cite[Abschnitt (4.1.3)]{juergens}, welche Gestalt die Geschlechtssymbole der von einem Automorphismus von Primzahlordnung induzierten Gitter $L_1$ und $L_p$ wie im vorherigen Abschnitt besitzen.
+Jürgens beschreibt in \cite[Abschnitt (4.1.3)]{juergens}, welche Gestalt die Geschlechtssymbole der von einem Automorphismus von Primzahlordnung induzierten Fix- und Bildgitter $L_1$ und $L_p$ besitzen.
 
 \begin{framed}
 	\begin{satz}
@@ -1414,8 +1402,8 @@ Wir kommen nun zur Aufzählung aller Gitter eines gegebenen Geschlechtes. Kneser
 
 \begin{framed}
 	\begin{definition}
-		Sei $p$ eine Primzahl, sowie $L$ und $M$ $\Z$-Gitter im gleichen Vektorraum. Man bezeichnet $L$ und $M$ als \textit{$p$-Nachbarn}, falls $\left[ L : L \cap M \right] = p = \left[ M : L \cap M \right]$.\par
-		Sei $\mathcal{G}$ ein Geschlecht und $C$ die Menge aller Isometrie-Klassen von Gittern in $\mathcal{G}$. Der Graph mit Knotenmenge $C$ und Kanten zwischen $C_1, C_2 \in C$ genau dann, wenn $C_1$ und $C_2$ $p$-Nachbarn sind bezüglich einem $p \in \P$, heißt \textit{Nachbarschafts-Graph}.
+		Sei $p$ eine Primzahl sowie $L$ und $M$ $\Z$-Gitter im gleichen Vektorraum. Man bezeichnet $L$ und $M$ als \textit{$p$-Nachbarn}, falls $\left[ L : L \cap M \right] = p = \left[ M : L \cap M \right]$.\par
+		Sei $\mathcal{G}$ ein Geschlecht und $C$ die Menge aller Isometrie-Klassen von Gittern in $\mathcal{G}$. Der Graph mit Knotenmenge $C$ und Kanten zwischen $C_1, C_2 \in C$ genau dann, wenn $C_1$ und $C_2$ $p$-Nachbarn für eine Primzahl $p$, heißt \textit{Nachbarschafts-Graph}.
 	\end{definition}
 \end{framed}
 
@@ -1427,7 +1415,7 @@ Kneser beschreibt, wie die Menge aller $p$-Nachbarn eines gegebenen Gittes $L$ g
 	\end{satz}
 \end{framed}
 
-Die recht schwache Bedingung zur Jordanzerlegung ist beispielsweise für alle Gitter von quadratfreier Stufe - also für alle von uns zu untersuchende Geschlechter - erfüllt. Daher können wir durch sukzessive Nachbar-Bildung das gesamte Geschlecht aufzählen. Als Heuristik, um auszuwählen, für welchen Knoten als nächstes die Nachbarn konstruiert werden, verwenden wir die Häufigkeit mit der ein Gitter bisher gefunden wurde - unter den am seltensten gefundenen Gittern wird zufällig eines ausgewählt. Es sind noch andere Strategien denkbar, wie beispielsweise eine einfache Breiten- oder Tiefensuche, oder Auswählen eines Gitters mit der größten Automorphismengruppe. Des Weiteren können wir als Abbruchbedingung das sogenannte \textit{Maß} eines Geschlechtes benutzen (vgl. \cite[Abschnitt 35]{kneser}).
+Die recht schwache Bedingung zur Jordanzerlegung ist beispielsweise für alle Gitter von quadratfreier Stufe - also für alle von uns zu untersuchenden Geschlechter - erfüllt. Daher können wir durch sukzessive Nachbar-Bildung das gesamte Geschlecht aufzählen. Als Heuristik zur Auswahl, für welchen Knoten als nächstes die Nachbarn konstruiert werden, verwenden wir die Häufigkeit mit der ein Gitter bisher gefunden wurde; unter den am seltensten gefundenen Gittern wird zufällig eines ausgewählt. Es sind noch andere Strategien denkbar, wie beispielsweise eine einfache Breiten- oder Tiefensuche. Des Weiteren können wir als Abbruchsbedingung das sogenannte \textit{Maß} eines Geschlechtes benutzen (vgl. \cite[Abschnitt 35]{kneser}).
 
 \begin{framed}
 	\begin{definition}
@@ -1439,8 +1427,7 @@ Die recht schwache Bedingung zur Jordanzerlegung ist beispielsweise für alle Gi
 	\end{definition}
 \end{framed}
 
-Das Maß eines Geschlechtes kann ohne tatsächliche Aufzählung mithilfe der \textit{Maßformel} berechnet werden. Indem wir die Kehrwerte der Ordnungen der Automorphismengruppen aller bisher gefundenen Gitter während des Algorithmus aufaddieren, können wir also über die Differenz zum tatsächlichen Maß feststellen, ob wir bereits alle Isometrieklassen gefunden haben. Zusätzlich können wir eine weitere nützliche Einschränkung machen: haben wir bisher Gitter $L_1, \dots, L_{h'}$ gefunden und ist $m := \sum_{i=1}^{h'} \frac{1}{\vert \Aut(L_i) \vert}$, so muss jedes weitere Gitter $M$ im Geschlecht eine Automorphismengruppe mit $\vert \Aut(M) \vert \geq \frac{1}{\text{Maß}(\mathcal{G}) - m}$ besitzen. Sobald das verbleibende Maß also kleiner als $1$ ist, können wir bei gefundenen Nachbarn mit zu kleiner Automorphismengruppe Isometrietests sparen. Insgesamt kommen wir so auf Algorithmus \eqref{alg:knesneigh} zur Aufzählung eines Geschlechtes anhand eines Vertreters. Für die Bestimmung eines Vertreters zu einem gegebenen Geschlechtssymbol wird ein \texttt{MAGMA}-Programm aus der Diplomarbiet von David Lorch \cite{lorch} verwendet.\par
-Für Dimension $n \leq 2$ sind die Voraussetzungen von Satz \eqref{th:neighbourgraph} nicht erfükkt, dennoch ist die Aufzählung eines Geschlechtes leicht. Das Geschlechtssymbol legt insbesondere die Determinante $d$ aller Gitter des Geschlechtes fest. Im Falle $n = 1$ muss jedes Gitter im Geschlecht folglich die Gram-Matrix $(d) \in \Z^{1 \times 1}$ besitzen. Nun zum Fall $n = 2$. Die Hermite-Konstante $\gamma_2$ hat auf $4$ Stellen abgerundet den Wert $1.1547$. Für alle Gitter $L$ des Geschlechtes muss also $\Min(L) \leq 1.1548 \sqrt{\Det(L)}$ gelten. Sei $t := \Min(L)$ und $(e_1, e_2)$ eine Basis von $L$ mit $b(e_1, e_1) = t$. Die Gram-Matrix von $L$ bezüglich dieser Basis hat die Gestalt $\left(\begin{matrix} t & x\\x & y\end{matrix}\right)$. Ohne Einschränkung gilt $-t < x < t$, sonst ersetze sukzessiv $e_2$ durch $e_2 + e_1$ für $x < -t$, bzw. durch $e_2 - e_1$ für $t < x$, denn $b(e_1, e_2 \pm e_1) = x \pm t$. Der Wert $y$ ist dann eindeutig bestimmt durch $\Det(L) =  ty - x^2$. Diese Überlegungen ergeben Algorithmus \eqref{alg:gen2dim}.
+Das Maß eines Geschlechtes kann ohne tatsächliche Aufzählung mithilfe der \textit{Maßformel} berechnet werden. Indem wir die Kehrwerte der Ordnungen der Automorphismengruppen aller bisher gefundenen Gitter während des Algorithmus aufsummieren, können wir also über die Differenz zum tatsächlichen Maß feststellen, ob wir bereits alle Isometrieklassen gefunden haben. Zusätzlich können wir eine weitere nützliche Einschränkung machen: Haben wir bisher Gitter $L_1, \dots, L_{h'}$ gefunden und ist $m := \sum_{i=1}^{h'} \frac{1}{\vert \Aut(L_i) \vert}$, so muss jedes weitere Gitter $M$ im Geschlecht eine Automorphismengruppe mit $\vert \Aut(M) \vert \geq \frac{1}{\text{Maß}(\mathcal{G}) - m}$ besitzen. Sobald das verbleibende Maß also kleiner als $1$ ist, können wir Nachbarn mit zu kleiner Automorphismengruppe übergehen, da diese notwendigerweise isometrisch zu einem bereits gefundenen Gitter sein müssen. Insgesamt kommen wir so auf Algorithmus \eqref{alg:knesneigh} zur Aufzählung eines Geschlechtes anhand eines Vertreters. Für die Bestimmung eines Vertreters zu einem gegebenen Geschlechtssymbol wird ein \texttt{MAGMA}-Programm aus der Diplomarbiet von David Lorch \cite{lorch} verwendet.
 
 \begin{algorithm}[H]
 	\caption{Aufzählung aller Isometrieklassen eines Geschlechtes}\label{alg:knesneigh}
@@ -1478,6 +1465,8 @@ Für Dimension $n \leq 2$ sind die Voraussetzungen von Satz \eqref{th:neighbourg
 	\end{algorithmic}
 \end{algorithm}
 
+Für Dimension $n \leq 2$ sind die Voraussetzungen von Satz \eqref{th:neighbourgraph} nicht erfüllt, dennoch ist die Aufzählung eines Geschlechtes leicht. Das Geschlechtssymbol legt insbesondere die Determinante $d$ aller Gitter des Geschlechtes fest. Im Falle $n = 1$ muss jedes Gitter im Geschlecht folglich die Gram-Matrix $(d) \in \Z^{1 \times 1}$ besitzen. Kommen wir nun zum Fall $n = 2$: Die Hermite-Konstante $\gamma_2$ hat auf $4$ Stellen abgerundet den Wert $1.1547$. Für alle Gitter $L$ des Geschlechtes muss also $\Min(L) \leq 1.1548 \sqrt{\Det(L)}$ gelten. Sei $t := \Min(L)$ und $(e_1, e_2)$ eine Basis von $L$ mit $b(e_1, e_1) = t$. Die Gram-Matrix von $L$ bezüglich dieser Basis hat die Gestalt $\left(\begin{matrix} t & x\\x & y\end{matrix}\right)$. Ohne Einschränkung gilt $-t < x < t$, sonst ersetze sukzessiv $e_2$ durch $e_2 + e_1$ für $x < -t$, bzw. durch $e_2 - e_1$ für $t < x$, denn $b(e_1, e_2 \pm e_1) = x \pm t$. Der Wert $y$ ist dann eindeutig bestimmt durch $\Det(L) =  ty - x^2$. Diese Überlegungen ergeben Algorithmus \eqref{alg:gen2dim}.
+
 \begin{algorithm}
 	\caption{Aufzählung aller Isometrieklassen eines Geschlechtes von Dimension $2$}\label{alg:gen2dim}
 	\begin{algorithmic}[1]
@@ -1509,9 +1498,9 @@ Haben wir einen Kandidaten für das Teilgitter $M := L_1 \perp L_p$ und für den
 \begin{equation*}
 	\overline{b} : M^{\#,p} / M \times M^{\#,p} / M \rightarrow \F_p, (x+M,y+M) \mapsto pb(x,y) + p\Z
 \end{equation*}
-die reduzierte Bilinearform auf den Faktorgruppen darstellt, sämtliche ganzen Obergitter von Index $p^s$ zu bestimmen - unabhängig von $\sigma$. Da diese Methode wegen Nichtbeachtung der $\sigma$-invarianz potentiell noch mehr Gitter liefert als solche mit den geforderten Eigenschaften, ist sie unsere erste Wahl. Leider scheitert sie in einigen Fällen zum Teil an der steigenden Ressourcenintensivität.\par
+die reduzierte Bilinearform auf den Faktorgruppen darstellt, sämtliche ganzen Obergitter von Index $p^s$ zu bestimmen - unabhängig von $\sigma$. Da diese Methode wegen Nichtbeachtung der $\sigma$-invarianz potentiell noch mehr Gitter liefert als solche mit den geforderten Eigenschaften, ist sie unsere erste Wahl. In einigen Fällen scheitert sie jedoch an der steigenden Ressourcenintensivität.\par
 
-Nebe verwendet im Beweis von \cite[Theorem (5.9)]{nebe} eine Vorgehensweise, welche die Struktur von $M$ als orthogonale Summe benutzt, um die tatsächlich $\sigma$-invarianten Obergitter zu bestimmen. Diese Vorgehensweise passen wir nun auf unsere Situation an. Dazu bemerken wir zunächst die Tatsache, dass jedes ganze Obergitter $L \geq M$, sodass $[L : M]$ eine $p$-Potenz ist, ein Teilgitter von $M^{\#,p} = L_1^{\#,p} \perp L_p^{\#,p}$ sein muss. Definiere nun $b_1 := b \vert_{V_1 \times V_1}$ und $b_p := b \vert_{V_p \times V_p}$, sowie $\overline{b_1} := \overline{b}\vert_{(L_1^{\#,p} / L_1) \times (L_1^{\#,p} / L_1)}$ und $\overline{b_p} := \overline{b}\vert_{(L_p^{\#,p} / L_p) \times (L_p^{\#,p} / L_p)}$. Damit $L$ ein ganzes Gitter wird, muss für beliebige Elemente $(x_1, x_p), (y_1, y_p) \in L$ gelten:
+Nebe verwendet im Beweis von \cite[Theorem (5.9)]{nebe} eine Vorgehensweise, welche die Struktur von $M$ als orthogonale Summe benutzt, um die tatsächlich $\sigma$-Invarianten Obergitter zu bestimmen. Diese Vorgehensweise passen wir nun auf unsere Situation an. Dazu bemerken wir zunächst die Tatsache, dass jedes ganze Obergitter $L \geq M$, sodass $[L : M]$ eine $p$-Potenz ist, ein Teilgitter von $M^{\#,p} = L_1^{\#,p} \perp L_p^{\#,p}$ sein muss. Definiere nun $b_1 := b \vert_{V_1 \times V_1}$ und $b_p := b \vert_{V_p \times V_p}$ sowie $\overline{b_1} := \overline{b}\vert_{(L_1^{\#,p} / L_1) \times (L_1^{\#,p} / L_1)}$ und $\overline{b_p} := \overline{b}\vert_{(L_p^{\#,p} / L_p) \times (L_p^{\#,p} / L_p)}$. Damit $L$ ein ganzes Gitter wird, muss für beliebige Elemente $(x_1, x_p), (y_1, y_p) \in L$ gelten:
 \begin{align*}
 	0 + p\Z &\stackrel{!}{=} \overline{b}((x_1,x_p) + M, (y_1, y_p) + M)\\
 	&= pb_1(x_1,y_1) + pb(x_1, y_p) + pb(x_p, y_1) + pb_p(x_p, y_p) + p\Z\\
@@ -1522,7 +1511,7 @@ Also $\overline{b_1}(x_1+M, y_1+M) = - \overline{b_p}(x_p+M, y_p+M)$. Demnach si
 	L_\varphi := \lbrace (x_1,x_p) \in L_1^{\#,p} \perp L_p^{\#,p} \mid \varphi(x_1+L_1) = x_p + L_p \rbrace
 \end{equation*}
 für die Isometrien $\varphi : (L_1^{\#,p} / L_1, \overline{b_1}) \rightarrow (L_p^{\#,p} / L_p, -\overline{b_p})$.\par
-Nun zur $\sigma$-invarianz eines solchen Gitters $L_\varphi$. Auf dem Dualgitter $M^\#$ ist $\sigma$ ebenfalls ein Automorphismus, denn
+Nun zur $\sigma$-Invarianz eines solchen Gitters $L_\varphi$. Auf dem Dualgitter $M^\#$ ist $\sigma$ ebenfalls ein Automorphismus, denn
 \begin{equation*}
 	x \in M^\# \Leftrightarrow b(x,M) \subseteq \Z \Leftrightarrow b(\sigma(x), \sigma(M)) \subseteq \Z \Leftrightarrow b(\sigma(x), M) \subseteq \Z \Leftrightarrow \sigma(x) \in M^\#,
 \end{equation*}
@@ -1531,7 +1520,7 @@ $\sigma(x+M) := \sigma(x) + M$. Analog operieren $\sigma_1$ auf $L_1^{\#,p}/L_1$
 \begin{equation}\label{eq:isocond}
 \varphi \circ \sigma_1 = \sigma_p \circ \varphi.
 \end{equation}
-Die Menge aller Isometrien bilden in höheren Dimensionen einen zu großen Suchraum, wir können allerdings einige Einschränkungen machen. Seien $\varphi_0$ und $\varphi_1 : (L_1^{\#,p} / L_1, \overline{b_1}) \rightarrow (L_p^{\#,p} / L_p, -\overline{b_p})$ Isometrien, welche Bedingung \eqref{eq:isocond} erfüllen. Dann gilt
+Die Menge aller Isometrien bilden in höheren Dimensionen einen zu großen Suchraum. Wir können allerdings einige Einschränkungen machen. Seien $\varphi_0$ und $\varphi_1 : (L_1^{\#,p} / L_1, \overline{b_1}) \rightarrow (L_p^{\#,p} / L_p, -\overline{b_p})$ Isometrien, welche Bedingung \eqref{eq:isocond} erfüllen. Dann gilt
 \begin{equation*}
 	\sigma_1 \varphi_0 \varphi_1^{-1} \sigma_1^{-1} = (\sigma_1 \varphi_0) (\sigma_1 \varphi_1)^{-1} = \varphi_0 \sigma_p \sigma_p^{-1} \varphi_1^{-1} = \varphi_0 \varphi_1^{-1}.
 \end{equation*}
@@ -1542,12 +1531,12 @@ Demnach ist $\varphi_0 \varphi_1^{-1}$ enthalten im Zentralisator $C_{O(L_1^{\#,
 	\Leftrightarrow& \quad u \circ \sigma_1 \circ u^{-1} = \tilde{\varphi_0} \circ \sigma_p \circ \tilde{\varphi_0}^{-1}.
 \end{align*}
 Das Element $u$ konjugiert also die Abbildung $\sigma_1$ zu $\tilde{\varphi_0} \circ \sigma_p \circ \tilde{\varphi_0}^{-1}$. Ein solches Element lässt sich durch \texttt{MAGMA} bestimmen.\par
-Eine letzte Beobachtung, ist die folgende: Sei $\varphi$ eine Isometrie mit den gesuchten Eigenschaften und $c \in C_{\text{Aut}(L_1)}(\sigma_1)$, dann operiert $c$ auf $L_1^{\#,p} / L_1$ und die Abbildung $\varphi_c := \varphi \circ c$ ist ebenfalls eine Isometrie mit Eigenschaft \eqref{eq:isocond}, da $c$ im Zentralisator von $\sigma_1$ liegt. Diese Abbildung liefert somit ebenfalls ein $\sigma$-invariantes ganzes Obergitter $L_{\varphi_c}$ von $M$. Definiere nun die Isometrie
+Eine letzte Beobachtung ist die Folgende: Sei $\varphi$ eine Isometrie mit den gesuchten Eigenschaften und $c \in C_{\text{Aut}(L_1)}(\sigma_1)$, dann operiert $c$ auf $L_1^{\#,p} / L_1$ und die Abbildung $\varphi_c := \varphi \circ c$ ist ebenfalls eine Isometrie mit Eigenschaft \eqref{eq:isocond}, da $c$ im Zentralisator von $\sigma_1$ liegt. Diese Abbildung liefert somit ebenfalls ein $\sigma$-invariantes ganzes Obergitter $L_{\varphi_c}$ von $M$. Definiere nun die Isometrie
 \begin{equation*}
 	\psi : L_1^{\#,p} \perp L_p^{\#,p} \rightarrow L_1^{\#,p} \perp L_p^{\#,p}, (x, y) \mapsto ( c(x), y),
 \end{equation*}
 dann ist $\psi(L_{\varphi_c}) = L_\varphi$, also sind die Gitter isometrisch. Um Redundanz bei der Konstruktion zu vermeiden, genügt es daher, jeweils einen Vertreter nach den Restklassen modulo $C_{\text{Aut}(L_1)}(\sigma_1)$ zu wählen.\par
-Insgesamt erhalten wir also den Algorithmus:
+Insgesamt erhalten wir also Algorithmus \eqref{alg:superlat}:
 
 \begin{algorithm}[H]
 	\caption{Konstruktion von $\sigma$-invarianten Obergittern}\label{alg:superlat}
@@ -1576,7 +1565,7 @@ Es ist anzumerken, dass auch diese Methode in zu hohen Dimensionen zu ineffizien
 
 \section{Konstruktion von Gittern mit großem Automorphismus}
 
-Mithilfe der Typen von Automorphismen mit Primzahlordnung kennen wir die Geschlechter von Fix- und Bild-Gitter. In der Regel ist mindestens eines der Geschlechter zu groß, um es mithilfe der Kneser-Methode in akzeptabler Zeit aufzuzählen. Hat das Gitter jedoch einen großen Automorphismus, so kann das $L_p$ eine Ideal-Gitter-Gestalt besitzen, was uns die Konstruktion erleichtert. Wir untersuchen zunächst, welche Form die Potenzen der Minimalpolynome von Automorphismen besitzen.
+Mithilfe der Typen von Automorphismen mit Primzahlordnung kennen wir die Geschlechter - oder zumindest Dimension und Determinante - von Fix- und Bild-Gitter. In der Regel ist mindestens eines der Geschlechter zu groß, um es mithilfe der Kneser-Methode in akzeptabler Zeit aufzuzählen. Hat das $L$ jedoch einen großen Automorphismus, so kann $L_p$ eine Ideal-Gitter-Gestalt besitzen, wodurch die Konstruktion erleichtert wird. Wir untersuchen zunächst, welche Form die Potenzen der Minimalpolynome von Automorphismen besitzen.
 
 \begin{framed}
 	\begin{lemma}\label{lem:sigmaexpmipo}
@@ -1593,9 +1582,9 @@ Mithilfe der Typen von Automorphismen mit Primzahlordnung kennen wir die Geschle
 	\begin{equation*}
 		V = \Kern(\Phi_{n_1}(\sigma)) \oplus \Kern(\Phi_{n_2}(\sigma)) \oplus \dots \oplus \Kern(\Phi_{n_k}(\sigma)) =: V_1 \oplus \dots \oplus V_k
 	\end{equation*}
-	Somit hat $\sigma\vert_{V_i}$ jeweils Minimalpolynom $\Phi_{n_i}$ für $i=1,\dots, k$. Es folgt:
+	Somit hat $\sigma\vert_{V_i}$ jeweils das Minimalpolynom $\Phi_{n_i}$ für $i=1,\dots, k$. Es folgt:
 	\begin{equation*}
-		\mu_{\sigma^d} = \kgV( \mu_{\sigma^d \vert_{V_1}}, \dots, \mu_{\sigma^d\vert_{V_k}}) = \kgV(\Phi_{n_1 / \ggT(n_1, d)}, \dots, \Phi_{n_k / \ggT(n_k,d)})
+		\mu_{\sigma^d} = \kgV( \mu_{\sigma^d \vert_{V_1}}, \dots, \mu_{\sigma^d\vert_{V_k}}) = \kgV(\Phi_{n_1 / \ggT(n_1, d)}, \dots, \Phi_{n_k / \ggT(n_k,d)}).
 	\end{equation*}
 \end{beweis}
 
@@ -1604,16 +1593,16 @@ Sei nun $L$ ein Gitter der Dimension $n$ und $\sigma \in \Aut(L)$ ein großer Au
 	V = \Bild(\sigma^d-1) \oplus \Kern(\sigma^d-1).
 \end{equation*}
 Nun ist allerdings $\Kern(\sigma^d-1) = \Kern\left((\Phi_{n_1} \dots \Phi_{n_k})(\sigma)\right)$ und somit $\Bild(\sigma^d-1) = \Kern(\Phi_m(\sigma))$. Das zu $\sigma^d$ gehörige Bildgitter $L_p = L \cap \Bild(\sigma^d-1) = L \cap \Kern(\Phi_m(\sigma))$ ist also ein Sub-Ideal-Gitter von $L$. Das Fix-Gitter $L_1 = L \cap \Kern(\sigma^d-1)$ hat die Dimension $n-\varphi(m) < \frac{n}{2}$.\par
-Nun ein paar Worte zum Minimalpolynom von $\sigma$ auf den Faktorgruppen $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$. Wir erinnern uns aus Abschnitt (4.2), dass $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$ isomorph waren. Der zugehörige Isomorphismus war die Komposition der drei Isomorphismen
+Wir betrachten nun das Minimalpolynom der Operation von $\sigma$ auf den Faktorgruppen $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$. Nach \eqref{th:fps} waren $L_1^{\#,p}/L_1$ und $L_p^{\#,p} / L_p$ isomorph und der zugehörige Isomorphismus war die Komposition der drei Isomorphismen
 \begin{align*}
 	L_1^{\#,p} / L_1 \rightarrow L_1^\# / L_1^{\#, \ell}&, x + L_1 \mapsto x + L_1^{\#, \ell}\\
 	L_1^\#/L_1^{\#,\ell} \rightarrow L_p^\# / L_p^{\#,\ell}&, y + L_1^{\#, \ell} \mapsto (\hat{y} - y) + L_p^{\#, \ell}\\
 	L_p^\# / L_p^{\#, \ell} \rightarrow L_p^{\#,p} / L_p&, x + L_p^{\#, \ell} \mapsto x + L_p,
 \end{align*}
-wobei $\hat{y} \in L^\#$ mit $b(x,y) = b(x,\hat{y})$ für alle $x \in L_1$. Man sieht leicht ein, dass $\sigma(\hat{y})$ eine mögliche Wahl für $\widehat{\sigma(y)}$ darstellt, da alle beteiligten Gitter und die Bilinearform invariant unter $\sigma$ sind. Alle drei Isomorphismen vertauschen also mit $\sigma$. Daraus folgt, dass die Faktorgruppen auch als $\Z[\sigma]$-Moduln, bzw. wegen $p L_p^{\#,p} \subseteq L_p$ und $p L_1^{\#,p} \subseteq L_1$ sogar als $\F_p[\sigma]$-Moduln isomorph sind. Insbesondere hat $\sigma$ auf $L_1^{\#,p}/L_1$ und $L_p^{\#,p}/L_p$ dasselbe Minimalpolynom. Wegen $(1-\sigma^d) L_p^{\#,p} \subseteq L_p$ wird $L_p^{\#,p}/L_p$ zu einem $\F_p[\sigma] / (1-\sigma^d) \cong \F_p[\zeta_d]$-Modul. Das Minimalpolynom der Operationen von $\sigma$ auf den Faktorgruppen ist somit ein Teiler von $\Phi_d$, also (falls $\Dim_{\F_p}(L_p^{\#,p}/L_p) = \Dim(L_1^{\#,p}/L_1) > 0$) gleich $\Phi_d$. In diesem Falle muss daher
+wobei $\hat{y} \in L^\#$ mit $b(x,y) = b(x,\hat{y})$ für alle $x \in L_1$. Man sieht leicht ein, dass $\sigma(\hat{y})$ eine mögliche Wahl für $\widehat{\sigma(y)}$ darstellt, da alle beteiligten Gitter und die Bilinearform invariant unter $\sigma$ sind. Alle drei Isomorphismen kommutieren also mit $\sigma$. Daraus folgt, dass die Faktorgruppen auch als $\Z[\sigma]$-Moduln, bzw. wegen $p L_p^{\#,p} \subseteq L_p$ und $p L_1^{\#,p} \subseteq L_1$ sogar als $\F_p[\sigma]$-Moduln isomorph sind. Insbesondere hat $\sigma$ auf $L_1^{\#,p}/L_1$ und $L_p^{\#,p}/L_p$ dasselbe Minimalpolynom. Wegen $(1-\sigma^d) L_p^{\#,p} \subseteq L_p$ wird $L_p^{\#,p}/L_p$ zu einem $\F_p[\sigma] / (1-\sigma^d) \cong \F_p[\zeta_d]$-Modul. Das Minimalpolynom der Operationen von $\sigma$ auf den Faktorgruppen ist somit ein Teiler von $\Phi_d$, also (falls $\Dim_{\F_p}(L_p^{\#,p}/L_p) = \Dim(L_1^{\#,p}/L_1) > 0$) gleich $\Phi_d$. In diesem Falle muss daher
 \[\text{Grad}(\mu_{\sigma\vert_{\Bild(\sigma^d-1)}}), \text{Grad}(\mu_{\sigma \vert_{\Kern(\sigma^d-1)}}) \geq \text{Grad}(\Phi_d) = \varphi(d)\]
 erfüllt sein. Außerdem gilt $\varphi(d) \leq \text{Dim}_{\F_p}(L_p^{\#,p} / L_p) = s$.\\
-Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
+Wir entwerfen nun den Algorithmus \eqref{alg:largeauto} zur Konstruktion solcher Gitter $L$.
 
 \begin{algorithm}[H]
 	\caption{Konstruktion von Gittern mit großem Automorphismus}\label{alg:largeauto}
@@ -1654,8 +1643,8 @@ Wir entwerfen nun einen Algorithmus zur Konstruktion solcher Gitter $L$.
 	\end{algorithmic}
 \end{algorithm}
 
-Für $p = 2$ kann bei Zeile $12$ des Algorithmus alternativ auch mit Lemma \eqref{lem:2sub} vorgegangen werden: man zählt stattdessen die möglichen $U$ auf und erhält die Kandidaten für $L_1$ als die Obergitter von $\sqrt{2} U$ vom Index $p^\frac{\varphi(n)-m - s}{2}$ mit quadratfreier Stufe und ausreichend großem Minimum.\par
-Für diesen Algorithmus wurden Einschränkungen an die Minimalpolynome der Automorphismen von Gittern gemacht, es ist also a priori nicht klar, welcher Grad von Vollständigkeit durch die Klassifikation mit unserem Algorithmus gegeben ist. Dennoch ist es gelungen, einige neue extremale Gitter zu konstruieren. Die Anzahlen gefundener Gitter sind in Tabelle \eqref{tab:numsublat} festgehalten. Für $(\ell, n) \in \lbrace (7,18), (7,20), (1,24), (2,24), (5,24) \rbrace$ wurden die Obergitter $\sigma$-invariant konstruiert, anstatt mit Jürgens Methode. Bei $\ell = 7$, $n = 20$ konnte in einem Falle nicht das gesamte Geschlecht für $L_1$ aufgezählt werden. Zur tatsächlichen Masse fehlte $\frac{167}{4644864}$. Das gleiche Problem trat bei $\ell = 7$, $n = 22$ auf. Hier fehlte bei einem Geschlecht $\frac{167}{4644864}$.
+Für $p = 2$ kann bei Zeile $12$ des Algorithmus alternativ auch mit Lemma \eqref{lem:2sub} vorgegangen werden: Man zählt stattdessen die möglichen $U$ auf und erhält die Kandidaten für $L_1$ als die Obergitter von $\sqrt{2} U$ vom Index $p^\frac{\varphi(n)-m - s}{2}$ mit quadratfreier Stufe und ausreichend großem Minimum.\par
+Für diesen Algorithmus wurden Einschränkungen an die Minimalpolynome der Automorphismen von Gittern gemacht, es ist also a priori nicht klar, welcher Grad von Vollständigkeit durch die Klassifikation mit unserem Algorithmus gegeben ist. Dennoch ist es gelungen, einige neue extremale Gitter zu konstruieren. Die Anzahlen gefundener Gitter sind in Tabelle \eqref{tab:numsublat} festgehalten. Für $(\ell, n) \in \lbrace (7,18), (7,20), (1,24), (2,24), (5,24) \rbrace$ wurden die Obergitter $\sigma$-invariant konstruiert und nicht allgemein mit Jürgens Methode. Bei $\ell = 7$, $n = 20$ konnte in einem Falle nicht das gesamte Geschlecht für $L_1$ aufgezählt werden. Zur tatsächlichen Masse fehlte $\frac{167}{4644864}$. Das gleiche Problem trat bei $\ell = 7$, $n = 22$ auf. Hier fehlte bei einem Geschlecht $\frac{167}{4644864}$.
 
 \begin{table}[H]\label{tab:numsublat}
 	\centering
@@ -1676,16 +1665,16 @@ Für diesen Algorithmus wurden Einschränkungen an die Minimalpolynome der Autom
 		$26$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
 		$28$	&$-$		&$27(25^\ast)$&$3(2^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
 	\end{tabular}
-	\caption{Anzahl der durch Algorithmus \eqref{alg:largeauto} konstruierten extremalen stark $\ell$-modularen Gitter in Dimension $n \leq 28$, sowie ggf. der Anzahl der bisher unbekannten Gitter darunter}
+	\caption{Anzahl der durch Algorithmus \eqref{alg:largeauto} konstruierten extremalen stark $\ell$-modularen Gitter in Dimension $n \leq 28$ sowie ggf. der Anzahl der bisher unbekannten Gitter darunter}
 \end{table}
 
 
 \section{Vollständigkeit der Ergebnisse}
 
-In diesem letzten Abschnitt wollen wir die Gitter genauer untersuchen, die von Algorithmus \eqref{alg:largeauto} nicht gefunden werden. Genauer: wir klassifizieren die Möglichkeiten für die charakteristischen Polynome von Gittern, die durch den Algorithmus nicht konstruiert werden können. Dazu untersuchen wir für die Menge aller Kandidaten für charakteristische Polynome die "Kompatiblität" der Dimensionen der von $\sigma$-Potenzen induzierten Fix- und Bildgitter.\par
+In diesem letzten Abschnitt wollen wir die Gitter genauer untersuchen, die von Algorithmus \eqref{alg:largeauto} nicht gefunden werden. Genauer: Wir klassifizieren die Möglichkeiten für die charakteristischen Polynome von Gittern, die durch den Algorithmus nicht konstruiert werden können. Dazu untersuchen wir für die Menge aller Kandidaten für charakteristische Polynome die "Kompatiblität"\ der Dimensionen der von $\sigma$-Potenzen induzierten Fix- und Bildgitter.\par
 Sei $\sigma$ eine Isometrie eines $n$-dimensionalen Vektorraums $V$ mit Ordnung $\vert \sigma \vert = m$, dann ist
 	\[\chi_\sigma = \Phi_{d_1}^{c_1} \dots \Phi_{d_k}^{c_k} \]
-für die Teiler $d_i$ von $m$ und gewisse Potenzen. Die Dimension eines Hauptraumes $\Kern(\Phi_{d_i}(\sigma))$ ist in diesem Falle $c_i \varphi(d_i)$ und ähnlich wie in Lemma \eqref{lem:sigmaexpmipo} ist
+für die Teiler $d_i$ von $m$ und gewisse Potenzen $c_i$. Die Dimension eines Hauptraumes $\Kern(\Phi_{d_i}(\sigma))$ ist in diesem Falle $c_i \varphi(d_i)$ und ähnlich wie in Lemma \eqref{lem:sigmaexpmipo} ist
 	\[ \Dim(\Kern(\sigma^d-1)) = \sum_{d_i \mid d} c_i \varphi(d_i) \]
 für alle $d \in \N_0$ und $n = \sum_{i=1}^k c_i \varphi(d_i)$. Kennt man daher für Primteiler $p_1, \dots, p_t \mid m$ die Typen
 \begin{align*}
@@ -1696,28 +1685,28 @@ für alle $d \in \N_0$ und $n = \sum_{i=1}^k c_i \varphi(d_i)$. Kennt man daher 
 \end{align*}
 der Automorphismen $\sigma^\frac{m}{p_1}, \sigma^\frac{m}{p_2}, \dots, \sigma^\frac{m}{p_t}$, so muss der Vektor $c := (c_1, \dots, c_k) \in \N_0^k$ eine Lösung des Gleichungssystems $c M= (n_{1,1}, n_{2,1}, \dots, n_{t,1}, n)$ mit der Matrix
 	\[M \in \N_0^{k \times (t+1)}, \quad M_{i,j} := \begin{cases} \varphi(d_i)	&, d_i \mid \frac{m}{p_j} \text{ oder } j = t+1\\ 0 &, \text{sonst}\end{cases}\]
-sein. Außerdem gilt natürlich $\kgV\lbrace d_i \vert c_i > 0 \rbrace = m$.\par
+sein. Außerdem gilt $\kgV\lbrace d_i \vert c_i > 0 \rbrace = m$.\par
 Von den verbleibenden Kandidaten für das charakteristische Polynom werden nun alle diejenigen potentiell \textit{nicht} von Algorithmus \eqref{alg:largeauto} gefunden, für die gilt, dass
 	\[\kgV \lbrace d_i \mid d_i \neq m \text{ und } c_i > 0 \rbrace = m.\]
 Diese Charakterisierung der möglichen charakteristischen Polynome allein anhand einer Menge von Typen wenden wir nun einmal beispielhaft auf $3$-modulare Gitter der Dimension $24$ an.
 
 \begin{framed}
 	\begin{satz}
-		Sei $L$ ein extremales $3$-modulares Gitter in einem bilinearen Vektorraum $(V,b)$ der Dimension $24$. Dann hat $L$ keine Automorphismen der Ordnung $7$, sowie der Ordnung $p \in P_{\ge 13}$. Ist $\sigma \in \Aut(L)$ von Ordnung $m$ mit $12 < \varphi(m) \leq 24$, so ist $m \in \lbrace 60, 27, 33, 66, 45, 72, 90 \rbrace$. Außerdem gelten folgende Einschränkungen:
+		Sei $L$ ein extremales $3$-modulares Gitter in einem bilinearen Vektorraum $(V,b)$ der Dimension $24$. Dann hat $L$ keine Automorphismen der Ordnung $7$ sowie der Ordnung $p \in P_{\ge 13}$. Ist $\sigma \in \Aut(L)$ von Ordnung $m$ mit $12 < \varphi(m) \leq 24$, so ist $m \in \lbrace 60, 27, 33, 66, 45, 72, 90 \rbrace$. Außerdem gelten folgende Einschränkungen:
 		\begin{itemize}
-			\item $m = 60 \Rightarrow \Phi_{20} \vert \mu_\sigma$
-			\item $m = 27 \Rightarrow \Phi_{27} \vert \mu_\sigma$
-			\item $m = 33 \Rightarrow \Phi_{3} \Phi_{11} \vert \mu_\sigma$
-			\item $m = 66 \Rightarrow \Phi_{11} \Phi_{22} \vert \mu_\sigma$
-			\item $m = 45 \Rightarrow \Phi_{5} \Phi_{9} \vert \mu_\sigma$
-			\item $m = 72 \Rightarrow \Phi_8 \vert \mu_\sigma$
-			\item $m = 90 \Rightarrow \Phi_{10} \Phi_{15} \vert \mu_\sigma$
+			\item $m = 60 \Rightarrow \Phi_{20} \vert \mu_\sigma$.
+			\item $m = 27 \Rightarrow \Phi_{27} \vert \mu_\sigma$.
+			\item $m = 33 \Rightarrow \Phi_{3} \Phi_{11} \vert \mu_\sigma$.
+			\item $m = 66 \Rightarrow \Phi_{11} \Phi_{22} \vert \mu_\sigma$.
+			\item $m = 45 \Rightarrow \Phi_{5} \Phi_{9} \vert \mu_\sigma$.
+			\item $m = 72 \Rightarrow \Phi_8 \vert \mu_\sigma$.
+			\item $m = 90 \Rightarrow \Phi_{10} \Phi_{15} \vert \mu_\sigma$.
 		\end{itemize}
 	\end{satz}
 \end{framed}
 
 \begin{beweis}
-	Es muss $\Min(L) \ge 6$ sein. Algorithmus \eqref{alg:autotypes} liefert uns $50$ mögliche Automorphismentypen. Zählt man einige der Geschlechter mit den durch die Typen festgelegten Dimensionen und Determinanten auf, so sieht man, dass in vielen Fällen darin keine Gitter mit Minimum $\geq 6$ enthalten sind, wodurch diese Typen ausgeschlossen werden können. Die verbleibenden Typen von Automorphismen der Ordnung $p \in \P - \lbrace 3 \rbrace$  sind
+	Es muss $\Min(L) \ge 6$ sein. Algorithmus \eqref{alg:autotypes} liefert uns $50$ mögliche Automorphismentypen. Zählt man einige der Geschlechter mit den durch die Typen festgelegten Dimensionen und Determinanten auf, so sieht man, dass in vielen Fällen darin keine Gitter mit Minimum $\geq 6$ enthalten sind, wodurch diese Typen ausgeschlossen werden können. Die verbleibenden Typen von Automorphismen der Ordnung $p \in \P - \lbrace 3 \rbrace$  sind:
 	\begin{align*}
 		&2 - (12, 12) - 6 - (6, 6)		&&2 - (12, 12) - 8 - (8,4)\\
 		&2 - (12, 12) - 8 - (4, 8)		&&2 - (12, 12) - 10 - (8, 4)	\\
@@ -1733,14 +1722,14 @@ Diese Charakterisierung der möglichen charakteristischen Polynome allein anhand
 	\begin{equation*}
 		\lbrace 32, 40, 48, 60, 27, 54, 25, 33, 44, 50, 66, 45, 72, 90\rbrace
 	\end{equation*}
-	liegen. Für diese Fälle zählen wir mithilfe der Automorphismentypen mit dem in diesem Abschnitt beschriebenen Verfahren die möglichen charakteristischen Polynome auf. Genaue Betrachtung der Möglichkeiten für die Polynome zeigt alle verbleibenden Aussagen. 
+	liegen. Für diese Fälle zählen wir mithilfe der Automorphismentypen mit dem in diesem Abschnitt beschriebenen Verfahren die möglichen charakteristischen Polynome auf. Eine genaue Betrachtung der Möglichkeiten für die Polynome zeigt alle verbleibenden Aussagen. 
 \end{beweis}
 
-\section{Zusammenfassung und Ausblick}
+\chapter{Zusammenfassung und Ausblick}
 
-Nach einem einführenden Kapitel zum Begriff eines modularen Gitters und zur Dichte eines Gitters haben wir die Theorie der Ideal-Gitter wiederholt, welche in einem Algorithmus von M. Jürgens in \cite{juergens} bereits klassifiziert werden konnten. Wir haben die Schritte des Algorithmus von Jürgens genau beschrieben und erfolgreich in \texttt{MAGMA} implementiert. So konnten die Ergebnisse von Jürgens rekonstruiert und auf einige - nicht von Jürgens aufgezählte - Dimensionen erweitert werden.\par
-In Kapitel $4$ haben wir zunächst die von Jürgens und Nebe beschriebene Theorie zu den Typen von Gitterautomorphismen mit Primzahlordnung wiederholt, sowie in gewissen Fällen verallgemeinert. Anschließend wurde der Begriff eines Gittergeschlechtes nach \cite{conway} eingeführt und das Kneser'sche Nachbarschaftsverfahren erläutert, mit dessen Hilfe wir relevante Geschlechter aufzählen können. Des Weiteren haben wir Methoden von Jürgens und Nebe auf unsere Situation angepasst, mit deren Hilfe wir ganzzahlige ($\sigma$-invariante) Obergitter konstruieren können. Alle beschriebenen Aussagen und Methoden führten wir nun zu einem finalen Algorithmus zusammen, der gewisse extremale modulare Gitter mit großen Automorphismen konstruieren kann. In der aktuellen Fassung unterliegt der Algorithmus leider noch einigen Einschränkungen. Besonders die Tatsache, dass wir im Zuge dieser Arbeit noch nichts über Automorphismen von Primzahlordnung $p$ aussagen konnten, sodass $p$ ein Teiler der Stufe des Gitters ist, stellt eine große Erschwerung dar und verhindert in vielen Fällen eine vollständigere Klassifikation. Im letzten Abschnitt der Arbeit haben wir schließlich die charakteristischen Polynome all solcher Gitter klassifiziert, die durch den bestehenden Algorithmus gegebenenfalls \textit{nicht} gefunden werden können.\par
-Ein Ansatzpunkt für weitere Forschung zu diesem Thema ist besonders wie bereits beschrieben die Untersuchung von Automorphismen mit nicht zur Stufe teilerfremder Ordnung.  Eine Charakterisierung solcher Automorphismen könnte den Algorithmus potentiell deutlich verbessern. Des Weiteren ist eine Optimierung der Teilschritte von Interesse. Besonders die Konstruktion eines Repräsentanten, sowie die vollständige Aufzählung von Geschlechtern versagt in hohen Dimensionen schnell an Hardware-Limitierungen. Zumindest in Spezialfällen ist eventuell eine effizientere Berechnung möglich. Zuletzt könnte möglicherweise die Klassifikation der nicht-gefundenen Gitter allgemein oder in Spezialfällen verfeinert werden. 
+Nach einem einführenden Kapitel zum Begriff eines modularen Gitters und zur Dichte eines Gitters haben wir die Theorie der Ideal-Gitter dargelegt, welche in einem Algorithmus von Jürgens in \cite{juergens} bereits klassifiziert werden konnten. Wir haben die Schritte des Algorithmus von Jürgens genau beschrieben und erfolgreich in \texttt{MAGMA} implementiert. So konnten die Ergebnisse von Jürgens rekonstruiert und auf einige - bisher nicht von Jürgens aufgezählte - Dimensionen erweitert werden.\par
+In Kapitel $4$ haben wir zunächst die von Jürgens und Nebe beschriebene Theorie zu den Typen von Gitterautomorphismen mit Primzahlordnung aufgegriffen sowie in gewissen Fällen verallgemeinert. Anschließend wurde der Begriff eines Gittergeschlechtes nach \cite{conway} eingeführt und das Kneser'sche Nachbarschaftsverfahren erläutert, mit dessen Hilfe wir relevante Geschlechter aufzählen können. Des Weiteren haben wir Methoden von Jürgens und Nebe auf unsere Situation angepasst, mit deren Hilfe wir ganzzahlige ($\sigma$-invariante) Obergitter konstruieren können. Alle beschriebenen Aussagen und Methoden führten wir nun zu einem finalen Algorithmus zusammen, der gewisse extremale modulare Gitter mit großen Automorphismen konstruieren kann. In der aktuellen Fassung unterliegt der Algorithmus noch einigen Einschränkungen. Besonders die Tatsache, dass wir im Zuge dieser Arbeit noch nichts über Automorphismen von Primzahlordnung $p$ aussagen konnten, sodass $p$ ein Teiler der Stufe des Gitters ist, stellt eine große Erschwerung dar und verhindert in vielen Fällen eine vollständigere Klassifikation. Im letzten Abschnitt der Arbeit haben wir schließlich die charakteristischen Polynome all solcher Gitter klassifiziert, die durch den bestehenden Algorithmus gegebenenfalls \textit{nicht} gefunden werden können.\par
+Ein Ansatzpunkt für weitere Forschung zu diesem Thema ist insbesondere die Untersuchung von Automorphismen mit nicht zur Stufe teilerfremder Ordnung.  Eine Charakterisierung solcher Automorphismen könnte den Algorithmus potentiell deutlich verbessern. Des Weiteren ist eine Optimierung der Teilschritte von Interesse. Besonders die Konstruktion eines Repräsentanten sowie die vollständige Aufzählung von Geschlechtern versagt in hohen Dimensionen schnell an Hardware-Limitierungen. Zumindest in Spezialfällen ist eventuell eine effizientere Berechnung möglich. Zuletzt könnte möglicherweise die Klassifikation der nicht-gefundenen Gitter allgemein oder in Spezialfällen verfeinert werden. 
 
 
 \chapter{Anhang}
@@ -1970,7 +1959,7 @@ Es folgt der Quellcode zu den Algorithmen aus Kapitel 3. Die implementierten Fun
 \begin{itemize}
 	\item Alle Teiler eines $\Z_K$-Ideals $\I$ von festgelegter Norm berechnen. Siehe Algorithmus \eqref{alg:divnorm}.
 	\item Einen total-reellen Erzeuger eines $\Z_K$-Ideals $\I$ bestimmen. Siehe Algorithmus \eqref{alg:relgen}.
-	\item Matrix, deren Einträge die Vorzeichen der reellen Einbettung der Grundeinheiten kodieren, sowie eine Liste aller total-positiven Elemente in $\Z_{K^+}^\ast$ reduziert nach $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$ und eine Liste von Erzeugern einer Untergruppe von $\Z_{K^+}^\ast$ mit ungeradem Index bestimmen. Siehe Algorithmus \eqref{alg:posgen}
+	\item Matrix, deren Einträge die Vorzeichen der reellen Einbettung der Grundeinheiten kodieren sowie eine Liste aller total-positiven Elemente in $\Z_{K^+}^\ast$ reduziert nach $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$ und eine Liste von Erzeugern einer Untergruppe von $\Z_{K^+}^\ast$ mit ungeradem Index bestimmen. Siehe Algorithmus \eqref{alg:posgen}
 	\item Das Minimalpolynom der Operation eines Automorphismus $\sigma$ von einem Gitter $L$ auf dem $\F_p$-Vektorraum $L^{\#,p}/L$ berechnen
 	\item Liste aller total-positiven Erzeuger eines $\Z_K$-Ideals $\I$ reduziert nach $\lbrace \lambda \overline{\lambda} \mid \lambda \in \Z_K^\ast \rbrace$ bestimmen. Siehe ebenfalls Algorithmus \eqref{alg:posgen}.
 	\item Liste von Vertretern der Klassengruppe von $K$ modulo der Operation der Galoisgruppe $\text{Gal}(K/\Q)$ bestimmen. Siehe Abschnitt (3.3).

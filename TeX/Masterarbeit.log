@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.15)  16 SEP 2018 15:02
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.5.15)  17 SEP 2018 09:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1609,642 +1609,638 @@ n/12 , []\OT1/zplm/m/n/12 ) \OMS/lmsy/m/n/12 !
  []
 
 [60] [61] [62] [63] [64] [65]
-Overfull \vbox (41.11568pt too high) has occurred while \output is active []
+Overfull \vbox (43.03099pt too high) has occurred while \output is active []
 
 
 [66]
-Underfull \hbox (badness 1052) in paragraph at lines 1668--1668
+Overfull \hbox (60.58362pt too wide) in paragraph at lines 1645--1647
+\T1/lmr/m/n/12 sind in Ta-bel-le [] fest-ge-hal-ten. Für $\OT1/zplm/m/n/12 (\OM
+L/lmm/m/it/12 `\OT1/lmr/m/n/12 , \OML/lmm/m/it/12 n\OT1/zplm/m/n/12 ) \OMS/lmsy
+/m/n/12 2 f\OT1/zplm/m/n/12 (\OT1/lmr/m/n/12 7, 18\OT1/zplm/m/n/12 )\OT1/lmr/m/
+n/12 , \OT1/zplm/m/n/12 (\OT1/lmr/m/n/12 7, 20\OT1/zplm/m/n/12 )\OT1/lmr/m/n/12
+ , \OT1/zplm/m/n/12 (\OT1/lmr/m/n/12 1, 24\OT1/zplm/m/n/12 )\OT1/lmr/m/n/12 , \
+OT1/zplm/m/n/12 (\OT1/lmr/m/n/12 2, 24\OT1/zplm/m/n/12 )\OT1/lmr/m/n/12 , \OT1/
+zplm/m/n/12 (\OT1/lmr/m/n/12 5, 24\OT1/zplm/m/n/12 )\OT1/lmr/m/n/12 , \OT1/zplm
+/m/n/12 (\OT1/lmr/m/n/12 1, 32\OT1/zplm/m/n/12 )\OT1/lmr/m/n/12 , \OT1/zplm/m/n
+/12 (\OT1/lmr/m/n/12 3, 36\OT1/zplm/m/n/12 )\OMS/lmsy/m/n/12 g$
+ []
+
+[67]
+Underfull \hbox (badness 1052) in paragraph at lines 1680--1680
 [][]\T1/lmr/m/n/12 Anzahl der durch Al-go-rith-mus [] kon-stru-ier-ten ex-tre-m
 a-len stark $\OML/lmm/m/it/12 `$\T1/lmr/m/n/12 -
  []
 
-[67] [68] [69] [70] [71]
+[68] [69] [70] [71] [72]
 chapter 5.
-[72
+[73
 
-] [73]
+] [74]
 chapter 6.
 
-LaTeX Warning: Float too large for page by 25.84953pt on input line 1793.
+LaTeX Warning: Float too large for page by 25.84953pt on input line 1805.
 
 
-LaTeX Warning: Float too large for page by 26.24953pt on input line 1829.
+LaTeX Warning: Float too large for page by 26.24953pt on input line 1841.
 
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <17.28> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1944.
-[74
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1956.
+[75
 
-] [75] [76] [77] [78] [79] [80]
-<Utility.pdf, id=290, 597.50786pt x 845.04686pt>
+] [76] [77] [78] [79] [80] [81]
+<Utility.pdf, id=293, 597.50786pt x 845.04686pt>
 File: Utility.pdf Graphic file (type pdf)
 <use Utility.pdf>
-Package pdftex.def Info: Utility.pdf  used on input line 1955.
+Package pdftex.def Info: Utility.pdf  used on input line 1967.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
 File: Utility.pdf Graphic file (type pdf)
 <use Utility.pdf>
-Package pdftex.def Info: Utility.pdf  used on input line 1955.
+Package pdftex.def Info: Utility.pdf  used on input line 1967.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
-<Utility.pdf, id=293, page=1, 597.50786pt x 845.04686pt>
+<Utility.pdf, id=296, page=1, 597.50786pt x 845.04686pt>
 File: Utility.pdf Graphic file (type pdf)
 <use Utility.pdf, page 1>
-Package pdftex.def Info: Utility.pdf , page1 used on input line 1955.
+Package pdftex.def Info: Utility.pdf , page1 used on input line 1967.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
 File: Utility.pdf Graphic file (type pdf)
 <use Utility.pdf, page 1>
-Package pdftex.def Info: Utility.pdf , page1 used on input line 1955.
+Package pdftex.def Info: Utility.pdf , page1 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
- [81]
+ [82]
 File: Utility.pdf Graphic file (type pdf)
 <use Utility.pdf, page 1>
-Package pdftex.def Info: Utility.pdf , page1 used on input line 1955.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 1>
-Package pdftex.def Info: Utility.pdf , page1 used on input line 1955.
+Package pdftex.def Info: Utility.pdf , page1 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: Utility.pdf Graphic file (type pdf)
 <use Utility.pdf, page 1>
-Package pdftex.def Info: Utility.pdf , page1 used on input line 1955.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
- [82 <./Utility.pdf>]
-<Utility.pdf, id=321, page=2, 597.50786pt x 845.04686pt>
-File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 2>
-Package pdftex.def Info: Utility.pdf , page2 used on input line 1955.
+Package pdftex.def Info: Utility.pdf , page1 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 2>
-Package pdftex.def Info: Utility.pdf , page2 used on input line 1955.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 2>
-Package pdftex.def Info: Utility.pdf , page2 used on input line 1955.
+<use Utility.pdf, page 1>
+Package pdftex.def Info: Utility.pdf , page1 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [83 <./Utility.pdf>]
-<Utility.pdf, id=326, page=3, 597.50786pt x 845.04686pt>
+<Utility.pdf, id=324, page=2, 597.50786pt x 845.04686pt>
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 3>
-Package pdftex.def Info: Utility.pdf , page3 used on input line 1955.
+<use Utility.pdf, page 2>
+Package pdftex.def Info: Utility.pdf , page2 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 3>
-Package pdftex.def Info: Utility.pdf , page3 used on input line 1955.
+<use Utility.pdf, page 2>
+Package pdftex.def Info: Utility.pdf , page2 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 3>
-Package pdftex.def Info: Utility.pdf , page3 used on input line 1955.
+<use Utility.pdf, page 2>
+Package pdftex.def Info: Utility.pdf , page2 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [84 <./Utility.pdf>]
-<Utility.pdf, id=331, page=4, 597.50786pt x 845.04686pt>
+<Utility.pdf, id=329, page=3, 597.50786pt x 845.04686pt>
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 4>
-Package pdftex.def Info: Utility.pdf , page4 used on input line 1955.
+<use Utility.pdf, page 3>
+Package pdftex.def Info: Utility.pdf , page3 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 4>
-Package pdftex.def Info: Utility.pdf , page4 used on input line 1955.
+<use Utility.pdf, page 3>
+Package pdftex.def Info: Utility.pdf , page3 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 4>
-Package pdftex.def Info: Utility.pdf , page4 used on input line 1955.
+<use Utility.pdf, page 3>
+Package pdftex.def Info: Utility.pdf , page3 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [85 <./Utility.pdf>]
-<Utility.pdf, id=337, page=5, 597.50786pt x 845.04686pt>
+<Utility.pdf, id=335, page=4, 597.50786pt x 845.04686pt>
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 5>
-Package pdftex.def Info: Utility.pdf , page5 used on input line 1955.
+<use Utility.pdf, page 4>
+Package pdftex.def Info: Utility.pdf , page4 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 5>
-Package pdftex.def Info: Utility.pdf , page5 used on input line 1955.
+<use Utility.pdf, page 4>
+Package pdftex.def Info: Utility.pdf , page4 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 5>
-Package pdftex.def Info: Utility.pdf , page5 used on input line 1955.
+<use Utility.pdf, page 4>
+Package pdftex.def Info: Utility.pdf , page4 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [86 <./Utility.pdf>]
-<Utility.pdf, id=342, page=6, 597.50786pt x 845.04686pt>
+<Utility.pdf, id=340, page=5, 597.50786pt x 845.04686pt>
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 6>
-Package pdftex.def Info: Utility.pdf , page6 used on input line 1955.
+<use Utility.pdf, page 5>
+Package pdftex.def Info: Utility.pdf , page5 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 6>
-Package pdftex.def Info: Utility.pdf , page6 used on input line 1955.
+<use Utility.pdf, page 5>
+Package pdftex.def Info: Utility.pdf , page5 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: Utility.pdf Graphic file (type pdf)
-<use Utility.pdf, page 6>
-Package pdftex.def Info: Utility.pdf , page6 used on input line 1955.
+<use Utility.pdf, page 5>
+Package pdftex.def Info: Utility.pdf , page5 used on input line 1967.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [87 <./Utility.pdf>] [88]
-<IdealLattices.pdf, id=350, 597.50786pt x 845.04686pt>
+<IdealLattices.pdf, id=348, 597.50786pt x 845.04686pt>
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf>
-Package pdftex.def Info: IdealLattices.pdf  used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf  used on input line 1983.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf>
-Package pdftex.def Info: IdealLattices.pdf  used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf  used on input line 1983.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
-<IdealLattices.pdf, id=353, page=1, 597.50786pt x 845.04686pt>
+<IdealLattices.pdf, id=351, page=1, 597.50786pt x 845.04686pt>
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 1>
-Package pdftex.def Info: IdealLattices.pdf , page1 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page1 used on input line 1983.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 1>
-Package pdftex.def Info: IdealLattices.pdf , page1 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page1 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [89]
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 1>
-Package pdftex.def Info: IdealLattices.pdf , page1 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page1 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 1>
-Package pdftex.def Info: IdealLattices.pdf , page1 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page1 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 1>
-Package pdftex.def Info: IdealLattices.pdf , page1 used on input line 1971.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
- [90 <./IdealLattices.pdf>]
-<IdealLattices.pdf, id=381, page=2, 597.50786pt x 845.04686pt>
-File: IdealLattices.pdf Graphic file (type pdf)
-<use IdealLattices.pdf, page 2>
-Package pdftex.def Info: IdealLattices.pdf , page2 used on input line 1971.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: IdealLattices.pdf Graphic file (type pdf)
-<use IdealLattices.pdf, page 2>
-Package pdftex.def Info: IdealLattices.pdf , page2 used on input line 1971.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: IdealLattices.pdf Graphic file (type pdf)
-<use IdealLattices.pdf, page 2>
-Package pdftex.def Info: IdealLattices.pdf , page2 used on input line 1971.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
- [91 <./IdealLattices.pdf>]
-<IdealLattices.pdf, id=387, page=3, 597.50786pt x 845.04686pt>
-File: IdealLattices.pdf Graphic file (type pdf)
-<use IdealLattices.pdf, page 3>
-Package pdftex.def Info: IdealLattices.pdf , page3 used on input line 1971.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: IdealLattices.pdf Graphic file (type pdf)
-<use IdealLattices.pdf, page 3>
-Package pdftex.def Info: IdealLattices.pdf , page3 used on input line 1971.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: IdealLattices.pdf Graphic file (type pdf)
-<use IdealLattices.pdf, page 3>
-Package pdftex.def Info: IdealLattices.pdf , page3 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page1 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 
-[92 <./IdealLattices.pdf>]
-<IdealLattices.pdf, id=392, page=4, 597.50786pt x 845.04686pt>
+[90 <./IdealLattices.pdf>]
+<IdealLattices.pdf, id=379, page=2, 597.50786pt x 845.04686pt>
+File: IdealLattices.pdf Graphic file (type pdf)
+<use IdealLattices.pdf, page 2>
+Package pdftex.def Info: IdealLattices.pdf , page2 used on input line 1983.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: IdealLattices.pdf Graphic file (type pdf)
+<use IdealLattices.pdf, page 2>
+Package pdftex.def Info: IdealLattices.pdf , page2 used on input line 1983.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: IdealLattices.pdf Graphic file (type pdf)
+<use IdealLattices.pdf, page 2>
+Package pdftex.def Info: IdealLattices.pdf , page2 used on input line 1983.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+ [91 <./IdealLattices.pdf>]
+<IdealLattices.pdf, id=385, page=3, 597.50786pt x 845.04686pt>
+File: IdealLattices.pdf Graphic file (type pdf)
+<use IdealLattices.pdf, page 3>
+Package pdftex.def Info: IdealLattices.pdf , page3 used on input line 1983.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: IdealLattices.pdf Graphic file (type pdf)
+<use IdealLattices.pdf, page 3>
+Package pdftex.def Info: IdealLattices.pdf , page3 used on input line 1983.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: IdealLattices.pdf Graphic file (type pdf)
+<use IdealLattices.pdf, page 3>
+Package pdftex.def Info: IdealLattices.pdf , page3 used on input line 1983.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+ [92 <./IdealLattices.pdf>]
+<IdealLattices.pdf, id=390, page=4, 597.50786pt x 845.04686pt>
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 4>
-Package pdftex.def Info: IdealLattices.pdf , page4 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page4 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 4>
-Package pdftex.def Info: IdealLattices.pdf , page4 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page4 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 4>
-Package pdftex.def Info: IdealLattices.pdf , page4 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page4 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [93 <./IdealLattices.pdf>]
-<IdealLattices.pdf, id=397, page=5, 597.50786pt x 845.04686pt>
+<IdealLattices.pdf, id=395, page=5, 597.50786pt x 845.04686pt>
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 5>
-Package pdftex.def Info: IdealLattices.pdf , page5 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page5 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 5>
-Package pdftex.def Info: IdealLattices.pdf , page5 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page5 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 5>
-Package pdftex.def Info: IdealLattices.pdf , page5 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page5 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [94 <./IdealLattices.pdf>]
-<IdealLattices.pdf, id=402, page=6, 597.50786pt x 845.04686pt>
+<IdealLattices.pdf, id=400, page=6, 597.50786pt x 845.04686pt>
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 6>
-Package pdftex.def Info: IdealLattices.pdf , page6 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page6 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 6>
-Package pdftex.def Info: IdealLattices.pdf , page6 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page6 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 6>
-Package pdftex.def Info: IdealLattices.pdf , page6 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page6 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [95 <./IdealLattices.pdf>]
-<IdealLattices.pdf, id=407, page=7, 597.50786pt x 845.04686pt>
+<IdealLattices.pdf, id=405, page=7, 597.50786pt x 845.04686pt>
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 7>
-Package pdftex.def Info: IdealLattices.pdf , page7 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page7 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 7>
-Package pdftex.def Info: IdealLattices.pdf , page7 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page7 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: IdealLattices.pdf Graphic file (type pdf)
 <use IdealLattices.pdf, page 7>
-Package pdftex.def Info: IdealLattices.pdf , page7 used on input line 1971.
+Package pdftex.def Info: IdealLattices.pdf , page7 used on input line 1983.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [96 <./IdealLattices.pdf>] [97]
-<SubidealLattices.pdf, id=416, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=414, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf>
-Package pdftex.def Info: SubidealLattices.pdf  used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf  used on input line 1999.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf>
-Package pdftex.def Info: SubidealLattices.pdf  used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf  used on input line 1999.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
-<SubidealLattices.pdf, id=419, page=1, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=417, page=1, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 1>
-Package pdftex.def Info: SubidealLattices.pdf , page1 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page1 used on input line 1999.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 1>
-Package pdftex.def Info: SubidealLattices.pdf , page1 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page1 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [98]
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 1>
-Package pdftex.def Info: SubidealLattices.pdf , page1 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page1 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 1>
-Package pdftex.def Info: SubidealLattices.pdf , page1 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page1 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 1>
-Package pdftex.def Info: SubidealLattices.pdf , page1 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page1 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [99 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=446, page=2, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=444, page=2, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 2>
-Package pdftex.def Info: SubidealLattices.pdf , page2 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page2 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 2>
-Package pdftex.def Info: SubidealLattices.pdf , page2 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page2 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 2>
-Package pdftex.def Info: SubidealLattices.pdf , page2 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page2 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [100 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=451, page=3, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=449, page=3, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 3>
-Package pdftex.def Info: SubidealLattices.pdf , page3 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page3 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 3>
-Package pdftex.def Info: SubidealLattices.pdf , page3 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page3 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 3>
-Package pdftex.def Info: SubidealLattices.pdf , page3 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page3 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [101 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=456, page=4, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=454, page=4, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 4>
-Package pdftex.def Info: SubidealLattices.pdf , page4 used on input line 1987.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: SubidealLattices.pdf Graphic file (type pdf)
-<use SubidealLattices.pdf, page 4>
-Package pdftex.def Info: SubidealLattices.pdf , page4 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page4 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 4>
-Package pdftex.def Info: SubidealLattices.pdf , page4 used on input line 1987.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-
-[102 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=461, page=5, 597.50786pt x 845.04686pt>
-File: SubidealLattices.pdf Graphic file (type pdf)
-<use SubidealLattices.pdf, page 5>
-Package pdftex.def Info: SubidealLattices.pdf , page5 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page4 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
+<use SubidealLattices.pdf, page 4>
+Package pdftex.def Info: SubidealLattices.pdf , page4 used on input line 1999.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+ [102 <./SubidealLattices.pdf>]
+<SubidealLattices.pdf, id=459, page=5, 597.50786pt x 845.04686pt>
+File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 5>
-Package pdftex.def Info: SubidealLattices.pdf , page5 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page5 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 5>
-Package pdftex.def Info: SubidealLattices.pdf , page5 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page5 used on input line 1999.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: SubidealLattices.pdf Graphic file (type pdf)
+<use SubidealLattices.pdf, page 5>
+Package pdftex.def Info: SubidealLattices.pdf , page5 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [103 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=467, page=6, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=465, page=6, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 6>
-Package pdftex.def Info: SubidealLattices.pdf , page6 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page6 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 6>
-Package pdftex.def Info: SubidealLattices.pdf , page6 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page6 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 6>
-Package pdftex.def Info: SubidealLattices.pdf , page6 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page6 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [104 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=472, page=7, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=470, page=7, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 7>
-Package pdftex.def Info: SubidealLattices.pdf , page7 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page7 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 7>
-Package pdftex.def Info: SubidealLattices.pdf , page7 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page7 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 7>
-Package pdftex.def Info: SubidealLattices.pdf , page7 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page7 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [105 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=477, page=8, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=475, page=8, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 8>
-Package pdftex.def Info: SubidealLattices.pdf , page8 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page8 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 8>
-Package pdftex.def Info: SubidealLattices.pdf , page8 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page8 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 8>
-Package pdftex.def Info: SubidealLattices.pdf , page8 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page8 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [106 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=482, page=9, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=480, page=9, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 9>
-Package pdftex.def Info: SubidealLattices.pdf , page9 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page9 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 9>
-Package pdftex.def Info: SubidealLattices.pdf , page9 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page9 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 9>
-Package pdftex.def Info: SubidealLattices.pdf , page9 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page9 used on input line 1999.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-
-[107 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=487, page=10, 597.50786pt x 845.04686pt>
+ [107 <./SubidealLattices.pdf>]
+<SubidealLattices.pdf, id=485, page=10, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 10>
-Package pdftex.def Info: SubidealLattices.pdf , page10 used on input line 1987.
-
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: SubidealLattices.pdf Graphic file (type pdf)
-<use SubidealLattices.pdf, page 10>
-Package pdftex.def Info: SubidealLattices.pdf , page10 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page10 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 10>
-Package pdftex.def Info: SubidealLattices.pdf , page10 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page10 used on input line 1999.
+
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: SubidealLattices.pdf Graphic file (type pdf)
+<use SubidealLattices.pdf, page 10>
+Package pdftex.def Info: SubidealLattices.pdf , page10 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [108 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=492, page=11, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=490, page=11, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 11>
-Package pdftex.def Info: SubidealLattices.pdf , page11 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page11 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 11>
-Package pdftex.def Info: SubidealLattices.pdf , page11 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page11 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 11>
-Package pdftex.def Info: SubidealLattices.pdf , page11 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page11 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [109 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=498, page=12, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=496, page=12, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 12>
-Package pdftex.def Info: SubidealLattices.pdf , page12 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page12 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 12>
-Package pdftex.def Info: SubidealLattices.pdf , page12 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page12 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 12>
-Package pdftex.def Info: SubidealLattices.pdf , page12 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page12 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [110 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=503, page=13, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=501, page=13, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 13>
-Package pdftex.def Info: SubidealLattices.pdf , page13 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page13 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 13>
-Package pdftex.def Info: SubidealLattices.pdf , page13 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page13 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 13>
-Package pdftex.def Info: SubidealLattices.pdf , page13 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page13 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [111 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=508, page=14, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=506, page=14, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 14>
-Package pdftex.def Info: SubidealLattices.pdf , page14 used on input line 1987.
-
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: SubidealLattices.pdf Graphic file (type pdf)
-<use SubidealLattices.pdf, page 14>
-Package pdftex.def Info: SubidealLattices.pdf , page14 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page14 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 14>
-Package pdftex.def Info: SubidealLattices.pdf , page14 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page14 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: SubidealLattices.pdf Graphic file (type pdf)
+<use SubidealLattices.pdf, page 14>
+Package pdftex.def Info: SubidealLattices.pdf , page14 used on input line 1999.
 
-[112 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=513, page=15, 597.50786pt x 845.04686pt>
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+ [112 <./SubidealLattices.pdf>]
+<SubidealLattices.pdf, id=511, page=15, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 15>
-Package pdftex.def Info: SubidealLattices.pdf , page15 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page15 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 15>
-Package pdftex.def Info: SubidealLattices.pdf , page15 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page15 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 15>
-Package pdftex.def Info: SubidealLattices.pdf , page15 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page15 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
- [113 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=518, page=16, 597.50786pt x 845.04686pt>
-File: SubidealLattices.pdf Graphic file (type pdf)
-<use SubidealLattices.pdf, page 16>
-Package pdftex.def Info: SubidealLattices.pdf , page16 used on input line 1987.
 
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+[113 <./SubidealLattices.pdf>]
+<SubidealLattices.pdf, id=516, page=16, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 16>
-Package pdftex.def Info: SubidealLattices.pdf , page16 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page16 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 16>
-Package pdftex.def Info: SubidealLattices.pdf , page16 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page16 used on input line 1999.
+
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: SubidealLattices.pdf Graphic file (type pdf)
+<use SubidealLattices.pdf, page 16>
+Package pdftex.def Info: SubidealLattices.pdf , page16 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [114 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=523, page=17, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=521, page=17, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 17>
-Package pdftex.def Info: SubidealLattices.pdf , page17 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page17 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 17>
-Package pdftex.def Info: SubidealLattices.pdf , page17 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page17 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 17>
-Package pdftex.def Info: SubidealLattices.pdf , page17 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page17 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [115 <./SubidealLattices.pdf>]
-<SubidealLattices.pdf, id=529, page=18, 597.50786pt x 845.04686pt>
+<SubidealLattices.pdf, id=527, page=18, 597.50786pt x 845.04686pt>
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 18>
-Package pdftex.def Info: SubidealLattices.pdf , page18 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page18 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 18>
-Package pdftex.def Info: SubidealLattices.pdf , page18 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page18 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: SubidealLattices.pdf Graphic file (type pdf)
 <use SubidealLattices.pdf, page 18>
-Package pdftex.def Info: SubidealLattices.pdf , page18 used on input line 1987.
+Package pdftex.def Info: SubidealLattices.pdf , page18 used on input line 1999.
 
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [116 <./SubidealLattices.pdf>]
-<CharPols.pdf, id=535, 597.50786pt x 845.04686pt>
+<CharPols.pdf, id=533, 597.50786pt x 845.04686pt>
 File: CharPols.pdf Graphic file (type pdf)
 <use CharPols.pdf>
-Package pdftex.def Info: CharPols.pdf  used on input line 1995.
+Package pdftex.def Info: CharPols.pdf  used on input line 2007.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
 File: CharPols.pdf Graphic file (type pdf)
 <use CharPols.pdf>
-Package pdftex.def Info: CharPols.pdf  used on input line 1995.
+Package pdftex.def Info: CharPols.pdf  used on input line 2007.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
-<CharPols.pdf, id=538, page=1, 597.50786pt x 845.04686pt>
+<CharPols.pdf, id=536, page=1, 597.50786pt x 845.04686pt>
 File: CharPols.pdf Graphic file (type pdf)
 <use CharPols.pdf, page 1>
-Package pdftex.def Info: CharPols.pdf , page1 used on input line 1995.
+Package pdftex.def Info: CharPols.pdf , page1 used on input line 2007.
 (pdftex.def)             Requested size: 597.5064pt x 845.0448pt.
 File: CharPols.pdf Graphic file (type pdf)
 <use CharPols.pdf, page 1>
-Package pdftex.def Info: CharPols.pdf , page1 used on input line 1995.
+Package pdftex.def Info: CharPols.pdf , page1 used on input line 2007.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-
-[117]
+ [117]
 File: CharPols.pdf Graphic file (type pdf)
 <use CharPols.pdf, page 1>
-Package pdftex.def Info: CharPols.pdf , page1 used on input line 1995.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: CharPols.pdf Graphic file (type pdf)
-<use CharPols.pdf, page 1>
-Package pdftex.def Info: CharPols.pdf , page1 used on input line 1995.
+Package pdftex.def Info: CharPols.pdf , page1 used on input line 2007.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: CharPols.pdf Graphic file (type pdf)
 <use CharPols.pdf, page 1>
-Package pdftex.def Info: CharPols.pdf , page1 used on input line 1995.
+Package pdftex.def Info: CharPols.pdf , page1 used on input line 2007.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: CharPols.pdf Graphic file (type pdf)
+<use CharPols.pdf, page 1>
+Package pdftex.def Info: CharPols.pdf , page1 used on input line 2007.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [118 <./CharPols.pdf>]
-<CharPols.pdf, id=565, page=2, 597.50786pt x 845.04686pt>
+<CharPols.pdf, id=563, page=2, 597.50786pt x 845.04686pt>
 File: CharPols.pdf Graphic file (type pdf)
 <use CharPols.pdf, page 2>
-Package pdftex.def Info: CharPols.pdf , page2 used on input line 1995.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: CharPols.pdf Graphic file (type pdf)
-<use CharPols.pdf, page 2>
-Package pdftex.def Info: CharPols.pdf , page2 used on input line 1995.
+Package pdftex.def Info: CharPols.pdf , page2 used on input line 2007.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: CharPols.pdf Graphic file (type pdf)
 <use CharPols.pdf, page 2>
-Package pdftex.def Info: CharPols.pdf , page2 used on input line 1995.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
- [119 <./CharPols.pdf>]
-<CharPols.pdf, id=570, page=3, 597.50786pt x 845.04686pt>
-File: CharPols.pdf Graphic file (type pdf)
-<use CharPols.pdf, page 3>
-Package pdftex.def Info: CharPols.pdf , page3 used on input line 1995.
+Package pdftex.def Info: CharPols.pdf , page2 used on input line 2007.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: CharPols.pdf Graphic file (type pdf)
-<use CharPols.pdf, page 3>
-Package pdftex.def Info: CharPols.pdf , page3 used on input line 1995.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: CharPols.pdf Graphic file (type pdf)
-<use CharPols.pdf, page 3>
-Package pdftex.def Info: CharPols.pdf , page3 used on input line 1995.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
- [120 <./CharPols.pdf>]
-<CharPols.pdf, id=575, page=4, 597.50786pt x 845.04686pt>
-File: CharPols.pdf Graphic file (type pdf)
-<use CharPols.pdf, page 4>
-Package pdftex.def Info: CharPols.pdf , page4 used on input line 1995.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: CharPols.pdf Graphic file (type pdf)
-<use CharPols.pdf, page 4>
-Package pdftex.def Info: CharPols.pdf , page4 used on input line 1995.
-(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
-File: CharPols.pdf Graphic file (type pdf)
-<use CharPols.pdf, page 4>
-Package pdftex.def Info: CharPols.pdf , page4 used on input line 1995.
+<use CharPols.pdf, page 2>
+Package pdftex.def Info: CharPols.pdf , page2 used on input line 2007.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 
-[121 <./CharPols.pdf>]
-<CharPols.pdf, id=581, page=5, 597.50786pt x 845.04686pt>
+[119 <./CharPols.pdf>]
+<CharPols.pdf, id=568, page=3, 597.50786pt x 845.04686pt>
+File: CharPols.pdf Graphic file (type pdf)
+<use CharPols.pdf, page 3>
+Package pdftex.def Info: CharPols.pdf , page3 used on input line 2007.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: CharPols.pdf Graphic file (type pdf)
+<use CharPols.pdf, page 3>
+Package pdftex.def Info: CharPols.pdf , page3 used on input line 2007.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: CharPols.pdf Graphic file (type pdf)
+<use CharPols.pdf, page 3>
+Package pdftex.def Info: CharPols.pdf , page3 used on input line 2007.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+ [120 <./CharPols.pdf>]
+<CharPols.pdf, id=573, page=4, 597.50786pt x 845.04686pt>
+File: CharPols.pdf Graphic file (type pdf)
+<use CharPols.pdf, page 4>
+Package pdftex.def Info: CharPols.pdf , page4 used on input line 2007.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: CharPols.pdf Graphic file (type pdf)
+<use CharPols.pdf, page 4>
+Package pdftex.def Info: CharPols.pdf , page4 used on input line 2007.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+File: CharPols.pdf Graphic file (type pdf)
+<use CharPols.pdf, page 4>
+Package pdftex.def Info: CharPols.pdf , page4 used on input line 2007.
+(pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
+ [121 <./CharPols.pdf>]
+<CharPols.pdf, id=579, page=5, 597.50786pt x 845.04686pt>
 File: CharPols.pdf Graphic file (type pdf)
 <use CharPols.pdf, page 5>
-Package pdftex.def Info: CharPols.pdf , page5 used on input line 1995.
+Package pdftex.def Info: CharPols.pdf , page5 used on input line 2007.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: CharPols.pdf Graphic file (type pdf)
 <use CharPols.pdf, page 5>
-Package pdftex.def Info: CharPols.pdf , page5 used on input line 1995.
+Package pdftex.def Info: CharPols.pdf , page5 used on input line 2007.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
 File: CharPols.pdf Graphic file (type pdf)
 <use CharPols.pdf, page 5>
-Package pdftex.def Info: CharPols.pdf , page5 used on input line 1995.
+Package pdftex.def Info: CharPols.pdf , page5 used on input line 2007.
 (pdftex.def)             Requested size: 597.53374pt x 845.08348pt.
  [122 <./CharPols.pdf>]
-Underfull \hbox (badness 10000) in paragraph at lines 2020--2021
+Underfull \hbox (badness 10000) in paragraph at lines 2032--2033
 
  []
 
@@ -2258,10 +2254,10 @@ chapter 7.
 
  [125] (./Masterarbeit.aux) ) 
 Here is how much of TeX's memory you used:
- 24056 strings out of 492649
- 488222 string characters out of 6129607
- 808179 words of memory out of 5000000
- 27340 multiletter control sequences out of 15000+600000
+ 24054 strings out of 492649
+ 488152 string characters out of 6129607
+ 808185 words of memory out of 5000000
+ 27338 multiletter control sequences out of 15000+600000
  97964 words of font info for 99 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,18n,67p,9091b,709s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -2297,10 +2293,10 @@ exmf-dist/fonts/type1/public/lm/lmtt12.pfb></usr/local/texlive/2018/texmf-dist/
 fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2018/texmf-d
 ist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/local/texlive/2018/tex
 mf-dist/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on Masterarbeit.pdf (125 pages, 816244 bytes).
+Output written on Masterarbeit.pdf (125 pages, 821652 bytes).
 PDF statistics:
- 699 PDF objects out of 1000 (max. 8388607)
- 467 compressed objects within 5 object streams
+ 697 PDF objects out of 1000 (max. 8388607)
+ 466 compressed objects within 5 object streams
  0 named destinations out of 1000 (max. 500000)
- 253 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 248 words of extra memory for PDF output out of 10000 (max. 10000000)
 

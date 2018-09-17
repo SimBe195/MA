@@ -23,7 +23,7 @@ function ReduceByIsometry(Lattices)
 
 // Output: Reduced list for which the elements are pairwise non-isometric
 
-    LatticesReduced := [* *];
+    LatticesReduced := [];
     Minima := [* *];
     NumShortest := AssociativeArray();
     SizeAuto := AssociativeArray();
@@ -213,49 +213,6 @@ function ToZLattice(L)
     return LZ;
 end function;
 
-
-function MiPoQuotient(sigma, L, p);
-// Input : Automorphism sigma of L; Lattice L
-
-// Output: Minimal polynomial of the operation of sigma on the partial dual quotient L^(#, p) / L
-
-    sigma := Matrix(Rationals(), sigma);
-    L := CoordinateLattice(L);
-    LD := PartialDual(L, p : Rescale := false);
-    _,phi := LD / L;
-    MiPo := PolynomialRing(GF(p)) ! 1;
-
-    B := [];
-
-    for i in [1..Rank(LD)] do
-
-        b := LD.i;
-        if b in sub<LD|L,B> then
-            continue;
-        end if;
-        Append(~B,b);
-        
-        dep := false;
-        C := [Eltseq(phi(b))];
-        while not dep do
-            b := b*sigma;
-            Append(~C, Eltseq(phi(b)));
-            Mat := Matrix(GF(p),C);
-            if Dimension(Kernel(Mat)) gt 0 then
-                dep := true;
-                coeff := Basis(Kernel(Mat))[1];
-                coeff /:= coeff[#C];
-                coeff := Eltseq(coeff);
-                MiPo := LCM(MiPo, Polynomial(GF(p), coeff));
-            else
-                Append(~B, b);
-            end if;
-        end while;
-    end for;
-
-    return MiPo;
-
-end function;
 
 function IsModular(L, l)
 // Input: Lattice L; l in N

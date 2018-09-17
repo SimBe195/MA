@@ -125,6 +125,11 @@ function EnumerateGenusOfRepresentative(L)
 
 	"Enumerate genus of representative";
 	try return eval Read(Sprintf("GenusSymbols/Gen_%o", GenSymbol(L))); catch e; end try;
+	try
+		Gen := eval Read(Sprintf("GenusSymbols/Gen_%o_partial", GenSymbol(L))); 
+		printf "Only using partial genus for %o!\n", GenSymbol(L);
+		return Gen;
+	catch e; end try;
 
 	if Dimension(L) le 6 then
 		Gen := GenusRepresentatives(L);
@@ -157,6 +162,7 @@ function EnumerateGenusOfRepresentative(L)
 		//printf "So far %o classes found. Difference to actual mass is %o. \n", #Gen, M-m;
 		if Realtime(t0) ge 120*60 then
 			printf "2 hours have elapsed and not the whole genus was explored. Remaining difference to actual mass is %o. %o classes were found so far. The symbol is %o.\n", M-m, #Gen, GenSymbol(L);
+			PrintFileMagma(Sprintf("GenusSymbols/Gen_%o_partial", GenSymbol(L)), Gen : Overwrite := true);
 			return Gen;
 		end if;
 
@@ -169,10 +175,12 @@ function EnumerateGenusOfRepresentative(L)
 			p := NextPrime(p);
 			if p ge 5 and Dimension(L) ge 8 then
 				printf "Prime too large, cannot continue constructing neighbours. Remaining difference to actual mass is %o. %o classes were found so far. The symbol is %o.\n", M-m, #Gen, GenSymbol(L);
+				PrintFileMagma(Sprintf("GenusSymbols/Gen_%o_partial", GenSymbol(L)), Gen : Overwrite := true);
 				return Gen;
 			end if;
 			if p ge 3 and Dimension(L) ge 12 then
 				printf "Prime too large, cannot continue constructing neighbours. Remaining difference to actual mass is %o. %o classes were found so far. The symbol is %o.\n", M-m, #Gen, GenSymbol(L);
+				PrintFileMagma(Sprintf("GenusSymbols/Gen_%o_partial", GenSymbol(L)), Gen : Overwrite := true);
 				return Gen;
 			end if;
 		end if;
@@ -354,6 +362,11 @@ function EnumerateGenusSymbol(Symbol)
 // Output: Representatives of all isometry-classes belonging to the genus
 
 	try return eval Read(Sprintf("GenusSymbols/Gen_%o", Symbol)); catch e; end try;
+	try
+		Gen := eval Read(Sprintf("GenusSymbols/Gen_%o_partial", Symbol)); 
+		printf "Only using partial genus for %o!\n", Symbol;
+		return Gen;
+	catch e; end try;
 
 	n := Symbol[2];
 
@@ -675,12 +688,10 @@ function ConstructLattices(l, n)
 			printf "m = %o\n", m;
 		
 			for p in PrimeDivisors(m) do
-				//printf "Testing p = %o\n", p;
 				if Gcd(p,l) ne 1 then continue; end if;
 				d := Integers() ! (m/p);
 				PossibleTypes := [type : type in AutoTypes | type[1] eq p and type[2] eq n1 and type[3] eq np and (type[4] eq 0 or EulerPhi(d) le type[4])];
 
-				//printf "Have to check %o possible automorphism-types\n", #PossibleTypes;
 
 				for type in PossibleTypes do
 					s := type[4];
@@ -701,16 +712,19 @@ function ConstructLattices(l, n)
 			        LpList := [L : L in LpList | Minimum(L) ge min];
 				    LpList := ReduceByIsometry(LpList);
 
-				    if s eq 0 then
-				    	Results cat:= [L : L in LpList | Minimum(L) ge min];
-				    	continue m;
-				    end if;
+					if n1 eq 0 then
+						Results cat:= LpList;
+						continue type;
+					end if;
 
 				    for Lp in LpList do
-				    	sigmapList := [c[3] : c in ConjugacyClasses(AutomorphismGroup(Lp)) | MiPoQuotient(c[3], Lp, p) eq Polynomial(GF(p), CyclotomicPolynomial(d))];
-					    if #sigmapList eq 0 then
-					    	continue Lp;
-					    end if;
+				    	if s ne 0 then
+				    		sigmapList := [c[3] : c in ConjugacyClasses(AutomorphismGroup(Lp)) | MiPoQuotient(c[3], Lp, p) eq Polynomial(GF(p), CyclotomicPolynomial(d))];
+						    if #sigmapList eq 0 then
+						    	continue Lp;
+						    end if;
+						end if;
+
 			    		"Enumerate candidates for L_1";
 
 			    		K<z> := CyclotomicField(p);
@@ -724,10 +738,12 @@ function ConstructLattices(l, n)
 								det1U *:= type[i]^type[i+1];
 							end for;
 
+					    	"Enumerate sublattices U";
 							UList := EnumerateGenusDeterminant(det1U, n1, false);
 
-							L1List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((n1 - s)/2)) : U in UList | Dimension(U) eq 0 or Minimum(U) ge Ceiling(min/2)];
-							L1List := [L : L in L1List | Dimension(L) eq 0 or (IsEven(L) and Minimum(L) ge min)];
+							"Construct L1 as superlattice for U";
+							L1List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((n1 - s)/2)) : U in UList | Minimum(U) ge Ceiling(min/2)];
+							L1List := [L : L in L1List | IsEven(L) and Minimum(L) ge min];
 
 						elif IsPrime(l) then
 				    		// In this case the genus symbol of L_1 is known and allows for a more efficient enumeration
@@ -780,7 +796,9 @@ function ConstructLattices(l, n)
 								end if;
 							end if;
 
-							L1List := [L : L in EnumerateGenusSymbol(Sym1) | Dimension(L) eq 0 or (IsEven(L) and Minimum(L) ge min)];
+							"Enumerate genus symbol";
+
+							L1List := [L : L in EnumerateGenusSymbol(Sym1) | IsEven(L) and Minimum(L) ge min];
 							
 						else
 
@@ -789,11 +807,23 @@ function ConstructLattices(l, n)
 								det1 *:= type[i]^type[i+1];
 							end for;
 
-							L1List := [L : L in EnumerateGenusDeterminant(det1, n1, true) | Dimension(L) eq 0 or Minimum(L) ge min];
+							"Enumerate genus by determinant";
+
+							L1List := [L : L in EnumerateGenusDeterminant(det1, n1, true) | IsEven(L) and Minimum(L) ge min];
 
 						end if;
 
 						for L1 in L1List do
+
+						    M := CoordinateLattice(OrthogonalSum(L1,Lp));
+
+							if s eq 0 then
+								if Minimum(M) ge min then
+									Append(~Results, M);
+								end if;
+								continue L1;
+							end if;
+
 							sigma1List := [c[3] : c in ConjugacyClasses(AutomorphismGroup(L1)) | MiPoQuotient(c[3], L1, p) eq Polynomial(GF(p), CyclotomicPolynomial(d)) and Degree(MinimalPolynomial(c[3])) le EulerPhi(d)];
 					    	if #sigma1List eq 0 then
 					    		continue L1;
@@ -804,10 +834,10 @@ function ConstructLattices(l, n)
 					    	if <l,n> in [] then
 						    	for sigma1 in sigma1List do
 						    		for sigmap in sigmapList do
-						    			LList cat:= SuperLatticesMagma(CoordinateLattice(OrthogonalSum(L1,Lp)), p, s, DiagonalJoin(sigma1, sigmap));
+						    			LList cat:= SuperLatticesMagma(M, p, s, DiagonalJoin(sigma1, sigmap));
 						    		end for;
 						    	end for;
-						    elif <l,n> in [<7,18>,<7,20>,<1,24>,<2,24>,<5,24>] then
+						    elif <l,n> in [<7,18>,<7,20>,<1,24>,<2,24>,<5,24>,<1,32>] then
 						    	LList := [];
 						    	for sigma1 in sigma1List do
 						    		for sigmap in sigmapList do
@@ -815,10 +845,11 @@ function ConstructLattices(l, n)
 						    		end for;
 						    	end for;
 						    else
-					    		LList := SuperLatticesJuergens(CoordinateLattice(OrthogonalSum(L1,Lp)),p,s);
+					    		LList := SuperLatticesJuergens(M,p,s);
 						    end if;
 
 							Results cat:= [L : L in LList | Minimum(L) ge min];
+
 						end for;
 					end for;
 				end for;
@@ -829,16 +860,16 @@ function ConstructLattices(l, n)
 	return ReduceByIsometry(Results);
 
 end function;
+	
 
-
-procedure MainLoop()
-	for n := 24 to 36 by 2 do                                                   
-		for l in [1,2,3,5,6,7,11,14,15,23] do
-			if l eq 1 and n in [2,4,6] then continue; end if;
+procedure MainLoop(nMin, nMax : lList := [1,2,3,5,6,7,11,14,15,23])
+	for n := nMin to nMax by 2 do                                                   
+		for l in lList do
+			if l eq 1 and not IsDivisibleBy(n,8) then continue; end if;
 			if l eq 2 and n eq 2 then continue; end if;
 			if l eq 11 and n in [20,24,28,30,32,34,36] then continue; end if;
 			if l eq 23 and n ge 6 then continue; end if;
-			if n eq 24 and l lt 5 then continue; end if;
+
 			printf "dim = %o, l = %o\n", n, l;
 			Results := ConstructLattices(l, n);
 			ModList := [L : L in Results | IsModular(L, l)];

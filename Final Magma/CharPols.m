@@ -14,7 +14,6 @@ function RestrictAutomorphismTypes(l,n)
     for type in Types do
         type;
         p := type[1];
-        p := type[1];
         n1 := type[2];
         np := type[3];
         s := type[4];
@@ -182,7 +181,7 @@ function PossibleCharPos(l, n)
                     end for;
                     N[1][t+1] := n;
 
-                    MaxDim := [Floor(n/d) : d in Div];
+                    MaxDim := [Floor(n/EulerPhi(d)) : d in Div];
                     for i in [1..k] do
                         for j in [1..t] do
                             if IsDivisibleBy(Integers() ! (m / pList[j]), Div[i]) then
@@ -198,7 +197,7 @@ function PossibleCharPos(l, n)
                     for c in C do
                         v := Matrix(Integers(), 1, k, [x : x in c]);
                         if v*M eq N then
-                            if Lcm([Div[i] : i in [1..k-1] | c[i] gt 0]) eq m then
+                            if &or[c[i] gt 0 : i in [1..k-1]] and Lcm([Div[i] : i in [1..k-1] | c[i] gt 0]) eq m then
                                 ExpList := [<Div[i], c[i]> : i in [1..k] | c[i] gt 0];
                                 Append(~Results, ExpList);
                             end if;

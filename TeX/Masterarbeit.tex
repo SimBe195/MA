@@ -165,7 +165,6 @@
 
 \begin{titlepage}
 	\centering
-	%\includegraphics[width=0.5\textwidth]{RWTH_Logo.png}\par\vspace{1cm}
 	\vspace*{2cm}
 	{\Large\bfseries Extremale Gitter mit großen Automorphismen\par}
 	\vspace{1cm}
@@ -175,7 +174,7 @@
 	\vfill
 	Vorgelegt am Lehrstuhl D für Mathematik der RWTH-Aachen University\par 
 	bei Prof. Dr. Gabriele Nebe (Erstgutachterin)\\ 
-	und Prof. Dr. Markus Kirschmer (Zweitgutachter)\par
+	und Priv.-Doz. Dr. Markus Kirschmer (Zweitgutachter)\par
 	\vfill
 
 % Bottom of the page
@@ -1411,7 +1410,7 @@ Kneser beschreibt, wie die Menge aller $p$-Nachbarn eines gegebenen Gittes $L$ g
 
 \begin{framed}
 	\begin{satz}\label{th:neighbourgraph}
-		Sei $L$ ein Gitter von Dimension $\geq 3$. Hat für jede Primzahl $q \in \P$ die Jordanzerlegung von $\Z_q \otimes L$ mindestens eine Komponente von Dimension $\geq 2$, so besteht jeder Nachbarschafts-Graph von $L$ aus genau einer Zusammenhangskomponente.
+		Sei $L$ ein Gitter von Dimension $\geq 3$. Hat für jede Primzahl $q \in \P$ die Jordanzerlegung von $\Z_q \otimes L$ mindestens eine Komponente von Dimension $\geq 2$, so besteht der Nachbarschafts-Graph von $L$ aus genau einer Zusammenhangskomponente.
 	\end{satz}
 \end{framed}
 
@@ -1508,7 +1507,7 @@ Nebe verwendet im Beweis von \cite[Theorem (5.9)]{nebe} eine Vorgehensweise, wel
 \end{align*}
 Also $\overline{b_1}(x_1+M, y_1+M) = - \overline{b_p}(x_p+M, y_p+M)$. Demnach sind die ganzen Obergitter von Index $p^s$ gegeben durch
 \begin{equation*}
-	L_\varphi := \lbrace (x_1,x_p) \in L_1^{\#,p} \perp L_p^{\#,p} \mid \varphi(x_1+L_1) = x_p + L_p \rbrace
+	L_\varphi := \lbrace (x_1,x_p) \in L_1^{\#,p} \perp L_p^{\#,p} \mid \varphi(x_1+L_1) = x_p + L_p \rbrace	
 \end{equation*}
 für die Isometrien $\varphi : (L_1^{\#,p} / L_1, \overline{b_1}) \rightarrow (L_p^{\#,p} / L_p, -\overline{b_p})$.\par
 Nun zur $\sigma$-Invarianz eines solchen Gitters $L_\varphi$. Auf dem Dualgitter $M^\#$ ist $\sigma$ ebenfalls ein Automorphismus, denn
@@ -1599,9 +1598,7 @@ Wir betrachten nun das Minimalpolynom der Operation von $\sigma$ auf den Faktorg
 	L_1^\#/L_1^{\#,\ell} \rightarrow L_p^\# / L_p^{\#,\ell}&, y + L_1^{\#, \ell} \mapsto (\hat{y} - y) + L_p^{\#, \ell}\\
 	L_p^\# / L_p^{\#, \ell} \rightarrow L_p^{\#,p} / L_p&, x + L_p^{\#, \ell} \mapsto x + L_p,
 \end{align*}
-wobei $\hat{y} \in L^\#$ mit $b(x,y) = b(x,\hat{y})$ für alle $x \in L_1$. Man sieht leicht ein, dass $\sigma(\hat{y})$ eine mögliche Wahl für $\widehat{\sigma(y)}$ darstellt, da alle beteiligten Gitter und die Bilinearform invariant unter $\sigma$ sind. Alle drei Isomorphismen kommutieren also mit $\sigma$. Daraus folgt, dass die Faktorgruppen auch als $\Z[\sigma]$-Moduln, bzw. wegen $p L_p^{\#,p} \subseteq L_p$ und $p L_1^{\#,p} \subseteq L_1$ sogar als $\F_p[\sigma]$-Moduln isomorph sind. Insbesondere hat $\sigma$ auf $L_1^{\#,p}/L_1$ und $L_p^{\#,p}/L_p$ dasselbe Minimalpolynom. Wegen $(1-\sigma^d) L_p^{\#,p} \subseteq L_p$ wird $L_p^{\#,p}/L_p$ zu einem $\F_p[\sigma] / (1-\sigma^d) \cong \F_p[\zeta_d]$-Modul. Das Minimalpolynom der Operationen von $\sigma$ auf den Faktorgruppen ist somit ein Teiler von $\Phi_d$, also (falls $\Dim_{\F_p}(L_p^{\#,p}/L_p) = \Dim(L_1^{\#,p}/L_1) > 0$) gleich $\Phi_d$. In diesem Falle muss daher
-\[\text{Grad}(\mu_{\sigma\vert_{\Bild(\sigma^d-1)}}), \text{Grad}(\mu_{\sigma \vert_{\Kern(\sigma^d-1)}}) \geq \text{Grad}(\Phi_d) = \varphi(d)\]
-erfüllt sein. Außerdem gilt $\varphi(d) \leq \text{Dim}_{\F_p}(L_p^{\#,p} / L_p) = s$.\\
+wobei $\hat{y} \in L^\#$ mit $b(x,y) = b(x,\hat{y})$ für alle $x \in L_1$. Man sieht leicht ein, dass $\sigma(\hat{y})$ eine mögliche Wahl für $\widehat{\sigma(y)}$ darstellt, da alle beteiligten Gitter und die Bilinearform invariant unter $\sigma$ sind. Alle drei Isomorphismen kommutieren also mit $\sigma$. Daraus folgt, dass die Faktorgruppen auch als $\Z[\sigma]$-Moduln, bzw. wegen $p L_p^{\#,p} \subseteq L_p$ und $p L_1^{\#,p} \subseteq L_1$ sogar als $\F_p[\sigma]$-Moduln isomorph sind. Insbesondere hat $\sigma$ auf $L_1^{\#,p}/L_1$ und $L_p^{\#,p}/L_p$ dasselbe Minimalpolynom. Wegen $(1-\sigma^d) L_p^{\#,p} \subseteq L_p$ wird $L_p^{\#,p}/L_p$ zu einem $\F_p[\sigma] / (1-\sigma^d) \cong \F_p[\zeta_d]$-Modul. Das Minimalpolynom der Operationen von $\sigma$ auf den Faktorgruppen ist somit ein Teiler von $\Phi_d$, also (falls $\Dim_{\F_p}(L_p^{\#,p}/L_p) = \Dim_{\F_p}(L_1^{\#,p}/L_1) > 0$) gleich $\Phi_d$. Im Falle $s > 0$ muss daher $\varphi(d) \leq s$ erfüllt sein.\\
 Wir entwerfen nun den Algorithmus \eqref{alg:largeauto} zur Konstruktion solcher Gitter $L$.
 
 \begin{algorithm}[H]
@@ -1610,11 +1607,11 @@ Wir entwerfen nun den Algorithmus \eqref{alg:largeauto} zur Konstruktion solcher
 		\State \textbf{Eingabe}: $n \in \N$, quadratfreies $\ell \in \N$, $m \in \N$ mit $\frac{n}{2} < \varphi(m) \leq n$.
 		\State \textbf{Ausgabe}: Liste von extremalen $\ell$-modularen Gittern der Dimension $n$ mit einem großen Automorphismus $\sigma$ der Ordnung $m$, sodass ein $p \in \P$, $\ggT(p, \ell) = 1$ existiert mit $\frac{\mu_\sigma}{\Phi_m} \vert (X^\frac{m}{p}-1)$
 		\\
-		\State $Results \gets []$
+		\If {$\varphi(m) = n$} \Return Liste von $\ell$-modularen extremalen Ideal-Gittern über $\Q(\zeta_m)$ nach Algorithmus \eqref{alg:idlat}. \EndIf
+		\State $Results \gets [\ ]$
 		\State $AutoTypes \gets \text{ Liste von Aut.-Typen von Primzahlordnung nach Algorithmus \eqref{alg:autotypes}}$
-		\For {$p \in \lbrace q \in \P \mid q \vert m, \ggT(q, \ell) > 1 \rbrace$}
-			\State $d \gets \frac{m}{p}$
-			\State $PossibleTypes \gets \lbrace p - (n - \varphi(m), \varphi(m)) - s - \dots \in AutoTypes \mid s = 0$ oder $\varphi(d) \leq s \rbrace$
+		\For {$p \in \lbrace q \in \P \mid q \vert m, \ggT(q, \ell) = 1 \rbrace$}
+			\State $PossibleTypes \gets \lbrace p - (n - \varphi(m), \varphi(m)) - s - \dots \in AutoTypes \mid s = 0$ oder $\varphi(\frac{m}{p}) \leq s \rbrace$
 			\For {$t \in PossibleTypes$}
 				\State $L_p\_List \gets$ Liste von Ideal-Gittern über $\Q(\zeta_m)$ mit durch $t$ für $L_p$ vorgegebene Dimension und Determinante nach Algorithmus \eqref{alg:idlat}
 				\For {$L_p \in L_p\_List$}
@@ -1622,14 +1619,12 @@ Wir entwerfen nun den Algorithmus \eqref{alg:largeauto} zur Konstruktion solcher
 					\For{$L_1 \in L_1\_List$}
 						\State $M \gets L_1 \perp L_p$
 						\If {$s = 0$} $Results \gets Results \cup [M]$ \EndIf
-						\For {$\sigma_p \in \lbrace \sigma \in \text{Aut}(L_p) \mid \sigma$ op. auf $L_p^{\#,p}/L_p$ mit Mi.-Po. $\Phi_d \rbrace$}
-							\For {$\sigma_1 \in \lbrace \sigma \in \text{Aut}(L_1) \mid \sigma$ op. auf $L_1^{\#,p}/L_1$ mit Mi.-Po. $\Phi_d$ und $\text{Grad}(\mu_\sigma) \leq \varphi(d) \rbrace$}
+						\For {$\sigma_p \in \lbrace \sigma \in \text{Aut}(L_p) \mid \sigma$ op. auf $L_p^{\#,p}/L_p$ mit Mi.-Po. $\Phi_\frac{m}{p} \rbrace$}
+							\For {$\sigma_1 \in \lbrace \sigma \in \text{Aut}(L_1) \mid \sigma$ op. auf $L_1^{\#,p}/L_1$ mit Mi.-Po. $\Phi_\frac{m}{p} \rbrace$}
 								\State $\sigma \gets \text{diag}(\sigma_1, \sigma_p)$
 								\State $L\_List \gets$ Liste $\sigma$-invarianter Obergitter von $M$ mit Index $p^s$
-								\For {$L \in L\_List$}
-									\If {$L$ ist $\ell$-modulares extremales Gitter}
-										\State $Results \gets Results \cup [L]$							
-									\EndIf
+								\For {$L \in \lbrace L \in L\_List \mid L$ ist $\ell$-modular und extremal$\rbrace$}
+									\State $Results \gets Results \cup [L]$		
 								\EndFor
 							\EndFor
 						\EndFor
@@ -1642,51 +1637,53 @@ Wir entwerfen nun den Algorithmus \eqref{alg:largeauto} zur Konstruktion solcher
 \end{algorithm}
 
 Für $p = 2$ kann bei Zeile $12$ des Algorithmus alternativ auch mit Lemma \eqref{lem:2sub} vorgegangen werden: Man zählt stattdessen die möglichen $U$ auf und erhält die Kandidaten für $L_1$ als die Obergitter von $\sqrt{2} U$ vom Index $p^\frac{\varphi(n)-m - s}{2}$ mit quadratfreier Stufe und ausreichend großem Minimum.\par
-Für diesen Algorithmus wurden Einschränkungen an die Minimalpolynome der Automorphismen von Gittern gemacht, es ist also a priori nicht klar, welcher Grad von Vollständigkeit durch die Klassifikation mit unserem Algorithmus gegeben ist. Dennoch ist es gelungen, einige neue extremale Gitter zu konstruieren. Die Anzahlen gefundener Gitter sind in Tabelle \eqref{tab:numsublat} festgehalten. Für $(\ell, n) \in \lbrace (7,18), (7,20), (1,24), (2,24), (5,24), (1,32), (3,36) \rbrace$ wurden dabei die Obergitter $\sigma$-invariant konstruiert und nicht allgemeiner mit Jürgens Methode. Außerdem mussten in einigen Fällen aufgrund von Hardwarelimitierungen weitere Einbüßungen gemacht werden:
+Für diesen Algorithmus wurden Einschränkungen an die Minimalpolynome der Automorphismen von Gittern gemacht, es ist also a priori nicht klar, welcher Grad von Vollständigkeit durch die Klassifikation mit unserem Algorithmus gegeben ist. Dennoch ist es gelungen, einige neue extremale Gitter zu konstruieren. Die Anzahlen gefundener Gitter sind in Tabelle \eqref{tab:numsublat} festgehalten. Für $(\ell, n) \in \lbrace (7,18), (7,20), (1,24), (2,24), (5,24),\linebreak
+ (1,32), (3,36) \rbrace$ wurden dabei die Obergitter $\sigma$-invariant konstruiert und nicht allgemein mit Index $p^s$. Außerdem mussten in einigen Fällen aufgrund von Hardwarelimitierungen weitere Einbüßungen gemacht werden:
 \begin{itemize}
 	\item Bei $\ell = 7$, $n = 20$ konnte $\i_8(7^{+4})$ nicht aufgezählt werden. Es fehlten $\frac{11831}{4644864}$ zur tatsächlichen Masse; $46$ Klassen wurden gefunden.
 	\item Bei $\ell = 7$, $n = 22$ konnte $\ii_{10}(3^{+6}7^{-5})$ nicht aufgezählt werden. Es fehlten $\frac{5099082913}{1451520}$ zur Masse; $25901$ Klassen wurden gefunden.
 	\item Bei $\ell = 5$, $n = 28$ konnte $\i_{12}(5^{-6})$ nicht aufgezählt werden. Es fehlten $\frac{456495737}{1053455155200}$ zur Masse; $1148$ Klassen wurden gefunden.
 	\item Bei $\ell = 5$, $n=28$ konnte außerdem $\ii_{12}(3^{+8}5^{-6})$ nicht aufgezählt werden. Es fehlten $\frac{42166975007681999}{150493593600}$ zur Masse; $31318$ Klassen wurden gefunden.
 	\item Bei $\ell = 6$, $n = 28$ konnte $\ii_{12}(2^{-6}3^{-6}5^{+4})$ nicht aufgezählt werden. Es fehlten $\frac{215972432375753515343}{14332723200}$ zur Masse; $19845$ Klassen wurden gefunden.
-	\item Für $n = 30$ konnte für kein $\ell$ der Algorithmus durchgerechnet werden.
-	\item Für $n = 32$ wurde für für $\ell = 2,3,5$ gerechnet.
-	\item Für $n = 34$ wurde nur für $\ell = 2$ gerechnet.
+	\item Für $n = 32$ wurde nur für $\ell = 2,3,5$ gerechnet.
 	\item Für $n = 36$ wurde nur für $\ell = 3$ gerechnet.
 \end{itemize}
 
 \begin{table}[H]\label{tab:numsublat}
 	\centering
-	\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+	\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|}
 		\hline
-		\backslashbox{$n$}{$\ell$}	&$1$	&$2$	&$3$	&$5$	&$6$	&$7$	&$11$	&$14$	&$15$\\ \hline \hline
-		$4$		&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$1$		&$-$		&$-$\\ \hline
-		$6$		&$-$		&$-$		&$-$		&$-$		&$-$		&$1$		&$1$		&$-$		&$-$\\ \hline
-		$8$		&$1$		&$1$		&$1$		&$1$		&$-$		&$1$		&$1$		&$1$		&$1$\\ \hline
-		$12$	&$-$		&$2$		&$1$		&$1$		&$1$		&$-$		&$-$		&$1$		&$1$\\ \hline
-		$14$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$16$	&$2$		&$1$		&$2$		&$-$		&$1$		&$3$		&$-$		&$-$		&$1$\\ \hline
-		$18$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$20$	&$-$		&$1$		&$3$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$22$	&$-$		&$-$		&$2(1^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$24$	&$1$		&$5(2^\ast)$&$1$		&$1$		&$5(3^\ast)$&$-$		&$-$		&$-$		&$-$\\ \hline
-		$26$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$28$	&$-$		&$27(25^\ast)$&$3(2^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$30$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$32$	&$-$		&$2$		&$67(65^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$34$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
-		$34$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$\\ \hline
+		\backslashbox{$n$}{$\ell$}	&$1$	&$2$	&$3$	&$5$	&$6$	&$7$	&$11$	&$14$	&$15$	&$23$\\ \hline \hline
+		$2$		&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$4$		&$-$		&$1$		&$1$		&$-$		&$-$		&$-$		&$1$		&$1$		&$-$	&$1$\\ \hline
+		$6$		&$-$		&$-$		&$1$		&$-$		&$-$		&$1$		&$1$		&$-$		&$-$	&$-$\\ \hline
+		$8$		&$1$		&$1$		&$1$		&$1$		&$1$		&$1$		&$1$		&$1$		&$1$	&$-$\\ \hline
+		$10$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$1$		&$-$		&$-$	&$-$\\ \hline
+		$12$	&$-$		&$2$		&$1$		&$1$		&$1$		&$-$		&$-$		&$1$		&$1$	&$-$\\ \hline
+		$14$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$16$	&$2$		&$1$		&$2$		&$-$		&$1$		&$3$		&$-$		&$-$		&$1$	&$-$\\ \hline
+		$18$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$20$	&$-$		&$1$		&$3$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$22$	&$-$		&$-$		&$2(1^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$24$	&$1$		&$8(2^\ast)$&$1$		&$1$		&$5(3^\ast)$&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$26$	&$-$		&$-$		&$2$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$28$	&$-$		&$35(25^\ast)$&$3(2^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$32$	&$-$		&$2$		&$67(65^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$36$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
 	\end{tabular}
-	\caption{Anzahl der durch Algorithmus \eqref{alg:largeauto} konstruierten extremalen stark $\ell$-modularen Gitter in Dimension $n \leq 34$ sowie ggf. der Anzahl der bisher unbekannten Gitter darunter}
+	\caption{Anzahl der durch Algorithmus \eqref{alg:largeauto} konstruierten extremalen stark $\ell$-modularen Gitter in Dimension $n \leq 28$ und $n = 32, 36$ sowie ggf. der Anzahl der bisher unbekannten Gitter darunter}
 \end{table}
 
 
 \section{Vollständigkeit der Ergebnisse}
 
-In diesem letzten Abschnitt wollen wir die Gitter genauer untersuchen, die von Algorithmus \eqref{alg:largeauto} nicht gefunden werden. Genauer: Wir klassifizieren die Möglichkeiten für die charakteristischen Polynome von Gittern, die durch den Algorithmus nicht konstruiert werden können. Dazu untersuchen wir für die Menge aller Kandidaten für charakteristische Polynome die "Kompatiblität"\ der Dimensionen der von $\sigma$-Potenzen induzierten Fix- und Bildgitter.\par
-Sei $\sigma$ eine Isometrie eines $n$-dimensionalen Vektorraums $V$ mit Ordnung $\vert \sigma \vert = m$, dann ist
+In diesem letzten Abschnitt wollen wir die Gitter genauer untersuchen, die von Algorithmus \eqref{alg:largeauto} nicht gefunden werden. Genauer: Wir klassifizieren die Möglichkeiten für die charakteristischen Polynome von Gittern, die durch den Algorithmus nicht konstruiert werden können. Dazu untersuchen wir die Menge aller Kandidaten für charakteristische Polynome mithilfe der "Kompatiblität"\ der Dimensionen der von $\sigma$-Potenzen induzierten Fix- und Bildgitter, der Ordnungen der Teil-Automorphismen $\sigma_1$ und $\sigma_p$ und mithilfe der Gleichheit induzierter Teilgitter.\par
+Sei $\sigma$ ein Automorphismus eines Gitters $L$ in einem $n$-dimensionalen Vektorraums $V$ mit Ordnung $\vert \sigma \vert = m$, dann ist
 	\[\chi_\sigma = \Phi_{d_1}^{c_1} \dots \Phi_{d_k}^{c_k} \]
-für die Teiler $d_i$ von $m$ und gewisse Potenzen $c_i$. Die Dimension eines Hauptraumes $\Kern(\Phi_{d_i}(\sigma))$ ist in diesem Falle $c_i \varphi(d_i)$ und ähnlich wie in Lemma \eqref{lem:sigmaexpmipo} ist
+für die Teiler $d_1 < d_2 < \dots < d_k$ von $m$ und gewisse Potenzen $c_i$. Damit $\sigma$ Ordnung $m$ hat, muss daher zumindest $\kgV\lbrace d_i \vert c_i > 0 \rbrace = m$ gelten. Immer wenn hierbei außerdem
+\[c_k = 1 \text{ und } \kgV \lbrace d_i \mid i \in \lbrace 1, \dots, k-1 \rbrace \text{ und } c_i > 0 \rbrace \mid \frac{m}{p}\]
+für ein $p \in \P$, $\ggT(p, \ell) = 1$ erfüllt ist, wird $L$ von Algorithmus \eqref{alg:largeauto} konstruiert. Diesen Fällen müssen wir also von vorneherein keine Beachtung mehr schenken.\par
+Die Dimension eines Hauptraumes $\Kern(\Phi_{d_i}(\sigma))$ ist $c_i \varphi(d_i)$. Damit folgt ähnlich wie in Lemma \eqref{lem:sigmaexpmipo}:
 	\[ \Dim(\Kern(\sigma^d-1)) = \sum_{d_i \mid d} c_i \varphi(d_i) \]
 für alle $d \in \N_0$ und $n = \sum_{i=1}^k c_i \varphi(d_i)$. Kennt man daher für Primteiler $p_1, \dots, p_t \mid m$ die Typen
 \begin{align*}
@@ -1697,19 +1694,29 @@ für alle $d \in \N_0$ und $n = \sum_{i=1}^k c_i \varphi(d_i)$. Kennt man daher 
 \end{align*}
 der Automorphismen $\sigma^\frac{m}{p_1}, \sigma^\frac{m}{p_2}, \dots, \sigma^\frac{m}{p_t}$, so muss der Vektor $c := (c_1, \dots, c_k) \in \N_0^k$ eine Lösung des Gleichungssystems $c M= (n_{1,1}, n_{2,1}, \dots, n_{t,1}, n)$ mit der Matrix
 	\[M \in \N_0^{k \times (t+1)}, \quad M_{i,j} := \begin{cases} \varphi(d_i)	&, d_i \mid \frac{m}{p_j} \text{ oder } j = t+1\\ 0 &, \text{sonst}\end{cases}\]
-sein. Außerdem gilt $\kgV\lbrace d_i \vert c_i > 0 \rbrace = m$.\par
-Von den verbleibenden Kandidaten für das charakteristische Polynom werden nun alle diejenigen potentiell \textit{nicht} von Algorithmus \eqref{alg:largeauto} gefunden, für die gilt, dass
-	\[\kgV \lbrace d_i \mid d_i \neq m \text{ und } c_i > 0 \rbrace = m.\]
-Diese Charakterisierung der möglichen charakteristischen Polynome allein anhand einer Menge von Typen wenden wir nun einmal beispielhaft auf $3$-modulare Gitter der Dimension $24$ an.
+sein.\par
+Als weiteres Ausschlusskriterium können wir die Ordnungen von $\sigma_1$ und $\sigma_p$ betrachten. Für jeden Primteiler $p \mid m$ können wir die Ordnung des Automorphismus $\sigma_1 = \sigma\vert_{\Kern(\sigma^\frac{m}{p}-1)}$ anhand des charakteristischen Polynoms berechnen durch
+\[\vert \sigma_1 \vert = \kgV \lbrace d_i \mid \nu_p(d_i) < \nu_p(m) \text{ und } c_i > 0 \rbrace.\]
+Analog ist für $\sigma_p = \sigma\vert_{\Bild(\sigma^\frac{m}{p}-1)}$
+\[\vert \sigma_p \vert = \kgV \lbrace d_i \mid \nu_p(d_i) = \nu_p(m) \text{ und } c_i > 0 \rbrace.\]
+Falls es also möglich ist, für ein $p$ mittels Geschlechtsaufzählung alle Kandidaten für das Fix- oder Bildgitter zu konstruieren, so können wir überprüfen, ob einer der Kandidaten einen Automorphismus der passenden Ordnung hat. Ist dies nicht der Fall, so können die untersuchten Werte für $c_i$ zu keinem charakteristischen Polynom korrespondieren.\par
+Zu guter Letzt beobachten wir, dass in gewissen Fällen Automorphismen verschiedener Primzahlordnungen $p_1, p_2$ dasselbe Teilgitter induzieren. Dies ist genau dann der Fall, wenn für jeden Teiler $\Phi_{d_i} \mid \chi_\sigma$, immer \textit{entweder} $\nu_{p_1}(d_i) = \nu_{p_1}(m)$ \textit{oder} $\nu_{p_2}(d_i) = \nu_{p_2}(m)$ gilt. Das einfachste Beispiel hierfür wäre $\chi_\sigma = \Phi_2 \Phi_3$; in diesem Fall induzieren $\sigma^2$ und $\sigma^3$ dasselbe Teilgitter in $L$. Induzieren zwei Automorphismen dasselbe Teilgitter $M$, so ist der Index $[L : M]$ sowohl eine $p_1$- als auch eine $p_2$-Potenz und demnach $1$. Widerspricht dies den Typen von $\sigma^\frac{m}{p_1}$, bzw. $\sigma^\frac{m}{p_2}$ oder den Schranken an die Hermite-Konstanten, so lässt sich der Kandidat für das charakteristische Polynom ausschließen.
+
+Diese Charakterisierung der möglichen charakteristischen Polynome wenden wir nun einmal beispielhaft auf $3$-modulare Gitter der Dimension $24$ an.
 
 \begin{framed}
 	\begin{satz}
 		Sei $L$ ein extremales $3$-modulares Gitter in einem bilinearen Vektorraum $(V,b)$ der Dimension $24$. Dann hat $L$ keine Automorphismen der Ordnung $7$ sowie der Ordnung $p \in P_{\ge 13}$. Ist $\sigma \in \Aut(L)$ von Ordnung $m$ mit $12 < \varphi(m) \leq 24$, so ist\linebreak
-		$m \in \lbrace 27, 66, 72, 90 \rbrace$. Außerdem gelten folgende Einschränkungen:
+		$m \in \lbrace 27, 33, 48, 54, 60, 66, 72, 90 \rbrace$. Außerdem gelten folgende Einschränkungen:
 		\begin{itemize}
-			\item $m = 27 \Rightarrow \Phi_{27} \vert \mu_\sigma$.
+			\item $m = 27 \Rightarrow \Phi_{27} \vert \mu_\sigma$
+			\item $m = 33 \Rightarrow \chi_\sigma = \Phi_1^2 \Phi_3 \Phi_{11}^2$
+			\item $m = 48 \Rightarrow \chi_\sigma = \Phi_{16} \Phi_{48}$
+			\item $m = 54 \Rightarrow \Phi_{24} \vert \mu_\sigma$ und $\sigma^{27}$ hat Typ $2 - (0, 24) - 0 - (0, 12)$.
+			\item $m = 60 \Rightarrow \chi_\sigma = \Phi_4^2 \Phi_{12} \Phi_{20}^2$
 			\item $m = 66 \Rightarrow \mu_\sigma \vert \Phi_{2} \Phi_{6} \Phi_{22} \Phi_{66}$
-			\item $m = 72 \Rightarrow \Phi_8 \vert \mu_\sigma$.
+			\item $m = 72 \Rightarrow \Phi_8 \vert \mu_\sigma$
+			\item $m = 90 \Rightarrow$ $\sigma^{18}$ hat Typ $5 - (8, 16) - 4 - (4, 8)$ oder $5 - (8, 16) - 4 - (4, 8)$
 		\end{itemize}
 	\end{satz}
 \end{framed}
@@ -1725,17 +1732,38 @@ Diese Charakterisierung der möglichen charakteristischen Polynome allein anhand
 	Für dem Typen $2 - (12, 12) - 12 - (6, 6)$ ist sowohl das Fix-, als auch das Bildgitter isometrisch zu $\sqrt{2}K_{12}$, wobei $K_{12}$ das \textit{Coxeter-Todd-Gitter} bezeichnet. Im Falle des Typen $5 - (8, 16) - 4 - (8, 4)$ liegt das Fixgitter im Geschlecht $\ii_8(3^{+8} 5^{+4})$. Dieses Geschlecht enthält $5$ Gitter mit Minimum $\geq 6$. Beim Typen $5 - (8, 16) - 4 - (4, 8)$ ist $\ii_8(3^{+4}5^{+4})$ das Geschlechtssymbol des Fixgitters. Dieses Geschlecht enthält $4$ Gitter von Minimum $\geq 6$. Schlussendlich ist $\ii_4(3^{-2}11^{+2})$ das Geschlechtssymbol des Fixgitters beim Typen $11 - (4, 20) - 2 - (2, 10)$. Dieses Geschlecht enthält nur ein einziges Gitter mit Minimum $\geq 6$.
 	Insbesondere stellt man fest, dass keine Automorphismen der Ordnung $>13$ existieren. Mit dieser Einschränkung, zusammen mit der Bedingung $12 < \varphi(m) \leq 24$, muss $m$ a priori in der Menge
 	\begin{equation*}
-		\lbrace 32, 40, 48, 60, 27, 54, 25, 33, 44, 50, 66, 45, 72, 90\rbrace
+		\lbrace 25, 27, 32, 33, 40, 44, 45, 48, 50, 54, 60, 66, 72, 84, 90\rbrace
 	\end{equation*}
-	liegen. Für diese Fälle zählen wir mithilfe der Automorphismentypen mit dem in diesem Abschnitt beschriebenen Verfahren die möglichen charakteristischen Polynome der möglicherweise nicht von Algorithmus \eqref{alg:largeauto} gefundenen Gitter auf und erhalten so $393$ verschiedene Polynome. Die Möglichkeiten $m = 32, 40, 48, 54, 25, 44$ und $50$ können so bereits ausgeschlossen werden. Für $m = 27$ und $72$ werden die behaupteten Aussagen auch sofort durch die Aufzählung gezeigt.\par
-	Im Falle $m = 33$ zeigt eine genaue Betrachtung der Polynome, dass die einzigen Möglichkeiten für das Minimalpolynom $\mu_\sigma$ entweder $\Phi_3 \Phi_{11}$ oder $\Phi_1 \Phi_3 \Phi_{11}$ sind. Das von $\sigma^{11}$ induzierte Teilgitter
-	\[L \cap \Kern(\sigma^{11}-1) \perp L \cap \Bild(\sigma^{11}-1) = L \cap \Kern(\Phi_{11}(\sigma)) \perp L \cap \Kern((\Phi_1 \Phi_3)(\sigma)) \]
-	hat nach Lemma \eqref{lem:pL} einen $3$-Potenz-Index in $L$. Allerdings induziert $\sigma^3$ dasselbe Teilgitter, daher hat es gleichzeitig Index $11^2$ in $L$. Dies ist ein Widerspruch, also kann der Fall nicht eintreten.\par
-	Im Falle $m = 60$ zeigt die Auflistung der Polynome, dass immerzu $\Phi_{20}$ das Minimalpolynom $\mu_\sigma$ teilen muss. Da $\sigma^{30}$ ein Automorphismus der Ordnung $2$ ist, hat $\sigma^{30}$ den Typen $2 - (12, 12) - 12 - (6, 6)$ oder $2 - (0, 24) - 0 - (0, 12)$.  Eine genaue Betrachtung der möglichen charakteristischen Polynome zeigt in jedem Fall $\Phi_{20} \vert \mu_\sigma$. Damit ist $\sigma\vert_{\Bild(\sigma^{30}-1)}$ ein Automorphismus des von $\sigma^{30}$ induzierten Bildgitters, dessen Ordnung ein Vielfaches von $20$ ist. Das skalierte Coxeter-Todd Gitter $\sqrt{2}K_{12}$ hat jedoch keinen Automorphismus der Ordnung $20$, also muss $\sigma^{30}$ den Typen $2 - (0, 24) - 0 - (0, 12)$ haben. Für alle Teiler $\Phi_a \vert \mu_\sigma$ gilt daher $a \nmid 30$, also $4 \vert a$. Die einzigen Möglichkeiten für das Minimalpolynom von $\sigma$ sind insgesamt $\Phi_4 \Phi_{12} \Phi_{20}$ und $\Phi_{12} \Phi_{20}$. Nun ist der Index des von $\sigma^{20}$ induzierten Teilgitters $L \cap \Kern(\Phi_{20}(\sigma)) \perp L \cap \Kern((\Phi_4 \Phi_{12})(\sigma))$ in $L$ erneut nach Lemma \eqref{lem:pL} eine $3$-Potenz. Das gleiche Teilgitter wird allerdings auch von $\sigma^{12}$ induziert und hat somit Index $5^4$ in $L$. Dies ist ein Widerspruch, also kann dieser Fall nicht auftreten.\par
-	Im Falle $m = 66$ muss $\Phi_{22}$ das Minimalpolynom $\mu_\sigma$ teilen, wie eine Betrachtung der aufgezählten Möglichkeiten für das charakteristische Polynom zeigt. Die Ordnung des Automorphismus $\sigma\vert_{\Bild(\sigma^{33}-1)}$ ist also ein Vielfaches von $22$, jedoch hat $\sqrt{2} K_{12}$ auch keinen Automorphismus der Ordnung $22$, also muss $\sigma^{33}$ den Typen $2 - (0, 24) - 0 - (0, 12)$ haben. Damit gilt $\mu_\sigma \vert \Phi_{2} \Phi_{6} \Phi_{22} \Phi_{66}$.\par
-	Im Falle $m = 45$ teilt $\Phi_9$ das Minimalpolynom $\mu_\sigma$. Demnach hat $\sigma\vert_{\Kern(\sigma^9-1)}$ die Ordnung $9$. Keines der $9$ möglichen Fixgitter von $\sigma^9$ hat jedoch einen Automorphismus der Ordnung $9$, also kann auch dieser Fall nicht auftreten.
+	liegen. Für diese Fälle zählen wir mithilfe der Automorphismentypen mit dem in diesem Abschnitt beschriebenen Verfahren die möglichen charakteristischen Polynome der möglicherweise nicht von Algorithmus \eqref{alg:largeauto} gefundenen Gitter auf und erhalten so $400$ verschiedene Polynome. Die Möglichkeiten $m = 25, 32, 40, 44$ und $50$ können so bereits ausgeschlossen werden. Für den Rest machen wir nun eine Fallunterscheidung:
 	
+	\begin{itemize}[align=left, leftmargin = *]
+		\item[$m = 27 = 3^3$:] Damit $\sigma$ Ordnung $27$ hat, muss $\Phi_{27}$ das Minimalpolynom teilen. Weitere Einschränkungen können wir nicht machen.
+		\item[$m = 33 = 3 \cdot 11$:] Hier zeigt zeigt eine Betrachtung der Polynome, dass die einzigen Möglichkeiten für das Minimalpolynom $\mu_\sigma$ entweder $\Phi_3 \Phi_{11}$ oder $\Phi_1 \Phi_3 \Phi_{11}$ sind. Im Falle $\mu_\sigma = \Phi_3 \Phi_{11}$ hat das von $\sigma^{11}$ induzierte Teilgitter
+	\[L \cap \Kern(\sigma^{11}-1) \perp L \cap \Bild(\sigma^{11}-1) = L \cap \Kern(\Phi_{11}(\sigma)) \perp L \cap \Kern(\Phi_3)(\sigma)) \]
+	nach Lemma \eqref{lem:pL} einen $3$-Potenz-Index in $L$. Allerdings induziert $\sigma^3$ dasselbe Teilgitter, daher hat es gleichzeitig Index $11^2$ in $L$. Dies ist ein Widerspruch, also kann der Fall nicht eintreten. Die einzige Möglichkeit für das Minimalpolynom ist daher $\mu_\sigma = \Phi_1 \Phi_3 \Phi_{11}$ bei charakteristischem Polynom $\chi_\sigma = \Phi_1^2 \Phi_3 \Phi_{11}$.
+		\item[$m = 45 = 3^2 \cdot 5$.] Hier teilt immer $\Phi_9$ das Minimalpolynom $\mu_\sigma$. Demnach hat $\sigma\vert_{\Kern(\sigma^9-1)}$ die Ordnung $9$. Keines der $9$ möglichen Fixgitter von $\sigma^9$ hat jedoch einen Automorphismus der Ordnung $9$, also kann auch dieser Fall nicht auftreten.
+		\item[$m = 48 = 2^4 \cdot 3$:] Das einzig mögliche charakteristische Polynom in diesem Falle ist nach unserer Aufzählung $\chi_\sigma = \Phi_{16} \Phi_{48}$.
+		\item[$m = 54 = 2 \cdot 3^3$:] Das Minimalpolynom wird immer von $\Phi_{54}$ geteilt. Und der Typ von $\sigma^{27}$ ist in jedem Falle $2 - (0, 24) - 0 - (0, 12)$, mehr lässt sich allerdings nicht aussagen.
+		\item[$m = 60 = 2^2 \cdot 3 \cdot 5$:] Hierzeigt die Auflistung der Polynome, dass immerzu $\Phi_{20}$ das Minimalpolynom $\mu_\sigma$ teilen muss. Da $\sigma^{30}$ ein Automorphismus der Ordnung $2$ ist, hat $\sigma^{30}$ den Typen $2 - (12, 12) - 12 - (6, 6)$ oder $2 - (0, 24) - 0 - (0, 12)$.  Eine genaue Betrachtung der möglichen charakteristischen Polynome zeigt in jedem Fall $\Phi_{20} \vert \mu_\sigma$. Damit ist $\sigma\vert_{\Bild(\sigma^{30}-1)}$ ein Automorphismus des von $\sigma^{30}$ induzierten Bildgitters, dessen Ordnung ein Vielfaches von $20$ ist. Das skalierte Coxeter-Todd Gitter $\sqrt{2}K_{12}$ hat jedoch keinen Automorphismus der Ordnung $20$, also muss $\sigma^{30}$ den Typen $2 - (0, 24) - 0 - (0, 12)$ haben. Für alle Teiler $\Phi_a \vert \mu_\sigma$ gilt daher $a \nmid 30$, also $4 \vert a$. Die einzigen Möglichkeiten für das Minimalpolynom von $\sigma$ sind insgesamt $\Phi_{12} \Phi_{20}$ und $\Phi_4 \Phi_{12} \Phi_{20}$. Im ersten Falle ist erneut der Index des von $\sigma^{20}$ induzierten Teilgitters $L \cap \Kern(\Phi_{20}(\sigma)) \perp L \cap \Kern(\Phi_{12}(\sigma))$ in $L$ nach Lemma \eqref{lem:pL} eine $3$-Potenz. Das gleiche Teilgitter wird allerdings auch von $\sigma^{12}$ induziert und hat somit Index $5^4$ in $L$. Dies ist ein Widerspruch, also kann dieser Fall nicht auftreten. Das einzig mögliche charakteristische Polynom bleibt damit $\Phi_4^2 \Phi_{12} \Phi_{20}^2$.\par
+	Im Falle $m = 66$ muss $\Phi_{22}$ das Minimalpolynom $\mu_\sigma$ teilen, wie eine Betrachtung der aufgezählten Möglichkeiten für das charakteristische Polynom zeigt. Die Ordnung des Automorphismus $\sigma\vert_{\Bild(\sigma^{33}-1)}$ ist also ein Vielfaches von $22$, jedoch hat $\sqrt{2} K_{12}$ auch keinen Automorphismus der Ordnung $22$, also muss $\sigma^{33}$ den Typen $2 - (0, 24) - 0 - (0, 12)$ haben. Damit gilt $\mu_\sigma \vert \Phi_{2} \Phi_{6} \Phi_{22} \Phi_{66}$.
+		\item[$m = 72 = 2^3 \cdot 3^2$:] Man kann beobachten, dass immerzu $\Phi_8$ das Minimalpolynom teilt, mehr lässt sich nicht aussagen.
+		\item[$m = 84 = 2^2 \cdot 3 \cdot 7$:] Es gibt nur zwei mögliche charakteristische Polynome. Diese sind $\Phi_{28} \Phi_{42}$ und $\Phi_{21} \Phi_{28}$. Da $\Kern(\sigma^{42}-1)$ in jedem Fall nicht trivial ist, hat $\sigma^{42}$ Typ $2 - (12, 12) - 12 - (6, 6)$. Der Automorphismus $\sigma^{28}$ der Ordnung $3$ induziert allerdings das gleiche Teilgitter wie $\sigma^{42}$, also muss der Index gleichzeitig eine $3$-Potenz und $2^{12}$ sein. Dies ist ein Widerspruch, also kann der Fall nicht eintreten.
+		\item[$m = 90 = 2 \cdot 3^2 \cdot 5$:] Es ist $\Kern(\sigma^{18})$ stets nicht-trivial, also hat $\sigma^{18}$ Typ $5 - (8, 16) - 4 - (4, 8)$.
+	\end{itemize}
 \end{beweis}
+Die Methoden zur Einschränkung der Möglichkeiten für die charakteristischen Polynome wurde ebenfalls in Magma implementiert. Eine Anwendung auf alle $l, n$ und $m$ lässt uns bereits viele mögliche Automorphismenordnungen ausschließen. Welche Ordnungen nach unseren Einschränkungen jeweils nicht möglich sind, kann man den Ergebnissen der Subideal-Gitter-Klassifikation in Anhang (6.2) entnehmen. Besonders stark sind die folgenden Ergebnisse:
+
+\begin{framed}
+	\begin{satz}
+		\begin{itemize}
+			\item Alle bisher unbekannten $5$-modularen Gitter der Dimension $20$ haben keine großen Automorphismen.
+			\item Alle bisher unbekannten $7$-modularen Gitter der Dimension $20$ haben keine großen Automorphismen.
+			\item Falls der Algorithmus alle Gitter mit den gegebenen Voraussetzungen gefunden hat, existieren keine weiteren $7$-modularen Gitter der Dimension $22$ mit großem Automorphismus.
+			\item Alle bisher unbekannten $11$-modularen Gitter der Dimension $22$ haben keine großen Automorphismen.
+		\end{itemize}
+	\end{satz}
+\end{framed}
+
 
 \chapter{Zusammenfassung und Ausblick}
 
@@ -1951,6 +1979,186 @@ Ein Ansatzpunkt für weitere Forschung zu diesem Thema ist insbesondere die Unte
 								&$36$					&$2(-)$						&$\Q(\zeta_{108})$	&$-$	&$-$	&$1$	&$-$	&$-$	&$-$	&$1$	&$-$	&$-$\\ \hline
 	\end{tabular}
 	\caption{Anzahlen der Ideal-Gitter der Stufen $\ell \in \lbrace 1,2,3,5,6,7,11,14,15,23 \rbrace$ und Determinante $\ell^\frac{n}{2}$ mit Dimensionen $\leq 36$ nach zugehörigem Kreisteilungskörper $K$ und Minimum.}
+\end{table}
+
+\section{Ergebnisse der Subideal-Gitter-Klassifikation}
+
+Es folgt eine Tabelle mit den Anzahlen der mit Algorithmus \eqref{alg:largeauto} gefundenen (ggf. bisher unbekannten) extremalen, stark modularen Gitter mit großem Automorphismus der Ordnung $m$ für Werte $\ell$ und $n$, bei denen die Gesamtzahl extremaler Gitter bisher nicht bekannt ist. Dabei gibt "Vollst."\ an, ob mit Sicherheit alle Gitter mit Automorphismen der Ordnung $m$ so konstruiert wurden und "Vollst. groß", ob mit Sicherheit alle Gitter mit großen Automorphismen der Ordnung $m$ konstruiert wurden. Werte für $m$, sodass nach Anwendung der Methode sicher keine Automorphismen der Ordnung $m$ existieren können, wurden aus Platzgründen weggelassen. Teilweise sind die Anzahlen mit "!!"\ markiert, dies bedeutet, dass in Algorithmus \eqref{alg:largeauto} ein Geschlecht für das Fixgitter nicht vollständig aufgezählt wurde und daher möglicherweise nicht alle Gitter mit den richtigen Voraussetzungen vom Algorithmus gefunden wurden.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline		
+		$\Dim$					&$\ell$					&{Anzahl(unbekannte)}		&$m$	&Anzahl	&Vollst.	&Vollst. groß	&$\sigma$-inv. Oberg.\\ \hline
+		\multirow{12}{*}{$12$}	&\multirow{7}{*}{$14$}	&\multirow{7}{*}{$1(0)$}	&$16$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$20$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$24$	&$1$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$30$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
+								&\multirow{5}{*}{$15$}	&\multirow{5}{*}{$1(0)$}	&$15$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$20$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$24$	&$1$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$30$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \hline
+		\multirow{1}{*}{$14$}	&\multirow{1}{*}{$11$}	&\multirow{1}{*}{$0(0)$}	&$11$	&$0$	&$\times$		&$\times$		&$\times$\\ \hline
+		\multirow{13}{*}{$16$}	&\multirow{7}{*}{$6$}	&\multirow{7}{*}{$1(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
+								&\multirow{6}{*}{$7$}	&\multirow{6}{*}{$3(1)$}	&$21$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline		
+		$\Dim$					&$\ell$					&{Anzahl(unbekannte)}		&$m$	&Anzahl	&Vollst.	&Vollst. groß	&$\sigma$-inv. Oberg.\\ \hline
+		\multirow{13}{*}{$16$}	&\multirow{7}{*}{$14$}&\multirow{7}{*}{$0(0)$}		&$21$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
+								&\multirow{6}{*}{$15$}&\multirow{6}{*}{$1(0)$}		&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \hline
+		\multirow{4}{*}{$18$}	&\multirow{4}{*}{$11$}	&\multirow{4}{*}{$0(0)$}	&$11$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \hline
+		\multirow{9}{*}{$20$}	&\multirow{9}{*}{$3$}	&\multirow{9}{*}{$3(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$3$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$27$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$54$	&$0$	&$\times$		&$\times$		&$\times$\\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline		
+		$\Dim$					&$\ell$					&{Anzahl(unbekannte)}		&$m$	&Anzahl	&Vollst.	&Vollst. groß	&$\sigma$-inv. Oberg.\\ \hline
+		\multirow{10}{*}{$20$}	&\multirow{3}{*}{$5$}	&\multirow{3}{*}{$3(0)$}	&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$3$	&$\times$		&$\times$		&$\times$\\ \cline{2-8}	
+								&						&							&$50$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&\multirow{3}{*}{$6$}	&\multirow{3}{*}{$1(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{2-8}
+								&\multirow{9}{*}{$6$}	&\multirow{9}{*}{$1(0)$}	&$32$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$27$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$54$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$33$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$44$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$66$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \hline
+		\multirow{18}{*}{$20$}	&\multirow{4}{*}{$7$}	&\multirow{4}{*}{$0(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
+								&\multirow{6}{*}{$14$}	&\multirow{6}{*}{$0(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$32$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
+								&\multirow{8}{*}{$15$}	&\multirow{8}{*}{$0(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$27$	&$0$	&$\times$		&$\times$		&$\times$\\ \hline
+		\multirow{10}{*}{$22$}&\multirow{10}{*}{$3$}	&\multirow{10}{*}{$2(1)$}	&$13$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$26$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$27$	&$0$	&$\times$		&$\times$		&$\times$\\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline		
+		$\Dim$					&$\ell$					&{Anzahl(unbekannte)}		&$m$	&Anzahl	&Vollst.	&Vollst. groß	&$\sigma$-inv. Oberg.\\ \hline
+		\multirow{12}{*}{$22$}	&\multirow{2}{*}{$3$}	&\multirow{2}{*}{$2(1)$}	&$33$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$66$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{2-8}
+								&\multirow{5}{*}{$7$}	&\multirow{5}{*}{$2(1)$}	&$21$	&$0!!$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0!!$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
+								&\multirow{5}{*}{$11$}&\multirow{5}{*}{$2(1)$}		&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$44$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \hline
+		\multirow{15}{*}{$24$}	&\multirow{11}{*}{$2$}	&\multirow{11}{*}{$8(2)$}	&$32$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$7$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$1$	&$\times$		&$\checkmark$	&$\checkmark$\\ \cline{4-8}
+								&						&							&$60$	&$7$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$35$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$45$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$56$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$70$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$72$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$84$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$90$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
+								&\multirow{4}{*}{$3$}	&\multirow{4}{*}{$1(0)$}	&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$27$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$39$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$52$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \hline
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline		
+		$\Dim$					&$\ell$					&{Anzahl(unbekannte)}		&$m$	&Anzahl	&Vollst.	&Vollst. groß	&$\sigma$-inv. Oberg.\\ \hline
+		\multirow{14}{*}{$24$}	&\multirow{3}{*}{$3$}	&\multirow{3}{*}{$1(0)$}	&$72$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$78$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$84$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
+								&\multirow{11}{*}{$5$}	&\multirow{11}{*}{$1(0)$}	&$40$	&$1$	&$\times$		&$\checkmark$	&$\checkmark$\\ \cline{4-8}
+								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$25$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$35$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$45$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$56$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$70$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$72$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$84$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$90$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \hline
+	\end{tabular}
 \end{table}
 
 \section{\texttt{MAGMA}-Implementierungen von Hilfsfunktionen}

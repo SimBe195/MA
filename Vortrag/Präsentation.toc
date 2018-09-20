@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Automorphismen von Primzahlordnung}{16}{0}{1}
+\beamer@sectionintoc {2}{Bildgitter}{18}{0}{2}
+\beamer@sectionintoc {3}{Fixgitter}{21}{0}{3}
+\beamer@sectionintoc {4}{Kandidaten f\IeC {\"u}r $\sigma $}{29}{0}{4}
+\beamer@sectionintoc {5}{Konstruktion von Obergittern}{35}{0}{5}

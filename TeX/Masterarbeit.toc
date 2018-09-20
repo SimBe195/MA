@@ -16,13 +16,14 @@
 \contentsline {section}{\numberline {4.4}Kneser-Nachbarschaftsmethode}{54}
 \contentsline {section}{\numberline {4.5}Konstruktion von Obergittern}{59}
 \contentsline {section}{\numberline {4.6}Konstruktion von Gittern mit gro\IeC {\ss }em Automorphismus}{63}
-\contentsline {section}{\numberline {4.7}Vollst\IeC {\"a}ndigkeit der Ergebnisse}{69}
-\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{73}
-\contentsline {chapter}{\numberline {6}Anhang}{75}
-\contentsline {section}{\numberline {6.1}Ergebnisse der Ideal-Gitter-Klassifikation}{75}
-\contentsline {section}{\numberline {6.2}\texttt {MAGMA}-Implementierungen von Hilfsfunktionen}{82}
-\contentsline {section}{\numberline {6.3}\texttt {MAGMA}-Implementierungen der Ideal-Gitter-Algorithmen}{88}
-\contentsline {section}{\numberline {6.4}\texttt {MAGMA}-Implementierungen der Subideal-Gitter-Algorithmen}{97}
-\contentsline {section}{\numberline {6.5}\texttt {MAGMA}-Implementierungen zur Aufz\IeC {\"a}hlung der charakteristischen Polynome}{117}
-\contentsline {section}{\numberline {6.6}Eidesstattliche Versicherung}{123}
-\contentsline {chapter}{\numberline {7}Literaturverzeichnis}{124}
+\contentsline {section}{\numberline {4.7}Vollst\IeC {\"a}ndigkeit der Ergebnisse}{67}
+\contentsline {chapter}{\numberline {5}Zusammenfassung und Ausblick}{75}
+\contentsline {chapter}{\numberline {6}Anhang}{77}
+\contentsline {section}{\numberline {6.1}Ergebnisse der Ideal-Gitter-Klassifikation}{77}
+\contentsline {section}{\numberline {6.2}Ergebnisse der Subideal-Gitter-Klassifikation}{84}
+\contentsline {section}{\numberline {6.3}\texttt {MAGMA}-Implementierungen von Hilfsfunktionen}{89}
+\contentsline {section}{\numberline {6.4}\texttt {MAGMA}-Implementierungen der Ideal-Gitter-Algorithmen}{96}
+\contentsline {section}{\numberline {6.5}\texttt {MAGMA}-Implementierungen der Subideal-Gitter-Algorithmen}{105}
+\contentsline {section}{\numberline {6.6}\texttt {MAGMA}-Implementierungen zur Aufz\IeC {\"a}hlung der charakteristischen Polynome}{125}
+\contentsline {section}{\numberline {6.7}Eidesstattliche Versicherung}{131}
+\contentsline {chapter}{\numberline {7}Literaturverzeichnis}{132}

@@ -104,13 +104,21 @@ function EmbeddingMatrix(K, Kpos)
 
   t := #Basis(ZKpos);
 
-  G, mG := pFundamentalUnits(ZKpos,2);
-  FundUnits := [mG(G.i) : i in [1..t]];
+  if Degree(ZKpos) eq 1 then
+    FundUnits := [ZKpos ! (-1)];
+  else
+    G, mG := pFundamentalUnits(ZKpos,2);
+    FundUnits := [mG(G.i) : i in [1..t]];
+  end if;
 
   M := ZeroMatrix(GF(2), t, t);
 
   for i in [1..t] do
-    Embeds := RealEmbeddings(FundUnits[i]);
+    if Degree(ZKpos) eq 1 then
+      Embeds := [-1];
+    else
+      Embeds := RealEmbeddings(FundUnits[i]);
+    end if;
     for j in [1..t] do
       if Embeds[j] lt 0 then
         M[i][j] := 1;
@@ -150,7 +158,12 @@ function TotallyPositiveGenerators(alpha, K, Kpos, M, U, FundUnits)
   t := #Basis(Kpos);
   V := ZeroMatrix(GF(2), 1, t);
 
-  Embeds := RealEmbeddings(alpha);
+  if Degree(Kpos) eq 1 then
+    Embeds := [alpha];
+  else
+    Embeds := RealEmbeddings(alpha);
+  end if;
+  
   for i in [1..t] do
     if Embeds[i] lt 0 then
       V[1][i] := 1;

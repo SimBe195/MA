@@ -1,0 +1,361 @@
+\documentclass{beamer}
+\usetheme{Warsaw}  %% Themenwahl
+
+\usepackage[utf8]{inputenc}
+\usepackage[Algorithmus]{algorithm}
+\usepackage[noend]{algpseudocode}
+\usepackage{multirow}
+\usepackage{diagbox}
+\usepackage{ stmaryrd }
+
+
+% ========== Abkuerzungen ==========
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\G}{\mathbb{G}}
+\newcommand{\F}{\mathbb{F}}
+\renewcommand{\P}{\mathbb{P}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\No}{\mathcal{N}}
+\newcommand{\Det}{\text{Det}}
+\newcommand{\Min}{\text{Min}}
+\renewcommand{\O}{\mathcal{O}}
+\newcommand{\I}{\mathcal{I}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\p}{\mathfrak{p}}
+\newcommand{\q}{\mathfrak{q}}
+\renewcommand{\a}{\mathfrak{a}}
+\renewcommand{\b}{\mathfrak{b}}
+\newcommand{\A}{\mathfrak{A}}
+\newcommand{\Bfrak}{\mathfrak{B}}
+\makeatletter
+\renewcommand{\i}{\text{\expandafter\@slowromancap\romannumeral 1@}}
+\newcommand{\ii}{\text{\expandafter\@slowromancap\romannumeral 2@}}
+\makeatother
+\newcommand{\Kern}{\text{Kern}}
+\newcommand{\Bild}{\text{Bild}}
+\newcommand{\ggT}{\text{ggT}}
+\newcommand{\kgV}{\text{kgV}}
+\newcommand{\Aut}{\text{Aut}}
+\newcommand{\Dim}{\text{Dim}}
+
+\title{Extremale Gitter mit großen Automorphismen}
+\author{Simon Berger}
+\date{21. September 2018}
+
+\begin{document}
+
+\begin{frame}[plain]
+	\titlepage
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Ideal-Gitter}
+	\begin{Definition}
+			Ein \textit{Ideal-Gitter} ist ein Gitter $(\I,b)$, sodass $\I$ ein gebrochenes $\Z_K$-Ideal ist und $b:\I \times \I \rightarrow \R$ eine symmetrische positiv-definite Bilinearform mit $b(\lambda x, y) = b(x, \overline{\lambda} y)$ für $x,y \in \I$ und $\lambda \in \Z_K$. Die Abbildung $\lambda \mapsto \overline{\lambda}$ bezeichnet dabei die herkömmliche komplexe Konjugation.
+	\end{Definition}
+	\pause
+	Solche Gitter können wir für gegebenen Körper $K$ und Determinante effizient konstruieren!
+\end{frame}
+
+\begin{frame}[plain]
+	\begin{tiny}
+	\begin{table}
+	\centering
+	\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		\backslashbox{$n$}{$\ell$}	&$1$	&$2$	&$3$	&$5$	&$6$	&$7$	&$11$	&$14$	&$15$	&$23$\\ \hline \hline
+		$4$		&$-$		&$1(1)$		&$1(1)$		&$-$		&$-$		&$-$		&$1(1)$		&$1(1)$		&$-$		&$1(1)$ \\ \hline
+		$6$		&$-$		&$-$		&$1(1)$		&$-$		&$-$		&$1(1)$		&$-$		&$-$		&$-$		&$-$ \\ \hline
+		$8$		&$1(1)$		&$1(1)$		&$1(1)$		&$1(1)$		&$1(1)$		&$1(1)$		&$2(1)$		&$2(1)$		&$1(1)$		&$3(-)$ \\ \hline
+		$10$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$1(1)$		&$-$		&$-$		&$-$ \\ \hline
+		$12$	&$-$		&$1(1)$		&$2(1)$		&$1(1)$		&$1(1)$		&$1(-)$		&$1(-)$		&$1(1)$		&$-$		&$1(-)$ \\ \hline
+		$16$	&$1(1)$		&$2(1)$		&$3(2)$		&$1(-)$		&$2(1)$		&$4(3)$		&$5(-)$		&$5(-)$		&$3(1)$		&$5(-)$ \\ \hline
+		$18$	&$-$		&$-$		&$1(-)$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$ \\ \hline
+		$20$	&$-$		&$1(1)$		&$-$		&$-$		&$1(1)$		&$1(-)$		&$2(-)$		&$-$		&$-$		&$-$ \\ \hline
+		$22$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$2(-)$ \\ \hline
+		$24$	&$4(1)$		&$2(1)$		&$7(1)$		&$5(1)$		&$5(2)$		&$8(-)$		&$7(-)$		&$8(-)$		&$5(-)$		&$14(-)$ \\ \hline
+		$32$	&$7(5)$		&$13(4)$	&$13(7)$	&$10(-)$	&$12(-)$	&$19(-)$	&$42(-)$	&$21(-)$	&$23(-)$	&$-$ \\ \hline
+		$36$	&$-$		&$6(3)$		&$8(-)$		&$8(-)$		&$-$		&$-$		&$2(-)$		&$36(-)$	&$4(-)$		&$-$ \\ \hline
+	\end{tabular}
+	\caption{Ideal-Gitter der Dimension $n$, Stufe $\ell$ und Determinante $\ell^\frac{n}{2}$.}
+	\end{table}
+	\end{tiny}
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Große Automorphismen}
+	\begin{Definition}
+		Sei $L$ ein $\Z$-Gitter der Dimension $n$. Ein \textit{großer Automorphismus} von $L$ ist ein $\sigma \in \Aut(L)$ von Ordnung $m \in \N$, sodass $\Phi_m \vert \mu_\sigma$ und $\frac{n}{2} < \varphi(m) \leq n$.
+	\end{Definition}
+	\pause
+	\par
+	$\rightarrow$ Ziel: Gitter mit großen Automorphismen klassifizieren.
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Große Automorphismen}
+	Sei $L$ Gitter mit großem Automorphismus $\sigma$ der Ordnung $m$ in Vektorraum $V$.
+	\pause
+	\[\Rightarrow V = \Kern(\frac{\mu_\sigma}{\Phi_m}(\sigma)) \perp \Kern(\Phi_m(\sigma))\]
+	\[ M := L_1 \perp L_p := L \cap \Kern(\frac{\mu_\sigma}{\Phi_m}(\sigma)) \perp L \cap \Kern(\Phi_m(\sigma))\]
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Große Automorphismen}
+	\[ M := L_1 \perp L_p := L \cap \Kern(\frac{\mu_\sigma}{\Phi_m}(\sigma)) \perp L \cap \Kern(\Phi_m(\sigma))\]
+	\begin{itemize}
+		\item Falls ein $p \in \P$ existiert, sodass $\frac{\mu_\sigma}{\Phi_m} \mid (X^\frac{m}{p} - 1)$, dann ist $L_1 = L \cap \Kern(\sigma^\frac{m}{p}-1)$ das Fixgitter und $L_p = L \cap \Bild(\sigma^\frac{m}{p} - 1)$ das Bildgitter eines Automorphismus von Primzahlordnung.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Strategie zur Klassifikation}
+	\begin{itemize}
+		\item Primteiler $p$ von $m$ mit $\ggT(p,\ell) = 1$ durchgehen.
+		\pause
+		\item Mögliche Automorphismentypen der Ordnung $p$ durchgehen.
+		\pause
+		\item Mögliche Bildgitter aufzählen.
+		\pause
+		\item Mögliche Fixgitter aufzählen.
+		\pause
+		\item Kandidaten für $\sigma$ aufzählen.
+		\pause
+		\item $L$ als $\sigma$-invariantes Obergitter von $L_1 \perp L_p$ konstruieren.
+	\end{itemize}
+\end{frame}
+
+\section{Automorphismen von Primzahlordnung}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}[plain]
+	\frametitle{Automorphismen von Primzahlordnung}
+	\begin{Satz}
+		Sei $L$ gerade, $n$-dim. von q.-freier Stufe $\ell$, $\Det(L) = \ell^k$. Sei zudem $\sigma \in \Aut(L)$ von Typ $p - (n_1, n_p) - s - q_1 - (k_{1,1}, k_{p,1}) - \dots$, wobei $\ggT(p, \ell) = 1$. Dann gilt:
+		\begin{itemize}
+			\item $n_1 + n_p = n$.
+			\item $s \in \lbrace 0, \dots, \min(n_1, \frac{n_p}{p-1}) \rbrace$.
+			\item $s \equiv_2 \frac{n_p}{p-1}$ und für $p = 2$ zusätzlich $s \equiv_2 0$.
+			\item $k_{1,i} \in \lbrace 0, \dots, \min(n_1, k) \rbrace$.
+			\item $k_{1,i} \equiv_2 k$.
+			\item $k_{p,i} \in \lbrace 0, \dots, \min(n_p, k) \rbrace$.
+			\item $k_{p,i} \equiv_2 0$.
+			\item $\left( 2f(q_i)\right) \vert k_{p,i}$, wobei $f(q_i)$ den Trägheitsgrad von $q_i \Z_{\Q(\zeta_p + \zeta_p^{-1})}$ bezeichne.
+			\item $k_{1,i} + k_{p,i} = k$.
+		\end{itemize}
+	\end{Satz}
+\end{frame}
+
+\section{Bildgitter}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}[plain]
+	\frametitle{Bildgitter}
+	Da $\varphi(m) > \frac{n}{2}$ ist $L_p = L \cap \Kern(\Phi_m)$ ein eindimensionaler $\Q(\zeta_m)$-Vektorraum $\rightsquigarrow$ Ideal-Gitter.\par
+	\pause
+	$\Rightarrow$ Effizient berechenbar mit dem Algorithmus aus dem ersten Teil!
+\end{frame}
+
+\section{Fixgitter}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}[plain]
+	\frametitle{Fixgitter}
+	\begin{itemize}
+		\item Für das Fixgitter kennen wir Dimension, Determinante und Stufe.
+		\pause
+	 	\item $\Rightarrow$ Finden wir nur mittels Geschlechteraufzählung.
+		\pause 
+		\item Falls $p > 2$ und $\ell$ prim, kennen wir genau das Geschlechtssymbol von $L_1$.
+		\pause
+		\item Ansonsten zumindest die Elementarteiler.
+		\pause 
+		\item Nach Konstruktion von Vertretern mit passenden Elementarteilern (David Lorch) Aufzählung des gesamten Geschlechts mit der Kneser'schen Nachbarmethode.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Fixgitter}
+	\begin{Satz}
+		Sei $L$ ein Gitter von Dimension $\geq 3$. Hat für jede Primzahl $q \in \P$ die Jordanzerlegung von $\Z_q \otimes L$ mindestens eine Komponente von Dimension $\geq 2$, so besteht der Nachbarschafts-Graph von $L$ aus genau einer Zusammenhangskomponente.
+	\end{Satz}
+	\pause
+	\begin{itemize}
+		\item Schwache Bedingung ist beinahe immer erfüllt.
+		\item Wir erhalten durch sukzessive Nachbarbildung das gesamte Geschlecht.
+		\item Benutzen als Abbruchbedingung das Maß des Geschlechtes.
+	\end{itemize}
+\end{frame}
+
+\section{Kandidaten für $\sigma$}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}[plain]
+	\frametitle{Kandidaten für $\sigma$}
+	\begin{itemize}
+		\item $\sigma$ operiert auf den Faktorgruppen $L_1^{\#,p} / L_1$ und $L_p^{\#,p} / L_p$.
+		\pause
+		\item Die Faktorgruppen sind isomorph als $\F_p[\sigma]$-Moduln.
+		\pause
+		\item $\Rightarrow$ Minimalpolynome der Operationen von $\sigma$ auf den beiden Faktorgruppen sind identisch.
+		\pause
+		\item Das Minimalpolynom auf den Faktorgruppen ist $\Phi_\frac{m}{p}$, falls $[L : M] > 1$.
+		\pause		
+		\item Wähle Vertreter $\sigma_1$ und $\sigma_p$ der Konjugiertenklassen der Automorphismen von $L_1$ und $L_p$, die mit dem richtigen Minimalpolynom auf $L_1^{\#,p} / L_1$ und $L_p^{\#,p} / L_p$ operieren. Setze $\sigma := \text{diag}(\sigma_1, \sigma_p)$.
+	\end{itemize}
+\end{frame}
+
+\section{Konstruktion von Obergittern}
+\frame{\tableofcontents[currentsection]}
+\begin{frame}[plain]
+	\frametitle{Konstruktion von Obergittern}
+	\begin{itemize}
+		\item Die ganzen Obergitter von $M$ mit Index $p^s$ haben die Form
+		\[L_\varphi := \lbrace (x_1,x_p) \in L_1^{\#,p} \perp L_p^{\#,p} \mid \varphi(x_1+L_1) = x_p + L_p \rbrace\]
+		für die Isometrien $\varphi : (L_1^{\#,p} / L_1, \overline{b_1}) \rightarrow (L_p^{\#,p} / L_p, -\overline{b_p})$
+		\pause
+		\item Damit $L_\varphi$ invariant unter $\sigma = \text{diag}(\sigma_1, \sigma_p)$ ist, muss $\varphi \circ \sigma_1 = \sigma_p \circ \varphi$ gelten.
+		\pause
+		\item Für $c \in C_{\text{Aut}(L_1)}(\sigma_1)$ ist $L_{\varphi} \cong L_{\varphi c}$.
+		\pause
+		\item Damit können wir die Obergitter aufzählen, indem wir die relevanten Isometrien modulo $C_{\text{Aut}(L_1)}(\sigma_1)$ durchgehen.
+		\pause
+		\item Bemerkung: In vielen Fällen können wir einfach alle ganzen Obergitter von $M$ mit Index $p^s$ aufzählen, ohne auf $\sigma$-Invarianz zu achten; so erhalten wir ggf. noch mehr Gitter!
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Finaler Algorithmus}
+	Alle Teilschritte können nun zu einem Algorithmus zusammengesetzt werden.
+\end{frame}
+
+\begin{frame}[plain]
+\begin{tiny}
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|c|}
+		\hline
+		\backslashbox{$n$}{$\ell$}	&$1$	&$2$	&$3$	&$5$	&$6$	&$7$	&$11$	&$14$	&$15$	&$23$\\ \hline \hline
+		$2$		&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$4$		&$-$		&$1$		&$1$		&$-$		&$-$		&$-$		&$1$		&$1$		&$-$	&$1$\\ \hline
+		$6$		&$-$		&$-$		&$1$		&$-$		&$-$		&$1$		&$1$		&$-$		&$-$	&$-$\\ \hline
+		$8$		&$1$		&$1$		&$1$		&$1$		&$1$		&$1$		&$1$		&$1$		&$1$	&$-$\\ \hline
+		$10$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$1$		&$-$		&$-$	&$-$\\ \hline
+		$12$	&$-$		&$2$		&$1$		&$1$		&$1$		&$-$		&$-$		&$1$		&$1$	&$-$\\ \hline
+		$14$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$16$	&$2$		&$1$		&$2$		&$-$		&$1$		&$3$		&$-$		&$-$		&$1$	&$-$\\ \hline
+		$18$	&$-$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$20$	&$-$		&$1$		&$3$		&$-$		&$1$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$22$	&$-$		&$-$		&$2(1^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$24$	&$1$		&$8(2^\ast)$&$1$		&$1$		&$5(3^\ast)$&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$26$	&$-$		&$-$		&$2$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$28$	&$-$		&$35(25^\ast)$&$3(2^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$30$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$32$	&$-$		&$2$		&$67(65^\ast)$&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$34$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+		$36$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$	&$-$\\ \hline
+	\end{tabular}
+	\caption{Anzahl der durch den Algorithmus konstruierten extremalen stark $\ell$-modularen Gitter in Dimension $n \leq 36$ sowie ggf. der Anzahl der bisher unbekannten Gitter darunter}
+\end{table}
+\end{tiny}
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Vollständigkeit}
+	\begin{itemize}
+	\item Erinnerung: Es muss ein $p \in \P$ mit $\ggT(p, \ell) = 1$ existieren, sodass $\frac{\mu_\sigma}{\Phi_m} \mid (X^\frac{m}{p} - 1)$\\
+	\pause
+	\item $\rightsquigarrow$ Wie stark ist diese Voraussetzung?\\
+	\pause
+	\item Dazu: Gitter charakterisieren, die \textbf{nicht} auf diese Weise konstruiert werden können.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Vollständigkeit - Beispiel}
+	Sei $\ell = 3$, $n = 24$.\\
+	\pause
+	Die möglichen Automorphismentypen von Ordnung $\in \P_{\neq 3}$ sind:\\
+	\begin{align*}
+		&2 - (12, 12) - 12 - (6, 6)		&(1 \text{ Fixgitter})\\
+		&2 - (0, 24) - 0 - (0, 12)		&(1 \text{ Fixgitter})\\
+		&5 - (8, 16) - 4 - (8, 4)		&(5 \text{ Fixgitter})\\
+		&5 - (8, 16) - 4 - (4, 8) 		&(4 \text{ Fixgitter})\\
+		&5 - (0, 24) - 0 - (0, 12) 		&(1 \text{ Fixgitter})\\
+		&7 - (0, 24) - 0 - (0, 12) 		&(1 \text{ Fixgitter})\\
+		&11 - (4, 20) - 2 - (2, 10) 	&(1 \text{ Fixgitter})\\
+		&13 - (0, 24) - 0 - (0, 12) 	&(1 \text{ Fixgitter})
+	\end{align*}
+	\pause
+	Für $12 < \varphi(m) \leq 24$ und da $m$ keine Primteiler $> 13$ hat: $m \in \lbrace 25, 27, 32, 33, 40, 44, 45, 48, 50, 54, 60, 66, 72, 84, 90\rbrace$.
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Vollständigkeit - Beispiel}
+	\begin{itemize}
+		\item[$m = 25$:] $\Phi_{25} \mid \mu_\sigma$, $\frac{\mu_\sigma}{\Phi_{25}} \vert (X^5-1)$ $\Rightarrow$ wird von Alg. gefunden.
+		\pause
+		\item[$m = 48$:] Ang. $\sigma^{24}$ hat Typ $2 - (12, 12) - 12 - (6, 6)$, dann $\Phi_{48} \nmid \mu_\sigma$. Somit $\Phi_{16} \mid \mu_\sigma$ und $\mu_\sigma \mid (X^{24}-1) \Phi_{16}$.\\
+		$\Rightarrow$ $\Bild(\sigma^{24}-1)$ ist $\Q(\zeta_{16})$-VR, aber $\Dim(\Bild(\sigma^{24}-1)) = 12 \lightning$\\
+		$\Rightarrow \mu_\sigma \in \lbrace \Phi_{16} \Phi_{48}, \Phi_{48} \rbrace$. Für $\mu_\sigma = \Phi_{48}$ ist $L$ aber ein Ideal-Gitter über $\Q(\zeta_{48})$ und wird gefunden.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Vollständigkeit - Methoden}
+	Sei $L$ ein Gitter mit einem Automorphismus $\sigma$ der Ordnung $m$, sodass $\frac{n}{2} < \varphi(m) \leq n$, aber $L$ kann nicht durch den Algorithmus gefunden werden.\\
+	\pause
+	Betrachte die charakteristischen Polynome
+	\[\chi_\sigma := \Phi_{d_1}^{c_1} \dots \Phi_{d_k}^{c_k} \]
+	für die Teiler $d_1 < d_2 < \dots < d_k$ von $m$.\\
+	\pause
+	\begin{itemize}
+		\item Für Ordnung $m$: $\kgV\lbrace d_i \vert c_i > 0 \rbrace \stackrel{!}{=} m$.\\
+		\pause
+		\item Wenn
+	 		\[c_k = 1 \text{ und } \kgV \lbrace d_i \mid i \in \lbrace 1, \dots, k-1 \rbrace \text{ und } c_i > 0 \rbrace \mid \frac{m}{p}\]
+			für ein $p \in \P$, $\ggT(p, \ell) = 1$ erfüllt ist, wird $L$ gefunden.
+	\end{itemize}
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Vollständigkeit - Methoden}
+	Kennt man für eine Menge von Primteilern $p_1, \dots, p_t \mid m$ die Typen
+	\begin{align*}
+		p_1 - &(n_{1,1}, \dots\\
+		&\vdots\\
+		p_t - &(n_{t,1}, \dots
+	\end{align*}
+	der Automorphismen $\sigma^\frac{m}{p_1}, \sigma^\frac{m}{p_2}, \dots, \sigma^\frac{m}{p_t}$, so muss $c := (c_1, \dots, c_k)$ eine Lösung von $c M= (n_{1,1}, n_{2,1}, \dots, n_{t,1}, n)$ mit der Matrix
+	\[M \in \N_0^{k \times (t+1)}, \quad M_{i,j} := \begin{cases} \varphi(d_i)	&, d_i \mid \frac{m}{p_j} \text{ oder } j = t+1\\ 0 &, \text{sonst}\end{cases}\]
+sein.
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Vollständigkeit - Methoden}
+	Für $p \mid m$ ist 
+	\[\vert \sigma_1 \vert = \kgV \lbrace d_i \mid \nu_p(d_i) < \nu_p(m) \text{ und } c_i > 0 \rbrace.\]
+	\[\vert \sigma_p \vert = \kgV \lbrace d_i \mid \nu_p(d_i) = \nu_p(m) \text{ und } c_i > 0 \rbrace.\]
+	\pause
+	$\rightsquigarrow$ Wenn für $\sigma^\frac{m}{p}$ alle möglichen Fix- oder Bildgitter aufgezählt werden können, muss mindestens eines davon einen Automorphismus der passenden Ordnung haben.
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Vollständigkeit - Methoden}
+	Seien $p_1, p_2 \mid m$.\\
+	Wenn für alle Faktoren $\Phi_{d_i} \mid \chi_\sigma$, immer \textit{entweder} $\nu_{p_1}(d_i) = \nu_{p_1}(m)$ \textit{oder} $\nu_{p_2}(d_i) = \nu_{p_2}(m)$ gilt, induzieren $p_1$ und $p_2$ dasselbe Teilgitter.\\
+	\pause
+	$\rightsquigarrow$ Index $0$!
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Vollständigkeit - Methoden}
+	Methoden zur Analyse der charakteristischen Polynome in \texttt{MAGMA} implementiert und verschiedene $\ell$ und $n$ ausgewertet.\\
+\end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Ende}
+	\begin{large} \begin{center} Vielen Dank für eure Aufmerksamkeit! \end{center} \end{large}
+\end{frame}
+
+\end{document}

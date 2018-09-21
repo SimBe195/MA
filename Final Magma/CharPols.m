@@ -171,6 +171,7 @@ function PossibleCharPos(l, n, maxEnumerate)
 
     Types := RestrictAutomorphismTypes(l,n, maxEnumerate);
 
+    "Test characteristic polynomials";
     Results := [];
 
     for phim in [Integers() ! (n/2)+1..n] do
@@ -346,8 +347,8 @@ function PossibleCharPos(l, n, maxEnumerate)
 
 end function;
 
-
-for ln in [<14,12>,<15,12>,<11,14>,<6,16>,<7,16>,<14,16>,<15,16>,<11,18>,<3,20>,<5,20>,<6,20>,<7,20>,<14,20>,<15,20>,<2,24>,<3,24>,<5,24>,<6,24>,<14,24>,<15,25>,<3,26>,<7,26>,<2,28>,<3,28>,<5,28>,<7,28>,<3,30>,<2,32>,<3,32>,<5,32>,<7,32>,<3,34>,<7,34>,<2,36>,<3,36>,<5,36>] do
+//<14,20>,<15,20> missing
+for ln in [<5,24>,<6,24>,<14,24>,<15,25>,<3,26>,<7,26>,<2,28>,<3,28>,<5,28>,<7,28>,<3,30>,<2,32>,<3,32>,<5,32>,<7,32>,<3,34>,<7,34>,<2,36>,<3,36>,<5,36>] do
     l := ln[1];
     n := ln[2];
     printf "n = %o, l = %o:\n", n, l;

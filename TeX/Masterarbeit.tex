@@ -1558,7 +1558,7 @@ Insgesamt erhalten wir also Algorithmus \eqref{alg:superlat}:
 		\State \Return $Results$
 	\end{algorithmic}
 \end{algorithm}
-Es ist anzumerken, dass auch diese Methode in zu hohen Dimensionen zu ineffizient wird. Als letzte Möglichkeit können wir deshalb mit der \texttt{MAGMA}-Methode \texttt{Sublattices} $\sigma$-invariante Teilgitter von $M^{\#,p}$ bestimmen. Da die konstruierten Gitter in diesem Fall jedoch nicht notwendigerweise ganz sein müssen, steigt die Anzahl schnell an und es kann in der Regel keine vollständige Liste gebildet werden, sondern nur eine Teilmenge der Gitter. Bei Benutzung dieser Methode kann also die Vollständigkeit der Ergebnisse nicht garantiert werden.
+%Es ist anzumerken, dass auch diese Methode in zu hohen Dimensionen zu ineffizient wird. Als letzte Möglichkeit können wir deshalb mit der \texttt{MAGMA}-Methode \texttt{Sublattices} $\sigma$-invariante Teilgitter von $M^{\#,p}$ bestimmen. Da die konstruierten Gitter in diesem Fall jedoch nicht notwendigerweise ganz sein müssen, steigt die Anzahl schnell an und es kann in der Regel keine vollständige Liste gebildet werden, sondern nur eine Teilmenge der Gitter. Bei Benutzung dieser Methode kann also die Vollständigkeit der Ergebnisse nicht garantiert werden.
 
 
 
@@ -1642,9 +1642,15 @@ Für diesen Algorithmus wurden Einschränkungen an die Minimalpolynome der Autom
 \begin{itemize}
 	\item Bei $\ell = 7$, $n = 20$ konnte $\i_8(7^{+4})$ nicht aufgezählt werden. Es fehlten $\frac{11831}{4644864}$ zur tatsächlichen Masse; $46$ Klassen wurden gefunden.
 	\item Bei $\ell = 7$, $n = 22$ konnte $\ii_{10}(3^{+6}7^{-5})$ nicht aufgezählt werden. Es fehlten $\frac{5099082913}{1451520}$ zur Masse; $25901$ Klassen wurden gefunden.
-	\item Bei $\ell = 5$, $n = 28$ konnte $\i_{12}(5^{-6})$ nicht aufgezählt werden. Es fehlten $\frac{456495737}{1053455155200}$ zur Masse; $1148$ Klassen wurden gefunden.
-	\item Bei $\ell = 5$, $n=28$ konnte außerdem $\ii_{12}(3^{+8}5^{-6})$ nicht aufgezählt werden. Es fehlten $\frac{42166975007681999}{150493593600}$ zur Masse; $31318$ Klassen wurden gefunden.
-	\item Bei $\ell = 6$, $n = 28$ konnte $\ii_{12}(2^{-6}3^{-6}5^{+4})$ nicht aufgezählt werden. Es fehlten $\frac{215972432375753515343}{14332723200}$ zur Masse; $19845$ Klassen wurden gefunden.
+	\item Bei $\ell = 5$, $n=28$, $m = 40$ und $m = 60$ konnte $\ii_{12}(2^{+8}5^{-6})$ nicht aufgezählt werden. Es fehlten $\frac{42166975007681999}{150493593600}$ zur Masse; $31318$ Klassen wurden gefunden.
+	\item Bei $\ell = 5$, $n = 28$, $m = 60$ konnte außerdem $\ii_{12}(3^{+8}5^{-6})$ nicht aufgezählt werden. Es fehlten $\frac{456495737}{1053455155200}$ zur Masse; $1148$ Klassen wurden gefunden.
+	\item Bei $\ell = 6$, $n = 28$, $m = 40$ und $m = 60$ konnte $\ii_{12}(2^{-6}3^{-6}5^{+4})$ nicht aufgezählt werden. Es fehlten $\frac{215972432375753515343}{14332723200}$ zur Masse; $19845$ Klassen wurden gefunden.
+	\item Bei $\ell = 6$, $n = 28$, $m = 40$ und $m = 60$ konnte $\ii_{12}(2^{+6} 3^{+6} 5^{+4})$ nicht aufgezählt werden. Es fehlten $\frac{106412107359534805169}{4954521600}$ zur Masse; $13214$ Klassen wurden gefunden.
+	\item Bei $\ell = 6$, $n = 28$, $m = 40$ konnte $\ii_{12}(2^{+6}3^{-6}5^{-4})$ nicht aufgezählt werden. Es fehlten $\frac{14081796664459639}{614400}$ zur Masse; $16490$ Klassen wurden gefunden.
+	\item Bei $\ell = 6$, $n = 28$, $m = 40$ konnte $\ii_{12}(2^{-6}3^{+6}5^{-4})$ nicht aufgezählt werden. Es fehlten $\frac{2379822753998274191}{199065600}$ zur Masse; $17705$ Klassen wurden gefunden.
+	\item Bei $\ell = 3$, $n = 30$, $m = 40$ und $m=60$ konnte $\ii_{14}(2^{+8}3^{-7}$ nicht aufgezählt werden. Es fehlten $\frac{3785561625313}{7223692492800}$ zur Masse; $10030$ Klassen wurden gefunden.
+	\item Bei $\ell = 3$, $n = 30$, $m = 40$ und $m=60$ konnte $\ii_{14}(2^{-8}3^{+7})$ nicht aufgezählt werden. Es fehlten $\frac{3694034783}{4246732800}$ zur Masse; $9905$ Klassen wurden gefunden.
+	\item Bei $\ell = 7$, $n = 30$ konnte $\ii_{14}(3^{+8}7^{+7})$ nicht aufgezählt werden. Es fehlten $\frac{921555651161350677986378219}{421382062080}$ zur Masse; $16509$ Klassen wurden gefunden.
 	\item Für $n = 32$ wurde nur für $\ell = 2,3,5$ gerechnet.
 	\item Für $n = 36$ wurde nur für $\ell = 3$ gerechnet.
 \end{itemize}
@@ -1707,7 +1713,7 @@ Diese Charakterisierung der möglichen charakteristischen Polynome wenden wir nu
 \begin{framed}
 	\begin{satz}
 		Sei $L$ ein extremales $3$-modulares Gitter in einem bilinearen Vektorraum $(V,b)$ der Dimension $24$. Dann hat $L$ keine Automorphismen der Ordnung $7$ sowie der Ordnung $p \in P_{\ge 13}$. Ist $\sigma \in \Aut(L)$ von Ordnung $m$ mit $12 < \varphi(m) \leq 24$, so ist\linebreak
-		$m \in \lbrace 27, 33, 48, 54, 60, 66, 72, 90 \rbrace$. Außerdem gelten folgende Einschränkungen:
+		$m \in \lbrace 27, 33, 48, 54, 60, 66, 72\rbrace$. Außerdem gelten folgende Einschränkungen:
 		\begin{itemize}
 			\item $m = 27 \Rightarrow \Phi_{27} \vert \mu_\sigma$
 			\item $m = 33 \Rightarrow \chi_\sigma = \Phi_1^2 \Phi_3 \Phi_{11}^2$
@@ -1716,7 +1722,6 @@ Diese Charakterisierung der möglichen charakteristischen Polynome wenden wir nu
 			\item $m = 60 \Rightarrow \chi_\sigma = \Phi_4^2 \Phi_{12} \Phi_{20}^2$
 			\item $m = 66 \Rightarrow \mu_\sigma \vert \Phi_{2} \Phi_{6} \Phi_{22} \Phi_{66}$
 			\item $m = 72 \Rightarrow \Phi_8 \vert \mu_\sigma$
-			\item $m = 90 \Rightarrow$ $\sigma^{18}$ hat Typ $5 - (8, 16) - 4 - (4, 8)$ oder $5 - (8, 16) - 4 - (4, 8)$
 		\end{itemize}
 	\end{satz}
 \end{framed}
@@ -1748,7 +1753,7 @@ Diese Charakterisierung der möglichen charakteristischen Polynome wenden wir nu
 	Im Falle $m = 66$ muss $\Phi_{22}$ das Minimalpolynom $\mu_\sigma$ teilen, wie eine Betrachtung der aufgezählten Möglichkeiten für das charakteristische Polynom zeigt. Die Ordnung des Automorphismus $\sigma\vert_{\Bild(\sigma^{33}-1)}$ ist also ein Vielfaches von $22$, jedoch hat $\sqrt{2} K_{12}$ auch keinen Automorphismus der Ordnung $22$, also muss $\sigma^{33}$ den Typen $2 - (0, 24) - 0 - (0, 12)$ haben. Damit gilt $\mu_\sigma \vert \Phi_{2} \Phi_{6} \Phi_{22} \Phi_{66}$.
 		\item[$m = 72 = 2^3 \cdot 3^2$:] Man kann beobachten, dass immerzu $\Phi_8$ das Minimalpolynom teilt, mehr lässt sich nicht aussagen.
 		\item[$m = 84 = 2^2 \cdot 3 \cdot 7$:] Es gibt nur zwei mögliche charakteristische Polynome. Diese sind $\Phi_{28} \Phi_{42}$ und $\Phi_{21} \Phi_{28}$. Da $\Kern(\sigma^{42}-1)$ in jedem Fall nicht trivial ist, hat $\sigma^{42}$ Typ $2 - (12, 12) - 12 - (6, 6)$. Der Automorphismus $\sigma^{28}$ der Ordnung $3$ induziert allerdings das gleiche Teilgitter wie $\sigma^{42}$, also muss der Index gleichzeitig eine $3$-Potenz und $2^{12}$ sein. Dies ist ein Widerspruch, also kann der Fall nicht eintreten.
-		\item[$m = 90 = 2 \cdot 3^2 \cdot 5$:] Es ist $\Kern(\sigma^{18})$ stets nicht-trivial, also hat $\sigma^{18}$ Typ $5 - (8, 16) - 4 - (4, 8)$.
+		\item[$m = 90 = 2 \cdot 3^2 \cdot 5$:] Es ist $\Kern(\sigma^{18})$ stets nicht-trivial, also hat $\sigma^{18}$ Typ $5 - (8, 16) - 4 - (4, 8)$ oder $5 - (8, 16) - 4 - (4, 8)$. Keiner der Kandidaten für die Fix-Gitter hat jedoch Automorphismen mit passender Ordnung, also kann auch dieser Fall nicht auftreten.
 	\end{itemize}
 \end{beweis}
 Die Methoden zur Einschränkung der Möglichkeiten für die charakteristischen Polynome wurde ebenfalls in Magma implementiert. Eine Anwendung auf alle $l, n$ und $m$ lässt uns bereits viele mögliche Automorphismenordnungen ausschließen. Welche Ordnungen nach unseren Einschränkungen jeweils nicht möglich sind, kann man den Ergebnissen der Subideal-Gitter-Klassifikation in Anhang (6.2) entnehmen. Besonders stark sind die folgenden Ergebnisse:
@@ -2037,7 +2042,7 @@ Es folgt eine Tabelle mit den Anzahlen der mit Algorithmus \eqref{alg:largeauto}
 								&						&							&$40$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$48$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$60$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \hline
-		\multirow{4}{*}{$18$}	&\multirow{4}{*}{$11$}	&\multirow{4}{*}{$0(0)$}	&$11$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+		\multirow{3}{*}{$18$}	&\multirow{3}{*}{$11$}	&\multirow{3}{*}{$0(0)$}	&$11$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
 								&						&							&$40$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$48$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \hline
 		\multirow{9}{*}{$20$}	&\multirow{9}{*}{$3$}	&\multirow{9}{*}{$3(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
@@ -2057,14 +2062,14 @@ Es folgt eine Tabelle mit den Anzahlen der mit Algorithmus \eqref{alg:largeauto}
 	\begin{tabular}{|c|c|c|c|c|c|c|c|}
 		\hline		
 		$\Dim$					&$\ell$					&{Anzahl(unbekannte)}		&$m$	&Anzahl	&Vollst.	&Vollst. groß	&$\sigma$-inv. Oberg.\\ \hline
-		\multirow{10}{*}{$20$}	&\multirow{3}{*}{$5$}	&\multirow{3}{*}{$3(0)$}	&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+		\multirow{26}{*}{$20$}	&\multirow{3}{*}{$5$}	&\multirow{3}{*}{$3(0)$}	&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$40$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
 								&						&							&$60$	&$3$	&$\times$		&$\times$		&$\times$\\ \cline{2-8}	
-								&						&							&$50$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&\multirow{3}{*}{$6$}	&\multirow{3}{*}{$1(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&\multirow{13}{*}{$6$}	&\multirow{13}{*}{$1(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$36$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{2-8}
-								&\multirow{9}{*}{$6$}	&\multirow{9}{*}{$1(0)$}	&$32$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$32$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
 								&						&							&$40$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$48$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
 								&						&							&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
@@ -2072,35 +2077,17 @@ Es folgt eine Tabelle mit den Anzahlen der mit Algorithmus \eqref{alg:largeauto}
 								&						&							&$54$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
 								&						&							&$33$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$44$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$66$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \hline
-		\multirow{18}{*}{$20$}	&\multirow{4}{*}{$7$}	&\multirow{4}{*}{$0(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$66$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
+								&\multirow{4}{*}{$7$}	&\multirow{4}{*}{$0(0)$}	&$21$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
 								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
 								&\multirow{6}{*}{$14$}	&\multirow{6}{*}{$0(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$28$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
 								&						&							&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$32$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
-								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
-								&\multirow{8}{*}{$15$}	&\multirow{8}{*}{$0(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$40$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$27$	&$0$	&$\times$		&$\times$		&$\times$\\ \hline
-		\multirow{10}{*}{$22$}&\multirow{10}{*}{$3$}	&\multirow{10}{*}{$2(1)$}	&$13$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$26$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$40$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$27$	&$0$	&$\times$		&$\times$		&$\times$\\ \hline
+								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \hline
 	\end{tabular}
 \end{table}
 
@@ -2109,22 +2096,49 @@ Es folgt eine Tabelle mit den Anzahlen der mit Algorithmus \eqref{alg:largeauto}
 	\begin{tabular}{|c|c|c|c|c|c|c|c|}
 		\hline		
 		$\Dim$					&$\ell$					&{Anzahl(unbekannte)}		&$m$	&Anzahl	&Vollst.	&Vollst. groß	&$\sigma$-inv. Oberg.\\ \hline
-		\multirow{12}{*}{$22$}	&\multirow{2}{*}{$3$}	&\multirow{2}{*}{$2(1)$}	&$33$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$66$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{2-8}
-								&\multirow{5}{*}{$7$}	&\multirow{5}{*}{$2(1)$}	&$21$	&$0!!$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+		\multirow{8}{*}{$20$}	&\multirow{8}{*}{$15$}	&\multirow{8}{*}{$0(0)$}	&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$42$	&$0!!$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
-								&\multirow{5}{*}{$11$}&\multirow{5}{*}{$2(1)$}		&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$40$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$27$	&$0$	&$\times$		&$\times$		&$\times$\\ \hline
+		\multirow{20}{*}{$22$}	&\multirow{13}{*}{$3$}	&\multirow{13}{*}{$2(1)$}	&$13$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$21$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$26$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$27$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$54$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$33$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$66$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{2-8}
+								&\multirow{4}{*}{$7$}	&\multirow{4}{*}{$0(0)$}	&$21$	&$0!!$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$28$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$42$	&$0!!$	&$\times$		&$\times$		&$\times$\\ \cline{2-8}
+								&\multirow{3}{*}{$11$}&\multirow{3}{*}{$0(0)$}		&$36$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$44$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \hline
-		\multirow{15}{*}{$24$}	&\multirow{11}{*}{$2$}	&\multirow{11}{*}{$8(2)$}	&$32$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
-								&						&							&$40$	&$7$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$48$	&$1$	&$\times$		&$\checkmark$	&$\checkmark$\\ \cline{4-8}
-								&						&							&$60$	&$7$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+	\end{tabular}
+\end{table}
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|c|c|}
+		\hline		
+		$\Dim$					&$\ell$					&{Anzahl(unbekannte)}		&$m$	&Anzahl	&Vollst.	&Vollst. groß	&$\sigma$-inv. Oberg.\\ \hline
+		\multirow{24}{*}{$24$}	&\multirow{14}{*}{$2$}	&\multirow{14}{*}{$8(2)$}	&$32$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$40$	&$7$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$48$	&$1$	&$\times$		&$\times$		&$\checkmark$\\ \cline{4-8}
+								&						&							&$60$	&$7$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$54$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$44$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$66$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$35$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$45$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$56$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
@@ -2132,10 +2146,16 @@ Es folgt eine Tabelle mit den Anzahlen der mit Algorithmus \eqref{alg:largeauto}
 								&						&							&$72$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$84$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$90$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
-								&\multirow{4}{*}{$3$}	&\multirow{4}{*}{$1(0)$}	&$60$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&\multirow{10}{*}{$3$}	&\multirow{10}{*}{$1(0)$}	&$48$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$60$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
 								&						&							&$27$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$54$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$33$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$66$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$39$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$52$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \hline
+								&						&							&$52$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$72$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+								&						&							&$78$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \hline
 	\end{tabular}
 \end{table}
 
@@ -2144,13 +2164,10 @@ Es folgt eine Tabelle mit den Anzahlen der mit Algorithmus \eqref{alg:largeauto}
 	\begin{tabular}{|c|c|c|c|c|c|c|c|}
 		\hline		
 		$\Dim$					&$\ell$					&{Anzahl(unbekannte)}		&$m$	&Anzahl	&Vollst.	&Vollst. groß	&$\sigma$-inv. Oberg.\\ \hline
-		\multirow{14}{*}{$24$}	&\multirow{3}{*}{$3$}	&\multirow{3}{*}{$1(0)$}	&$72$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$78$	&$1$	&$\checkmark$	&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$84$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{2-8}
-								&\multirow{11}{*}{$5$}	&\multirow{11}{*}{$1(0)$}	&$40$	&$1$	&$\times$		&$\checkmark$	&$\checkmark$\\ \cline{4-8}
-								&						&							&$48$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
-								&						&							&$60$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
+		\multirow{11}{*}{$24$}	&\multirow{11}{*}{$5$}	&\multirow{11}{*}{$1(0)$}	&$40$	&$1$	&$\times$		&$\times$		&$\checkmark$\\ \cline{4-8}
+								&						&							&$60$	&$1$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
 								&						&							&$25$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
+								&						&							&$50$	&$0$	&$\times$		&$\times$		&$\times$\\ \cline{4-8}
 								&						&							&$35$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$45$	&$0$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}
 								&						&							&$56$	&$1$	&$\times$		&$\checkmark$	&$\times$\\ \cline{4-8}

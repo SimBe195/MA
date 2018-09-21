@@ -455,40 +455,6 @@ function EnumerateGenusSymbol(Symbol)
 end function;
 
 
-function SuperLatticesMagma(L, p, s, sigma)
-// Input: Lattice L; Prime p; s in N; Automorphism sigma of L
-
-// Output: All even sigma-invariant superlattices of L with index p^s using magmas method
-
-
-	LD := PartialDual(L,p:Rescale:=false);
-
-	G := MatrixGroup<NumberOfRows(sigma), Integers() | sigma >;
-	den1 := Denominator(BasisMatrix(LD));
-	den2 := Denominator(InnerProductMatrix(LD));
-
-	A := LatticeWithBasis(G, Matrix(Integers(), den1*BasisMatrix(LD)), Matrix(Integers(), den2^2*InnerProductMatrix(LD)));
-
-	SU := [];
-	SU := Sublattices(A, p : Levels := s, Limit := 100000);
-
-	if #SU eq 100000 then "List of sublattices is probably not complete."; end if;
-
-	Results := [];
-
-	for S in SU do
-
-		M := 1/den1 * 1/den2 * S;
-
-		if Determinant(M)*p^(2*s) eq Determinant(L) then
-			Append(~Results, M);
-		end if;
-	end for; 
-
-	return [L : L in Results | IsEven(L)];
-end function;
-
-
 function SuperLattices(L1, Lp, p, sigma1, sigmap)
 // Input: Lattice L1; Lattice Lp; Prime p; Automorphism sigma of L
 
@@ -741,21 +707,6 @@ function ConstructLattices(l, n)
 			    		K<z> := CyclotomicField(p);
 			    		Kpos := sub<K|z+1/z>;
 
-					    //if p eq 2 then
-
-					    	// In this case use the sublattice U of L_1 with U^{#,2} = U
-					    //	det1U := 1;
-						//	for i := 5 to #type by 3 do
-						//		det1U *:= type[i]^type[i+1];
-						//	end for;
-
-					    //	"Enumerate sublattices U";
-						//	UList := EnumerateGenusDeterminant(det1U, n1, false);
-
-						//	"Construct L1 as superlattice for U";
-						//	L1List := &cat[SuperLatticesJuergens(LatticeWithGram(2*GramMatrix(U)), p, Integers() ! ((n1 - s)/2)) : U in UList | Minimum(U) ge Ceiling(min/2)];
-						//	L1List := [L : L in L1List | IsEven(L) and Minimum(L) ge min];
-
 						if p gt 2 and IsPrime(l) then
 				    		// In this case the genus symbol of L_1 is known and allows for a more efficient enumeration
 							k1 := type[6];
@@ -842,7 +793,7 @@ function ConstructLattices(l, n)
 
 					    	"Constructing superlattices";
 
-					    	if <l,n,m> in [<7,18,21>, <7,18,42>, <1,24,40>, <1,24,60>, <2,24,48>, <5,24,40>, <5,24,60>, <3,26,40>, <3,26,60>] then
+					    	if <l,n,m> in [<7,18,21>, <7,18,42>, <1,24,40>, <1,24,60>, <2,24,48>, <5,24,40>, <5,24,60>, <3,26,40>, <3,26,60>, <1,32,45>] then
 						    	LList := [];
 						    	for sigma1 in sigma1List do
 						    		for sigmap in sigmapList do

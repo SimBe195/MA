@@ -53,40 +53,6 @@
 \end{frame}
 
 \begin{frame}[plain]
-	\frametitle{Ideal-Gitter}
-	\begin{Definition}
-			Ein \textit{Ideal-Gitter} ist ein Gitter $(\I,b)$, sodass $\I$ ein gebrochenes $\Z_K$-Ideal ist und $b:\I \times \I \rightarrow \R$ eine symmetrische positiv-definite Bilinearform mit $b(\lambda x, y) = b(x, \overline{\lambda} y)$ für $x,y \in \I$ und $\lambda \in \Z_K$. Die Abbildung $\lambda \mapsto \overline{\lambda}$ bezeichnet dabei die herkömmliche komplexe Konjugation.
-	\end{Definition}
-	\pause
-	Solche Gitter können wir für gegebenen Körper $K$ und Determinante effizient konstruieren!
-\end{frame}
-
-\begin{frame}[plain]
-	\begin{tiny}
-	\begin{table}
-	\centering
-	\begin{tabular}{|c||c|c|c|c|c|c|c|c|c|c|}
-		\hline
-		\backslashbox{$n$}{$\ell$}	&$1$	&$2$	&$3$	&$5$	&$6$	&$7$	&$11$	&$14$	&$15$	&$23$\\ \hline \hline
-		$4$		&$-$		&$1(1)$		&$1(1)$		&$-$		&$-$		&$-$		&$1(1)$		&$1(1)$		&$-$		&$1(1)$ \\ \hline
-		$6$		&$-$		&$-$		&$1(1)$		&$-$		&$-$		&$1(1)$		&$-$		&$-$		&$-$		&$-$ \\ \hline
-		$8$		&$1(1)$		&$1(1)$		&$1(1)$		&$1(1)$		&$1(1)$		&$1(1)$		&$2(1)$		&$2(1)$		&$1(1)$		&$3(-)$ \\ \hline
-		$10$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$1(1)$		&$-$		&$-$		&$-$ \\ \hline
-		$12$	&$-$		&$1(1)$		&$2(1)$		&$1(1)$		&$1(1)$		&$1(-)$		&$1(-)$		&$1(1)$		&$-$		&$1(-)$ \\ \hline
-		$16$	&$1(1)$		&$2(1)$		&$3(2)$		&$1(-)$		&$2(1)$		&$4(3)$		&$5(-)$		&$5(-)$		&$3(1)$		&$5(-)$ \\ \hline
-		$18$	&$-$		&$-$		&$1(-)$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$ \\ \hline
-		$20$	&$-$		&$1(1)$		&$-$		&$-$		&$1(1)$		&$1(-)$		&$2(-)$		&$-$		&$-$		&$-$ \\ \hline
-		$22$	&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$-$		&$2(-)$ \\ \hline
-		$24$	&$4(1)$		&$2(1)$		&$7(1)$		&$5(1)$		&$5(2)$		&$8(-)$		&$7(-)$		&$8(-)$		&$5(-)$		&$14(-)$ \\ \hline
-		$32$	&$7(5)$		&$13(4)$	&$13(7)$	&$10(-)$	&$12(-)$	&$19(-)$	&$42(-)$	&$21(-)$	&$23(-)$	&$-$ \\ \hline
-		$36$	&$-$		&$6(3)$		&$8(-)$		&$8(-)$		&$-$		&$-$		&$2(-)$		&$36(-)$	&$4(-)$		&$-$ \\ \hline
-	\end{tabular}
-	\caption{Ideal-Gitter der Dimension $n$, Stufe $\ell$ und Determinante $\ell^\frac{n}{2}$.}
-	\end{table}
-	\end{tiny}
-\end{frame}
-
-\begin{frame}[plain]
 	\frametitle{Große Automorphismen}
 	\begin{Definition}
 		Sei $L$ ein $\Z$-Gitter der Dimension $n$. Ein \textit{großer Automorphismus} von $L$ ist ein $\sigma \in \Aut(L)$ von Ordnung $m \in \N$, sodass $\Phi_m \vert \mu_\sigma$ und $\frac{n}{2} < \varphi(m) \leq n$.
@@ -153,7 +119,7 @@
 \frame{\tableofcontents[currentsection]}
 \begin{frame}[plain]
 	\frametitle{Bildgitter}
-	Da $\varphi(m) > \frac{n}{2}$ ist $L_p = L \cap \Kern(\Phi_m)$ ein eindimensionaler $\Q(\zeta_m)$-Vektorraum $\rightsquigarrow$ Ideal-Gitter.\par
+	Da $\varphi(m) > \frac{n}{2}$ ist $\Kern(\Phi_m)$ ein eindimensionaler $\Q(\zeta_m)$-Vektorraum $\rightsquigarrow$ $L_p$ ist Ideal-Gitter.\par
 	\pause
 	$\Rightarrow$ Effizient berechenbar mit dem Algorithmus aus dem ersten Teil!
 \end{frame}
@@ -297,7 +263,9 @@
 		\pause
 		\item[$m = 48$:] Ang. $\sigma^{24}$ hat Typ $2 - (12, 12) - 12 - (6, 6)$, dann $\Phi_{48} \nmid \mu_\sigma$. Somit $\Phi_{16} \mid \mu_\sigma$ und $\mu_\sigma \mid (X^{24}-1) \Phi_{16}$.\\
 		$\Rightarrow$ $\Bild(\sigma^{24}-1)$ ist $\Q(\zeta_{16})$-VR, aber $\Dim(\Bild(\sigma^{24}-1)) = 12 \lightning$\\
-		$\Rightarrow \mu_\sigma \in \lbrace \Phi_{16} \Phi_{48}, \Phi_{48} \rbrace$. Für $\mu_\sigma = \Phi_{48}$ ist $L$ aber ein Ideal-Gitter über $\Q(\zeta_{48})$ und wird gefunden.
+		$\Rightarrow \mu_\sigma \in \lbrace \Phi_{16} \Phi_{48}, \Phi_{48} \rbrace$. Für $\mu_\sigma = \Phi_{48}$ ist $L$ aber ein Ideal-Gitter über $\Q(\zeta_{48})$ und wird gefunden.\\
+		\pause
+		\begin{center} \vdots \end{center}
 	\end{itemize}
 \end{frame}
 
@@ -343,10 +311,30 @@ sein.
 \begin{frame}[plain]
 	\frametitle{Vollständigkeit - Methoden}
 	Seien $p_1, p_2 \mid m$.\\
-	Wenn für alle Faktoren $\Phi_{d_i} \mid \chi_\sigma$, immer \textit{entweder} $\nu_{p_1}(d_i) = \nu_{p_1}(m)$ \textit{oder} $\nu_{p_2}(d_i) = \nu_{p_2}(m)$ gilt, induzieren $p_1$ und $p_2$ dasselbe Teilgitter.\\
+	Wenn für alle Faktoren $\Phi_{d_i} \mid \chi_\sigma$, immer \textit{entweder} $\nu_{p_1}(d_i) = \nu_{p_1}(m)$ \textit{oder} $\nu_{p_2}(d_i) = nu_{p_2}(m)$ gilt, induzieren $p_1$ und $p_2$ dasselbe Teilgitter.\\
 	\pause
-	$\rightsquigarrow$ Index $0$!
+	$\rightsquigarrow$ Index $1$!\\
+	\pause
+	z.B: $\mu_\sigma = \Phi_{12} \Phi_{20}$, dann induzieren $\sigma^{12}$ und $\sigma^{20}$ dasselbe Teilgitter.
 \end{frame}
+
+\begin{frame}[plain]
+	\frametitle{Vollständigkeit - Beispiel}
+	\begin{Satz}
+		Sei $L$ ein extremales $3$-modulares Gitter in einem bilinearen Vektorraum $(V,b)$ der Dimension $24$. Dann hat $L$ keine Automorphismen der Ordnung $7$ sowie der Ordnung $p \in P_{\ge 13}$. Ist $\sigma \in \Aut(L)$ von Ordnung $m$ mit $12 < \varphi(m) \leq 24$, so ist\linebreak
+		$m \in \lbrace 27, 33, 48, 54, 60, 66, 72\rbrace$. Außerdem gelten folgende Einschränkungen:
+		\begin{itemize}
+			\item $m = 27 \Rightarrow \Phi_{27} \vert \mu_\sigma$
+			\item $m = 33 \Rightarrow \chi_\sigma = \Phi_1^2 \Phi_3 \Phi_{11}^2$
+			\item $m = 48 \Rightarrow \chi_\sigma = \Phi_{16} \Phi_{48}$
+			\item $m = 54 \Rightarrow \Phi_{24} \vert \mu_\sigma$ und $\sigma^{27}$ hat Typ $2 - (0, 24) - 0 - (0, 12)$.
+			\item $m = 60 \Rightarrow \chi_\sigma = \Phi_4^2 \Phi_{12} \Phi_{20}^2$
+			\item $m = 66 \Rightarrow \mu_\sigma \vert \Phi_{2} \Phi_{6} \Phi_{22} \Phi_{66}$
+			\item $m = 72 \Rightarrow \Phi_8 \vert \mu_\sigma$
+		\end{itemize}
+	\end{Satz}
+\end{frame}
+
 
 \begin{frame}[plain]
 	\frametitle{Vollständigkeit - Methoden}
